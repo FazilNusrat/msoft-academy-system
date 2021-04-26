@@ -54,13 +54,13 @@ const linksData = [
     title: 'Student',
     caption: 'quasar.dev',
     icon: 'school',
-    link: 'pages/students/index.vue'
+    link: '/students'
   },
   {
-    title: 'Teachares',
-    caption: 'github.com/quasarframework',
+    title: 'Teachers',
+    // caption: 'github.com/quasarframework',
     icon: 'code',
-    link: 'pages/teachars/index.vue'
+    link: '/teachers'
   },
 ];
 export default {
