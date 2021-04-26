@@ -1,3 +1,21 @@
 <template>
-    <h1>Student</h1>
+	<div>
+		Students
+	</div>
 </template>
+
+<script>
+export default {
+
+  name: 'index',
+
+  data () {
+    return {
+
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+</style>

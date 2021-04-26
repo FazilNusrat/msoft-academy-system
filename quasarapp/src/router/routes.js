@@ -13,7 +13,17 @@ const routes = [
   {
     path: '*',
     component: () => import('pages/Error404.vue')
-  }
+  },
+  {
+    path: '/teachers',
+      component: () =>
+          import ('pages/teachers/index.vue')
+  },
+  {
+    path: '/students',
+      component: () =>
+          import ('pages/students/index.vue')
+  },
 ]
 
 export default routes
