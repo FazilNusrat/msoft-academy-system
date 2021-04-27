@@ -16,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+  });
+  
+  Route::post('teacher/store', ['as' => 'teacher.index', 'uses' => 'TeachersController@store']);
+
+
+
+
