@@ -7,13 +7,20 @@
     <q-btn color="primary" @click="medium = true">
       <q-icon name="add" />
     </q-btn>
- 
-    <div class="col-md-9">
-      <q-table
-        title="Treats"
+
+    <div>
+      <n-table
+      
+        :loading="loading"
+        @head="head"
         :data="classdata"
+        :pagination.sync="pagination"
+        @del="del"
+        @info="info"
+        @edit="edit"
+        :filter.sync="filter"
         :columns="columns"
-        row-key="name"
+        @request="onRequest"
       />
     </div>
     <q-dialog v-model="medium">
@@ -58,26 +65,65 @@
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
 export default {
+  components: { NTable },
+
   data() {
     return {
       columns: [
         {
-          name: "Name",
+          name: "id",
+          required: true,
+          label: this.$t("Number"),
+          field: (row) => row.id,
+          sortable: true,
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
+        },
+        {
+          name: "name",
+          classes: "my_width20",
+          align: "left",
+          // label: this.$t("Name"),
           label: "Name",
-          field: "name",
+          field: (row) => row.name,
           sortable: true,
         },
         {
           name: "description",
-          align: "center",
-
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
           label: "Description",
-          field: "description",
+          align: "left",
+          field: (row) => row.description,
           sortable: true,
         },
+
+        {
+          name: "actions",
+          label: this.$t("Actions"),
+          align: "center",
+          sortable: false,
+          classes: "my_width10",
+        },
       ],
+      loading: false,
+      filter: "",
+      sortBy: "created_at",
+      descending: false,
+      page: 1,
+      rowsPerPage: 12,
+      rowsNumber: 12,
+      data: [],
+      pagination: {
+        sortBy: "created_at",
+        descending: false,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12,
+      },
       medium: false,
       classdata: [],
       form: {
@@ -98,17 +144,39 @@ export default {
           message: "Successfully inserted",
         });
         this.clear();
-        this.$router.push("/class/index");
+        // this.$router.push("/class/index");
+        this.getdata();
       });
     },
     clear() {
-      (this.form.name = ""),
-       (this.form.description = "");
+      (this.form.name = ""), (this.form.description = "");
     },
     getdata() {
       this.$axios.get("class/display", this.classdata).then((Response) => {
         this.classdata = Response.data;
       });
+    },
+    head(name) {
+      if (this.pagination.descending) this.pagination.descending = true;
+      else this.pagination.descending = true;
+      this.pagination.sortBy = name;
+    },
+  
+
+  del(id = 0) {
+    console.log("dels: ", id);
+  },
+  info(id = 0) {
+    this.$router.push("/customer/show/" + id);
+  },
+  onRequest(props) {
+    // console.log("propss: ", props);
+    this.getProp = props;
+    this.getRecord();
+  },
+  
+edit (id=0) {
+        this.$router.push('/customer/edit/'+id);
     },
   },
 

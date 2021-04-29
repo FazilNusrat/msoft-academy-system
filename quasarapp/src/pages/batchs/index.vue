@@ -8,52 +8,45 @@
       <q-icon name="add" />
     </q-btn>
 
-     <div class="col-md-9">
-      <q-table
-        title="Treats"
-        :data="batchdata"
+    <div>
+      <n-table
+      
+        :loading="loading"
+        @head="head"
+        :data="batchData"
+        :pagination.sync="pagination"
+        @del="del"
+        @info="info"
+        @edit="edit"
+        :filter.sync="filter"
         :columns="columns"
-        row-key="name"
+        @request="onRequest"
       />
     </div>
-
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
-          <div class="text-h6">Add Class</div>
+          <div class="text-h6">Add Batch</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
           <div class="row">
             <div class="col"></div>
             <div class="col-10 q-mr-lg">
-              <q-input
-                filled
-                v-model="batch.date"
-                mask="date"
-                :rules="['date']"
-              >
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      ref="qDateProxy"
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="batch.date">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
+              <q-input color="teal" v-model="form.name" label="Name">
+                <template v-slot:prepend>
+                  <q-icon name="add" />
                 </template>
               </q-input>
+              <!-- <q-input
+                color="teal"
+                v-model="form.description"
+                label="Description"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="info" />
+                </template>
+              </q-input> -->
             </div>
           </div>
         </q-card-section>
@@ -72,31 +65,77 @@
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
 export default {
+  components: { NTable },
+
   data() {
     return {
-       columns: [
+      columns: [
         {
-          name: "date",
+          name: "id",
+          required: true,
+          label: this.$t("Number"),
+          field: (row) => row.id,
+          sortable: true,
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
-          label: "Batchs",
-          field: "date",
+          headerClasses: "bg-light-blue-6 text-white ",
+        },
+        {
+          name: "name",
+          classes: "my_width20",
+          align: "left",
+          // label: this.$t("Name"),
+          label: "Name",
+          field: (row) => row.name,
           sortable: true,
         },
-       
+        // {
+        //   name: "description",
+        //   classes: "bg-grey-2 ellipsis my_width20",
+        //   // label: this.$t("ContactPerson"),
+        //   label: "Description",
+        //   align: "left",
+        //   field: (row) => row.description,
+        //   sortable: true,
+        // },
+
+        {
+          name: "actions",
+          label: this.$t("Actions"),
+          align: "center",
+          sortable: false,
+          classes: "my_width10",
+        },
       ],
+      loading: false,
+      filter: "",
+      sortBy: "created_at",
+      descending: false,
+      page: 1,
+      rowsPerPage: 12,
+      rowsNumber: 12,
+      data: [],
+      pagination: {
+        sortBy: "created_at",
+        descending: false,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12,
+      },
       medium: false,
-      date: "2019-02-01 12:44",
-      batchdata: [],
-      batch: {
-        date: null,
+      batchData: [],
+      form: {
+        name: null,
+        // description: null,
       },
     };
   },
   methods: {
     SaveRecord() {
       // console.log("Test File", this.form.name);
-      this.$axios.post("batch/store", this.batch).then((res) => {
+      this.$axios.post('batch/store', this.form).then((res) => {
         this.$q.notify({
           color: "green-4",
           textColor: "white",
@@ -104,25 +143,46 @@ export default {
           position: "top-right",
           message: "Successfully inserted",
         });
-        this.$route.push("/batchs/index");
+        this.clear();
+        // this.$router.push("/class/index");
+        this.getdata();
       });
     },
-    getdata()
-    {
-      this.$axios.get('batch/display',this.batchdata).then((Response)=>{
-        this.batchdata = Response.data;
-      })
+    clear() {
+      (this.form.name = ""), (this.form.description = "");
     },
-    clear()
-    {
-      this.batch.data = '';
-    }
+    getdata() {
+      this.$axios.get('batch/display', this.batchData).then((Response) => {
+        this.batchData = Response.data;
+      });
+    },
+    head(name) {
+      if (this.pagination.descending) this.pagination.descending = true;
+      else this.pagination.descending = true;
+      this.pagination.sortBy = name;
+    },
+  
+
+  del(id = 0) {
+    console.log("dels: ", id);
   },
-  created()
-  {
+  info(id = 0) {
+    this.$router.push("/customer/show/" + id);
+  },
+  onRequest(props) {
+    // console.log("propss: ", props);
+    this.getProp = props;
+    this.getRecord();
+  },
+  
+edit (id=0) {
+        this.$router.push('/customer/edit/'+id);
+    },
+  },
+
+  created() {
     this.getdata();
-    this.SaveRecord();
-  }
+  },
 };
 </script>
 

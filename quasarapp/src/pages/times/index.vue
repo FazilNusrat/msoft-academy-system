@@ -4,104 +4,167 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <q-btn  color="primary" @click="medium = true">
+    <q-btn color="primary" @click="medium = true">
       <q-icon name="add" />
     </q-btn>
 
-    <div class="col-md-9">
-      <q-table
-        title="Treats"
-        :data="timedate"
+    <div>
+      <n-table
+        :loading="loading"
+        @head="head"
+        :data="timeData"
+        :pagination.sync="pagination"
+        @del="del"
+        @info="info"
+        @edit="edit"
+        :filter.sync="filter"
         :columns="columns"
-        row-key="name"
+        @request="onRequest"
       />
     </div>
-
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
-          <div class="text-h6">Add Time</div>
+          <div class="text-h6">Add Class</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
           <div class="row">
             <div class="col"></div>
             <div class="col-10 q-mr-lg">
-              <q-input color="teal" v-model="time.name" label="Name">
+              <q-input color="teal" v-model="form.name" label="Name">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-             
               
             </div>
           </div>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat  label="OK" @click="SaveRecord">
+          <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
             <q-icon name="save" />
           </q-btn>
           <q-btn flat label="close" v-close-popup>
             <q-icon name="close" />
           </q-btn>
         </q-card-actions>
-        
       </q-card>
     </q-dialog>
   </div>
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
 export default {
+  components: { NTable },
+
   data() {
     return {
-       columns: [
+      columns: [
         {
-          name: "Name",
+          name: "id",
+          required: true,
+          label: this.$t("Number"),
+          field: (row) => row.id,
+          sortable: true,
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
+        },
+        {
+          name: "name",
+          classes: "my_width20",
+          align: "left",
+          // label: this.$t("Name"),
           label: "Name",
-          field: "name",
+          field: (row) => row.name,
           sortable: true,
         },
-        
+
+        {
+          name: "actions",
+          label: this.$t("Actions"),
+          align: "center",
+          sortable: false,
+          classes: "my_width10",
+        },
       ],
+      loading: false,
+      filter: "",
+      sortBy: "created_at",
+      descending: false,
+      page: 1,
+      rowsPerPage: 12,
+      rowsNumber: 12,
+      data: [],
+      pagination: {
+        sortBy: "created_at",
+        descending: false,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12,
+      },
       medium: false,
-      timedate:[],
-      time:{
-        name:null,
-      }
+      timeData: [],
+      form: {
+        name: null,
+        description: null,
+      },
     };
   },
-  methods:{
-    SaveRecord(){
-    // console.log("Test File", this.time.name);
-    this.$axios.post('time/store',this.time).then(res=> {
-       this.$q.notify({
-                color: "green-4",
-                textColor: "white",
-                icon: "cloud_done",
-                position:'top-right',
-                message: "Successfully inserted",
-              })
-        this.$route.push("/times/index")
-    });
+  methods: {
+    SaveRecord() {
+      // console.log("Test File", this.form.name);
+      this.$axios.post("time/store", this.form).then((res) => {
+        this.$q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          position: "top-right",
+          message: "Successfully inserted",
+        });
+        this.clear();
+        // this.$router.push("/class/index");
+        this.getdata();
+      });
     },
-    getdata()
-    {
-      this.$axios.get('time/display',this.timedate).then((Response)=> {
-        this.timedate = Response.data;
-      })
+    clear() {
+      (this.form.name = ""), (this.form.description = "");
     },
-    clear()
-    {
-      this.time.name='';
-    }
+    getdata() {
+      this.$axios.get("time/display", this.timeData).then((Response) => {
+        this.timeData = Response.data;
+      });
+    },
+    head(name) {
+      if (this.pagination.descending) this.pagination.descending = true;
+      else this.pagination.descending = true;
+      this.pagination.sortBy = name;
+    },
+  
+
+  del(id = 0) {
+    console.log("dels: ", id);
   },
-  created()
-  {
+  info(id = 0) {
+    this.$router.push("/customer/show/" + id);
+  },
+  onRequest(props) {
+    // console.log("propss: ", props);
+    this.getProp = props;
+    this.getRecord();
+  },
+  
+edit (id=0) {
+        this.$router.push('/customer/edit/'+id);
+    },
+  },
+
+  created() {
     this.getdata();
-  }
+  },
 };
 </script>
 
