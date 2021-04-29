@@ -12,6 +12,6 @@ class batch extends Model
     protected $primaryKey = 'id';
     public $incrementing = False;
     protected $fillable = [
-        'date'
+        'name'
     ];
 }

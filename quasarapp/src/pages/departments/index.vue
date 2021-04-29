@@ -4,15 +4,23 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <q-btn  color="primary" @click="medium = true">
+    <q-btn color="primary" @click="medium = true">
       <q-icon name="add" />
     </q-btn>
-  <div class="col-md-9">
-      <q-table
-        title="Treats"
-        :data="depdata"
+
+    <div>
+      <n-table
+        title="Teachers"
+        :loading="loading"
+        @head="head"
+        :data="departmentData"
+        :pagination.sync="pagination"
+        @del="del"
+        @info="info"
+        @edit="edit"
+        :filter.sync="filter"
         :columns="columns"
-        row-key="name"
+        @request="onRequest"
       />
     </div>
     <q-dialog v-model="medium">
@@ -25,94 +33,156 @@
           <div class="row">
             <div class="col"></div>
             <div class="col-10 q-mr-lg">
-              <q-input color="teal" v-model="department.name" label="Name">
+              <q-input color="teal" v-model="form.name" label="Name">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="department.description" label="Description">
+              <q-input
+                color="teal"
+                v-model="form.description"
+                label="Description"
+              >
                 <template v-slot:prepend>
                   <q-icon name="info" />
                 </template>
               </q-input>
-              
             </div>
           </div>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat  label="OK" @click="SaveRecord" v-close-popup>
+          <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
             <q-icon name="save" />
           </q-btn>
           <q-btn flat label="close" v-close-popup>
             <q-icon name="close" />
           </q-btn>
         </q-card-actions>
-        
       </q-card>
     </q-dialog>
   </div>
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
 export default {
+  components: { NTable },
+
   data() {
     return {
-      medium: false,
-      depdata:[],
-      department:{
-        name:null,
-        description:null
-      },
-       columns: [
+      columns: [
         {
-          name: "Name",
+          name: "id",
+          required: true,
+          label: this.$t("Number"),
+          field: (row) => row.id,
+          sortable: true,
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
+        },
+        {
+          name: "name",
+          classes: "my_width20",
+          align: "left",
+          // label: this.$t("Name"),
           label: "Name",
-          field: "name",
+          field: (row) => row.name,
           sortable: true,
         },
         {
           name: "description",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
           label: "Description",
-          field: "description",
+          align: "left",
+          field: (row) => row.description,
           sortable: true,
         },
+
+        {
+          name: "actions",
+          label: this.$t("Actions"),
+          align: "center",
+          sortable: false,
+          classes: "my_width10",
+        },
       ],
+      loading: false,
+      filter: "",
+      sortBy: "created_at",
+      descending: false,
+      page: 1,
+      rowsPerPage: 12,
+      rowsNumber: 12,
+      data: [],
+      pagination: {
+        sortBy: "created_at",
+        descending: false,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12,
+      },
+      medium: false,
+      departmentData: [],
+      form: {
+        name: null,
+        description: null,
+      },
     };
   },
-  methods:{
-    SaveRecord(){
-    // console.log("Test File", this.department.name);
-    this.$axios.post('department/store',this.department).then(res=> {
-       this.$q.notify({
-                color: "green-4",
-                textColor: "white",
-                icon: "cloud_done",
-                position:'top-right',
-                message: "Successfully inserted",
-              })
-              this.clear();
-        // this.$route.push("/departments/index")
-          this.getdat();
-    });
+  methods: {
+    SaveRecord() {
+      // console.log("Test File", this.form.name);
+      this.$axios.post("department/store", this.form).then((res) => {
+        this.$q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          position: "top-right",
+          message: "Successfully inserted",
+        });
+        this.clear();
+        // this.$router.push("/class/index");
+        this.getdata();
+      });
     },
-    getdat()
-    {
-      this.$axios.get('department/display',this.depdata).then((Response)=>{
-          this.depdata=Response.data;
-      })
+    clear() {
+      (this.form.name = ""), (this.form.description = "");
     },
-    clear()
-    {
-      this.department.name='',
-      this.department.description=''
-    }
+    getdata() {
+      this.$axios.get("department/display", this.departmentData).then((Response) => {
+        this.departmentData = Response.data;
+      });
+    },
+    head(name) {
+      if (this.pagination.descending) this.pagination.descending = true;
+      else this.pagination.descending = true;
+      this.pagination.sortBy = name;
+    },
+  
+
+  del(id = 0) {
+    console.log("dels: ", id);
   },
-  created()
-  {
-    this.getdat();
-  }
+  info(id = 0) {
+    this.$router.push("/customer/show/" + id);
+  },
+  onRequest(props) {
+    // console.log("propss: ", props);
+    this.getProp = props;
+    this.getRecord();
+  },
+  
+edit (id=0) {
+        this.$router.push('/customer/edit/'+id);
+    },
+  },
+
+  created() {
+    this.getdata();
+  },
 };
 </script>
 

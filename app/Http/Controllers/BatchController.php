@@ -43,7 +43,7 @@ class BatchController extends Controller
     public function store(Request $request)
     {
         $batch=$this->batch->create([
-            'date'      =>$request->date,
+            'name'      =>$request->name,
         ]);
         if($batch)
         {

@@ -1,245 +1,97 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Create Account" color="primary" @click="staf = true" />
-
-  <div class="col-md-9">
-      <q-table
-        title="Treats"
-        :data="stafdata"
-        :columns="columns"
-        row-key="name"
-      />
-    </div>
-    <q-dialog v-model="staf" staf transition-show="scale" transition-hide="scale">
-      <q-card class="bg-primary text-white" style="width: 550px">
-        <q-card-section>
-          <div class="text-h6">staf</div>
-        </q-card-section>
-
-        <q-card-actions align="right" class="bg-white text-primary">
-          <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.first_name" label="First Name" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-          <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.last_name" label="Last Name" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-      
-         <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.father_name" label="Father Name" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.cnic" label="CNIC" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.phone" label="Phone" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.email" label="Email" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.address" label="Address" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.gender_id" label="Gender_Id" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-      <q-input color="primary" class="q-mb-sm" dense dsnse outlined v-model="teacher.birth_day" label="Birth Day" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-        <q-input color="primary" class="q-mb-sm" dense outlined v-model="teacher.age" label="Age" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="">
-          </q-avatar>
-        </template>
-      </q-input>
-
-        </q-card-actions>
-        <q-card-actions align="right" class="bg-primary text-primary">
-          <q-btn flat label="Submit" @click="SaveRecord" class="bg-white" v-close-popup />
-          <q-btn flat label="Close" class="bg-white" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+  <div>
+    <n-table
+      title="Teachers"
+      :loading="loading"
+      @head="head"
+      :data="data"
+      :pagination.sync="pagination"
+      @del="del"
+      @info="info"
+      @edit="edit"
+      :filter.sync="filter"
+      :columns="columns"
+      @request="onRequest"
+    />
   </div>
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
 export default {
-  data () {
+  components: { NTable },
+  data() {
     return {
-       columns: [
+      columns: [
         {
-          name: "first_Name",
+          name: "id",
+          required: true,
+          label: this.$t("Number"),
+          field: (row) => row.id,
+          sortable: true,
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
-          label: "First Name",
-          field: "first_name",
+          headerClasses: "bg-light-blue-6 text-white ",
+        },
+        {
+          name: "name",
+          classes: "my_width20",
+          align: "left",
+          label: this.$t("Name"),
+          field: (row) => row.name,
           sortable: true,
         },
         {
-          name: "last_Name",
-          align: "center",
-          label: "Last Name",
-          field: "last_name",
+          name: "employee",
+          classes: "bg-grey-2 ellipsis my_width20",
+          label: this.$t("ContactPerson"),
+          align: "left",
+          field: (row) => row.employee,
           sortable: true,
         },
         {
-          name: "father_Name",
-          align: "center",
-          label: "Father Name",
-          field: "father_name",
-          sortable: true,
-        },
-        {
-          name: "cnic",
-          align: "center",
-          label: "Tazkara #",
-          field: "cnic",
-          sortable: true,
-        },
-        {
-          name: "phone",
-          align: "center",
-          label: "Phone",
-          field: "phone",
-          sortable: true,
-        },
-        {
-          name: "email",
-          align: "center",
-          label: "Email",
-          field: "email",
+          name: "phone_no",
+          label: this.$t("Phone"),
+          classes: "my_width20",
+          align: "left",
+          field: (row) => row.phone_no,
           sortable: true,
         },
         {
           name: "address",
-          align: "center",
-          label: "Address",
-          field: "address",
+          classes: "bg-grey-2 ellipsis my_width30",
+          label: this.$t("Address"),
+          align: "left",
+          field: (row) => row.address,
           sortable: true,
         },
         {
-          name: "gender_id",
+          name: "actions",
+          label: this.$t("Actions"),
           align: "center",
-          label: "Gender",
-          field: "gender_id",
-          sortable: true,
-        },
-        {
-          name: "birth_day",
-          align: "center",
-          label: "Birth Day",
-          field: "birth_day",
-          sortable: true,
-        },
-        {
-          name: "age",
-          align: "center",
-          label: "Age",
-          field: "age",
-          sortable: true,
+          sortable: false,
+          classes: "my_width10",
         },
       ],
-
-      staf: false,
-      stafdata:[],
-      staf:{
-        first_name:null,
-        last_name:null,
-        father_name:null,
-        cnic:null,
-        phone:null,
-        email:null,
-        address:null,
-        gender_id:null,
-        birth_day:null,
-        age:null
-      }
-    }
+      loading: false,
+      filter: "",
+      sortBy: "created_at",
+      descending: false,
+      page: 1,
+      rowsPerPage: 12,
+      rowsNumber: 12,
+      data: [],
+      pagination: {
+        sortBy: "created_at",
+        descending: false,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12,
+      },
+    };
   },
- methods:{
-    SaveRecord(){
-      this.$axios.post('staf/store',this.staf).then(res=>{
-          this.$q.notify({
-                color: "green-4",
-                textColor: "white",
-                icon: "cloud_done",
-                position:'top-right',
-                message: "Successfully inserted",
-              })
-              this.clear();
-          // this.$router.push('/staf/index')
-          this.getdata();
-        });
-    },
-    getdata()
-    {
-      this.$axios.get('staf/display',this.stafdata).then((Response)=>{
-        this.stafdata = Response.data;
-      })
-    },
-    clear()
-    {
-        this.first_name='',
-        this.last_name='',
-        this.father_name='',
-        this.cnic='',
-        this.phone='',
-        this.email='',
-        this.address='',
-        this.gender_id='',
-        this.birth_day='',
-        this.age=''
-    }
-  },
-
-  created()
-  {
-    this.getdata();
-  }
-}
-
+};
 </script>
+
+<style>
+</style>
