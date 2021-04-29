@@ -1,15 +1,15 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Create Account" color="primary" @click="teachers = true" />
+    <q-btn label="Create Account" color="primary" @click="students = true" />
 
-    <q-dialog v-model="teachers" teachers transition-show="scale" transition-hide="scale">
+    <q-dialog v-model="students" teachers transition-show="scale" transition-hide="scale">
       <q-card class="bg-primary text-white" style="width: 550px">
         <q-card-section>
-          <div class="text-h6">Teachers</div>
+          <div class="text-h6">Student</div>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-primary">
-          <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.first_name" label="First Name" style="width: 500px">
+          <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.first_name" label="First Name" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -17,7 +17,7 @@
         </template>
       </q-input>
 
-          <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.last_name" label="Last Name" style="width: 500px">
+          <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.last_name" label="Last Name" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -25,7 +25,7 @@
         </template>
       </q-input>
       
-         <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.father_name" label="Father Name" style="width: 500px">
+         <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.father_name" label="Father Name" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -33,7 +33,7 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.cnic" label="CNIC" style="width: 500px">
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.cnic" label="CNIC" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -41,7 +41,7 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.phone" label="Phone" style="width: 500px">
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.phone" label="Phone" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -49,7 +49,7 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.email" label="Email" style="width: 500px">
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.email" label="Email" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -57,7 +57,7 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.address" label="Address" style="width: 500px">
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.address" label="Address" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -65,7 +65,7 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.gender_id" label="Gender_Id" style="width: 500px">
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.regint" label="Regint" style="width: 500px">
         <template v-slot:append>
           <q-avatar>
             <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
@@ -73,21 +73,6 @@
         </template>
       </q-input>
 
-      <q-input color="primary" class="q-mb-sm" dense dsnse outlined v-model="form.birth_day" label="Birth Day" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
-          </q-avatar>
-        </template>
-      </q-input>
-
-        <q-input color="primary" class="q-mb-sm" dense outlined v-model="form.age" label="Age" style="width: 500px">
-        <template v-slot:append>
-          <q-avatar>
-            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
-          </q-avatar>
-        </template>
-      </q-input>
 
         </q-card-actions>
         <q-card-actions align="right" class="bg-primary text-primary">
@@ -103,9 +88,9 @@
 export default {
   data () {
     return {
-      teachers: false,
-      teachers:[],
-      form:{
+      students: false,
+      std:[],
+      stdform:{
         first_name:null,
         last_name:null,
         father_name:null,
@@ -113,20 +98,22 @@ export default {
         phone:null,
         email:null,
         address:null,
-        gender_id:null,
-        birth_day:null,
-        age:null
+        regint:null,
       }
     }
   },
  methods:{
     AddRecord(){
 
-      this.$axios.post('teacher/store',this.form).then(res=>{
+      this.$axios.post('student/store',this.stdform).then(res=>{
           this.$q.notify({
+                color: "green-4",
+                textColor: "white",
+                icon: "cloud_done",
+                position:'top-right',
                 message: "Successfully inserted",
               })
-          this.$router.push('/teacher')
+          this.$router.push('/Students/index.vue')
         });
     }
   }

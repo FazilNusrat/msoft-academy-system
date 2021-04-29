@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   });
   
   Route::post('teacher/store', ['as' => 'teacher.index', 'uses' => 'TeachersController@store']);
+  Route::post('student/store', ['as' => 'student.index', 'uses' => 'StudentController@store']);
 
 
 
