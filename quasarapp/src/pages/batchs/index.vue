@@ -104,7 +104,9 @@ export default {
           position: "top-right",
           message: "Successfully inserted",
         });
-        this.$route.push("/batchs/index");
+        this.clear();
+        this.getdata();
+        // this.$route.push("/batchs/index");
       });
     },
     getdata()

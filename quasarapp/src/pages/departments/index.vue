@@ -93,7 +93,8 @@ export default {
                 message: "Successfully inserted",
               })
               this.clear();
-        this.$route.push("/departments/index")
+        // this.$route.push("/departments/index")
+          this.getdat();
     });
     },
     getdat()

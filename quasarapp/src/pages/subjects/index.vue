@@ -95,7 +95,8 @@ export default {
                 message: "Successfully inserted",
               })
               this.clear()
-        this.$router.push('/subjects/index')
+        // this.$router.push('/subjects/index')
+              this.getdata();
     });
     },
     getdata()

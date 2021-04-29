@@ -77,6 +77,14 @@ export default {
           field: "description",
           sortable: true,
         },
+          {
+          name: "Action",
+          align: "center",
+
+          label: "Action",
+          field: "Action",
+          sortable: true,
+        },
       ],
       medium: false,
       classdata: [],
@@ -98,7 +106,8 @@ export default {
           message: "Successfully inserted",
         });
         this.clear();
-        this.$router.push("/class/index");
+        // this.$router.push("/class/index");
+        this.getdata();
       });
     },
     clear() {
