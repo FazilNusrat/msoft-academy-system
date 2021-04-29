@@ -102,7 +102,8 @@ export default {
       });
     },
     clear() {
-      (this.form.name = ""), (this.form.description = "");
+      (this.form.name = ""),
+       (this.form.description = "");
     },
     getdata() {
       this.$axios.get("class/display", this.classdata).then((Response) => {

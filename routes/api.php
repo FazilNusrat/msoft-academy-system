@@ -24,7 +24,10 @@ Route::post('department/store', ['as' => 'department.store', 'uses' => 'Departme
 Route::post('teacher/store', ['as' => 'teachers.store', 'uses' => 'TeachersController@store']);
 Route::post('batch/store', ['as' => 'batch.store', 'uses' => 'BatchController@store']);
 Route::post('time/store', ['as' => 'time.store', 'uses' => 'TimeController@store']);
+Route::post('student/store', ['as' => 'student.index', 'uses' => 'StudentController@store']);
+
 Route::get('class/display',['as'=>'class.display','uses'=>'ClassesController@index']);
+
 Route::get('subject/display',['as'=>'subject.display','uses'=>'SubjectController@index']);
 Route::get('department/display',['as'=>'department.display','uses'=>'DepartmentController@index']);
 Route::get('batch/display',['as'=>'batch.display','uses'=>'BatchController@index']);

@@ -1,109 +1,122 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col-md-9">
-          <q-table
-      title="Treats"
-      :data="teacher"
-      :columns="columns"
-      row-key="name"
-    />
-      </div>
-      <div class="col q-ma-sm">
-        <q-input
-          class="q-ma-sm"
-          dense
-          outlined
-          v-model="form.name"
-          label="Name"
-        />
-        <q-input
-          class="q-ma-sm"
-          dense
-          outlined
-          v-model="form.last_name"
-          label="Last Name"
-        />
-        <q-input
-          class="q-ma-sm"
-          dense
-          outlined
-          v-model="form.email"
-          label="email"
-        />
-        <q-input
-          class="q-ma-sm"
-          dense
-          outlined
-          v-model="form.phone"
-          label="phone"
-        />
-        <q-btn
-          @click="saveRecord"
-          class="q-mr-sm"
-          color="white"
-          text-color="green"
-          icon="save"
-          label="Save"
-        />
-        <q-btn color="white" text-color="red" icon="close" label="Cancel" />
-      </div>
+  <div class="q-pa-md q-gutter-sm">
+    <q-btn label="Create Account" color="primary" @click="students = true" />
+
+    <q-dialog v-model="students" teachers transition-show="scale" transition-hide="scale">
+      <q-card class="bg-primary text-white" style="width: 550px">
+        <q-card-section>
+          <div class="text-h6">Student</div>
+        </q-card-section>
+
+        <q-card-actions align="right" class="bg-white text-primary">
+          <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.first_name" label="First Name" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+          <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.last_name" label="Last Name" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
       
-    </div>
+         <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.father_name" label="Father Name" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.cnic" label="CNIC" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.phone" label="Phone" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.email" label="Email" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.address" label="Address" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+      <q-input color="primary" class="q-mb-sm" dense outlined v-model="stdform.regint" label="Regint" style="width: 500px">
+        <template v-slot:append>
+          <q-avatar>
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOG8-OnUc2-cUURj-iANnzco9N1jWsgQJZf4CDJ=s1600-w400">
+          </q-avatar>
+        </template>
+      </q-input>
+
+
+        </q-card-actions>
+        <q-card-actions align="right" class="bg-primary text-primary">
+          <q-btn flat label="Submit" @click="AddRecord" class="bg-white" v-close-popup />
+          <q-btn flat label="Close" class="bg-white" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PageIndex",
-  data() {
+  data () {
     return {
-       columns: [
-        { name: 'Name', align: 'center', label: 'Name', field: 'name', sortable: true },
-        { name: 'Last Name', label: 'Last Name', field: 'last_name', sortable: true },
-        { name: 'Email', label: 'Email', field: 'email' },
-        { name: 'phone', label: 'phone', field: 'phone' },
-      ],
-      teacher: [],
-      form: {
-        name: null,
-        last_name: null,
-        email: null,
-        phone: null
-      },
-    };
+      students: false,
+      std:[],
+      stdform:{
+        first_name:null,
+        last_name:null,
+        father_name:null,
+        cnic:null,
+        phone:null,
+        email:null,
+        address:null,
+        regint:null,
+      }
+    }
   },
-  methods:{
-    saveRecord(){
+ methods:{
+    AddRecord(){
 
-      // console.log('test File',this.form.name)
-      this.$axios.post('teacher/store',this.form).then(res=>{
-        this.$q.notify({
+      this.$axios.post('student/store',this.stdform).then(res=>{
+          this.$q.notify({
                 color: "green-4",
                 textColor: "white",
                 icon: "cloud_done",
                 position:'top-right',
                 message: "Successfully inserted",
               })
-              this.clear()
-        this.$route.push('/teacher')
-
-      });
-    },
-    clear(){
-      this.form.name='',
-      this.form.last_name='',
-      this.form.email='',
-      this.form.phone=''
-    },
-    getdata(){
-      this.$axios.get('teacher/display',this.teacher).then(response=>{
-        this.teacher=response.data;
-      })
+          this.$router.push('/Students/index.vue')
+        });
     }
-  },
-  created(){
-    this.getdata();
   }
-};
+}
+
 </script>
