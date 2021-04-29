@@ -209,45 +209,16 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksData = [
   {
-    title: "Student",
-    caption: "quasar.dev",
-    icon: "school",
-    to: "/students/index",
+    title: 'Student',
+    caption: 'quasar.dev',
+    icon: 'school',
+    link: 'pages/students/index.vue'
   },
   {
-    title: "Teachares",
-    icon: "code",
-    link: "pages/teachars/index.vue",
-  },
-  {
-    title: "Staf",
-    icon: "code",
-    link: "pages/stafs/index.vue",
-  },
-  {
-    title: "Add Class",
-    icon: "code",
-    link: "pages/class/index.vue",
-  },
-  {
-    title: "Add Departmet",
-    icon: "code",
-    link: "pages/departments/index.vue",
-  },
-  {
-    title: "Add Subject",
-    icon: "code",
-    link: "pages/subjects/index.vue",
-  },
-  {
-    title: "Add Batch",
-    icon: "code",
-    link: "pages/batchs/index.vue",
-  },
-  {
-    title: "Add Time",
-    icon: "code",
-    link: "pages/times/index.vue",
+    title: 'Teachares',
+    caption: 'github.com/quasarframework',
+    icon: 'code',
+    link: 'pages/teachars/index.vue'
   },
 ];
 export default {
