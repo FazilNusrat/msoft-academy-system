@@ -17,6 +17,8 @@ class student extends Model {
     'phone',
     'email',
     'address',
-    'regint',
+    'salary',
+    'start_date',
+    'end_date',
   ];
 }

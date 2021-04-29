@@ -24,7 +24,9 @@ class StudentController extends Controller {
       'phone' => $request->phone,
       'email' => $request->email,
       'address' => $request->address,
-      'regint' => $request->regint,
+      'salary' => $request->salary,
+      'start_date' => $request->start_date,
+      'end_date' => $request->end_date,
     ]);
     if ($Student) {
       return 1;

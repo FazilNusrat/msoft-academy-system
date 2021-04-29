@@ -33,5 +33,6 @@ Route::get('department/display',['as'=>'department.display','uses'=>'DepartmentC
 Route::get('batch/display',['as'=>'batch.display','uses'=>'BatchController@index']);
 Route::get('time/display',['as'=>'time.display','uses'=>'TimeController@index']);
 Route::get('teacher/display',['as'=>'time.display','uses'=>'TeachersController@index']);
+Route::get('student/display',['as'=>'student.display','uses'=>'StudentController@index']);
 
 // Route::post('test/store', ['as' => 'test.store', 'uses' => 'ClassesController@store']);
