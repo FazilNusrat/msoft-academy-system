@@ -1,6 +1,6 @@
 <template>
-  <q-btn flat dense :color="color" class="my_radio no-padding q-ml-sm" @click="$emit('click')">
-    <q-linear-progress :value="progress" query size="45px"  style="width:50px; height: 50px" :color="color" class="glossy my_radio_less three_d my_border_white_less bg-grey-3">
+  <q-btn no-caps flat dense :color="color" class="my_radio no-padding q-ml-sm" @click="$emit('click')">
+    <q-linear-progress :value="progress" query size="45px"  style="width:45px; height: 45px" :color="color" class="glossy my_radio_less three_d my_border_white_less bg-grey-3">
       <div class="absolute-full flex flex-center">
         <q-icon :name="icon" size="md" color="white" />
       </div>

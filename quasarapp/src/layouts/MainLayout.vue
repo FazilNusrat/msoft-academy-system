@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
+  <q-layout view="hHh LpR fFf" class="shadow-2 rounded-borders">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-cyan-7">
         <q-btn
           flat
           dense
@@ -11,9 +11,9 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> Academy Management System </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Academy v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -44,7 +44,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="school"
               />
@@ -63,7 +63,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="manage_accounts"
               />
@@ -82,7 +82,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="batch_prediction"
               />
@@ -101,7 +101,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="subject"
               />
@@ -120,7 +120,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="history"
               />
@@ -149,7 +149,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="card_giftcard"
               />
@@ -168,7 +168,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="apps"
               />
@@ -187,7 +187,7 @@
                 push
                 color="white"
                 size="sm"
-                text-color="primary"
+                text-color="cyan-7"
                 round
                 icon="apps"
               />

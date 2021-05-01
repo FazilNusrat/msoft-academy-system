@@ -14,9 +14,10 @@
         </div> -->
         <div class="col">
           <div class="q-ma-xs  q-pa-xs">  
-    <q-linear-progress rounded size="35px" value="0.14" color="light-blue-7" class="three_d  my_radio_less my_border_white glossy">
+    <!-- <q-linear-progress rounded size="35px" value="0.14" color="cyan-7" class="three_d  my_radio_less my_border_white glossy">
       <div class="text-white absolute-full q-ml-sm text-h6">Batch Master</div>
-    </q-linear-progress>
+    </q-linear-progress> -->
+    <h-title value="0.14" >Batch Master</h-title>
     </div>
     <div class="row justify-between">
       <div class="row">
@@ -90,13 +91,13 @@ export default {
           label: this.$t("Number"),
           field: (row) => row.id,
           sortable: true,
-          classes: "bg-grey-2 ellipsis my_width10",
+          classes: "bg-grey-2 ellipsis",
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
         {
           name: "name",
-          classes: "my_width20",
+          classes: "",
           align: "left",
           // label: this.$t("Name"),
           label: "Name",
