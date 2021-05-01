@@ -7,9 +7,6 @@ const routes = [
       { path: '',
        component: () => import('pages/Index.vue') 
       },
-      { path: '/students/index',
-       component: () => import('pages/students/index.vue') 
-      },
       { path: '/teachers/index', 
       component: () => import('pages/teachers/index.vue') 
       },
@@ -28,9 +25,9 @@ const routes = [
       { path: '/times/index', 
       component: () => import('pages/times/index.vue') 
       },
-      { path: '/staf/index', 
-      component: () => import('pages/stafs/index.vue') 
-      },
+      // { path: '/staff/index', 
+      // component: () => import('pages/stafs/index.vue') 
+      // },
     ]
   },
 
