@@ -1,0 +1,107 @@
+<template>
+  <div>
+    <q-card>
+      <q-form @submit.prevent="onSubmit" @reset="onReset">
+        <!-- <q-card-section> -->
+          <div class="bg-red">{{$t('InfoClass')}}</div>
+        <!-- </q-card-section> -->
+        <q-card-section style="max-height: 50vh" class="scroll">
+          <q-input
+            color="teal"
+            v-model="form.description"
+            label="Description"
+          >
+            <template v-slot:prepend>
+              <q-icon name="info" />
+            </template>
+          </q-input>
+
+          <q-input
+            color="teal"
+            v-model="form.description"
+            label="Description"
+          >
+            <template v-slot:prepend>
+              <q-icon name="info" />
+            </template>
+          </q-input>
+
+          <q-input
+            color="teal"
+            v-model="form.description"
+            label="Description"
+          >
+            <template v-slot:prepend>
+              <q-icon name="info" />
+            </template>
+          </q-input>
+        </q-card-section>
+        <!-- <q-separator /> -->
+        <q-card-actions class="q-pa-none" align="right">
+          <n-submit :submitting="submitting"  :label="$t('Save')"></n-submit>
+        </q-card-actions>
+      </q-form>
+    </q-card>
+  </div>
+</template>
+<script>
+export default {
+  name: 'Modal',
+  components: {
+    'n-submit': require('components/fields/Submit.vue').default
+  },
+  data () {
+    return {
+      submitting: false,
+      form: {
+        description:null,
+        station:'',
+        address:'',
+        group_id: null,
+        employee_id: null,
+      },
+      
+      // label:'name is required',
+
+    }
+  },
+  methods: {
+    onSubmit() {
+      
+    },
+    onReset() {
+      // this.form.name = null;
+      
+    },
+    filterFn (val, update, abort) {
+         update(
+          () => {
+            if (val === '') {
+              this.options = this.employees
+            }
+            else {
+              const needle = val.toLowerCase()
+              this.options = this.employees.filter(v => v.name.toLowerCase().indexOf(needle) > -1)
+            }
+          },
+
+          // next function is available in Quasar v1.7.4+;
+          // "ref" is the Vue reference to the QSelect
+          ref => {
+            if (val !== '' && ref.options.length > 0) {
+              ref.setOptionIndex(-1) // reset optionIndex in case there is something selected
+              ref.moveOptionSelection(1, true) // focus the first selectable option and do not update the input-value
+            }
+          }
+        )
+    },
+
+  },
+  created() {
+  }
+
+};
+</script>
+
+<style lang="css" scoped>
+</style>

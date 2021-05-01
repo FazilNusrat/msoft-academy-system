@@ -12,7 +12,7 @@
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
@@ -37,6 +37,16 @@
         :columns="columns"
         @request="onRequest"
       />
+
+      <m-modal :showCM.sync="showAddModal">
+       <n-add-modal @close="hideAddModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showEditModal">
+      <n-edit-modal :id="id" @close="hideEditModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showInfoModal">
+      <n-info-modal :id="id" @close="hideInfoModal()" />
+    </m-modal>
     </div>
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
@@ -94,14 +104,24 @@
 </template>
 
 <script>
+
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
+import MModal from 'src/components/general-components/MainModal.vue';
+import NAddModal from 'src/components/modals/class/Add.vue';
+import NEditModal from 'src/components/modals/class/Edit.vue';
+import NInfoModal from 'src/components/modals/class/Info.vue';
+
 export default {
-  components: { NTable, LButton, HTitle },
+  components: { NTable, LButton, HTitle, MModal, NAddModal, NEditModal, NInfoModal },
 
   data() {
     return {
+      id: 0,
+      showAddModal: false,
+      showEditModal: false,
+      showInfoModal: false,
       selectedClass: null,
       // classList: ['CS-Morning', 'IT-Evening'],
       classList: [],
@@ -201,10 +221,12 @@ export default {
     },
 
     del(id = 0) {
-      console.log("dels: ", id);
+      this.id = id;
+      this.showEditModal = true;
     },
     info(id = 0) {
-      this.$router.push("/customer/show/" + id);
+      this.id = id;
+      this.showInfoModal = true;
     },
     onRequest(props) {
       // console.log("propss: ", props);
@@ -213,7 +235,24 @@ export default {
     },
 
     edit(id = 0) {
-      this.$router.push("/customer/edit/" + id);
+      this.id = id;
+      this.showEditModal = true;
+    },
+    addModal() {
+      // this.form.name = null;
+      this.showAddModal = true;
+    },
+    hideAddModal() {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal() {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    hideInfoModal() {
+      this.showInfoModal = false;
+      this.getRecord()
     },
   },
 
