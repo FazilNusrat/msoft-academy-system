@@ -1,34 +1,46 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <!-- <q-card class="bg-teal text-white" style="width: 300px">
-        <q-card-section>
-          <div class="text-h6">Add Class</div>
-        </q-card-section> -->
-    <q-btn color="primary" @click="medium = true">
-      <q-icon name="add" />
-    </q-btn>
-
+  <div>
+    <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+      <div class="row">
+        <!-- <div class="three_d my_radio_less glossy q-ma-xs">
+          <div class="row">
+            <l-button icon="mdi-whatsapp" color="green-6"/>
+            <l-button icon="mdi-whatsapp" color="green-6"/>
+          </div>
+          <div class="row">
+            <l-button icon="mdi-whatsapp" color="green-6"/>
+            <l-button icon="mdi-whatsapp" color="green-6"/>
+          </div>
+        </div> -->
+        <div class="col">
+          <div class="q-ma-xs  q-pa-xs">  
+    <q-linear-progress rounded size="35px" value="0.14" color="light-blue-7" class="three_d  my_radio_less my_border_white glossy">
+      <div class="text-white absolute-full q-ml-sm text-h6">Batch Master</div>
+    </q-linear-progress>
+    </div>
+    <div class="row justify-between">
+      <div class="row">
+        <l-button icon="add" color="red" @click="medium = true">Add New</l-button>
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
+      </div>
+      <div class="row">
+        <l-button icon="mdi-database-search" color="blue-grey-9">Advance Search</l-button>
+        <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
+      </div>
+    </div>
+        </div>
+      </div>
     <div>
-      <n-table
-      
-        :loading="loading"
-        @head="head"
-        :data="batchData"
-        :pagination.sync="pagination"
-        @del="del"
-        @info="info"
-        @edit="edit"
-        :filter.sync="filter"
-        :columns="columns"
-        @request="onRequest"
-      />
+      <n-table :loading="loading" @head="head" :data="batchData" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
     </div>
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
           <div class="text-h6">Add Batch</div>
         </q-card-section>
-
         <q-card-section class="q-pt-none">
           <div class="row">
             <div class="col"></div>
@@ -50,7 +62,6 @@
             </div>
           </div>
         </q-card-section>
-
         <q-card-actions align="right" class="bg-white text-teal">
           <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
             <q-icon name="save" />
@@ -62,17 +73,18 @@
       </q-card>
     </q-dialog>
   </div>
+  </div>
 </template>
-
 <script>
 import NTable from "../../components/tables/DataTable.vue";
+import LButton from "../../components/Buttons/LinearButton.vue";
+import HTitle from "../../components/Headers/HeaderTitle.vue";
 export default {
-  components: { NTable },
+  components: { NTable, LButton, HTitle},
 
   data() {
     return {
-      columns: [
-        {
+      columns: [{
           name: "id",
           required: true,
           label: this.$t("Number"),
@@ -161,22 +173,22 @@ export default {
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-  
 
-  del(id = 0) {
-    console.log("dels: ", id);
-  },
-  info(id = 0) {
-    this.$router.push("/customer/show/" + id);
-  },
-  onRequest(props) {
-    // console.log("propss: ", props);
-    this.getProp = props;
-    this.getRecord();
-  },
-  
-edit (id=0) {
-        this.$router.push('/customer/edit/'+id);
+
+    del(id = 0) {
+      console.log("dels: ", id);
+    },
+    info(id = 0) {
+      this.$router.push("/customer/show/" + id);
+    },
+    onRequest(props) {
+      // console.log("propss: ", props);
+      this.getProp = props;
+      this.getRecord();
+    },
+
+    edit(id = 0) {
+      this.$router.push('/customer/edit/' + id);
     },
   },
 
@@ -184,7 +196,7 @@ edit (id=0) {
     this.getdata();
   },
 };
-</script>
 
+</script>
 <style>
 </style>

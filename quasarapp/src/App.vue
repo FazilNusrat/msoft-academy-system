@@ -6,5 +6,7 @@
 <script>
 export default {
   name: 'App'
-}
+};
 </script>
+<style src="./assets/brand.css"></style>
+

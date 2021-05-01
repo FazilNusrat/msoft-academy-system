@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
+  <div class="q-pa-md q-gutter-sm ">
     <!-- <q-card class="bg-teal text-white" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Add Class</div>
@@ -10,7 +10,6 @@
 
     <div>
       <n-table
-      
         :loading="loading"
         @head="head"
         :data="classdata"
@@ -47,6 +46,12 @@
                   <q-icon name="info" />
                 </template>
               </q-input>
+
+              <q-select dense outlined v-model="selectedClass" :options="classList" option-label="name" :label="$t('CreditLimitStatus')" class="q-ma-sm">
+                    <template v-slot:prepend>
+                      <q-icon name="credit_card_off" color="light-blue-8" />
+                    </template>
+                  </q-select>
             </div>
           </div>
         </q-card-section>
@@ -71,6 +76,9 @@ export default {
 
   data() {
     return {
+      selectedClass:null,
+      // classList: ['CS-Morning', 'IT-Evening'],
+      classList: [],
       columns: [
         {
           name: "id",
@@ -84,7 +92,7 @@ export default {
         },
         {
           name: "name",
-          classes: "my_width20",
+          classes: "my_width20 bg-grey-2",
           align: "left",
           // label: this.$t("Name"),
           label: "Name",
@@ -106,7 +114,7 @@ export default {
           label: this.$t("Actions"),
           align: "center",
           sortable: false,
-          classes: "my_width10",
+          classes: "bg-grey-2 my_width10",
         },
       ],
       loading: false,
@@ -154,6 +162,12 @@ export default {
     getdata() {
       this.$axios.get("class/display", this.classdata).then((Response) => {
         this.classdata = Response.data;
+
+      this.$axios.get("class/display", this.classList).then((Response) => {
+        this.classList = Response.data;
+
+
+    })
       });
     },
     head(name) {
