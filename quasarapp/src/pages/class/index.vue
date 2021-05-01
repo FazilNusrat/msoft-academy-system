@@ -1,12 +1,28 @@
 <template>
-  <div class="q-pa-md q-gutter-sm ">
+  <div class="q-pa-md q-gutter-sm">
     <!-- <q-card class="bg-teal text-white" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <q-btn color="primary" @click="medium = true">
-      <q-icon name="add" />
-    </q-btn>
+
+    <h-title>Entry Class</h-title>
+    <div class="row justify-between">
+      <div class="row">
+        <l-button icon="add" color="red" @click="medium = true"
+          >Add New</l-button
+        >
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
+      </div>
+      <div class="row">
+        <l-button icon="mdi-database-search" color="blue-grey-9"
+          >Advance Search</l-button
+        >
+        <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
+      </div>
+    </div>
 
     <div>
       <n-table
@@ -47,11 +63,19 @@
                 </template>
               </q-input>
 
-              <q-select dense outlined v-model="selectedClass" :options="classList" option-label="name" :label="$t('CreditLimitStatus')" class="q-ma-sm">
-                    <template v-slot:prepend>
-                      <q-icon name="credit_card_off" color="light-blue-8" />
-                    </template>
-                  </q-select>
+              <q-select
+                dense
+                outlined
+                v-model="selectedClass"
+                :options="classList"
+                option-label="name"
+                :label="$t('CreditLimitStatus')"
+                class="q-ma-sm"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="credit_card_off" color="light-blue-8" />
+                </template>
+              </q-select>
             </div>
           </div>
         </q-card-section>
@@ -71,12 +95,14 @@
 
 <script>
 import NTable from "../../components/tables/DataTable.vue";
+import LButton from "../../components/Buttons/LinearButton.vue";
+import HTitle from "../../components/Headers/HeaderTitle.vue";
 export default {
-  components: { NTable },
+  components: { NTable, LButton, HTitle },
 
   data() {
     return {
-      selectedClass:null,
+      selectedClass: null,
       // classList: ['CS-Morning', 'IT-Evening'],
       classList: [],
       columns: [
@@ -163,11 +189,9 @@ export default {
       this.$axios.get("class/display", this.classdata).then((Response) => {
         this.classdata = Response.data;
 
-      this.$axios.get("class/display", this.classList).then((Response) => {
-        this.classList = Response.data;
-
-
-    })
+        this.$axios.get("class/display", this.classList).then((Response) => {
+          this.classList = Response.data;
+        });
       });
     },
     head(name) {
@@ -175,22 +199,21 @@ export default {
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-  
 
-  del(id = 0) {
-    console.log("dels: ", id);
-  },
-  info(id = 0) {
-    this.$router.push("/customer/show/" + id);
-  },
-  onRequest(props) {
-    // console.log("propss: ", props);
-    this.getProp = props;
-    this.getRecord();
-  },
-  
-edit (id=0) {
-        this.$router.push('/customer/edit/'+id);
+    del(id = 0) {
+      console.log("dels: ", id);
+    },
+    info(id = 0) {
+      this.$router.push("/customer/show/" + id);
+    },
+    onRequest(props) {
+      // console.log("propss: ", props);
+      this.getProp = props;
+      this.getRecord();
+    },
+
+    edit(id = 0) {
+      this.$router.push("/customer/edit/" + id);
     },
   },
 
