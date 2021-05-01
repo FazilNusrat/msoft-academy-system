@@ -180,7 +180,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/staf/index"
+            to="/staff/index"
           >
             <q-item-section avatar>
               <q-btn
@@ -192,7 +192,7 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Staf</q-item-section>
+            <q-item-section>Staff</q-item-section>
           </q-item>
         </q-list>
       </q-expansion-item>
