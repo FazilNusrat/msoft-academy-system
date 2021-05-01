@@ -4,10 +4,24 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <q-btn color="primary" @click="medium = true">
-      <q-icon name="add" />
-    </q-btn>
-
+    <h-title value="0.20">Departments Entry</h-title>
+    <div class="row justify-between">
+      <div class="row">
+        <l-button icon="add" color="red" @click="medium = true"
+          >Add New</l-button
+        >
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
+      </div>
+      <div class="row">
+        <l-button icon="mdi-database-search" color="blue-grey-9"
+          >Advance Search</l-button
+        >
+        <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
+      </div>
+    </div>
     <div>
       <n-table
         title="Teachers"
@@ -66,8 +80,10 @@
 
 <script>
 import NTable from "../../components/tables/DataTable.vue";
+import LButton from "../../components/Buttons/LinearButton.vue";
+import HTitle from "../../components/Headers/HeaderTitle.vue";
 export default {
-  components: { NTable },
+  components: { NTable, LButton, HTitle },
 
   data() {
     return {
@@ -152,31 +168,32 @@ export default {
       (this.form.name = ""), (this.form.description = "");
     },
     getdata() {
-      this.$axios.get("department/display", this.departmentData).then((Response) => {
-        this.departmentData = Response.data;
-      });
+      this.$axios
+        .get("department/display", this.departmentData)
+        .then((Response) => {
+          this.departmentData = Response.data;
+        });
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-  
 
-  del(id = 0) {
-    console.log("dels: ", id);
-  },
-  info(id = 0) {
-    this.$router.push("/customer/show/" + id);
-  },
-  onRequest(props) {
-    // console.log("propss: ", props);
-    this.getProp = props;
-    this.getRecord();
-  },
-  
-edit (id=0) {
-        this.$router.push('/customer/edit/'+id);
+    del(id = 0) {
+      console.log("dels: ", id);
+    },
+    info(id = 0) {
+      this.$router.push("/customer/show/" + id);
+    },
+    onRequest(props) {
+      // console.log("propss: ", props);
+      this.getProp = props;
+      this.getRecord();
+    },
+
+    edit(id = 0) {
+      this.$router.push("/customer/edit/" + id);
     },
   },
 
