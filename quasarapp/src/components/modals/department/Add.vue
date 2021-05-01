@@ -8,8 +8,8 @@
         <q-card-section style="max-height: 50vh" class="scroll">
           <q-input
             color="teal"
-            v-model="form.name"
-            label="Name"
+            v-model="form.description"
+            label="Description"
           >
             <template v-slot:prepend>
               <q-icon name="info" />
@@ -26,7 +26,7 @@
             </template>
           </q-input>
 
-          <!-- <q-input
+          <q-input
             color="teal"
             v-model="form.description"
             label="Description"
@@ -34,11 +34,11 @@
             <template v-slot:prepend>
               <q-icon name="info" />
             </template>
-          </q-input> -->
+          </q-input>
         </q-card-section>
         <!-- <q-separator /> -->
         <q-card-actions class="q-pa-none" align="right">
-          <n-submit :submitting="submitting"  :label="$t('Save')" v-close-popup></n-submit>
+          <n-submit :submitting="submitting"  :label="$t('Save')"></n-submit>
         </q-card-actions>
       </q-form>
     </q-card>
@@ -54,18 +54,20 @@ export default {
     return {
       submitting: false,
       form: {
-        name:null,
         description:null,
-        
+        station:'',
+        address:'',
+        group_id: null,
+        employee_id: null,
       },
-      // options: [],
-      // employees: [],
-      // acg_options: [],
-      // // account_groups: [],
-      // selectedGroup:null,
-      // selectedEmployee:null,
-      // testName:null,
-      // // label:'name is required',
+      options: [],
+      employees: [],
+      acg_options: [],
+      // account_groups: [],
+      selectedGroup:null,
+      selectedEmployee:null,
+      testName:null,
+      // label:'name is required',
 
     }
   },
@@ -82,24 +84,10 @@ export default {
     //   // alert('hi');
     // },
     onSubmit() {
-       // console.log("Test File", this.form.name);
-      this.$axios.post("class/store", this.form).then((res) => {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          position: "top-right",
-          message: "Successfully inserted",
-        });
-        this.clear();
-        // this.$router.push("/class/index");
-        this.getdata();
-      });
+      
     },
     onReset() {
-      this.form.name = null;
-      this.form.description = null;
-      
+      // this.form.name = null;
       
     },
     filterFn (val, update, abort) {
@@ -158,12 +146,8 @@ export default {
           }
         )
     },
-    clear() {
-      (this.form.name = ""), (this.form.description = "");
-    },
 
   },
-
   created() {
   	// this.getData();
   	// this.getAccountGroups();
@@ -171,8 +155,6 @@ export default {
     // this.$getMark('account_groups').then(()=>{
     //   this.selectedGroup = this.account_groups.find(e=>e.name==='Store');
     // })
-    this.getdata();
-    
   }
 
 };
