@@ -211,9 +211,11 @@ export default {
                 message: "Successfully inserted",
               })
               this.clear();
+              this.getdata();
           // this.$router.push('/teachers/index')
-          this.getdata();
-        });
+        }).then(
+          this.getdata()
+        );
     },
     getdata()
     {
