@@ -51,12 +51,7 @@ export default {
       }
        else {
         this.submitting = true;
-        // if(this.selectedGroup && this.selectedGroup.id)
-        //   this.form.group_id = this.selectedGroup.id;
-        // if(this.selectedEmployee && this.selectedEmployee.id)
-        //   this.form.employee_id = this.selectedEmployee.id;
 
-        // console.log('this.form',this.form);
         this.$axios.post('class/'+this.id, this.form).then(res=>{
           this.submitting = false
           this.onReset();
