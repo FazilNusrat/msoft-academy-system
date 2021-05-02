@@ -213,7 +213,7 @@ export default {
       let p = this.getP;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('class/display'+
+      this.$axios.get('class'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
       this.show = false;

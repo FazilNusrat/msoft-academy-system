@@ -19,6 +19,14 @@ class ClassesController extends Controller
      */
     public function index(Request $request)
     {
+        // $filter = $request->input('filter');
+        // $per_page = $request->input('per_page');
+        // $current_page = $request->input('current_page');
+        // $sort_by = $request->input('sort_by');
+        // $descending = $request->input('descending');
+
+        // return $this->classObj->getClass($per_page, $current_page, $filter, $sort_by, $descending);
+
         $classObj = $this->classObj->all();
         return $classObj;
     }
@@ -74,11 +82,9 @@ class ClassesController extends Controller
      * @return \Illuminate\Http\Response
      */
     // edit function
-    public function edit(Request $request) {
-        $id = $request->id;
-        return $this->classObj->find($id);
-        return $classObj;
-        // return view('inventory_Site.edit', compact('classObj', 'parent'));
+    public function edit($id) {
+        $class = $this->classObj->find($id);
+        return $class; 
     }
     // update function
     public function update(Request $request) {

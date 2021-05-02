@@ -14,4 +14,35 @@ class Classes extends Model
         'name',
         'description'
     ];
+
+    public function getClass($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
+		$query = $this->selectRaw('*')
+			->groupBy('id');
+		if ($descending === "true") {
+			$query = $query->orderBy($sort_by, 'desc');
+		} else {
+			$query = $query->orderBy($sort_by, 'asc');
+		}
+		if ($filter != '') {
+			$query = $query->where('classes.name', 'ilike', '%' . $filter . '%');
+		}
+		Paginator::currentPageResolver(function () use ($current_page) {
+			return $current_page;
+		});
+		return $query->paginate($per_page);
+	}
+
+	public function classLists($current_page = 0, $per_page = 1, $search = '') {
+		$query = $this->selectRaw('*')
+			->orderBy('created_at', 'DESC');
+		if ($search != '') {
+			$query = $query->where('name', 'ilike', '%' . $search . '%')->
+				orWhere('code', 'ilike', '%' . $search . '%');
+		}
+		Paginator::currentPageResolver(function () use ($current_page) {
+			return $current_page;
+		});
+
+		return $query->paginate($per_page);
+	}
 }
