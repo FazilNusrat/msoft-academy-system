@@ -6,35 +6,11 @@
           <div class="bg-red">{{$t('NewClass')}}</div>
         <!-- </q-card-section> -->
         <q-card-section style="max-height: 50vh" class="scroll">
-          <q-input
-            color="teal"
-            v-model="form.name"
-            label="Name"
-          >
-            <template v-slot:prepend>
-              <q-icon name="info" />
-            </template>
-          </q-input>
 
-          <q-input
-            color="teal"
-            v-model="form.description"
-            label="Description"
-          >
-            <template v-slot:prepend>
-              <q-icon name="info" />
-            </template>
-          </q-input>
+          <n-name ref="modalName" autofocus="autofocus" icon="store" :label="$t('Name')" refname="class_name" :name.sync="form.name"/>
 
-          <!-- <q-input
-            color="teal"
-            v-model="form.description"
-            label="Description"
-          >
-            <template v-slot:prepend>
-              <q-icon name="info" />
-            </template>
-          </q-input> -->
+          <n-simple  autofocus="autofocus" icon="home" :label="$t('Description')"  :name.sync="form.description"/>
+
         </q-card-section>
         <!-- <q-separator /> -->
         <q-card-actions class="q-pa-none" align="right">
@@ -45,10 +21,17 @@
   </div>
 </template>
 <script>
+// import NName from 'src/components/fields/Name.vue'
+// import NSimple from 'src/components/fields/NameSimple.vue'
+// import NSelect from 'src/components/fields/Select.vue';
 export default {
+
   name: 'Modal',
   components: {
-    'n-submit': require('components/fields/Submit.vue').default
+    'n-submit': require('components/fields/Submit.vue').default,
+    'n-simple': require('components/fields/NameSimple.vue').default,
+    'n-name': require('components/fields/Name.vue').default,
+    'n-select': require('components/fields/Select.vue').default,
   },
   data () {
     return {
@@ -82,19 +65,52 @@ export default {
     //   // alert('hi');
     // },
     onSubmit() {
-       // console.log("Test File", this.form.name);
-      this.$axios.post("class/store", this.form).then((res) => {
+          if (this.$refs.modalName.$refs.class_name.hasError) {
+        this.$emit("close");
         this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          position: "top-right",
-          message: "Successfully inserted",
-        });
-        this.clear();
-        // this.$router.push("/class/index");
-        this.getdata();
-      });
+            color: "red-5",
+            textColor: "white",
+            icon: "warning",
+            message: "You need to accept the license and terms first",
+          });
+      }
+       else {
+        this.submitting = true;
+        // if(this.selectedGroup && this.selectedGroup.id)
+        //   this.form.group_id = this.selectedGroup.id;
+        // if(this.selectedEmployee && this.selectedEmployee.id)
+        //   this.form.employee_id = this.selectedEmployee.id;
+
+        // console.log('this.form',this.form);
+        this.$axios.post('class/store', this.form).then(res=>{
+          this.submitting = false
+          this.onReset();
+          this.$emit("close");
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            position:"top-right",
+            icon: "cloud_done",
+            message: "Successfull",
+          });
+      })
+      //    this.submitting = true;
+      //  // console.log("Test File", this.form.name);
+      // this.$axios.post("class/store", this.form).then((res) => {
+      //     this.submitting = false
+
+      //   this.$q.notify({
+      //     color: "green-4",
+      //     textColor: "white",
+      //     icon: "cloud_done",
+      //     position: "top-right",
+      //     message: "Successfully inserted",
+      //   });
+      //   this.clear();
+      //   // this.$router.push("/class/index");
+      //   this.getdata();
+      // });
+       }
     },
     onReset() {
       this.form.name = null;
@@ -171,7 +187,7 @@ export default {
     // this.$getMark('account_groups').then(()=>{
     //   this.selectedGroup = this.account_groups.find(e=>e.name==='Store');
     // })
-    this.getdata();
+    // this.getdata();
     
   }
 

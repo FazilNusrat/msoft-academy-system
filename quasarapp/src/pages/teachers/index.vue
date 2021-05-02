@@ -3,7 +3,7 @@
     <!-- <q-btn label="Create Account" color="primary" @click="teachers = true" /> -->
     <div class="q-ma-sm">
       <h-title>Teachers Entry</h-title>
-      <div class="row justify-between">
+      <div class="row justify-between q-mt-sm">
         <div class="row">
           <l-button icon="add" color="red" @click="medium = true">Add New</l-button>
           <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>

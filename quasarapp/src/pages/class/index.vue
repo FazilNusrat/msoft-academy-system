@@ -1,12 +1,12 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
+  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
     <!-- <q-card class="bg-teal text-white" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
 
     <h-title>Entry Class</h-title>
-    <div class="row justify-between">
+    <div class="row justify-between q-mt-sm">
       <div class="row">
         <l-button icon="add" color="red" @click="medium = true"
           >Add New</l-button
@@ -118,6 +118,9 @@ export default {
 
   data() {
     return {
+      getP:null,
+      visible: true,
+      loading: false,
       id: 0,
       showAddModal: false,
       showEditModal: false,
@@ -170,7 +173,6 @@ export default {
       page: 1,
       rowsPerPage: 12,
       rowsNumber: 12,
-      data: [],
       pagination: {
         sortBy: "created_at",
         descending: false,
@@ -188,6 +190,8 @@ export default {
   },
   methods: {
     SaveRecord() {
+      this.visible = true;
+      this.loading = true;
       // console.log("Test File", this.form.name);
       this.$axios.post("class/store", this.form).then((res) => {
         this.$q.notify({
@@ -199,20 +203,33 @@ export default {
         });
         this.clear();
         // this.$router.push("/class/index");
-        this.getdata();
+        this.getRecord();
       });
     },
     clear() {
       (this.form.name = ""), (this.form.description = "");
     },
-    getdata() {
-      this.$axios.get("class/display", this.classdata).then((Response) => {
-        this.classdata = Response.data;
+    getRecord() {
+      let p = this.getP;
+      this.visible = true;
+      this.loading = true;
+      this.$axios.get('class/display'+
+      '?current_page='+
+      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
+      this.show = false;
+      this.visible = false;
+      this.loading = false;
+      this.classdata = res.data;
+      // this.classdata = res.data.data;
+      this.pagination.page = res.data.current_page;
+      this.pagination.rowsPerPage = res.data.per_page;
+      this.pagination.rowsNumber = res.data.total;
+      }).catch(error=>{
 
-        this.$axios.get("class/display", this.classList).then((Response) => {
-          this.classList = Response.data;
-        });
-      });
+    })
+      // this.$axios.get("class/display", this.classdata).then((Response) => {
+      //   this.classdata = Response.data;
+      // });
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -254,10 +271,18 @@ export default {
       this.showInfoModal = false;
       this.getRecord()
     },
+    onRequest(props) {
+       this.getP = props;
+      this.getRecord();
+    },
   },
 
   created() {
-    this.getdata();
+    // this.getRecord();
+    this.onRequest({
+      pagination: this.pagination,
+      filter: undefined
+    });
   },
 };
 </script>
