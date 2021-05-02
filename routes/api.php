@@ -19,6 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('class/store', ['as' => 'class.store', 'uses' => 'ClassesController@store']);
+Route::post('class/edit/{id}', ['as' => 'class.edit', 'uses' => 'ClassesController@edit']);
+Route::post('class/{id}', ['as' => 'class.update', 'uses' => 'ClassesController@update']);
+// Route::patch('department/{id}',   'department\DepartmentController@update')->name('department.update');
+
+// Route::get('class/edit/{id}', 'ClassesController@edit')->name('class.edit');
+
+
 Route::post('subject/store', ['as' => 'subject.store', 'uses' => 'SubjectController@store']);
 Route::post('department/store', ['as' => 'department.store', 'uses' => 'DepartmentController@store']);
 Route::post('teacher/store', ['as' => 'teachers.store', 'uses' => 'TeachersController@store']);

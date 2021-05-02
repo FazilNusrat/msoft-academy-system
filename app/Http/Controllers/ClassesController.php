@@ -73,21 +73,59 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classes $classes)
-    {
-        //
+    // edit function
+    public function edit(Request $request) {
+        $id = $request->id;
+        return $this->classObj->find($id);
+        return $classObj;
+        // return view('inventory_Site.edit', compact('classObj', 'parent'));
     }
+    // update function
+    public function update(Request $request) {
+        $id = $request->id;
+        $classObj = $this->classObj->findOrFail($id);
+        $this->validate($request, [
+            'name'      => 'required|string|max:191'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classes  $classes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Classes $classes)
-    {
-        //
+        // $employee_id = ($request->get('selected_employee')?$request->get('selected_employee')['id']:null);
+        $data=[
+            'name'              => $request->name,
+            'description'       => $request->description,
+          ];
+        $classObj->update($data);
+        return ['message' => 'Update Successfully'];
+
+        // $id = $request->id;
+        // $classObj = $this->classObj->find($id);
+
+        // $request->validate([
+        //     'name' => 'required|max:50|string,name,' . $id,
+
+        // ]);
+
+        // $temp_data = $this->classObj->find($id);
+
+        // // DB::beginTransaction();
+        // // try
+        // // {
+        // $data = [
+        //     'name' => $request->name,
+        //     'description' => $request->description,
+        // ];
+        // return $classObj->update($data);
+        // // if ($x) {
+        // //  return ["Md" => $this->classObj->get()];
+        // // }
+        // // zLog('inventory_sites','update',null,$temp_data,$classObj->id);
+        // // DB::commit();
+        // // }
+        // // catch(Exception $e)
+        // // {
+        // //     DB::rollback();
+        // // }
+        // // return redirect()->route('admin.classObj.index')->with('message',__('menu.classObj').' '.__('message.CSuccess'));
+        // // return Redirect()->route('classObj.index')->with('message',__('menu.classObj').' '.__('message.USuccess'));
     }
 
     /**

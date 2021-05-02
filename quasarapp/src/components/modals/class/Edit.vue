@@ -25,16 +25,6 @@
               <q-icon name="info" />
             </template>
           </q-input>
-
-          <!-- <q-input
-            color="teal"
-            v-model="form.description"
-            label="Description"
-          >
-            <template v-slot:prepend>
-              <q-icon name="info" />
-            </template>
-          </q-input> -->
         </q-card-section>
         <!-- <q-separator /> -->
         <q-card-actions class="q-pa-none" align="right">
@@ -58,43 +48,35 @@ export default {
         description:null,
         
       },
-      // options: [],
-      // employees: [],
-      // acg_options: [],
-      // // account_groups: [],
-      // selectedGroup:null,
-      // selectedEmployee:null,
-      // testName:null,
-      // // label:'name is required',
-
     }
   },
   methods: {
-    // validate()
-    // {
-    //   if(this.testName ==null)
-    //   {
-    //     this.label ='this field is reuqired'
-    //   }
-    //   else {
-    //     this.label = this.label;
-    //   }
-    //   // alert('hi');
-    // },
     onSubmit() {
-       // console.log("Test File", this.form.name);
-      this.$axios.post("class/store", this.form).then((res) => {
+
+          if (this.$refs.modalName.$refs.class_name.hasError) {
+        this.$emit("close");
         this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          position: "top-right",
-          message: "Successfully inserted",
-        });
-        this.clear();
-        // this.$router.push("/class/index");
-        this.getdata();
-      });
+            color: "red-5",
+            textColor: "white",
+            icon: "warning",
+            message: "You need to accept the license and terms first",
+          });
+      }
+       else {
+        this.submitting = true;
+        this.$axios.post('class/store', this.form).then(res=>{
+          this.submitting = false
+          this.onReset();
+          this.$emit("close");
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            position:"top-right",
+            icon: "cloud_done",
+            message: "Successfull",
+          });
+      })
+       }
     },
     onReset() {
       this.form.name = null;
@@ -102,13 +84,14 @@ export default {
       
       
     },
+    edit() {
+      this.$axios.get('class/edit/'+this.id).then(res=>{
+        this.form.name = res.data.name;
+        this.form.description = res.data.description;
+        console.log('res',res);
+      });
+    },
     filterFn (val, update, abort) {
-
-      // update(() => {
-      // 	console.log('val: ', val);
-      //   const needle = val.toLowerCase()
-      //   this.options = this.data.filter(v => v.name.toLowerCase().indexOf(needle) > -1)
-      // });
          update(
           () => {
             if (val === '') {
@@ -131,12 +114,6 @@ export default {
         )
     },
     filterAccount (val, update, abort) {
-
-      // update(() => {
-      // 	console.log('val: ', val);
-      //   const needle = val.toLowerCase()
-      //   this.options = this.data.filter(v => v.name.toLowerCase().indexOf(needle) > -1)
-      // });
          update(
           () => {
             if (val === '') {
@@ -165,13 +142,7 @@ export default {
   },
 
   created() {
-  	// this.getData();
-  	// this.getAccountGroups();
-    // this.$getMark('employee')
-    // this.$getMark('account_groups').then(()=>{
-    //   this.selectedGroup = this.account_groups.find(e=>e.name==='Store');
-    // })
-    this.getdata();
+    this.edit();
     
   }
 
