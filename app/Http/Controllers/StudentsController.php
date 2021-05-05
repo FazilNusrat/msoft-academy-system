@@ -40,7 +40,7 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {llllllluu
         $students=$this->Students->create([
             'name'      =>$request->name,
             'last_name'      =>$request->last_name,
