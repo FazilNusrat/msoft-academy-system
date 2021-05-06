@@ -7,7 +7,7 @@
     <h-title>Subjects Entry</h-title>
     <div class="row justify-between">
       <div class="row">
-        <l-button icon="add" color="red" @click="medium = true"
+        <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
@@ -23,21 +23,16 @@
       </div>
     </div>
     <div>
-      <n-table
-        title="Teachers"
-        :loading="loading"
-        @head="head"
-        :data="subjectdata"
-        :pagination.sync="pagination"
-        @del="del"
-        @info="info"
-        @edit="edit"
-        :filter.sync="filter"
-        :columns="columns"
-        @request="onRequest"
-      />
+      <n-table :title="$t('SubjectList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+
+      <m-modal :showCM.sync="showAddModal">
+    <n-add-modal @close="hideAddModal()" />
+  </m-modal>
+  <m-modal :showCM.sync="showEditModal">
+    <n-edit-modal :id="id" @close="hideEditModal()" />
+  </m-modal>
     </div>
-    <q-dialog v-model="medium">
+    <!-- <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
           <div class="text-h6">Add Subject</div>
@@ -74,7 +69,7 @@
           </q-btn>
         </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-dialog> -->
   </div>
 </template>
 
@@ -82,87 +77,87 @@
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
+import NAddModal from 'src/components/modals/subject/Add.vue'
+import NEditModal from 'src/components/modals/subject/Edit.vue'
+import MModal from 'src/components/general-components/MainModal.vue'
+
 export default {
-  components: { NTable, LButton, HTitle },
+  components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
 
   data() {
     return {
-      columns: [
-        {
-          name: "id",
-          required: true,
-          label: this.$t("Number"),
-          field: (row) => row.id,
-          sortable: true,
-          classes: "bg-grey-2 ellipsis my_width10",
-          align: "center",
-          headerClasses: "bg-light-blue-6 text-white ",
-        },
-        {
-          name: "name",
-          classes: "my_width20",
-          align: "left",
-          // label: this.$t("Name"),
-          label: "Name",
-          field: (row) => row.name,
-          sortable: true,
-        },
-        {
-          name: "description",
-          classes: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Description",
-          align: "left",
-          field: (row) => row.description,
-          sortable: true,
-        },
-
-        {
-          name: "actions",
-          label: this.$t("Actions"),
-          align: "center",
-          sortable: false,
-          classes: "my_width10",
-        },
-      ],
+      id:0,
+      showModal: false,
+      showAddModal:false,
+      showEditModal:false,
+      form: {name:null},
+      show:true,
+      visible:true,
+      filter: '',
       loading: false,
-      filter: "",
-      sortBy: "created_at",
-      descending: false,
-      page: 1,
-      rowsPerPage: 12,
-      rowsNumber: 12,
-      data: [],
       pagination: {
-        sortBy: "created_at",
-        descending: false,
+        sortBy: 'created_at',
+        descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12,
+        rowsNumber: 12
       },
-      medium: false,
-      subjectdata: [],
-      form: {
-        name: null,
-        description: null,
-      },
-    };
+      columns: [
+        {
+          name: 'symbol',
+          required: true,
+          label: 'Symbol',
+          align: 'center',
+          field: row => row.symbol,
+          sortable: true,
+          classes: 'bg-grey-2 ellipsis my_width10',
+          headerClasses: 'bg-light-blue-6 text-white'
+        },
+        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
+        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
+        { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
+
+      ],
+      data: [],
+      original: [],
+      getProp:{}
+    }
+  },
+  mounted () {
+     this.onRequest({
+      pagination: this.pagination,
+      filter: undefined
+    });
   },
   methods: {
-    SaveRecord() {
-      // console.log("Test File", this.form.name);
-      this.$axios.post("subject/store", this.form).then((res) => {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          position: "top-right",
-          message: "Successfully inserted",
-        });
-        this.clear();
-        // this.$router.push("/class/index");
-        this.getdata();
-      });
+    getRecord() {
+      let p = this.getProp;
+      this.visible = true;
+      this.loading = true;
+      this.$axios.get('subject'+
+      '?current_page='+
+      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
+      this.pagination.sortBy = p.pagination.sortBy
+        this.show = false;
+        this.visible = false;
+        this.loading = false;
+        this.data = res.data.data;
+      this.data = res.data.data;
+      this.pagination.page = res.data.current_page;
+      console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
+      console.log('p.pagination.descending===: ', p.pagination.descending);
+      if (this.pagination.sortBy==='name' || this.pagination.sortBy==='id')
+         {
+          if (this.pagination.descending)
+             this.pagination.descending = false;
+          else
+            this.pagination.descending = true
+         }
+      this.pagination.rowsPerPage = res.data.per_page;
+      this.pagination.rowsNumber = res.data.total;
+      }).catch(error=>{
+
+    })
     },
     clear() {
       (this.form.name = ""), (this.form.description = "");
@@ -178,26 +173,39 @@ export default {
       this.pagination.sortBy = name;
     },
 
-    del(id = 0) {
-      console.log("dels: ", id);
+    edit (id=0) {
+        this.id = id;
+        this.showEditModal = true;
     },
-    info(id = 0) {
-      this.$router.push("/customer/show/" + id);
+    addModal () {
+      // alert("Clicked")
+      // this.form.name = null;
+      this.showAddModal = true;
     },
-    onRequest(props) {
-      // console.log("propss: ", props);
-      this.getProp = props;
+    hideAddModal () {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal () {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    del (id=0) {
+      console.log('dels: ', id);
+    },
+    info (id=0) {
+      console.log('info: ', id);
+    },
+    onRequest (props) {
+      console.log('propss: ', props);
+      this.getProp = props
       this.getRecord();
     },
-
-    edit(id = 0) {
-      this.$router.push("/customer/edit/" + id);
-    },
   },
 
-  created() {
-    this.getdata();
-  },
+  // created() {
+  //   this.getdata();
+  // },
 };
 </script>
 
