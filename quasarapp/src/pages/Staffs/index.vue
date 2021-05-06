@@ -287,7 +287,6 @@ export default {
       //   this.staffList = Response.data;
 
 
-    })
       });
     },
     head(name) {
