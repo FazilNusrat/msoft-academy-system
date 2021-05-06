@@ -311,27 +311,13 @@ export default {
       (this.form.address = "");
       (this.form.start_date = "");
     },
-    getRecord() {
-      let p = this.getP;
-      this.visible = true;
-      this.loading = true;
-      this.$axios.get('class'+
-      '?current_page='+
-      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
-      this.show = false;
-      this.visible = false;
-      this.loading = false;
-      this.classdata = res.data;
-      // this.classdata = res.data.data;
-      this.pagination.page = res.data.current_page;
-      this.pagination.rowsPerPage = res.data.per_page;
-      this.pagination.rowsNumber = res.data.total;
-      }).catch(error=>{
+    getdata() {
+      this.$axios.get("staff/", this.staffDate).then((Response) => {
+        this.staffDate = Response.data;
 
-    })
-      // this.$axios.get("class/display", this.classdata).then((Response) => {
-      //   this.classdata = Response.data;
-      // });
+     
+      }); // this.$axios.get("staff/display", this.staffList).then((Response) => {
+      //   this.staffList = Response.data;
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
