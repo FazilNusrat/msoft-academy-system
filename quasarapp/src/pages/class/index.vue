@@ -239,7 +239,8 @@ export default {
 
     del(id = 0) {
       this.id = id;
-      this.showEditModal = true;
+      // this.showEditModal = true;
+      console.log(id);
     },
     info(id = 0) {
       this.id = id;

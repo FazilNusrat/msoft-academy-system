@@ -1,109 +1,111 @@
 <template>
-  <div>
-    <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+    <!-- <q-card class="bg-teal text-white" style="width: 300px">
+        <q-card-section>
+          <div class="text-h6">Add Class</div>
+        </q-card-section> -->
+
+    <h-title>Entry Class</h-title>
+    <div class="row justify-between q-mt-sm">
       <div class="row">
-        <!-- <div class="three_d my_radio_less glossy q-ma-xs">
-          <div class="row">
-            <l-button icon="mdi-whatsapp" color="green-6"/>
-            <l-button icon="mdi-whatsapp" color="green-6"/>
-          </div>
-          <div class="row">
-            <l-button icon="mdi-whatsapp" color="green-6"/>
-            <l-button icon="mdi-whatsapp" color="green-6"/>
-          </div>
-        </div> -->
-        <div class="col">
-          <div class="q-ma-xs q-pa-xs">
-            <!-- <q-linear-progress rounded size="35px" value="0.14" color="cyan-7" class="three_d  my_radio_less my_border_white glossy">
-      <div class="text-white absolute-full q-ml-sm text-h6">Batch Master</div>
-    </q-linear-progress> -->
-            <h-title value="0.14">Batch Master</h-title>
-          </div>
-          <div class="row justify-between">
-            <div class="row">
-              <l-button icon="add" color="red" @click="medium = true"
-                >Add New</l-button
-              >
-              <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-              <l-button icon="mdi-microsoft-excel" color="green-10"
-                >Excel</l-button
-              >
-              <l-button icon="mdi-email-send" color="red-6">Email</l-button>
-              <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
-            </div>
-            <div class="row">
-              <l-button icon="mdi-database-search" color="blue-grey-9"
-                >Advance Search</l-button
-              >
-              <l-button icon="mdi-database-import" color="blue-7"
-                >Import</l-button
-              >
-            </div>
-          </div>
-        </div>
+        <l-button icon="add" color="red" @click="medium = true"
+          >Add New</l-button
+        >
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
-      <div>
-        <n-table
-          :loading="loading"
-          @head="head"
-          :data="batchData"
-          :pagination.sync="pagination"
-          @del="del"
-          @info="info"
-          @edit="edit"
-          :filter.sync="filter"
-          :columns="columns"
-          @request="onRequest"
-        />
+      <div class="row">
+        <l-button icon="mdi-database-search" color="blue-grey-9"
+          >Advance Search</l-button
+        >
+        <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
       </div>
-      <q-dialog v-model="medium">
-        <q-card style="width: 700px; width: 80vw">
-          <q-card-section class="bg-teal text-white">
-            <div class="text-h6">Add Batch</div>
-          </q-card-section>
-          <q-card-section class="q-pt-none">
-            <div class="row">
-              <div class="col"></div>
-              <div class="col-10 q-mr-lg">
-                <q-input color="teal" v-model="form.name" label="Name">
-                  <template v-slot:prepend>
-                    <q-icon name="add" />
-                  </template>
-                </q-input>
-                <!-- <q-input
-                color="teal"
-                v-model="form.description"
-                label="Description"
-              >
-                <template v-slot:prepend>
-                  <q-icon name="info" />
-                </template>
-              </q-input> -->
-              </div>
-            </div>
-          </q-card-section>
-          <q-card-actions align="right" class="bg-white text-teal">
-            <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
-              <q-icon name="save" />
-            </q-btn>
-            <q-btn flat label="close" v-close-popup>
-              <q-icon name="close" />
-            </q-btn>
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
     </div>
+
+    <div>
+      <n-table
+        :loading="loading"
+        @head="head"
+        :data="classdata"
+        :pagination.sync="pagination"
+        @del="del"
+        @info="info"
+        @edit="edit"
+        :filter.sync="filter"
+        :columns="columns"
+        @request="onRequest"
+      />
+
+      <m-modal :showCM.sync="showAddModal">
+       <n-add-modal @close="hideAddModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showEditModal">
+      <n-edit-modal :id="id" @close="hideEditModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showInfoModal">
+      <n-info-modal :id="id" @close="hideInfoModal()" />
+    </m-modal>
+    </div>
+    <q-dialog v-model="medium">
+      <q-card style="width: 700px; width: 80vw">
+        <q-card-section class="bg-teal text-white">
+          <div class="text-h6">Add Class</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-10 q-mr-lg">
+              <q-input color="teal" v-model="form.name" label="Name">
+                <template v-slot:prepend>
+                  <q-icon name="add" />
+                </template>
+              </q-input>
+              
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right" class="bg-white text-teal">
+          <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
+            <q-icon name="save" />
+          </q-btn>
+          <q-btn flat label="close" v-close-popup>
+            <q-icon name="close" />
+          </q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
+
 <script>
+
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
+import MModal from 'src/components/general-components/MainModal.vue';
+import NAddModal from 'src/components/modals/class/Add.vue';
+import NEditModal from 'src/components/modals/class/Edit.vue';
+import NInfoModal from 'src/components/modals/class/Info.vue';
+
 export default {
-  components: { NTable, LButton, HTitle },
+  components: { NTable, LButton, HTitle, MModal, NAddModal, NEditModal, NInfoModal },
 
   data() {
     return {
+      getP:null,
+      visible: true,
+      loading: false,
+      id: 0,
+      showAddModal: false,
+      showEditModal: false,
+      showInfoModal: false,
+      selectedClass: null,
+      // classList: ['CS-Morning', 'IT-Evening'],
+      classList: [],
       columns: [
         {
           name: "id",
@@ -111,35 +113,35 @@ export default {
           label: this.$t("Number"),
           field: (row) => row.id,
           sortable: true,
-          classes: "bg-grey-2 ellipsis",
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
         {
           name: "name",
-          classes: "",
+          classes: "my_width20 bg-grey-2",
           align: "left",
           // label: this.$t("Name"),
           label: "Name",
           field: (row) => row.name,
           sortable: true,
         },
-        // {
-        //   name: "description",
-        //   classes: "bg-grey-2 ellipsis my_width20",
-        //   // label: this.$t("ContactPerson"),
-        //   label: "Description",
-        //   align: "left",
-        //   field: (row) => row.description,
-        //   sortable: true,
-        // },
+        {
+          name: "description",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "Description",
+          align: "left",
+          field: (row) => row.description,
+          sortable: true,
+        },
 
         {
           name: "actions",
           label: this.$t("Actions"),
           align: "center",
           sortable: false,
-          classes: "my_width10",
+          classes: "bg-grey-2 my_width10",
         },
       ],
       loading: false,
@@ -149,7 +151,6 @@ export default {
       page: 1,
       rowsPerPage: 12,
       rowsNumber: 12,
-      data: [],
       pagination: {
         sortBy: "created_at",
         descending: false,
@@ -158,15 +159,17 @@ export default {
         rowsNumber: 12,
       },
       medium: false,
-      batchData: [],
+      classdata: [],
       form: {
         name: null,
-        // description: null,
+        description: null,
       },
     };
   },
   methods: {
     SaveRecord() {
+      this.visible = true;
+      this.loading = true;
       // console.log("Test File", this.form.name);
       this.$axios.post("batch/store", this.form).then((res) => {
         this.$q.notify({
@@ -178,16 +181,33 @@ export default {
         });
         this.clear();
         // this.$router.push("/class/index");
-        this.getdata();
+        this.getRecord();
       });
     },
     clear() {
       (this.form.name = ""), (this.form.description = "");
     },
-    getdata() {
-      this.$axios.get("batch/display", this.batchData).then((Response) => {
-        this.batchData = Response.data;
-      });
+    getRecord() {
+      let p = this.getP;
+      this.visible = true;
+      this.loading = true;
+      this.$axios.get('batch/display'+
+      '?current_page='+
+      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
+      this.show = false;
+      this.visible = false;
+      this.loading = false;
+      this.classdata = res.data;
+      // this.classdata = res.data.data;
+      this.pagination.page = res.data.current_page;
+      this.pagination.rowsPerPage = res.data.per_page;
+      this.pagination.rowsNumber = res.data.total;
+      }).catch(error=>{
+
+    })
+      // this.$axios.get("class/display", this.classdata).then((Response) => {
+      //   this.classdata = Response.data;
+      // });
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -196,10 +216,12 @@ export default {
     },
 
     del(id = 0) {
-      console.log("dels: ", id);
+      this.id = id;
+      this.showEditModal = true;
     },
     info(id = 0) {
-      this.$router.push("/customer/show/" + id);
+      this.id = id;
+      this.showInfoModal = true;
     },
     onRequest(props) {
       // console.log("propss: ", props);
@@ -208,14 +230,40 @@ export default {
     },
 
     edit(id = 0) {
-      this.$router.push("/customer/edit/" + id);
+      this.id = id;
+      this.showEditModal = true;
+    },
+    addModal() {
+      // this.form.name = null;
+      this.showAddModal = true;
+    },
+    hideAddModal() {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal() {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    hideInfoModal() {
+      this.showInfoModal = false;
+      this.getRecord()
+    },
+    onRequest(props) {
+       this.getP = props;
+      this.getRecord();
     },
   },
 
   created() {
-    this.getdata();
+    // this.getRecord();
+    this.onRequest({
+      pagination: this.pagination,
+      filter: undefined
+    });
   },
 };
 </script>
+
 <style>
 </style>

@@ -22,6 +22,7 @@ Route::get('class/', ['as' => 'class.index', 'uses' => 'ClassesController@index'
 Route::post('class/store', ['as' => 'class.store', 'uses' => 'ClassesController@store']);
 Route::get('class/edit/{id}', ['as' => 'class.edit', 'uses' => 'ClassesController@edit']);
 Route::post('class/{id}', ['as' => 'class.update', 'uses' => 'ClassesController@update']);
+Route::post('class/{id}', ['as' => 'class.delete', 'uses' => 'ClassesController@destroy']);
 // Route::patch('department/{id}',   'department\DepartmentController@update')->name('department.update');
 
 // Route::get('class/edit/{id}', 'ClassesController@edit')->name('class.edit');
