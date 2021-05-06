@@ -12,7 +12,9 @@
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10"
+          >Excel</l-button
+        >
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
@@ -39,21 +41,20 @@
       />
 
       <m-modal :showCM.sync="showAddModal">
-       <n-add-modal @close="hideAddModal()" />
-    </m-modal>
-    <m-modal :showCM.sync="showEditModal">
-      <n-edit-modal :id="id" @close="hideEditModal()" />
-    </m-modal>
-    <m-modal :showCM.sync="showInfoModal">
-      <n-info-modal :id="id" @close="hideInfoModal()" />
-    </m-modal>
+        <n-add-modal @close="hideAddModal()" />
+      </m-modal>
+      <m-modal :showCM.sync="showEditModal">
+        <n-edit-modal :id="id" @close="hideEditModal()" />
+      </m-modal>
+      <m-modal :showCM.sync="showInfoModal">
+        <n-info-modal :id="id" @close="hideInfoModal()" />
+      </m-modal>
     </div>
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
           <div class="text-h6">Add Student</div>
         </q-card-section>
-
         <q-card-section class="q-pt-none">
           <div class="row">
             <div class="col"></div>
@@ -68,27 +69,51 @@
                   <q-icon last_name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="form.father_name" label="father_name">
+              <q-input
+                color="teal"
+                v-model="form.father_name"
+                label="father_name"
+              >
                 <template v-slot:prepend>
                   <q-icon father_name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="email" v-model="form.email" label="email">
+              <q-input
+                color="teal"
+                type="email"
+                v-model="form.email"
+                label="email"
+              >
                 <template v-slot:prepend>
                   <q-icon email="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="number" v-model="form.cnic" label="cnic">
+              <q-input
+                color="teal"
+                type="number"
+                v-model="form.cnic"
+                label="cnic"
+              >
                 <template v-slot:prepend>
                   <q-icon cnic="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="number" v-model="form.phone" label="phone">
+              <q-input
+                color="teal"
+                type="number"
+                v-model="form.phone"
+                label="phone"
+              >
                 <template v-slot:prepend>
                   <q-icon phone="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="number" v-model="form.salary" label="salary">
+              <q-input
+                color="teal"
+                type="number"
+                v-model="form.salary"
+                label="salary"
+              >
                 <template v-slot:prepend>
                   <q-icon salary="add" />
                 </template>
@@ -135,27 +160,35 @@
 </template>
 
 <script>
-
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import MModal from 'src/components/general-components/MainModal.vue';
-import NAddModal from 'src/components/modals/class/Add.vue';
-import NEditModal from 'src/components/modals/class/Edit.vue';
-import NInfoModal from 'src/components/modals/class/Info.vue';
+import MModal from "src/components/general-components/MainModal.vue";
+import NAddModal from "src/components/modals/class/Add.vue";
+import NEditModal from "src/components/modals/class/Edit.vue";
+import NInfoModal from "src/components/modals/class/Info.vue";
 
 export default {
-  components: { NTable, LButton, HTitle, MModal, NAddModal, NEditModal, NInfoModal },
+  components: {
+    NTable,
+    LButton,
+    HTitle,
+    MModal,
+    NAddModal,
+    NEditModal,
+    NInfoModal,
+  },
 
   data() {
     return {
-      getP:null,
+      getP: null,
       visible: true,
       loading: false,
       id: 0,
       showAddModal: false,
       showEditModal: false,
       showInfoModal: false,
+
       selectStudent: null,
       // studentList: ['CS-Morning', 'IT-Evening'],
       studentList: [],
@@ -220,8 +253,9 @@ export default {
           classes: "bg-grey-2 ellipsis my_width20",
           // label: this.$t("ContactPerson"),
           label: "phone",
+
           align: "left",
-          field: (row) => row.phone,
+          field: (row) => row.description,
           sortable: true,
         },
         {
@@ -251,7 +285,6 @@ export default {
           field: (row) => row.regint,
           sortable: true,
         },
-
         {
           name: "actions",
           label: this.$t("Actions"),
@@ -278,14 +311,7 @@ export default {
       studentDate: [],
       form: {
         name: null,
-        last_name: null,
-        father_name: null,
-        email: null,
-        cnic: null,
-        phone: null,
-        salary: null,
-        address: null,
-        regint: null,
+        description: null,
       },
     };
   },
@@ -294,7 +320,7 @@ export default {
       this.visible = true;
       this.loading = true;
       // console.log("Test File", this.form.name);
-      this.$axios.post("student/store", this.form).then((res) => {
+      this.$axios.post("subject/store", this.form).then((res) => {
         this.$q.notify({
           color: "green-4",
           textColor: "white",
@@ -309,33 +335,44 @@ export default {
     },
     clear() {
       (this.form.name = ""),
-      (this.form.last_name = ""),
-      (this.form.father_name = ""),
-      (this.form.email = ""),
-      (this.form.cnic = ""),
-      (this.form.phone = ""),
-      (this.form.salary = ""),
-      (this.form.address = "");
-      (this.form.regint = "");
+        (this.form.last_name = ""),
+        (this.form.father_name = ""),
+        (this.form.email = ""),
+        (this.form.cnic = ""),
+        (this.form.phone = ""),
+        (this.form.salary = ""),
+        (this.form.address = "");
+      this.form.regint = "";
     },
     getRecord() {
       let p = this.getP;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('class'+
-      '?current_page='+
-      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
-      this.show = false;
-      this.visible = false;
-      this.loading = false;
-      this.studentDate = res.data;
-      // this.studentDate = res.data.data;
-      this.pagination.page = res.data.current_page;
-      this.pagination.rowsPerPage = res.data.per_page;
-      this.pagination.rowsNumber = res.data.total;
-      }).catch(error=>{
-
-    })
+      this.$axios
+        .get(
+          "class" +
+            "?current_page=" +
+            p.pagination.page +
+            "&per_page=" +
+            p.pagination.rowsPerPage +
+            "&filter=" +
+            this.filter +
+            "&sort_by=" +
+            p.pagination.sortBy +
+            "&descending=" +
+            this.pagination.descending
+        )
+        .then((res) => {
+          this.show = false;
+          this.visible = false;
+          this.loading = false;
+          this.studentDate = res.data;
+          // this.studentDate = res.data.data;
+          this.pagination.page = res.data.current_page;
+          this.pagination.rowsPerPage = res.data.per_page;
+          this.pagination.rowsNumber = res.data.total;
+        })
+        .catch((error) => {});
       // this.$axios.get("class/display", this.studentDate).then((Response) => {
       //   this.studentDate = Response.data;
       // });
@@ -370,18 +407,18 @@ export default {
     },
     hideAddModal() {
       this.showAddModal = false;
-      this.getRecord()
+      this.getRecord();
     },
     hideEditModal() {
       this.showEditModal = false;
-      this.getRecord()
+      this.getRecord();
     },
     hideInfoModal() {
       this.showInfoModal = false;
-      this.getRecord()
+      this.getRecord();
     },
     onRequest(props) {
-       this.getP = props;
+      this.getP = props;
       this.getRecord();
     },
   },
@@ -390,7 +427,7 @@ export default {
     // this.getRecord();
     this.onRequest({
       pagination: this.pagination,
-      filter: undefined
+      filter: undefined,
     });
   },
 };
