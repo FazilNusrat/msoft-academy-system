@@ -280,11 +280,11 @@ export default {
       (this.form.start_date = "");
     },
     getdata() {
-      this.$axios.get("staff/display", this.staffDate).then((Response) => {
+      this.$axios.get("staff/", this.staffDate).then((Response) => {
         this.staffDate = Response.data;
 
-      this.$axios.get("staff/display", this.staffList).then((Response) => {
-        this.staffList = Response.data;
+      // this.$axios.get("staff/display", this.staffList).then((Response) => {
+      //   this.staffList = Response.data;
 
 
     })
