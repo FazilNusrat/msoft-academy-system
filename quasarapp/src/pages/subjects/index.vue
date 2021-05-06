@@ -13,7 +13,7 @@
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
-        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
+        <l-button icon="mdi-whatsapp" color="orange-6">Whatsapp</l-button>
       </div>
       <div class="row">
         <l-button icon="mdi-database-search" color="blue-grey-9"
@@ -104,14 +104,14 @@ export default {
       },
       columns: [
         {
-          name: 'symbol',
+          name: 'number',
           required: true,
-          label: 'Symbol',
+          label: 'Number',
           align: 'center',
           field: row => row.symbol,
           sortable: true,
           classes: 'bg-grey-2 ellipsis my_width10',
-          headerClasses: 'bg-light-blue-6 text-white'
+          headerClasses: ' text-white'
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
         { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
