@@ -5,7 +5,7 @@
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
 
-    <h-title>Entry Class</h-title>
+    <h-title>Entry Student</h-title>
     <div class="row justify-between q-mt-sm">
       <div class="row">
         <l-button icon="add" color="red" @click="medium = true"
@@ -28,7 +28,7 @@
       <n-table
         :loading="loading"
         @head="head"
-        :data="classdata"
+        :data="studentDate"
         :pagination.sync="pagination"
         @del="del"
         @info="info"
@@ -51,7 +51,7 @@
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
         <q-card-section class="bg-teal text-white">
-          <div class="text-h6">Add Class</div>
+          <div class="text-h6">Add Student</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -63,15 +63,60 @@
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input
-                color="teal"
-                v-model="form.description"
-                label="Description"
-              >
+              <q-input color="teal" v-model="form.last_name" label="Last Name">
                 <template v-slot:prepend>
-                  <q-icon name="info" />
+                  <q-icon last_name="add" />
                 </template>
               </q-input>
+              <q-input color="teal" v-model="form.father_name" label="father_name">
+                <template v-slot:prepend>
+                  <q-icon father_name="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" type="email" v-model="form.email" label="email">
+                <template v-slot:prepend>
+                  <q-icon email="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" type="number" v-model="form.cnic" label="cnic">
+                <template v-slot:prepend>
+                  <q-icon cnic="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" type="number" v-model="form.phone" label="phone">
+                <template v-slot:prepend>
+                  <q-icon phone="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" type="number" v-model="form.salary" label="salary">
+                <template v-slot:prepend>
+                  <q-icon salary="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" v-model="form.address" label="address">
+                <template v-slot:prepend>
+                  <q-icon address="add" />
+                </template>
+              </q-input>
+              <q-input color="teal" v-model="form.regint" label="regint">
+                <template v-slot:prepend>
+                  <q-icon regint="add" />
+                </template>
+              </q-input>
+
+              <q-select
+                dense
+                outlined
+                v-model="selectStudent"
+                :options="studentList"
+                option-label="name"
+                :label="$t('CreditLimitStatus')"
+                class="q-ma-sm"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="credit_card_off" color="light-blue-8" />
+                </template>
+              </q-select>
             </div>
           </div>
         </q-card-section>
@@ -111,9 +156,9 @@ export default {
       showAddModal: false,
       showEditModal: false,
       showInfoModal: false,
-      selectedClass: null,
-      // classList: ['CS-Morning', 'IT-Evening'],
-      classList: [],
+      selectStudent: null,
+      // studentList: ['CS-Morning', 'IT-Evening'],
+      studentList: [],
       columns: [
         {
           name: "id",
@@ -135,12 +180,75 @@ export default {
           sortable: true,
         },
         {
-          name: "description",
+          name: "last_name",
           classes: "bg-grey-2 ellipsis my_width20",
           // label: this.$t("ContactPerson"),
-          label: "Description",
+          label: "last_name",
           align: "left",
-          field: (row) => row.description,
+          field: (row) => row.last_name,
+          sortable: true,
+        },
+        {
+          name: "father_name",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "father_name",
+          align: "left",
+          field: (row) => row.father_name,
+          sortable: true,
+        },
+        {
+          name: "email",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "email",
+          align: "left",
+          field: (row) => row.email,
+          sortable: true,
+        },
+        {
+          name: "cnic",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "cnic",
+          align: "left",
+          field: (row) => row.cnic,
+          sortable: true,
+        },
+        {
+          name: "phone",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "phone",
+          align: "left",
+          field: (row) => row.phone,
+          sortable: true,
+        },
+        {
+          name: "salary",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "salary",
+          align: "left",
+          field: (row) => row.salary,
+          sortable: true,
+        },
+        {
+          name: "address",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "address",
+          align: "left",
+          field: (row) => row.address,
+          sortable: true,
+        },
+        {
+          name: "regint",
+          classes: "bg-grey-2 ellipsis my_width20",
+          // label: this.$t("ContactPerson"),
+          label: "regint",
+          align: "left",
+          field: (row) => row.regint,
           sortable: true,
         },
 
@@ -167,10 +275,17 @@ export default {
         rowsNumber: 12,
       },
       medium: false,
-      classdata: [],
+      studentDate: [],
       form: {
         name: null,
-        description: null,
+        last_name: null,
+        father_name: null,
+        email: null,
+        cnic: null,
+        phone: null,
+        salary: null,
+        address: null,
+        regint: null,
       },
     };
   },
@@ -179,7 +294,7 @@ export default {
       this.visible = true;
       this.loading = true;
       // console.log("Test File", this.form.name);
-      this.$axios.post("subject/store", this.form).then((res) => {
+      this.$axios.post("student/store", this.form).then((res) => {
         this.$q.notify({
           color: "green-4",
           textColor: "white",
@@ -193,28 +308,36 @@ export default {
       });
     },
     clear() {
-      (this.form.name = ""), (this.form.description = "");
+      (this.form.name = ""),
+      (this.form.last_name = ""),
+      (this.form.father_name = ""),
+      (this.form.email = ""),
+      (this.form.cnic = ""),
+      (this.form.phone = ""),
+      (this.form.salary = ""),
+      (this.form.address = "");
+      (this.form.regint = "");
     },
     getRecord() {
       let p = this.getP;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('subject/display'+
+      this.$axios.get('class'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
       this.show = false;
       this.visible = false;
       this.loading = false;
-      this.classdata = res.data;
-      // this.classdata = res.data.data;
+      this.studentDate = res.data;
+      // this.studentDate = res.data.data;
       this.pagination.page = res.data.current_page;
       this.pagination.rowsPerPage = res.data.per_page;
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
 
     })
-      // this.$axios.get("class/display", this.classdata).then((Response) => {
-      //   this.classdata = Response.data;
+      // this.$axios.get("class/display", this.studentDate).then((Response) => {
+      //   this.studentDate = Response.data;
       // });
     },
     head(name) {
