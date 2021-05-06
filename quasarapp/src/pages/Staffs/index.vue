@@ -1,33 +1,34 @@
 <template>
-  <div staff="q-pa-md q-gutter-sm ">
-      <div class="row">
+  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+    <!-- <q-card class="bg-teal text-white" style="width: 300px">
+        <q-card-section>
+          <div class="text-h6">Add Class</div>
+        </q-card-section> -->
 
-        <div class="col">
-          <div class="q-ma-xs  q-pa-xs">  
-
-    <h-title value="0.14" >Add Staff</h-title>
-    </div>
-    <div class="row justify-between">
+    <h-title>Entry Staff</h-title>
+    <div class="row justify-between q-mt-sm">
       <div class="row">
-        <l-button icon="add" color="red" @click="medium = true">Add New</l-button>
+        <l-button icon="add" color="red" @click="medium = true"
+          >Add New</l-button
+        >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
-        <l-button icon="mdi-database-search" color="blue-grey-9">Advance Search</l-button>
+        <l-button icon="mdi-database-search" color="blue-grey-9"
+          >Advance Search</l-button
+        >
         <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
       </div>
     </div>
-        </div>
-      </div>
 
     <div>
       <n-table
         :loading="loading"
         @head="head"
-        :data="staffDate"
+        :data="classdata"
         :pagination.sync="pagination"
         @del="del"
         @info="info"
@@ -36,67 +37,91 @@
         :columns="columns"
         @request="onRequest"
       />
+
+      <m-modal :showCM.sync="showAddModal">
+       <n-add-modal @close="hideAddModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showEditModal">
+      <n-edit-modal :id="id" @close="hideEditModal()" />
+    </m-modal>
+    <m-modal :showCM.sync="showInfoModal">
+      <n-info-modal :id="id" @close="hideInfoModal()" />
+    </m-modal>
     </div>
     <q-dialog v-model="medium">
       <q-card style="width: 700px; width: 80vw">
-        <q-card-section staff="bg-teal text-white">
-          <div staff="text-h6">Add staff</div>
+        <q-card-section class="bg-teal text-white">
+          <div class="text-h6">Add Staff</div>
         </q-card-section>
 
-        <q-card-section staff="q-pt-none">
-          <div staff="row">
-            <div staff="col"></div>
-            <div staff="col-10 q-mr-lg">
+        <q-card-section class="q-pt-none">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-10 q-mr-lg">
               <q-input color="teal" v-model="form.name" label="Name">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="form.last_name" label="Last Name">
+              <q-input color="teal" v-model="form.last_name" label="last_name">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="form.father_name" label="Father Name">
+              <q-input color="teal" v-model="form.father_name" label="father_name">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" tye="email" v-model="form.email" label="Email">
+              <q-input color="teal" v-model="form.email" label="email">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="number" v-model="form.cnic" label="CNIC">
+              <q-input color="teal" v-model="form.cnic" label="cnic">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="number" v-model="form.phone" label="Phone">
+              <q-input color="teal" v-model="form.phone" label="phone">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="form.salary" label="Salary">
+              <q-input color="teal" v-model="form.salary" label="salary">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" v-model="form.address" label="Address">
+              <q-input color="teal" v-model="form.address" label="address">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
-              <q-input color="teal" type="date" v-model="form.start_date">
+              <q-input color="teal" v-model="form.start_date" label="start_date">
                 <template v-slot:prepend>
                   <q-icon name="add" />
                 </template>
               </q-input>
+
+              <q-select
+                dense
+                outlined
+                v-model="selectStaff"
+                :options="staffClass"
+                option-label="name"
+                :label="$t('CreditLimitStatus')"
+                class="q-ma-sm"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="credit_card_off" color="light-blue-8" />
+                </template>
+              </q-select>
             </div>
           </div>
         </q-card-section>
 
-        <q-card-actions align="right" staff="bg-white text-teal">
+        <q-card-actions align="right" class="bg-white text-teal">
           <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
             <q-icon name="save" />
           </q-btn>
@@ -110,17 +135,30 @@
 </template>
 
 <script>
+
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
+import MModal from 'src/components/general-components/MainModal.vue';
+import NAddModal from 'src/components/modals/class/Add.vue';
+import NEditModal from 'src/components/modals/class/Edit.vue';
+import NInfoModal from 'src/components/modals/class/Info.vue';
 
 export default {
-  components: { NTable, LButton, HTitle},
+  components: { NTable, LButton, HTitle, MModal, NAddModal, NEditModal, NInfoModal },
 
   data() {
     return {
-      selectedstaff:null,
-      staffList: [],
+      getP:null,
+      visible: true,
+      loading: false,
+      id: 0,
+      showAddModal: false,
+      showEditModal: false,
+      showInfoModal: false,
+      selectStaff: null,
+      // staffClass: ['CS-Morning', 'IT-Evening'],
+      staffClass: [],
       columns: [
         {
           name: "id",
@@ -128,98 +166,98 @@ export default {
           label: this.$t("Number"),
           field: (row) => row.id,
           sortable: true,
-          staffes: "bg-grey-2 ellipsis my_width10",
+          classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
-          headerstaffes: "bg-light-blue-6 text-white ",
+          headerClasses: "bg-light-blue-6 text-white ",
         },
         {
           name: "name",
-          staff: "my_width20 bg-grey-2",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("Name"),
           label: "Name",
           field: (row) => row.name,
           sortable: true,
         },
         {
           name: "last_name",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Last name",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("last_name"),
+          label: "last_name",
           field: (row) => row.last_name,
           sortable: true,
         },
         {
           name: "father_name",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Father Name",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("father_name"),
+          label: "father_name",
           field: (row) => row.father_name,
           sortable: true,
         },
         {
           name: "email",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Email",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("email"),
+          label: "email",
           field: (row) => row.email,
           sortable: true,
         },
         {
           name: "cnic",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "CNIC",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("cnic"),
+          label: "cnic",
           field: (row) => row.cnic,
           sortable: true,
         },
         {
           name: "phone",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Phone",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("phone"),
+          label: "phone",
           field: (row) => row.phone,
           sortable: true,
         },
         {
-          name: "salry",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Salry",
+          name: "salary",
+          classes: "my_width20 bg-grey-2",
           align: "left",
-          field: (row) => row.Phone,
+          // label: this.$t("salary"),
+          label: "salary",
+          field: (row) => row.salary,
           sortable: true,
         },
         {
           name: "address",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Address",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("address"),
+          label: "address",
           field: (row) => row.address,
           sortable: true,
         },
         {
           name: "start_date",
-          staff: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Start Date",
+          classes: "my_width20 bg-grey-2",
           align: "left",
+          // label: this.$t("start_date"),
+          label: "start_date",
           field: (row) => row.start_date,
           sortable: true,
         },
-        
 
         {
           name: "actions",
           label: this.$t("Actions"),
           align: "center",
           sortable: false,
-          staffes: "bg-grey-2 my_width10",
+          classes: "bg-grey-2 my_width10",
         },
       ],
       loading: false,
@@ -229,7 +267,6 @@ export default {
       page: 1,
       rowsPerPage: 12,
       rowsNumber: 12,
-      data: [],
       pagination: {
         sortBy: "created_at",
         descending: false,
@@ -238,22 +275,17 @@ export default {
         rowsNumber: 12,
       },
       medium: false,
-      staffDate: [],
+      classdata: [],
       form: {
         name: null,
-        last_name: null,
-        father_name: null,
-        email: null,
-        cnic: null,
-        phone: null,
-        salary: null,
-        address: null,
-        start_date: null,
+        description: null,
       },
     };
   },
   methods: {
     SaveRecord() {
+      this.visible = true;
+      this.loading = true;
       // console.log("Test File", this.form.name);
       this.$axios.post("staff/store", this.form).then((res) => {
         this.$q.notify({
@@ -264,58 +296,81 @@ export default {
           message: "Successfully inserted",
         });
         this.clear();
-        // this.$router.push("/staff/index");
-        this.getdata();
+        // this.$router.push("/class/index");
+        this.getRecord();
       });
     },
     clear() {
       (this.form.name = ""), 
-      (this.form.last_name = "");
-      (this.form.father_name = "");
-      (this.form.email = "");
-      (this.form.cnic = "");
-      (this.form.phone = "");
-      (this.form.salary = "");
+      (this.form.last_name = ""), 
+      (this.form.father_name = ""), 
+      (this.form.email = ""), 
+      (this.form.cnic = ""), 
+      (this.form.phone = ""), 
+      (this.form.salary = ""), 
       (this.form.address = "");
       (this.form.start_date = "");
     },
     getdata() {
-      this.$axios.get("staff/display", this.staffDate).then((Response) => {
+      this.$axios.get("staff/", this.staffDate).then((Response) => {
         this.staffDate = Response.data;
 
-      this.$axios.get("staff/display", this.staffList).then((Response) => {
-        this.staffList = Response.data;
-
-
-    })
-      });
+     
+      }); // this.$axios.get("staff/display", this.staffList).then((Response) => {
+      //   this.staffList = Response.data;
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-  
 
-  del(id = 0) {
-    console.log("dels: ", id);
-  },
-  info(id = 0) {
-    this.$router.push("/customer/show/" + id);
-  },
-  onRequest(props) {
-    // console.log("propss: ", props);
-    this.getProp = props;
-    this.getRecord();
-  },
-  
-edit (id=0) {
-        this.$router.push('/customer/edit/'+id);
+    del(id = 0) {
+      this.id = id;
+      this.showEditModal = true;
+    },
+    info(id = 0) {
+      this.id = id;
+      this.showInfoModal = true;
+    },
+    onRequest(props) {
+      // console.log("propss: ", props);
+      this.getProp = props;
+      this.getRecord();
+    },
+
+    edit(id = 0) {
+      this.id = id;
+      this.showEditModal = true;
+    },
+    addModal() {
+      // this.form.name = null;
+      this.showAddModal = true;
+    },
+    hideAddModal() {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal() {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    hideInfoModal() {
+      this.showInfoModal = false;
+      this.getRecord()
+    },
+    onRequest(props) {
+       this.getP = props;
+      this.getRecord();
     },
   },
 
   created() {
-    this.getdata();
+    // this.getRecord();
+    this.onRequest({
+      pagination: this.pagination,
+      filter: undefined
+    });
   },
 };
 </script>

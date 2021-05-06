@@ -30,19 +30,5 @@ class Classes extends Model
 			return $current_page;
 		});
 		return $query->paginate($per_page);
-	}
-
-	public function classLists($current_page = 0, $per_page = 1, $search = '') {
-		$query = $this->selectRaw('*')
-			->orderBy('created_at', 'DESC');
-		if ($search != '') {
-			$query = $query->where('name', 'ilike', '%' . $search . '%')->
-				orWhere('code', 'ilike', '%' . $search . '%');
-		}
-		Paginator::currentPageResolver(function () use ($current_page) {
-			return $current_page;
-		});
-
-		return $query->paginate($per_page);
-	}
+	}	
 }

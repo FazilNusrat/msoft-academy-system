@@ -19,8 +19,16 @@ class SubjectController extends Controller
      */
     public function index(Request $request)
     {
-        $subject = $this->subject->all();
-        return $subject;
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
+
+        return $this->subject->getSubject($per_page, $current_page, $filter, $sort_by, $descending);
+
+        // $subject = $this->subject->all();
+        // return $subject;
     }
 
     /**
@@ -41,17 +49,27 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $subject = $this->subject->create([
-            'name'          =>$request->name,
-            'description'   =>$request->description
-        ]);
-        if($subject)
-        {
-            return 1;
-        }else
-        {
-            return 0;
+
+        $subject   = $this->subject->create([
+             'name'  =>$request->name,
+             'description'  =>$request->description,
+         ]);
+
+        if ($subject) {
+            return ['Subject Message'];
         }
+
+        // $subject = $this->subject->create([
+        //     'name'          =>$request->name,
+        //     'description'   =>$request->description
+        // ]);
+        // if($subject)
+        // {
+        //     return 1;
+        // }else
+        // {
+        //     return 0;
+        // }
     }
 
     /**
@@ -71,9 +89,9 @@ class SubjectController extends Controller
      * @param  \App\Models\subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(subject $subject)
+    public function edit(subject $subject, $id)
     {
-        //
+        return $this->subject->findOrFail($id);
     }
 
     /**
@@ -83,9 +101,15 @@ class SubjectController extends Controller
      * @param  \App\Models\subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, subject $subject)
+    public function update(Request $request, subject $subject, $id)
     {
-        //
+        $id = $request->id;
+        $subject = $this->subject->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $subject->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**

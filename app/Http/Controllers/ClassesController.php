@@ -142,6 +142,6 @@ class ClassesController extends Controller
      */
     public function destroy(Classes $classes)
     {
-        //
+        return Address::destroy($id);
     }
 }
