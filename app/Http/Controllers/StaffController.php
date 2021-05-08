@@ -20,8 +20,16 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staff=$this->staff->all();
-        return $staff;
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
+
+        return $this->subject->getSubject($per_page, $current_page, $filter, $sort_by, $descending);
+
+        // $subject = $this->subject->all();
+        // return $subject;
     }
 
     /**
@@ -42,23 +50,14 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $staff=$this->staff->create([
-            'name'      =>$request->name,
-            'last_name'      =>$request->last_name,
-            'father_name'      =>$request->father_name,
-            'email'      =>$request->email,
-            'cnic'      =>$request->cnic,
-            'phone'      =>$request->phone,
-            'salary'      =>$request->salary,
-            'address'      =>$request->address,
-            'start_date'      =>$request->start_date,
-        ]);
-        if($staff)
-        {
-            return 1;
-        }else
-        {
-            return 0;
+
+        $subject   = $this->subject->create([
+             'name'  =>$request->name,
+             'description'  =>$request->description,
+         ]);
+
+        if ($subject) {
+            return ['Subject Message'];
         }
     }
 
@@ -93,7 +92,13 @@ class StaffController extends Controller
      */
     public function update(Request $request, staff $staff)
     {
-        //
+        $id = $request->id;
+        $subject = $this->subject->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $subject->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**

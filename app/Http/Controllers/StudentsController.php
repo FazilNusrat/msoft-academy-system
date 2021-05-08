@@ -7,20 +7,28 @@ use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
-    protected $students;
-    public function __construct(Students $students)
+    protected $student;
+    public function __construct(Students $student)
     {
-        $this->Students = $students;
+        $this->Student = $student;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students=$this->Students->all();
-        return $students;
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
+
+        return $this->student->getStudent($per_page, $current_page, $filter, $sort_by, $descending);
+
+        // $subject = $this->subject->all();
+        // return $subject;
     }
 
     /**
@@ -39,35 +47,33 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, student $student)
     {
-        $students=$this->Students->create([
-            'name'      =>$request->name,
-            'last_name'      =>$request->last_name,
-            'father_name'      =>$request->father_name,
-            'email'      =>$request->email,
-            'cnic'      =>$request->cnic,
-            'phone'      =>$request->phone,
-            'salary'      =>$request->salary,
-            'address'      =>$request->address,
-            'regint'      =>$request->regint,
-        ]);
-        if($students)
-        {
-            return 1;
-        }else
-        {
-            return 0;
+
+        $student   = $this->student->create([
+             'name'  =>$request->name,
+             'last_name'  =>$request->last_name,
+             'father_name'  =>$request->father_name,
+             'email'  =>$request->email,
+             'cnic'  =>$request->name,
+             'phone'  =>$request->phone,
+             'salary'  =>$request->salary,
+             'address'  =>$request->address,
+             'regint'  =>$request->regint,
+         ]);
+
+        if ($student) {
+            return ['student Message'];
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Students  $students
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Students $students)
+    public function show(Student $student)
     {
         //
     }
@@ -75,10 +81,10 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Students  $students
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Students $students)
+    public function edit(Student $student)
     {
         //
     }
@@ -87,21 +93,27 @@ class StudentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Students  $students
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Request $request, Student $student)
     {
-        //
+        $id = $request->id;
+        $student = $this->student->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $student->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Students  $students
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Students $students)
+    public function destroy(Student $student)
     {
         //
     }

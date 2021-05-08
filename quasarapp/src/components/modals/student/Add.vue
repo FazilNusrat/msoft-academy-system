@@ -10,14 +10,14 @@
 
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
-          <n-simple icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
+          <n-name icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
           <n-simple icon="explore" :label="$t('father_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.father_name"/>
           <n-simple icon="explore" type="email" :label="$t('email')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.email"/>
           <n-simple icon="explore" type="number" :label="$t('cnic')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.cnic"/>
           <n-name icon="explore" type="number" :label="$t('phone')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.phone"/>
           <n-simple icon="explore" :label="$t('salary')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.salary"/>
           <n-simple icon="explore" :label="$t('address')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.address"/>
-          <n-simple icon="explore" :label="$t('start_date')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.start_date"/>
+          <n-simple icon="explore" :label="$t('regint')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.regint"/>
         
         </q-card-section>
         <q-separator />
@@ -51,7 +51,7 @@ export default {
         phone:'',
         salary:'',
         address:'',
-        start_date:''
+        regint:''
       },
     }
   },
@@ -67,7 +67,7 @@ export default {
           });
       } else {
         this.submitting = true;
-        this.$axios.post('staff/store', this.form).then(res=>{
+        this.$axios.post('student/store', this.form).then(res=>{
           this.submitting = false
           this.onReset();
           this.$emit("close");
@@ -90,7 +90,7 @@ export default {
       this.form.phone = null;
       this.form.salary = null;
       this.form.address = null;
-     this.form.start_date = null;
+      this.form.regint = null;
 
     },
 
