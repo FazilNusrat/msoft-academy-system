@@ -17,10 +17,15 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $department = $this->department->all();
-        return $department;
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
+
+        return $this->department->getDepartment($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -41,18 +46,14 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = $this->department->create([
-            'name'      =>$request->name,
-            'description'      =>$request->description,
+        $department   = $this->department->create([
+            'name'  =>$request->name,
+            'description'  =>$request->description,
         ]);
-        if($department)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
+
+       if ($department) {
+           return ['Department Message'];
+       }
     }
 
     /**
@@ -72,9 +73,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(department $department)
+    public function edit(department $department, $id)
     {
-        //
+        return $this->department->findOrFail($id);
+        
     }
 
     /**
@@ -84,9 +86,15 @@ class DepartmentController extends Controller
      * @param  \App\Models\department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, department $department)
+    public function update(Request $request, department $department, $id)
     {
-        //
+        $id = $request->id;
+        $department = $this->department->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $department->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**

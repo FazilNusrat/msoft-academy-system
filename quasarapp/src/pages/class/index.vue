@@ -1,18 +1,17 @@
 <template>
-  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+  <div class="q-pa-md q-gutter-sm">
     <!-- <q-card class="bg-teal text-white" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-
-    <h-title>Entry Class</h-title>
-    <div class="row justify-between q-mt-sm">
-      <div class="row">
-        <l-button icon="add" color="red" @click="addModal">Add New</l-button>
-        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10"
-          >Excel</l-button
+    <h-title>Class Entry</h-title>
+    <div class="row justify-between">
+      <div class="row"> 
+        <l-button icon="add" color="red" @click="addModal"
+          >Add New</l-button
         >
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
@@ -24,25 +23,14 @@
       </div>
     </div>
     <div>
-      <n-table
-        :title="$t('ClassList')"
-        :loading="loading"
-        :data="data"
-        :pagination.sync="pagination"
-        @del="del"
-        @info="info"
-        @edit="edit"
-        :filter.sync="filter"
-        :columns="columns"
-        @request="onRequest"
-      />
+      <n-table :title="$t('classList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
-        <n-add-modal @close="hideAddModal()" />
-      </m-modal>
-      <m-modal :showCM.sync="showEditModal">
-        <n-edit-modal :id="id" @close="hideEditModal()" />
-      </m-modal>
+    <n-add-modal @close="hideAddModal()" />
+  </m-modal>
+  <m-modal :showCM.sync="showEditModal">
+    <n-edit-modal :id="id" @close="hideEditModal()" />
+  </m-modal>
     </div>
   </div>
 </template>
@@ -51,23 +39,15 @@
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import NAddModal from "src/components/modals/class/Add.vue";
-import NEditModal from "src/components/modals/class/Edit.vue";
-import MModal from "src/components/general-components/MainModal.vue";
+import NAddModal from 'src/components/modals/class/Add.vue'
+import NEditModal from 'src/components/modals/class/Edit.vue'
+import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
-  components: {
-    NTable,
-    LButton,
-    HTitle,
-    MModal,
-    NAddModal,
-    NEditModal,
-    NInfoModal,
-  },
+  components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
 
   data() {
-  return {
+    return {
       id:0,
       showModal: false,
       showAddModal:false,
@@ -82,18 +62,18 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12
+        rowsNumber: 12 
       },
       columns: [
         {
-          name: 'symbol',
+          name: "id",
           required: true,
-          label: 'Symbol',
-          align: 'center',
-          field: row => row.symbol,
+          label: this.$t("Number"),
+          field: (row) => row.id,
           sortable: true,
-          classes: 'bg-grey-2 ellipsis my_width10',
-          headerClasses: 'bg-light-blue-6 text-white'
+          classes: "bg-grey-2 ellipsis my_width10",
+          align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
         { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
@@ -141,8 +121,7 @@ export default {
 
     })
     },
-  },
-  clear() {
+    clear() {
       (this.form.name = ""), (this.form.description = "");
     },
     head(name) {
@@ -179,13 +158,10 @@ export default {
       this.getProp = props
       this.getRecord();
     },
-  
+  },
+
   // created() {
-  //   // this.getRecord();
-  //   this.onRequest({
-  //     pagination: this.pagination,
-  //     filter: undefined,
-  //   });
+  //   this.getdata();
   // },
 };
 </script>

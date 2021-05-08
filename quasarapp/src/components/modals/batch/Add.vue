@@ -3,14 +3,13 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddDemartment')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddTime')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
-
+ 
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
-          <n-simple icon="description" :label="$t('Description')"  :name.sync="form.description"/>
         </q-card-section>
 
         <q-separator />
@@ -37,7 +36,6 @@ export default {
       submitting: false,
       form: {
         name:'',
-        description:''
       },
     }
   },
@@ -53,7 +51,7 @@ export default {
           });
       } else {
         this.submitting = true;
-        this.$axios.post('department/store', this.form).then(res=>{
+        this.$axios.post('batch/store', this.form).then(res=>{
           this.submitting = false
           this.onReset();
           this.$emit("close");
@@ -69,7 +67,6 @@ export default {
     },
     onReset() {
       this.form.name = null;
-      this.form.description = null;
 
     },
 

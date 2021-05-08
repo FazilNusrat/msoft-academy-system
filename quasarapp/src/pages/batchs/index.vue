@@ -1,18 +1,17 @@
 <template>
-  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+  <div class="q-pa-md q-gutter-sm">
     <!-- <q-card class="bg-teal text-white" style="width: 300px">
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-
-    <h-title>Entry Class</h-title>
-    <div class="row justify-between q-mt-sm">
-      <div class="row">
-        <l-button icon="add" color="red" @click="medium = true"
+    <h-title>Batch Entry</h-title>
+    <div class="row justify-between">
+      <div class="row"> 
+        <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
-        <l-button @click="addModal" icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
+        <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
@@ -23,89 +22,48 @@
         <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
       </div>
     </div>
-
     <div>
-      <n-table
-        :loading="loading"
-        @head="head"
-        :data="classdata"
-        :pagination.sync="pagination"
-        @del="del"
-        @info="info"
-        @edit="edit"
-        :filter.sync="filter"
-        :columns="columns"
-        @request="onRequest"
-      />
+      <n-table :title="$t('BatchList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
-       <n-add-modal @close="hideAddModal()" />
-    </m-modal>
-    <m-modal :showCM.sync="showEditModal">
-      <n-edit-modal :id="id" @close="hideEditModal()" />
-    </m-modal>
-    <m-modal :showCM.sync="showInfoModal">
-      <n-info-modal :id="id" @close="hideInfoModal()" />
-    </m-modal>
+    <n-add-modal @close="hideAddModal()" />
+  </m-modal>
+  <m-modal :showCM.sync="showEditModal">
+    <n-edit-modal :id="id" @close="hideEditModal()" />
+  </m-modal>
     </div>
-    <q-dialog v-model="medium">
-      <q-card style="width: 700px; width: 80vw">
-        <q-card-section class="bg-teal text-white">
-          <div class="text-h6">Add Class</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <div class="row">
-            <div class="col"></div>
-            <div class="col-10 q-mr-lg">
-              <q-input color="teal" v-model="form.name" label="Name">
-                <template v-slot:prepend>
-                  <q-icon name="add" />
-                </template>
-              </q-input>
-              
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
-            <q-icon name="save" />
-          </q-btn>
-          <q-btn flat label="close" v-close-popup>
-            <q-icon name="close" />
-          </q-btn>
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
 
 <script>
-
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import MModal from 'src/components/general-components/MainModal.vue';
-import NAddModal from 'src/components/modals/class/Add.vue';
-import NEditModal from 'src/components/modals/class/Edit.vue';
-import NInfoModal from 'src/components/modals/class/Info.vue';
+import NAddModal from 'src/components/modals/batch/Add.vue'
+import NEditModal from 'src/components/modals/batch/Edit.vue'
+import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
-  components: { NTable, LButton, HTitle, MModal, NAddModal, NEditModal, NInfoModal },
+  components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
 
   data() {
     return {
-      getP:null,
-      visible: true,
+      id:0,
+      showModal: false,
+      showAddModal:false,
+      showEditModal:false,
+      form: {name:null},
+      show:true,
+      visible:true,
+      filter: '',
       loading: false,
-      id: 0,
-      showAddModal: false,
-      showEditModal: false,
-      showInfoModal: false,
-      selectedClass: null,
-      // classList: ['CS-Morning', 'IT-Evening'],
-      classList: [],
+      pagination: {
+        sortBy: 'created_at',
+        descending: true,
+        page: 1,
+        rowsPerPage: 12,
+        rowsNumber: 12 
+      },
       columns: [
         {
           name: "id",
@@ -117,97 +75,53 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        {
-          name: "name",
-          classes: "my_width20 bg-grey-2",
-          align: "left",
-          // label: this.$t("Name"),
-          label: "Name",
-          field: (row) => row.name,
-          sortable: true,
-        },
-        {
-          name: "description",
-          classes: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Description",
-          align: "left",
-          field: (row) => row.description,
-          sortable: true,
-        },
+        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
+        { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
-        {
-          name: "actions",
-          label: this.$t("Actions"),
-          align: "center",
-          sortable: false,
-          classes: "bg-grey-2 my_width10",
-        },
       ],
-      loading: false,
-      filter: "",
-      sortBy: "created_at",
-      descending: false,
-      page: 1,
-      rowsPerPage: 12,
-      rowsNumber: 12,
-      pagination: {
-        sortBy: "created_at",
-        descending: false,
-        page: 1,
-        rowsPerPage: 12,
-        rowsNumber: 12,
-      },
-      medium: false,
-      classdata: [],
-      form: {
-        name: null,
-        description: null,
-      },
-    };
+      data: [],
+      original: [],
+      getProp:{}
+    }
+  },
+  mounted () {
+     this.onRequest({
+      pagination: this.pagination,
+      filter: undefined
+    });
   },
   methods: {
-    SaveRecord() {
-      this.visible = true;
-      this.loading = true;
-      // console.log("Test File", this.form.name);
-      this.$axios.post("batch/store", this.form).then((res) => {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          position: "top-right",
-          message: "Successfully inserted",
-        });
-        this.clear();
-        // this.$router.push("/class/index");
-        this.getRecord();
-      });
-    },
-    clear() {
-      (this.form.name = ""), (this.form.description = "");
-    },
     getRecord() {
-      let p = this.getP;
+      let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('batch/display'+
+      this.$axios.get('batch'+
       '?current_page='+
-      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+this.pagination.descending).then(res=>{
-      this.show = false;
-      this.visible = false;
-      this.loading = false;
-      this.classdata = res.data;
-      // this.classdata = res.data.data;
+      p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
+      this.pagination.sortBy = p.pagination.sortBy
+        this.show = false;
+        this.visible = false;
+        this.loading = false;
+        this.data = res.data.data;
+      this.data = res.data.data;
       this.pagination.page = res.data.current_page;
+      console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
+      console.log('p.pagination.descending===: ', p.pagination.descending);
+      if (this.pagination.sortBy==='name' || this.pagination.sortBy==='id')
+         {
+          if (this.pagination.descending)
+             this.pagination.descending = false;
+          else
+            this.pagination.descending = true
+         }
       this.pagination.rowsPerPage = res.data.per_page;
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
 
     })
-      // this.$axios.get("class/display", this.classdata).then((Response) => {
-      //   this.classdata = Response.data;
-      // });
+    },
+    clear() {
+      (this.form.name = ""), (this.form.description = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -215,53 +129,39 @@ export default {
       this.pagination.sortBy = name;
     },
 
-    del(id = 0) {
-      this.id = id;
-      this.showEditModal = true;
+    edit (id=0) {
+        this.id = id;
+        this.showEditModal = true;
     },
-    info(id = 0) {
-      this.id = id;
-      this.showInfoModal = true;
-    },
-    onRequest(props) {
-      // console.log("propss: ", props);
-      this.getProp = props;
-      this.getRecord();
-    },
-
-    edit(id = 0) {
-      this.id = id;
-      this.showEditModal = true;
-    },
-    addModal() {
+    addModal () {
+      // alert("Clicked")
       // this.form.name = null;
       this.showAddModal = true;
     },
-    hideAddModal() {
+    hideAddModal () {
       this.showAddModal = false;
       this.getRecord()
     },
-    hideEditModal() {
+    hideEditModal () {
       this.showEditModal = false;
       this.getRecord()
     },
-    hideInfoModal() {
-      this.showInfoModal = false;
-      this.getRecord()
+    del (id=0) {
+      console.log('dels: ', id);
     },
-    onRequest(props) {
-       this.getP = props;
+    info (id=0) {
+      console.log('info: ', id);
+    },
+    onRequest (props) {
+      console.log('propss: ', props);
+      this.getProp = props
       this.getRecord();
     },
   },
 
-  created() {
-    // this.getRecord();
-    this.onRequest({
-      pagination: this.pagination,
-      filter: undefined
-    });
-  },
+  // created() {
+  //   this.getdata();
+  // },
 };
 </script>
 

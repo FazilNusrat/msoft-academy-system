@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
+
 
 class Classes extends Model
 {
@@ -22,9 +24,6 @@ class Classes extends Model
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
-		}
-		if ($filter != '') {
-			$query = $query->where('classes.name', 'ilike', '%' . $filter . '%');
 		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;

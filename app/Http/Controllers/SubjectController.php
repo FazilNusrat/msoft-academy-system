@@ -58,18 +58,6 @@ class SubjectController extends Controller
         if ($subject) {
             return ['Subject Message'];
         }
-
-        // $subject = $this->subject->create([
-        //     'name'          =>$request->name,
-        //     'description'   =>$request->description
-        // ]);
-        // if($subject)
-        // {
-        //     return 1;
-        // }else
-        // {
-        //     return 0;
-        // }
     }
 
     /**

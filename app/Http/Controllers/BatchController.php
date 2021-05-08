@@ -18,10 +18,15 @@ class BatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $batch=$this->batch->all();
-        return $batch;
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
+
+        return $this->batch->getBatch($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -42,16 +47,14 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        $batch=$this->batch->create([
-            'name'      =>$request->name,
+        $batch   = $this->batch->create([
+            'name'  =>$request->name,
+            'description'  =>$request->description,
         ]);
-        if($batch)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-        }
+
+       if ($batch) {
+           return ['Batch Message'];
+       }
     }
 
     /**
@@ -71,9 +74,10 @@ class BatchController extends Controller
      * @param  \App\Models\batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function edit(batch $batch)
+    public function edit(batch $batch, $id)
     {
-        //
+        return $this->batch->findOrFail($id);
+        
     }
 
     /**
@@ -83,9 +87,15 @@ class BatchController extends Controller
      * @param  \App\Models\batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, batch $batch)
+    public function update(Request $request, batch $batch,$id)
     {
-        //
+        $id = $request->id;
+        $batch = $this->batch->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $batch->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**

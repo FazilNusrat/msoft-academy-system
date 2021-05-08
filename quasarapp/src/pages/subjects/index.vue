@@ -32,44 +32,6 @@
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
     </div>
-    <!-- <q-dialog v-model="medium">
-      <q-card style="width: 700px; width: 80vw">
-        <q-card-section class="bg-teal text-white">
-          <div class="text-h6">Add Subject</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <div class="row">
-            <div class="col"></div>
-            <div class="col-10 q-mr-lg">
-              <q-input color="teal" v-model="form.name" label="Name">
-                <template v-slot:prepend>
-                  <q-icon name="add" />
-                </template>
-              </q-input>
-              <q-input
-                color="teal"
-                v-model="form.description"
-                label="Description"
-              >
-                <template v-slot:prepend>
-                  <q-icon name="info" />
-                </template>
-              </q-input>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" @click="SaveRecord" v-close-popup>
-            <q-icon name="save" />
-          </q-btn>
-          <q-btn flat label="close" v-close-popup>
-            <q-icon name="close" />
-          </q-btn>
-        </q-card-actions>
-      </q-card>
-    </q-dialog> -->
   </div>
 </template>
 
@@ -100,18 +62,18 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12
+        rowsNumber: 12 
       },
       columns: [
         {
-          name: 'symbol',
+          name: "id",
           required: true,
-          label: 'Symbol',
-          align: 'center',
-          field: row => row.symbol,
+          label: this.$t("Number"),
+          field: (row) => row.id,
           sortable: true,
-          classes: 'bg-grey-2 ellipsis my_width10',
-          headerClasses: 'bg-light-blue-6 text-white'
+          classes: "bg-grey-2 ellipsis my_width10",
+          align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
         { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },

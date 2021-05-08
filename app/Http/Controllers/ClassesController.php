@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ClassesController extends Controller
 {
-    protected $classObj;
-    public function __construct(Classes $classObj)
+    protected $class;
+    public function __construct(Classes $class)
     {
-        $this->classObj = $classObj;
+        $this->class = $class;
     }
     /**
      * Display a listing of the resource.
@@ -19,16 +19,13 @@ class ClassesController extends Controller
      */
     public function index(Request $request)
     {
-        // $filter = $request->input('filter');
-        // $per_page = $request->input('per_page');
-        // $current_page = $request->input('current_page');
-        // $sort_by = $request->input('sort_by');
-        // $descending = $request->input('descending');
+        $filter = $request->input('filter');
+        $per_page = $request->input('per_page');
+        $current_page = $request->input('current_page');
+        $sort_by = $request->input('sort_by');
+        $descending = $request->input('descending');
 
-        // return $this->classObj->getClass($per_page, $current_page, $filter, $sort_by, $descending);
-
-        $classObj = $this->classObj->all();
-        return $classObj;
+        return $this->class->getClass($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -49,20 +46,16 @@ class ClassesController extends Controller
      */
     public function store(Request $request)
     {
-        $classObj   = new classes();
-        $classStore = $classObj->create([
-            'name'      =>$request->name,
-            'description'      =>$request->description
+        $createClass   = $this->class->create([
+            'name'  =>$request->name,
+            'description'  =>$request->description,
         ]);
-        if($classStore)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-            
-        }
-    }
+
+       if ($createClass) {
+           return ['Class Message'];
+       }
+
+   }
 
     /**
      * Display the specified resource.
@@ -70,7 +63,7 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function show(Classes $classes)
+    public function show()
     {
         //
     }
@@ -78,70 +71,32 @@ class ClassesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Classes  $classes
+     * @param  \App\Models\Classes
      * @return \Illuminate\Http\Response
      */
     // edit function
-    public function edit($id) {
-        $class = $this->classObj->find($id);
-        return $class; 
+    public function edit(Classes $class,$id) {
+        return $this->class->findOrFail($id);
+
     }
     // update function
     public function update(Request $request) {
         $id = $request->id;
-        $classObj = $this->classObj->findOrFail($id);
+        $class = $this->class->findOrFail($id);
         $this->validate($request, [
-            'name'      => 'required|string|max:191'
+            'name' => 'required|string|max:191',
         ]);
-
-        // $employee_id = ($request->get('selected_employee')?$request->get('selected_employee')['id']:null);
-        $data=[
-            'name'              => $request->name,
-            'description'       => $request->description,
-          ];
-        $classObj->update($data);
+        $class->update($request->all());
         return ['message' => 'Update Successfully'];
-
-        // $id = $request->id;
-        // $classObj = $this->classObj->find($id);
-
-        // $request->validate([
-        //     'name' => 'required|max:50|string,name,' . $id,
-
-        // ]);
-
-        // $temp_data = $this->classObj->find($id);
-
-        // // DB::beginTransaction();
-        // // try
-        // // {
-        // $data = [
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        // ];
-        // return $classObj->update($data);
-        // // if ($x) {
-        // //  return ["Md" => $this->classObj->get()];
-        // // }
-        // // zLog('inventory_sites','update',null,$temp_data,$classObj->id);
-        // // DB::commit();
-        // // }
-        // // catch(Exception $e)
-        // // {
-        // //     DB::rollback();
-        // // }
-        // // return redirect()->route('admin.classObj.index')->with('message',__('menu.classObj').' '.__('message.CSuccess'));
-        // // return Redirect()->route('classObj.index')->with('message',__('menu.classObj').' '.__('message.USuccess'));
     }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classes  $classes
+     * @param  \App\Models\Classes  
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classes $classes)
+    public function destroy()
     {
-        return Address::destroy($id);
+        
     }
 }
