@@ -51,10 +51,10 @@ Route::patch('batch/{id}', ['as' => 'batch.update', 'uses' => 'BatchController@u
 Route::get('batch/edit/{id}', ['as' => 'batch.edit', 'uses' => 'BatchController@edit']);
 
 
-Route::get('staff',['as'=>'staff.index','uses'=>'StaffsController@index']);
-Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffsController@store']);
-Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffsController@update']);
-Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffsController@edit']);
+Route::get('staff',['as'=>'staff.index','uses'=>'StaffController@index']);
+Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffController@store']);
+Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffController@update']);
+Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffController@edit']);
 
 
 Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);

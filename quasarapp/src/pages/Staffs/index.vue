@@ -16,6 +16,14 @@
         <l-button icon="mdi-database-import" color="blue-7">Import</l-button>
       </div>
     </div>
+    <n-table :title="$t('StaffList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+
+    <m-modal :showCM.sync="showAddModal">
+    <n-add-modal @close="hideAddModal()" />
+  </m-modal>
+  <m-modal :showCM.sync="showEditModal">
+    <n-edit-modal :id="id" @close="hideEditModal()" />
+  </m-modal>
   </div>
 </template>
 
@@ -24,9 +32,9 @@ import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
 import MModal from 'src/components/general-components/MainModal.vue';
-import NAddModal from 'src/components/modals/class/Add.vue';
-import NEditModal from 'src/components/modals/class/Edit.vue';
-import NInfoModal from 'src/components/modals/class/Info.vue';
+import NAddModal from 'src/components/modals/staff/Add.vue';
+import NEditModal from 'src/components/modals/staff/Edit.vue';
+// import NInfoModal from 'src/components/modals/staff/Info.vue';
 export default {
   components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
 
@@ -60,14 +68,9 @@ export default {
           headerClasses: ' text-white'
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.description, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.description, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
         { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
         { name: 'salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'salary', field: row=>row.salary, sortable: true },
-        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'start_date',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'start_date', field: row=>row.start_date, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -83,6 +86,34 @@ export default {
     });
   },
   methods: {
+    addModal () {
+      // alert("Clicked")
+      // this.form.name = null;
+      this.showAddModal = true;
+    },
+    hideAddModal () {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal () {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    edit (id=0) {
+        this.id = id;
+        this.showEditModal = true;
+    },
+    del (id=0) {
+      console.log('dels: ', id);
+    },
+    info (id=0) {
+      console.log('info: ', id);
+    },
+    onRequest (props) {
+      console.log('propss: ', props);
+      this.getProp = props
+      this.getRecord();
+    },
     getRecord() {
       let p = this.getProp;
       this.visible = true;
@@ -109,7 +140,6 @@ export default {
       this.pagination.rowsPerPage = res.data.per_page;
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
-
     })
     },
     clear() {
@@ -123,11 +153,6 @@ export default {
       (this.form.address = ""),
       (this.form.start_date = ""),
       (this.form.description = "");
-    },
-    getdata() {
-      this.$axios.get("subject/display", this.subjectdata).then((Response) => {
-        this.subjectdata = Response.data;
-      });
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;

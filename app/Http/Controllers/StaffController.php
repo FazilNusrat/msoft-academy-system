@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\staff;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
 
 class StaffController extends Controller
 {   
@@ -18,7 +20,7 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $filter = $request->input('filter');
         $per_page = $request->input('per_page');
@@ -26,10 +28,10 @@ class StaffController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->subject->getSubject($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->staff->getStaff($per_page, $current_page, $filter, $sort_by, $descending);
 
-        // $subject = $this->subject->all();
-        // return $subject;
+        // $staff = $this->staff->all();
+        // return $staff;
     }
 
     /**
@@ -51,13 +53,13 @@ class StaffController extends Controller
     public function store(Request $request)
     {
 
-        $subject   = $this->subject->create([
+        $staff   = $this->staff->create([
              'name'  =>$request->name,
              'description'  =>$request->description,
          ]);
 
-        if ($subject) {
-            return ['Subject Message'];
+        if ($staff) {
+            return ['staff Message'];
         }
     }
 
@@ -93,11 +95,11 @@ class StaffController extends Controller
     public function update(Request $request, staff $staff)
     {
         $id = $request->id;
-        $subject = $this->subject->findOrFail($id);
+        $staff = $this->staff->findOrFail($id);
         $this->validate($request, [
             'name' => 'required|string|max:191',
         ]);
-        $subject->update($request->all());
+        $staff->update($request->all());
         return ['message' => 'Update Successfully'];
     }
 
