@@ -17,7 +17,7 @@
           <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('phone')" refname="name" :name.sync="form.phone"/>
           <n-simple ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('salary')" refname="name" :name.sync="form.salary"/>
           <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('address')" refname="name" :name.sync="form.address"/>
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('start_date')" refname="name" :name.sync="form.start_date"/>
+          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('regint')" refname="name" :name.sync="form.regint"/>
         </q-card-section>
 
         <q-separator />
@@ -52,7 +52,7 @@ export default {
         phone:'',
         salary:'',
         address:'',
-        start_date:''
+        regint:''
       },
     }
   },
@@ -68,7 +68,7 @@ export default {
           });
       } else {
         this.submitting = true;
-        this.$axios.patch('staff/'+this.id, this.form).then(res=>{
+        this.$axios.patch('student/'+this.id, this.form).then(res=>{
           this.submitting = false
           this.onReset();
           this.$emit("close");
@@ -91,20 +91,13 @@ export default {
       this.form.phone = null;
       this.form.salary = null;
       this.form.address = null;
-      this.form.start_date = null;
+      this.form.regint = null;
 
     },
     edit() {
-      this.$axios.get('staff/edit/'+this.id).then(res=>{
+      this.$axios.get('student/edit/'+this.id).then(res=>{
         this.form.name = res.data.name;
-        this.form.last_name = res.data.last_name;
-        this.form.father_name = res.data.father_name;
-        this.form.email = res.data.cnic;
-        this.form.cnic = res.data.cnic;
-        this.form.phone = res.data.phone;
-        this.form.salary = res.data.salary;
-        this.form.address = res.data.address;
-        this.form.start_date = res.data.start_date;
+        this.form.description = res.data.description;
         console.log('res',res);
       })
     }
