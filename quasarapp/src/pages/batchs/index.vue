@@ -1,6 +1,9 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-  <div class="q-ma-sm my_radio_less three_d q-pa-xs">
+    <!-- <q-card class="bg-teal text-white" style="width: 300px">
+        <q-card-section>
+          <div class="text-h6">Add Class</div>
+        </q-card-section> -->
     <h-title>Batch Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
@@ -20,7 +23,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('BatchList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('classList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -30,10 +33,12 @@
   </m-modal>
     </div>
   </div>
-  </div>
 </template>
 
 <script>
+import NTable from "../../components/tables/DataTable.vue";
+import LButton from "../../components/Buttons/LinearButton.vue";
+import HTitle from "../../components/Headers/HeaderTitle.vue";
 import NAddModal from 'src/components/modals/batch/Add.vue'
 import NEditModal from 'src/components/modals/batch/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
@@ -71,6 +76,7 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
+        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -113,58 +119,55 @@ export default {
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
 
-    }),
-        {
-          name: "name",
-          classes: "my_width20 bg-grey-2",
-          align: "left",
-          // label: this.$t("Name"),
-          label: "Name",
-          field: (row) => row.name,
-          sortable: true,
-        },
-        {
-          name: "description",
-          classes: "bg-grey-2 ellipsis my_width20",
-          // label: this.$t("ContactPerson"),
-          label: "Description",
-          align: "left",
-          field: (row) => row.description,
-          sortable: true,
-        },
+    })
+    },
+    clear() {
+      (this.form.name = "");
+    },
+    head(name) {
+      if (this.pagination.descending) this.pagination.descending = true;
+      else this.pagination.descending = true;
+      this.pagination.sortBy = name;
+    },
 
-        {
-          name: "actions",
-          label: this.$t("Actions"),
-          align: "center",
-          sortable: false,
-          classes: "bg-grey-2 my_width10",
-        },
-      {
-      loading: false,
-      filter: "",
-      sortBy: "created_at",
-      descending: false,
-      page: 1,
-      rowsPerPage: 12,
-      rowsNumber: 12,
-      
-      pagination: {
-        sortBy: "created_at",
-        descending: false,
-        page: 1,
-        rowsPerPage: 12,
-        rowsNumber: 12,
-      
-  }
-      }
-  }
-}
-}
+    del(id = 0) {
+      this.id = id;
+      // this.showEditModal = true;
+      console.log(id);
+    },
+    
 
-  
+    edit(id = 0) {
+      this.id = id;
+      this.showEditModal = true;
+    },
+    addModal () {
+      // alert("Clicked")
+      // this.form.name = null;
+      this.showAddModal = true;
+    },
+    hideAddModal () {
+      this.showAddModal = false;
+      this.getRecord()
+    },
+    hideEditModal () {
+      this.showEditModal = false;
+      this.getRecord()
+    },
+    info (id=0) {
+      console.log('info: ', id);
+    },
+    onRequest (props) {
+      console.log('propss: ', props);
+      this.getProp = props
+      this.getRecord();
+    },
+  },
 
-  
+  // created() {
+  //   this.getdata();
+  // },
+};
 </script>
 
 <style>
