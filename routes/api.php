@@ -33,6 +33,12 @@ Route::post('subject/store', ['as' => 'subject.store', 'uses' => 'SubjectControl
 Route::patch('subject/{id}', ['as' => 'subject.update', 'uses' => 'SubjectController@update']);
 Route::get('subject/edit/{id}', ['as' => 'subject.edit', 'uses' => 'SubjectController@edit']);
 
+Route::get('staff',['as'=>'staff.index','uses'=>'StaffsController@index']);
+Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffsController@store']);
+Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffsController@update']);
+Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffsController@edit']);
+
+
 Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);
 Route::post('student/store', ['as' => 'student.store', 'uses' => 'StudentsController@store']);
 Route::patch('student/{id}', ['as' => 'student.update', 'uses' => 'StudentsController@update']);
