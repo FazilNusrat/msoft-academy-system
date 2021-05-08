@@ -13,6 +13,8 @@
           <n-simple icon="description" :label="$t('Description')" :name.sync="form.description"/>
         </q-card-section>
 
+        <q-separator />
+
         <q-card-actions align="right">
           <n-submit :submitting="submitting" label="Update"></n-submit>
         </q-card-actions>

@@ -130,9 +130,16 @@ export default {
       this.pagination.sortBy = name;
     },
 
-    edit (id=0) {
-        this.id = id;
-        this.showEditModal = true;
+    del(id = 0) {
+      this.id = id;
+      // this.showEditModal = true;
+      console.log(id);
+    },
+    
+
+    edit(id = 0) {
+      this.id = id;
+      this.showEditModal = true;
     },
     addModal () {
       // alert("Clicked")
@@ -146,9 +153,6 @@ export default {
     hideEditModal () {
       this.showEditModal = false;
       this.getRecord()
-    },
-    del (id=0) {
-      console.log('dels: ', id);
     },
     info (id=0) {
       console.log('info: ', id);

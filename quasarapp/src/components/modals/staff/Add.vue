@@ -1,20 +1,28 @@
 <template>
-  <div class="">
+  <div>
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('ModifySubject')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddStaff')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
 
         <q-card-section style="max-height: 50vh" class="scroll">
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('Name')" refname="name" :name.sync="form.name"/>
-          <n-simple icon="description" :label="$t('Description')" :name.sync="form.description"/>
+          <n-name icon="explore" :label="$t('Code')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
+
+          <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
+
+
+          <n-simple icon="description" :label="$t('LastName')"  :name.sync="form.description"/>
+
+          <n-simple icon="description" :label="$t('Description')"  :name.sync="form.description"/>
         </q-card-section>
 
+        <q-separator />
+
         <q-card-actions align="right">
-          <n-submit :submitting="submitting" label="Update"></n-submit>
+          <n-submit :submitting="submitting" :label="$t('Save')"></n-submit>
         </q-card-actions>
       </q-form>
     </q-card>
@@ -25,7 +33,6 @@ import NName from 'src/components/fields/Name.vue'
 import NSimple from 'src/components/fields/NameSimple.vue'
 export default {
   name: 'Modal',
-  props:['id'],
   components: {
     NName,
     NSimple,
@@ -52,7 +59,7 @@ export default {
           });
       } else {
         this.submitting = true;
-        this.$axios.patch('subject/'+this.id, this.form).then(res=>{
+        this.$axios.post('subject/store', this.form).then(res=>{
           this.submitting = false
           this.onReset();
           this.$emit("close");
@@ -71,17 +78,9 @@ export default {
       this.form.description = null;
 
     },
-    edit() {
-      this.$axios.get('subject/edit/'+this.id).then(res=>{
-        this.form.name = res.data.name;
-        this.form.description = res.data.description;
-        console.log('res',res);
-      })
-    }
 
   },
   created() {
-    this.edit();
   }
 
 };

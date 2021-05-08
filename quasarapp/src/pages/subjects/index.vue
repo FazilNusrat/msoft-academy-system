@@ -6,14 +6,15 @@
         </q-card-section> -->
     <h-title>Subjects Entry</h-title>
     <div class="row justify-between">
-      <div class="row"> 
+
+      <div class="row">
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
-        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
+        <l-button icon="mdi-whatsapp" color="orange-6">Whatsapp</l-button>
       </div>
       <div class="row">
         <l-button icon="mdi-database-search" color="blue-grey-9"
@@ -32,6 +33,7 @@
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
     </div>
+   
   </div>
 </template>
 
@@ -62,18 +64,11 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12 
       },
       columns: [
         {
-          name: "id",
+          name: 'number',
           required: true,
-          label: this.$t("Number"),
-          field: (row) => row.id,
-          sortable: true,
-          classes: "bg-grey-2 ellipsis my_width10",
-          align: "center",
-          headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
         { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },

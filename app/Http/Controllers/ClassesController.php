@@ -97,6 +97,6 @@ class ClassesController extends Controller
      */
     public function destroy()
     {
-        
+            
     }
 }
