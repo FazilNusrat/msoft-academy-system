@@ -30,6 +30,7 @@
   </m-modal>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -155,9 +156,12 @@ export default {
         rowsPerPage: 12,
         rowsNumber: 12,
       
-  },
+  }
       }
-    }
+  }
+}
+}
+
   
 
   
