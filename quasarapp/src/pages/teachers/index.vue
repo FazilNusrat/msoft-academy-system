@@ -4,8 +4,9 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>teacher Entry</h-title>
+    <h-title>Teacher Entry</h-title>
     <div class="row justify-between">
+
       <div class="row">
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
@@ -23,7 +24,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('SubjectList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('TeacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -32,7 +33,7 @@
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
     </div>
-
+   
   </div>
 </template>
 
@@ -63,30 +64,14 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12
       },
       columns: [
         {
           name: 'number',
           required: true,
-          label: 'Number',
-          align: 'center',
-          field: row => row.symbol,
-          sortable: true,
-          classes: 'bg-grey-2 ellipsis my_width10',
-          headerClasses: ' text-white'
         },
-        { name: 'first_name', align: 'center', label: 'first_name', field: row=>row.first_name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.father_name, sortable: true },
-        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
-        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
-        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'gender_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'gender_id', field: row=>row.gender_id, sortable: true },
-        { name: 'birth_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'birth_id', field: row=>row.birth_id, sortable: true },
-        { name: 'age',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'age', field: row=>row.age, sortable: true },
-        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'description', field: row=>row.description, sortable: true },
+        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
+        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -132,22 +117,7 @@ export default {
     })
     },
     clear() {
-      (this.form.first_name = ""), 
-      (this.form.last_name = ""), 
-      (this.form.father_name = ""), 
-      (this.form.cnic = ""), 
-      (this.form.phone = ""), 
-      (this.form.email = ""), 
-      (this.form.address = ""), 
-      (this.form.gender_id = ""), 
-      (this.form.birth_day = ""), 
-      (this.form.age = ""), 
-      (this.form.description = "");
-    },
-    getdata() {
-      this.$axios.get("teacher/", this.subjectdata).then((Response) => {
-        this.subjectdata = Response.data;
-      });
+      (this.form.name = ""), (this.form.description = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;

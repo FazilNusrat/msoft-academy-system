@@ -7,17 +7,9 @@
         <!-- </q-card-section> -->
 
         <q-separator />
+
         <q-card-section style="max-height: 50vh" class="scroll">
-          <n-name icon="explore" :label="$t('first_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.first_name"/>
-          <n-name icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
-          <n-name icon="explore" :label="$t('father_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.father_name"/>
-          <n-name icon="explore" type="number" :label="$t('cnic')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.cnic"/>
-          <n-name icon="explore" tye="number" :label="$t('phone')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.phone"/>
-          <n-name icon="explore" type="email" :label="$t('email')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.email"/>
-          <n-name icon="explore" :label="$t('address')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.address"/>
-          <n-name icon="explore" type="number" :label="$t('gender_id')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.gender_id"/>
-          <n-name icon="explore" type="number" :label="$t('birth_day')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.birth_day"/>
-          <n-name icon="explore" type="number" :label="$t('age')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.age"/>
+          <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
           <n-simple icon="description" :label="$t('Description')"  :name.sync="form.description"/>
         </q-card-section>
 
@@ -76,16 +68,7 @@ export default {
       }
     },
     onReset() {
-      this.form.first_name = null;
-      this.form.last_name = null;
-      this.form.father_name = null;
-      this.form.cnic = null;
-      this.form.phone = null;
-      this.form.email = null;
-      this.form.address = null;
-      this.form.gender_id = null;
-      this.form.birth_day = null;
-      this.form.age = null;
+      this.form.name = null;
       this.form.description = null;
 
     },

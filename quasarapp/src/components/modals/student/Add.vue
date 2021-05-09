@@ -10,7 +10,7 @@
 
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
-          <n-name icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
+          <n-simple icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
           <n-simple icon="explore" :label="$t('father_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.father_name"/>
           <n-simple icon="explore" type="email" :label="$t('email')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.email"/>
           <n-simple icon="explore" type="number" :label="$t('cnic')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.cnic"/>
