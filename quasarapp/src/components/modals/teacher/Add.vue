@@ -3,14 +3,23 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddTeacher')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddDemartment')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
 
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
-          <n-simple icon="description" :label="$t('Description')"  :name.sync="form.description"/>
+          <n-simple icon="last_name" :label="$t('last_name')"  :name.sync="form.last_name"/>
+          <n-simple icon="father_name" :label="$t('father_name')"  :name.sync="form.father_name"/>
+          <n-simple icon="education" :label="$t('education')"  :name.sync="form.education"/>
+          <n-simple icon="email" :label="$t('email')"  :name.sync="form.email"/>
+          <n-simple icon="cnic" :label="$t('cnic')"  :name.sync="form.cnic"/>
+          <n-simple icon="phone" :label="$t('phone')"  :name.sync="form.phone"/>
+          <n-simple icon="gender_id" :label="$t('gender_id')"  :name.sync="form.gender_id"/>
+          <n-simple icon="address" :label="$t('address')"  :name.sync="form.address"/>
+          <n-simple icon="birth_id" :label="$t('birth_id')"  :name.sync="form.birth_id"/>
+          <n-simple icon="age" :label="$t('age')"  :name.sync="form.age"/>
         </q-card-section>
 
         <q-separator />
@@ -37,7 +46,16 @@ export default {
       submitting: false,
       form: {
         name:'',
-        description:''
+        last_name:'',
+        father_name:'',
+        education:'',
+        email:'',
+        cnic:'',
+        phone:'',
+        gender_id:'',
+        address:'',
+        birth_id:'',
+        age:''
       },
     }
   },
@@ -69,10 +87,18 @@ export default {
     },
     onReset() {
       this.form.name = null;
-      this.form.description = null;
+      this.form.last_name = null;
+      this.form.father_name = null;
+      this.form.education = null;
+      this.form.email = null;
+      this.form.cnic = null;
+      this.form.phone = null;
+      this.form.gender_id = null;
+      this.form.address = null;
+      this.form.birth_id = null;
+      this.form.age = null;
 
     },
-
   },
   created() {
   }

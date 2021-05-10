@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Teachers;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
-
 
 class TeachersController extends Controller
 {
     protected $teacher;
     public function __construct(Teachers $teacher)
     {
-        $this->teachers = $teacher;
+        $this->teacher = $teacher;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +25,7 @@ class TeachersController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->teachers->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->teacher->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -48,24 +46,31 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $teacher   = $this->teacher->create([
+            'name'  =>$request->name,
+            'last_name'  =>$request->last_name,
+            'father_name'  =>$request->father_name,
+            'email'  =>$request->email,
+            'cnic'  =>$request->cnic,
+            'phone'  =>$request->phone,
+            'fees'  =>$request->fees,
+            'address'  =>$request->address,
+            'regint'  =>$request->regint,
+        ]);
 
-        $teachers   = $this->teachers->create([
-             'name'  =>$request->name,
-             'description'  =>$request->description,
-         ]);
-
-        if ($teachers) {
-            return ['teachers Message'];
-        }
+       if ($teacher) {
+           return ['teacher Message'];
+       }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\teachers 
+     * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */
-    public function show(teachers $teacher)
+    public function show(Teachers $teacher)
     {
         //
     }
@@ -73,10 +78,10 @@ class TeachersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\teachers 
+     * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */
-    public function edit(teachers $teacher, $id)
+    public function edit(Teachers $teacher,$id)
     {
         return $this->teacher->findOrFail($id);
     }
@@ -85,13 +90,13 @@ class TeachersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\teachers  
+     * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, teachers $teacher, $id)
+     */ 
+    public function update(Request $request, Teachers $teacher)
     {
         $id = $request->id;
-        $teachers = $this->teacher->findOrFail($id);
+        $teacher = $this->teacher->findOrFail($id);
         $this->validate($request, [
             'name' => 'required|string|max:191',
         ]);
@@ -102,10 +107,10 @@ class TeachersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\teachers 
+     * @param  \App\Models\Teachers  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(teachers $teacher)
+    public function destroy(Teachers $teacher)
     {
         //
     }
