@@ -3,21 +3,21 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('ModifyStudent')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('ModifySubject')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
 
         <q-card-section style="max-height: 50vh" class="scroll">
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('name')" refname="name" :name.sync="form.name"/>
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('last_name')" refname="name" :name.sync="form.last_name"/>
-          <n-simple ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('father_name')" refname="name" :name.sync="form.father_name"/>
-          <n-simple ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('email')" refname="name" :name.sync="form.email"/>
-          <n-simple ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('cnic')" refname="name" :name.sync="form.cnic"/>
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('phone')" refname="name" :name.sync="form.phone"/>
-          <n-simple ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('salary')" refname="name" :name.sync="form.salary"/>
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('address')" refname="name" :name.sync="form.address"/>
-          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('regint')" refname="name" :name.sync="form.regint"/>
+          <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('Name')" refname="name" :name.sync="form.name"/>
+          <n-simple icon="last_name" :label="$t('last_name')" :name.sync="form.last_name"/>
+          <n-simple icon="father_name" :label="$t('father_name')" :name.sync="form.father_name"/>
+          <n-simple icon="email" :label="$t('email')" :name.sync="form.email"/>
+          <n-simple icon="cnic" :label="$t('cnic')" :name.sync="form.cnic"/>
+          <n-simple icon="phone" :label="$t('phone')" :name.sync="form.phone"/>
+          <n-simple icon="fees" :label="$t('fees')" :name.sync="form.fees"/>
+          <n-simple icon="address" :label="$t('address')" :name.sync="form.address"/>
+          <n-simple icon="regint" :label="$t('regint')" :name.sync="form.regint"/>
         </q-card-section>
 
         <q-separator />
@@ -44,13 +44,13 @@ export default {
     return {
       submitting: false,
       form: {
-        name:'',
+         name:'',
         last_name:'',
         father_name:'',
         email:'',
         cnic:'',
         phone:'',
-        salary:'',
+        fees:'',
         address:'',
         regint:''
       },
@@ -89,7 +89,7 @@ export default {
       this.form.email = null;
       this.form.cnic = null;
       this.form.phone = null;
-      this.form.salary = null;
+      this.form.fees = null;
       this.form.address = null;
       this.form.regint = null;
 
@@ -97,7 +97,14 @@ export default {
     edit() {
       this.$axios.get('student/edit/'+this.id).then(res=>{
         this.form.name = res.data.name;
-        this.form.description = res.data.description;
+        this.form.last_name = res.data.last_name;
+        this.form.father_name = res.data.father_name;
+        this.form.email = res.data.email;
+        this.form.cnic = res.data.cnic;
+        this.form.phone = res.data.phone;
+        this.form.fees = res.data.fees;
+        this.form.address = res.data.address;
+        this.form.regint = res.data.regint;
         console.log('res',res);
       })
     }

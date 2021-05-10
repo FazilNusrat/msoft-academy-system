@@ -54,7 +54,7 @@ class TeachersController extends Controller
              'description'  =>$request->description,
          ]);
 
-        if ($teacher) {
+        if ($teachers) {
             return ['teachers Message'];
         }
     }

@@ -85,7 +85,7 @@ class TimeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\time  $time
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function update(Request $request, time $time)
     {
         $id = $request->id;

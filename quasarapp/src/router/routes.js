@@ -8,7 +8,7 @@ const routes = [
        component: () => import('pages/Index.vue') 
       },
       { path: '/Students/index',
-       component: () => import('pages/Students/index.vue') 
+       component: () => import('pages/students/index.vue') 
       },
       { path: '/teachers/index', 
       component: () => import('pages/teachers/index.vue') 
@@ -28,8 +28,11 @@ const routes = [
       { path: '/times/index', 
       component: () => import('pages/times/index.vue') 
       },
-      { path: '/staff/index', 
+      { path: '/staffs/index', 
       component: () => import('pages/staffs/index.vue') 
+      },
+      { path: '/exam/index', 
+      component: () => import('pages/exams/index.vue') 
       },
     ]
   },

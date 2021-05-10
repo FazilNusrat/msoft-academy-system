@@ -10,16 +10,16 @@ use Illuminate\Pagination\Paginator;
 class Students extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id';
+    protected $primaryKey ='id';
     public $incrementing = false;
-    protected $fillable = [
+    protected $fillable=[
         'name',
         'last_name',
         'father_name',
         'email',
         'cnic',
         'phone',
-        'salary',
+        'fees',
         'address',
         'regint'
     ];
@@ -36,5 +36,5 @@ class Students extends Model
 			return $current_page;
 		});
 		return $query->paginate($per_page);
-	}
+	}	
 }

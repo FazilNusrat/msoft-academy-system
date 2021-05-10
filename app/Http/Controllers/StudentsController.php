@@ -10,7 +10,7 @@ class StudentsController extends Controller
     protected $student;
     public function __construct(Students $student)
     {
-        $this->Student = $student;
+        $this->student = $student;
     }
     /**
      * Display a listing of the resource.
@@ -26,9 +26,6 @@ class StudentsController extends Controller
         $descending = $request->input('descending');
 
         return $this->student->getStudent($per_page, $current_page, $filter, $sort_by, $descending);
-
-        // $subject = $this->subject->all();
-        // return $subject;
     }
 
     /**
@@ -47,33 +44,33 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, student $student)
+    public function store(Request $request)
     {
-
+        
         $student   = $this->student->create([
-             'name'  =>$request->name,
-             'last_name'  =>$request->last_name,
-             'father_name'  =>$request->father_name,
-             'email'  =>$request->email,
-             'cnic'  =>$request->name,
-             'phone'  =>$request->phone,
-             'salary'  =>$request->salary,
-             'address'  =>$request->address,
-             'regint'  =>$request->regint,
-         ]);
+            'name'  =>$request->name,
+            'last_name'  =>$request->last_name,
+            'father_name'  =>$request->father_name,
+            'email'  =>$request->email,
+            'cnic'  =>$request->cnic,
+            'phone'  =>$request->phone,
+            'fees'  =>$request->fees,
+            'address'  =>$request->address,
+            'regint'  =>$request->regint,
+        ]);
 
-        if ($student) {
-            return ['student Message'];
-        }
+       if ($student) {
+           return ['student Message'];
+       }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Students $student)
     {
         //
     }
@@ -81,22 +78,22 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Students $student,$id)
     {
-        //
+        return $this->student->findOrFail($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Student $student)
+     */ 
+    public function update(Request $request, Students $student)
     {
         $id = $request->id;
         $student = $this->student->findOrFail($id);
@@ -110,10 +107,10 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Students $student)
     {
         //
     }

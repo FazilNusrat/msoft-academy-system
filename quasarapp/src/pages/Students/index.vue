@@ -4,16 +4,16 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>Student Entry</h-title>
+    <h-title>Class Entry</h-title>
     <div class="row justify-between">
-      <div class="row">
+      <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
-        <l-button icon="mdi-whatsapp" color="orange-6">Whatsapp</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
         <l-button icon="mdi-database-search" color="blue-grey-9"
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('StudentList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('studentList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -32,7 +32,6 @@
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
     </div>
-  
   </div>
 </template>
 
@@ -63,18 +62,18 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
-        rowsNumber: 12
+        rowsNumber: 12 
       },
       columns: [
         {
-          name: 'number',
+          name: "id",
           required: true,
-          label: 'Number',
-          align: 'center',
-          field: row => row.symbol,
+          label: this.$t("Number"),
+          field: (row) => row.id,
           sortable: true,
-          classes: 'bg-grey-2 ellipsis my_width10',
-          headerClasses: ' text-white'
+          classes: "bg-grey-2 ellipsis my_width10",
+          align: "center",
+          headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
         { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
@@ -82,7 +81,7 @@ export default {
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
         { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
         { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
-        { name: 'salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'salary', field: row=>row.salary, sortable: true },
+        { name: 'fees',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'fees', field: row=>row.fees, sortable: true },
         { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
         { name: 'regint',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'regint', field: row=>row.regint, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
@@ -114,8 +113,8 @@ export default {
         this.data = res.data.data;
       this.data = res.data.data;
       this.pagination.page = res.data.current_page;
-      console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
-      console.log('p.pagination.descending===: ', p.pagination.descending);
+      // console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
+      // console.log('p.pagination.descending===: ', p.pagination.descending);
       if (this.pagination.sortBy==='name' || this.pagination.sortBy==='id')
          {
           if (this.pagination.descending)
@@ -131,19 +130,13 @@ export default {
     },
     clear() {
       (this.form.name = ""),
-      (this.form.last_name = ""),
-      (this.form.father_name = ""),
-      (this.form.email = ""),
-      (this.form.cnic = ""),
-      (this.form.phone = ""),
-      (this.form.salary = ""),
-      (this.form.address = ""),
-      (this.form.regint = "")
-    },
-    getdata() {
-      this.$axios.get("student/", this.studentdata).then((Response) => {
-        this.studentdata = Response.data;
-      });
+      (this.form.last_name = "");
+      (this.form.email = "");
+      (this.form.cnic = "");
+      (this.form.phone = "");
+      (this.form.fees = "");
+      (this.form.address = "");
+      (this.form.regint = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -151,9 +144,16 @@ export default {
       this.pagination.sortBy = name;
     },
 
-    edit (id=0) {
-        this.id = id;
-        this.showEditModal = true;
+    del(id = 0) {
+      this.id = id;
+      // this.showEditModal = true;
+      console.log(id);
+    },
+    
+
+    edit(id = 0) {
+      this.id = id;
+      this.showEditModal = true;
     },
     addModal () {
       // alert("Clicked")
@@ -167,9 +167,6 @@ export default {
     hideEditModal () {
       this.showEditModal = false;
       this.getRecord()
-    },
-    del (id=0) {
-      console.log('dels: ', id);
     },
     info (id=0) {
       console.log('info: ', id);

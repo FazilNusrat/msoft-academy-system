@@ -32,13 +32,7 @@
         label="ControlPanel"
       >
         <q-list class="q-ml-md">
-          <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/class/index"
-          >
+          <q-item clickable class="my_hover" dense v-ripple to="/class/index">
             <q-item-section avatar>
               <q-btn
                 push
@@ -51,7 +45,7 @@
             </q-item-section>
             <q-item-section>Add Class</q-item-section>
           </q-item>
-           <q-item
+          <q-item
             clickable
             class="my_hover"
             dense
@@ -70,13 +64,7 @@
             </q-item-section>
             <q-item-section>Add Department</q-item-section>
           </q-item>
-           <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/batchs/index"
-          >
+          <q-item clickable class="my_hover" dense v-ripple to="/batchs/index">
             <q-item-section avatar>
               <q-btn
                 push
@@ -89,7 +77,7 @@
             </q-item-section>
             <q-item-section>Add Batch</q-item-section>
           </q-item>
-           <q-item
+          <q-item
             clickable
             class="my_hover"
             dense
@@ -108,13 +96,7 @@
             </q-item-section>
             <q-item-section>Add Subjects</q-item-section>
           </q-item>
-           <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/times/index"
-          >
+          <q-item clickable class="my_hover" dense v-ripple to="/times/index">
             <q-item-section avatar>
               <q-btn
                 push
@@ -175,13 +157,7 @@
             </q-item-section>
             <q-item-section>Teacher</q-item-section>
           </q-item>
-               <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/staff/index"
-          >
+          <q-item clickable class="my_hover" dense v-ripple to="/staffs/index">
             <q-item-section avatar>
               <q-btn
                 push
@@ -193,6 +169,63 @@
               />
             </q-item-section>
             <q-item-section>Staff</q-item-section>
+          </q-item>
+        </q-list>
+      </q-expansion-item>
+
+      <!-- Examination part -->
+      <q-expansion-item
+        color="white"
+        group="somegroup"
+        expand-separator
+        icon="list"
+        label="Examination"
+      >
+        <q-list class="q-ml-md">
+          <q-item
+            clickable
+            class="my_hover"
+            dense
+            v-ripple
+            to="/quiz/index"
+          >
+            <q-item-section avatar>
+              <q-btn
+                push
+                color="white"
+                size="sm"
+                text-color="cyan-7"
+                round
+                icon="card_giftcard"
+              />
+            </q-item-section>
+            <q-item-section>Quiz</q-item-section>
+          </q-item>
+          <q-item clickable class="my_hover" dense v-ripple to="/20terms/index">
+            <q-item-section avatar>
+              <q-btn
+                push
+                color="white"
+                size="sm"
+                text-color="cyan-7"
+                round
+                icon="apps"
+              />
+            </q-item-section>
+            <q-item-section>20% Terms</q-item-section>
+          </q-item>
+          <q-item clickable class="my_hover" dense v-ripple to="/final/index">
+            <q-item-section avatar>
+              <q-btn
+                push
+                color="white"
+                size="sm"
+                text-color="cyan-7"
+                round
+                icon="apps"
+              />
+            </q-item-section>
+            <q-item-section>Final Exam</q-item-section>
           </q-item>
         </q-list>
       </q-expansion-item>
@@ -209,16 +242,16 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksData = [
   {
-    title: 'Student',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'pages/students/index.vue'
+    title: "Student",
+    caption: "quasar.dev",
+    icon: "school",
+    link: "pages/students/index.vue",
   },
   {
-    title: 'Teachares',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'pages/teachars/index.vue'
+    title: "Teachares",
+    caption: "github.com/quasarframework",
+    icon: "code",
+    link: "pages/teachars/index.vue",
   },
 ];
 export default {
