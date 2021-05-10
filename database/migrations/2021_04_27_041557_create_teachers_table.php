@@ -20,8 +20,8 @@ class CreateTeachersTable extends Migration
             $table->string('father_name')->nullable();
             $table->string('education')->nullable();
             $table->text('email')->nullable();
-            $table->integer('cnic')->nullable();
-            $table->integer('phone')->nullable();
+            $table->string('cnic')->nullable();
+            $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->integer('gender_id')->nullable();
             $table->DateTime('birth_day')->nullable();

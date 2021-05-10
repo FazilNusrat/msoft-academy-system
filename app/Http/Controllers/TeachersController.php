@@ -51,12 +51,14 @@ class TeachersController extends Controller
             'name'  =>$request->name,
             'last_name'  =>$request->last_name,
             'father_name'  =>$request->father_name,
+            'education'  =>$request->education,
             'email'  =>$request->email,
             'cnic'  =>$request->cnic,
             'phone'  =>$request->phone,
-            'fees'  =>$request->fees,
+            'gender_id'  =>$request->gender_id,
             'address'  =>$request->address,
-            'regint'  =>$request->regint,
+            'birth_day'  =>$request->birth_day,
+            'age'  =>$request->age,
         ]);
 
        if ($teacher) {

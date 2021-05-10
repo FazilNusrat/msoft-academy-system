@@ -3,7 +3,13 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddDemartment')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 my_border_white_less glossy my_radio_less text-white">
+            <div class="row justify-between">
+              <div class="self-center">{{$t('AddTeacher')}}</div>
+            <q-btn icon="close" flat round dense v-close-popup />
+            </div>
+            </div>
+          
         <!-- </q-card-section> -->
 
         <q-separator />
@@ -18,7 +24,7 @@
           <n-simple icon="phone" :label="$t('phone')"  :name.sync="form.phone"/>
           <n-simple icon="gender_id" :label="$t('gender_id')"  :name.sync="form.gender_id"/>
           <n-simple icon="address" :label="$t('address')"  :name.sync="form.address"/>
-          <n-simple icon="birth_id" :label="$t('birth_id')"  :name.sync="form.birth_id"/>
+          <n-simple icon="birth_day" :label="$t('birth_day')"  :name.sync="form.birth_day"/>
           <n-simple icon="age" :label="$t('age')"  :name.sync="form.age"/>
         </q-card-section>
 
@@ -54,7 +60,7 @@ export default {
         phone:'',
         gender_id:'',
         address:'',
-        birth_id:'',
+        birth_day:'',
         age:''
       },
     }
@@ -95,7 +101,7 @@ export default {
       this.form.phone = null;
       this.form.gender_id = null;
       this.form.address = null;
-      this.form.birth_id = null;
+      this.form.birth_day = null;
       this.form.age = null;
 
     },

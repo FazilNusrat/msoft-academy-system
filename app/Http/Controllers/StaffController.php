@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\staff;
+use App\Models\Staff;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
-
 
 class StaffController extends Controller
-{   
-
+{
     protected $staff;
     public function __construct(staff $staff)
     {
@@ -29,9 +26,6 @@ class StaffController extends Controller
         $descending = $request->input('descending');
 
         return $this->staff->getStaff($per_page, $current_page, $filter, $sort_by, $descending);
-
-        // $staff = $this->staff->all();
-        // return $staff;
     }
 
     /**
@@ -52,15 +46,22 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $staff   = $this->staff->create([
-             'name'  =>$request->name,
-             'description'  =>$request->description,
-         ]);
+            'name'  =>$request->name,
+            'last_name'  =>$request->last_name,
+            'father_name'  =>$request->father_name,
+            'email'  =>$request->email,
+            'cnic'  =>$request->cnic,
+            'phone'  =>$request->phone,
+            'salary'  =>$request->salary,
+            'address'  =>$request->address,
+            'start_date'  =>$request->start_date,
+        ]);
 
-        if ($staff) {
-            return ['staff Message'];
-        }
+       if ($staff) {
+           return ['staff Message'];
+       }
     }
 
     /**
@@ -80,9 +81,9 @@ class StaffController extends Controller
      * @param  \App\Models\staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function edit(staff $staff)
+    public function edit(staff $staff,$id)
     {
-        //
+        return $this->staff->findOrFail($id);
     }
 
     /**
@@ -91,7 +92,7 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\staff  $staff
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function update(Request $request, staff $staff)
     {
         $id = $request->id;

@@ -3,7 +3,7 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('ModifySubject')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('ModifyTeacher')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
@@ -18,7 +18,7 @@
           <n-simple icon="phone" :label="$t('phone')" :name.sync="form.phone"/>
           <n-simple icon="gender_id" :label="$t('gender_id')" :name.sync="form.gender_id"/>
           <n-simple icon="address" :label="$t('address')" :name.sync="form.address"/>
-          <n-simple icon="birth_id" :label="$t('birth_id')" :name.sync="form.birth_id"/>
+          <n-simple icon="birth_day" :label="$t('birth_day')" :name.sync="form.birth_day"/>
         </q-card-section>
 
         <q-separator />
@@ -54,7 +54,7 @@ export default {
         phone:'',
         gender_id:'',
         address:'',
-        birth_id:'',
+        birth_day:'',
         age:''
       },
     }
@@ -71,7 +71,7 @@ export default {
           });
       } else {
         this.submitting = true;
-        this.$axios.patch('student/'+this.id, this.form).then(res=>{
+        this.$axios.patch('teacher/'+this.id, this.form).then(res=>{
           this.submitting = false
           this.onReset();
           this.$emit("close");
@@ -95,7 +95,7 @@ export default {
       this.form.phone = null;
       this.form.gender_id = null;
       this.form.address = null;
-      this.form.birth_id = null;
+      this.form.birth_day = null;
       this.form.age = null;
 
     },
@@ -110,7 +110,7 @@ export default {
         this.form.phone = res.data.phone;
         this.form.gender_id = res.data.gender_id;
         this.form.address = res.data.address;
-        this.form.birth_id = res.data.birth_id;
+        this.form.birth_day = res.data.birth_day;
         this.form.age = res.data.age;
         console.log('res',res);
       })

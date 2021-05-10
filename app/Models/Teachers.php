@@ -22,7 +22,7 @@ class Teachers extends Model
       'phone',
       'gender_id',
       'address',
-      'birth_id',
+      'birth_day',
       'age'
   ];
 

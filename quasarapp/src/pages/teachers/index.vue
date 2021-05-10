@@ -81,7 +81,7 @@ export default {
         { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
         { name: 'gender_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'gender_id', field: row=>row.gender_id, sortable: true },
         { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'birth_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'birth_id', field: row=>row.birth_id, sortable: true },
+        { name: 'birth_day',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'birth_day', field: row=>row.birth_day, sortable: true },
         { name: 'age',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'age', field: row=>row.age, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
@@ -137,7 +137,7 @@ export default {
       (this.form.phone = "");
       (this.form.gender_id = "");
       (this.form.address = "");
-      (this.form.birth_id = "");
+      (this.form.birth_day = "");
       (this.form.age = "");
     },
     head(name) {
