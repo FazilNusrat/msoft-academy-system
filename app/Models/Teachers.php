@@ -10,11 +10,20 @@ use Illuminate\Pagination\Paginator;
 class Teachers extends Model 
 {
   use HasFactory;
-  protected $primaryKey = 'id';
+  protected $primaryKey ='id';
   public $incrementing = false;
-  protected $fillable = [
+  protected $fillable=[
       'name',
-      'description'
+      'last_name',
+      'father_name',
+      'eduaction',
+      'email',
+      'cnic',
+      'phone',
+      'gender_id',
+      'address',
+      'birth_day',
+      'age'
   ];
 
   public function getTeacher($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {

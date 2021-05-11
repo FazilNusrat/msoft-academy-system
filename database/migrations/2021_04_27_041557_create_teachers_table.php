@@ -15,18 +15,17 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
             $table->string('name');
-            $table->string('description');
             $table->string('last_name')->nullable();
             $table->string('father_name')->nullable();
+            $table->string('education')->nullable();
+            $table->text('email')->nullable();
             $table->string('cnic')->nullable();
             $table->string('phone')->nullable();
-            $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->integer('gender_id')->nullable();
-            $table->string('birth_day')->nullable();
-            $table->string('age')->nullable();
+            $table->DateTime('birth_day')->nullable();
+            $table->integer('age')->nullable();
             $table->timestamps();
         });
     }

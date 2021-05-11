@@ -4,7 +4,7 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>Class Entry</h-title>
+    <h-title>Staff Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('classList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('staffList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -39,8 +39,8 @@
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import NAddModal from 'src/components/modals/class/Add.vue'
-import NEditModal from 'src/components/modals/class/Edit.vue'
+import NAddModal from 'src/components/modals/staff/Add.vue'
+import NEditModal from 'src/components/modals/staff/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -76,7 +76,14 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
+        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
+        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.father_name, sortable: true },
+        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
+        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
+        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
+        { name: 'salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'salary', field: row=>row.salary, sortable: true },
+        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
+        { name: 'start_date',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'start_date', field: row=>row.start_date, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -96,7 +103,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('class'+
+      this.$axios.get('staff'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -106,8 +113,8 @@ export default {
         this.data = res.data.data;
       this.data = res.data.data;
       this.pagination.page = res.data.current_page;
-      console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
-      console.log('p.pagination.descending===: ', p.pagination.descending);
+      // console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
+      // console.log('p.pagination.descending===: ', p.pagination.descending);
       if (this.pagination.sortBy==='name' || this.pagination.sortBy==='id')
          {
           if (this.pagination.descending)
@@ -122,7 +129,14 @@ export default {
     })
     },
     clear() {
-      (this.form.name = ""), (this.form.description = "");
+      (this.form.name = ""),
+      (this.form.last_name = "");
+      (this.form.email = "");
+      (this.form.cnic = "");
+      (this.form.phone = "");
+      (this.form.salary = "");
+      (this.form.address = "");
+      (this.form.start_date = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -155,7 +169,7 @@ export default {
       this.getRecord()
     },
     info (id=0) {
-      // console.log('info: ', id);
+      console.log('info: ', id);
     },
     onRequest (props) {
       console.log('propss: ', props);

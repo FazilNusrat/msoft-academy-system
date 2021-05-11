@@ -3,23 +3,23 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddStudent')}}</div>
+          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('AddDemartment')}}</div>
         <!-- </q-card-section> -->
 
         <q-separator />
 
         <q-card-section style="max-height: 50vh" class="scroll">
-          <n-name icon="explore" :label="$t('name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
-          <n-simple icon="explore" :label="$t('last_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.last_name"/>
-          <n-simple icon="explore" :label="$t('father_name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.father_name"/>
-          <n-simple icon="explore" type="email" :label="$t('email')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.email"/>
-          <n-simple icon="explore" type="number" :label="$t('cnic')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.cnic"/>
-          <n-name icon="explore" type="number" :label="$t('phone')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.phone"/>
-          <n-simple icon="explore" :label="$t('salary')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.salary"/>
-          <n-simple icon="explore" :label="$t('address')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.address"/>
-          <n-simple icon="explore" :label="$t('start_date')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.start_date"/>
-        
+          <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
+          <n-simple icon="last_name" :label="$t('last_name')"  :name.sync="form.last_name"/>
+          <n-simple icon="father_name" :label="$t('father_name')"  :name.sync="form.father_name"/>
+          <n-simple icon="email" :label="$t('email')"  :name.sync="form.email"/>
+          <n-simple icon="cnic" :label="$t('cnic')"  :name.sync="form.cnic"/>
+          <n-simple icon="phone" :label="$t('phone')"  :name.sync="form.phone"/>
+          <n-simple icon="salary" :label="$t('salary')"  :name.sync="form.salary"/>
+          <n-simple icon="address" :label="$t('address')"  :name.sync="form.address"/>
+          <n-simple icon="start_date" :label="$t('start_date')"  :name.sync="form.start_date"/>
         </q-card-section>
+
         <q-separator />
 
         <q-card-actions align="right">
@@ -90,7 +90,7 @@ export default {
       this.form.phone = null;
       this.form.salary = null;
       this.form.address = null;
-     this.form.start_date = null;
+      this.form.start_date = null;
 
     },
 

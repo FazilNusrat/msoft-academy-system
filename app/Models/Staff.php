@@ -16,7 +16,6 @@ class Staff extends Model
         'name',
         'last_name',
         'father_name',
-        'gender',
         'email',
         'cnic',
         'phone',
