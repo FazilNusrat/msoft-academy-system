@@ -59,9 +59,10 @@ class TeachersController extends Controller
             'address'  =>$request->address,
             'birth_day'  =>$request->birth_day,
             'age'  =>$request->age,
-        ]);
+            ]);
+            return 1;
 
-       if ($teacher) {
+            if ($teacher) {
            return ['teacher Message'];
        }
     }
