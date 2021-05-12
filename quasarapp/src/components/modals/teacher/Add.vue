@@ -25,7 +25,6 @@
           <n-simple icon="gender_id" :label="$t('gender_id')"  :name.sync="form.gender_id"/>
           <n-simple icon="address" :label="$t('address')"  :name.sync="form.address"/>
           <n-simple icon="birth_day" :label="$t('birth_day')"  :name.sync="form.birth_day"/>
-          <n-simple icon="faisal_day" :label="$t('faisal_day')"  :name.sync="form.faisal_day"/>
           <n-simple icon="age" :label="$t('age')"  :name.sync="form.age"/>
         </q-card-section>
 

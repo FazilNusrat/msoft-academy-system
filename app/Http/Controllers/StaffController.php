@@ -110,8 +110,9 @@ class StaffController extends Controller
      * @param  \App\Models\staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(staff $staff)
+    public function destroy(staff $staff,$id)
     {
-        //
+        $staff = $this->staff->find($id);
+        $staff->delete();
     }
 }

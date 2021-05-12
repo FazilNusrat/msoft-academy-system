@@ -113,8 +113,9 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teachers $teacher)
+    public function destroy(Teachers $teacher,$id)
     {
-        //
+        $teacher = $this->teacher->find($id);
+        $teacher->delete();
     }
 }

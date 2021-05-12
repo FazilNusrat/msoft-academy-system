@@ -147,9 +147,8 @@ export default {
     },
 
     del(id = 0) {
-      this.id = id;
-      // this.showEditModal = true;
-      console.log(id);
+            this.$delete(`teacher/${id}`);
+
     },
     
 
