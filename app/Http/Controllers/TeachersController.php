@@ -59,9 +59,10 @@ class TeachersController extends Controller
             'address'  =>$request->address,
             'birth_day'  =>$request->birth_day,
             'age'  =>$request->age,
-        ]);
+            ]);
+            return 1;
 
-       if ($teacher) {
+            if ($teacher) {
            return ['teacher Message'];
        }
     }
@@ -112,8 +113,9 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teachers $teacher)
+    public function destroy(Teachers $teacher,$id)
     {
-        //
+        $teacher = $this->teacher->find($id);
+        $teacher->delete();
     }
 }

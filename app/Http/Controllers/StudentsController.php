@@ -110,8 +110,9 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Students $student)
+    public function destroy(Students $student,$id)
     {
-        //
+        $student = $this->student->find($id);
+        $student->delete();
     }
 }
