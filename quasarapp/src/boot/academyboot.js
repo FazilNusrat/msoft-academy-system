@@ -7,4 +7,5 @@ export default async ({ Vue }) => {
   // something to do
   Vue.prototype.$getAcademy = getAcademy;
   Vue.prototype.$delete = deleteData;
+  
 };
