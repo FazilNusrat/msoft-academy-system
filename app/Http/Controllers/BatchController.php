@@ -104,8 +104,9 @@ class BatchController extends Controller
      * @param  \App\Models\batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(batch $batch)
+    public function destroy(batch $batch,$id)
     {
-        //
+        $batch = $this->batch->find($id);
+        $batch->delete();
     }
 }

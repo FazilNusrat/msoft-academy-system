@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\department;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -103,8 +104,9 @@ class DepartmentController extends Controller
      * @param  \App\Models\department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(department $department)
+    public function destroy(department $department,$id)
     {
-        //
+        $department = $this->department->find($id);
+        $department->delete();
     }
 }

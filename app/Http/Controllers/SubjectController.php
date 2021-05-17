@@ -108,8 +108,9 @@ class SubjectController extends Controller
      * @param  \App\Models\subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subject $subject)
+    public function destroy(subject $subject,$id)
     {
-        //
+        $subject = $this->subject->find($id);
+        $subject->delete();
     }
 }

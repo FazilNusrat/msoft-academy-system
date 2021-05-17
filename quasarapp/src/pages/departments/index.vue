@@ -86,7 +86,6 @@ export default {
     }
   },
   mounted () {
-    
     // console.log(this.getAcademy('classes'))
     this.getLayoutButtonId();
      this.onRequest({
