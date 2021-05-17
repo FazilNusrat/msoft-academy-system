@@ -49,6 +49,7 @@ class ClassesController extends Controller
         $createClass   = $this->class->create([
             'name'  =>$request->name,
             'description'  =>$request->description,
+            'time_id'  =>$request->time_id,
         ]);
 
        if ($createClass) {

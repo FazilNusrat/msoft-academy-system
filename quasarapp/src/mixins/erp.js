@@ -9,6 +9,8 @@ export default function getErp(url, id=0) {
             resovle('data');
             if (url === 'classes')
                 this.classes = res.data;
+            if (url === 'times')
+                this.times = res.data;
             
             // if (url === 'contra_banks')
             //     if(res.data)
