@@ -7,31 +7,31 @@ const routes = [
       { path: '',
        component: () => import('pages/Index.vue') 
       },
-      { path: '/Students/index',
+      { path: '/Students',
        component: () => import('pages/students/index.vue') 
       },
-      { path: '/teachers/index', 
+      { path: '/teachers', 
       component: () => import('pages/teachers/index.vue') 
       },
-      { path: '/class/index', 
+      { path: '/class', 
       component: () => import('pages/class/index.vue') 
       },
-      { path: '/departments/index', 
+      { path: '/departments', 
       component: () => import('pages/departments/index.vue') 
       },
-      { path: '/subjects/index', 
+      { path: '/subjects', 
       component: () => import('pages/subjects/index.vue') 
       },
-      { path: '/batchs/index', 
+      { path: '/batchs', 
       component: () => import('pages/batchs/index.vue') 
       },
-      { path: '/times/index', 
+      { path: '/times', 
       component: () => import('pages/times/index.vue') 
       },
-      { path: '/staffs/index', 
+      { path: '/staffs', 
       component: () => import('pages/staffs/index.vue') 
       },
-      { path: '/exam/index', 
+      { path: '/exam', 
       component: () => import('pages/exams/index.vue') 
       },
     ]

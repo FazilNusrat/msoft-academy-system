@@ -32,7 +32,7 @@
         label="ControlPanel"
       >
         <q-list class="q-ml-md">
-          <q-item clickable class="my_hover" dense v-ripple to="/class/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/class">
             <q-item-section avatar>
               <q-btn
                 push
@@ -44,13 +44,16 @@
               />
             </q-item-section>
             <q-item-section>Add Class</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/class?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
           <q-item
             clickable
             class="my_hover"
             dense
             v-ripple
-            to="/departments/index"
+            to="/departments"
           >
             <q-item-section avatar>
               <q-btn
@@ -63,8 +66,11 @@
               />
             </q-item-section>
             <q-item-section>Add Department</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/departments?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/batchs/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/batchs">
             <q-item-section avatar>
               <q-btn
                 push
@@ -76,13 +82,16 @@
               />
             </q-item-section>
             <q-item-section>Add Batch</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/batchs?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
           <q-item
             clickable
             class="my_hover"
             dense
             v-ripple
-            to="/subjects/index"
+            to="/subjects"
           >
             <q-item-section avatar>
               <q-btn
@@ -95,8 +104,11 @@
               />
             </q-item-section>
             <q-item-section>Add Subjects</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/subjects?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/times/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/times">
             <q-item-section avatar>
               <q-btn
                 push
@@ -108,6 +120,9 @@
               />
             </q-item-section>
             <q-item-section>Add Time</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/times?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
         </q-list>
       </q-expansion-item>
@@ -124,7 +139,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/students/index"
+            to="/students"
           >
             <q-item-section avatar>
               <q-btn
@@ -137,13 +152,16 @@
               />
             </q-item-section>
             <q-item-section>Students</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/students?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
           <q-item
             clickable
             class="my_hover"
             dense
             v-ripple
-            to="/teachers/index"
+            to="/teachers"
           >
             <q-item-section avatar>
               <q-btn
@@ -156,8 +174,11 @@
               />
             </q-item-section>
             <q-item-section>Teacher</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/teachers?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/staffs/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/staffs">
             <q-item-section avatar>
               <q-btn
                 push
@@ -169,6 +190,9 @@
               />
             </q-item-section>
             <q-item-section>Staff</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/staffs?id=7" round flat></q-btn>
+              </q-item-section>
           </q-item>
         </q-list>
       </q-expansion-item>
@@ -187,7 +211,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/quiz/index"
+            to="/quiz"
           >
             <q-item-section avatar>
               <q-btn
@@ -201,7 +225,7 @@
             </q-item-section>
             <q-item-section>Quiz</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/20terms/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/20terms">
             <q-item-section avatar>
               <q-btn
                 push
@@ -214,7 +238,7 @@
             </q-item-section>
             <q-item-section>20% Terms</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/final/index">
+          <q-item clickable class="my_hover" dense v-ripple to="/final">
             <q-item-section avatar>
               <q-btn
                 push

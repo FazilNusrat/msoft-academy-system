@@ -9,7 +9,7 @@ use Illuminate\Pagination\Paginator;
 
 class subject extends Model
 {
-    use HasFactory;
+    use HasFactory; 
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $fillable = [

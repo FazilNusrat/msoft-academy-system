@@ -92,12 +92,18 @@ export default {
     }
   },
   mounted () {
+    this.getLayoutButtonId();
      this.onRequest({
       pagination: this.pagination,
       filter: undefined
     });
   },
   methods: {
+       getLayoutButtonId() {
+      if (this.$route.query.id==7) {
+        this.showAddModal = true;
+      }
+    },
     getRecord() {
       let p = this.getProp;
       this.visible = true;

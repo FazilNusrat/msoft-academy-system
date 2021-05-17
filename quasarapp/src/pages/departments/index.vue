@@ -86,12 +86,20 @@ export default {
     }
   },
   mounted () {
+    
+    // console.log(this.getAcademy('classes'))
+    this.getLayoutButtonId();
      this.onRequest({
       pagination: this.pagination,
       filter: undefined
     });
   },
   methods: {
+       getLayoutButtonId() {
+      if (this.$route.query.id==7) {
+        this.showAddModal = true;
+      }
+    },
     getRecord() {
       let p = this.getProp;
       this.visible = true;
@@ -131,9 +139,8 @@ export default {
     },
 
     del(id = 0) {
-      this.id = id;
-      // this.showEditModal = true;
-      console.log(id);
+      console.log('id is ',id);
+      this.$delete(`department/${id}`);
     },
     
 
@@ -164,9 +171,10 @@ export default {
     },
   },
 
-  // created() {
-  //   this.getdata();
-  // },
+  created() {
+    // this.getdata();
+    this.$getAcademy("classes");
+  },
 };
 </script>
 

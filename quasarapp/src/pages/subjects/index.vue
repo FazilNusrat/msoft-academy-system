@@ -81,12 +81,18 @@ export default {
     }
   },
   mounted () {
+    this.getLayoutButtonId();
      this.onRequest({
       pagination: this.pagination,
       filter: undefined
     });
   },
   methods: {
+       getLayoutButtonId() {
+      if (this.$route.query.id==7) {
+        this.showAddModal = true;
+      }
+    },
     getRecord() {
       let p = this.getProp;
       this.visible = true;
@@ -143,7 +149,8 @@ export default {
       this.getRecord()
     },
     del (id=0) {
-      console.log('dels: ', id);
+      //  console.log('id is ',id);
+      this.$delete(`subject/${id}`);
     },
     info (id=0) {
       console.log('info: ', id);

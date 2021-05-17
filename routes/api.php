@@ -19,6 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //class Route
 
+//AcademyController
+Route::get('method_search/', ['as' => 'method.search', 'uses' => 'AcademyController@search']);
+// Route::get('searchEditSale/', ['as' => 'search.editSale', 'uses' => 'Mark\AcademyController@itemSearchEditSale']);
+// Route::get('itemSearch/', ['as' => 'item.search', 'uses' => 'Mark\AcademyController@itemsSearch']);
+// Route::get('purchaseItem/', ['as' => 'purchase.item', 'uses' => 'Mark\AcademyController@purchaseItemsSearch']);
+// Route::get('itemDetails/', ['as' => 'item.details', 'uses' => 'Mark\AcademyController@itemDetails']);
+// Route::get('getLedger/', ['as' => 'ledgers.details', 'uses' => 'Mark\AcademyController@getLedgerOpening']);
+// Route::get('getItemsOpening/', ['as' => 'items.details', 'uses' => 'Mark\AcademyController@getItemOpening']);
+
+
 Route::get('class/', ['as' => 'class.index', 'uses' => 'ClassesController@index']);
 Route::post('class/store', ['as' => 'class.store', 'uses' => 'ClassesController@store']);
 Route::patch('class/{id}', ['as' => 'class.update', 'uses' => 'ClassesController@update']);
