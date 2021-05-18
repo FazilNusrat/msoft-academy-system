@@ -10,7 +10,7 @@
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
-        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
+        <l-button icon="mdi-file-pdf" color="deeep-orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
