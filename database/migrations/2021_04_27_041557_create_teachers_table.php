@@ -26,6 +26,10 @@ class CreateTeachersTable extends Migration
             $table->integer('gender_id')->nullable();
             $table->DateTime('birth_day')->nullable();
             $table->integer('age')->nullable();
+            $table->integer('age')->nullable();
+            $table->integer('time_id');
+            $table->integer('subject_id');
+            $table->integer('class_id');
             $table->timestamps();
         });
     }
