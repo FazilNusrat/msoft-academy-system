@@ -10,7 +10,7 @@
       :autofocus="autofocus?true:false"
       :rules="[(val) => (val && val.length > 0) || 'Please type something']">
       <template v-slot:prepend>
-        <q-icon :name="(icon?icon:'account_circle')" color="light-blue-8" />
+        <q-icon :name="(icon?icon:'account_circle')" color="cyan-7" />
       </template>
     </q-input>
 </template>

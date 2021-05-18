@@ -12,7 +12,7 @@
       @input="inputs($event)"
     >
       <template v-slot:prepend>
-        <q-icon :size="(size?size:'sm')" :name="(icon?icon:'info')" color="light-blue-8" />
+        <q-icon :size="(size?size:'sm')" :name="(icon?icon:'info')" color="cyan-7" />
       </template>
         </q-input>
 	</div>

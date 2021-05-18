@@ -15,7 +15,7 @@
         @input="input($event)"
       >
         <template v-slot:prepend>
-          <q-icon :name="(icon?icon:'account_circle')" color="light-blue-8" />
+          <q-icon :name="(icon?icon:'account_circle')" color="cyan-7" />
         </template>
         <template v-slot:no-option>
           <q-item>
