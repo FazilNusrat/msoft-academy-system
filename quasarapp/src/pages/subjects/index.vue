@@ -32,7 +32,7 @@
   <m-modal :showCM.sync="showEditModal">
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
-    </div> 
+    </div>
    
   </div>
 </template>
@@ -44,10 +44,8 @@ import HTitle from "../../components/Headers/HeaderTitle.vue";
 import NAddModal from 'src/components/modals/subject/Add.vue'
 import NEditModal from 'src/components/modals/subject/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
-
 export default {
   components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
-
   data() {
     return {
       id:0,
@@ -71,11 +69,8 @@ export default {
           required: true,
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'teachers',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'teacher', field: row=>row.teacher_id, sortable: true },
-        
         { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
-
       ],
       data: [],
       original: [],
@@ -121,7 +116,6 @@ export default {
       this.pagination.rowsPerPage = res.data.per_page;
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
-
     })
     },
     clear() {
@@ -132,7 +126,6 @@ export default {
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-
     edit (id=0) {
         this.id = id;
         this.showEditModal = true;
@@ -163,7 +156,6 @@ export default {
       this.getRecord();
     },
   },
-
   // created() {
   //   this.getdata();
   // },

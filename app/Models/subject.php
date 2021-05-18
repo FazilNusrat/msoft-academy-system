@@ -14,17 +14,12 @@ class subject extends Model
     public $incrementing = false;
     protected $fillable = [
         'name',
-        'description',
-        'teachers_id',
-
+        'description'
     ];
 
     public function getSubject($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
-		$query = $this
-		->selectRaw('subjects.*, teachers.name as time_name')
-	        ->leftjoin('teachers', 'subjects.time_id', 'teachers.id')
-			->groupBy('subjects.id')
-			->groupBy('teachers.name');
+		$query = $this->selectRaw('*')
+			->groupBy('id');
 		if ($descending === "true") {
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {
