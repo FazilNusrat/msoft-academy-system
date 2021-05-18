@@ -82,7 +82,7 @@ export default {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
           }
-        }
+        } 
       );
     },
     onSubmit() {
