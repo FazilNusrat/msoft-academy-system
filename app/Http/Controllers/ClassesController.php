@@ -96,8 +96,9 @@ class ClassesController extends Controller
      * @param  \App\Models\Classes  
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-            
+        $class = $this->class->find($id);
+        $class->delete();
     }
 }

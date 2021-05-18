@@ -103,8 +103,9 @@ class TimeController extends Controller
      * @param  \App\Models\time  $time
      * @return \Illuminate\Http\Response
      */
-    public function destroy(time $time)
+    public function destroy(time $time,$id)
     {
-        //
+        $time = $this->time->find($id);
+        $time->delete();
     }
 }

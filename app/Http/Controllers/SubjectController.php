@@ -55,6 +55,8 @@ class SubjectController extends Controller
         $subject   = $this->subject->create([
              'name'  =>$request->name,
              'description'  =>$request->description,
+             'teacher_id'  =>$request->teacher_id,
+
          ]);
 
         if ($subject) {
@@ -108,8 +110,9 @@ class SubjectController extends Controller
      * @param  \App\Models\subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subject $subject)
+    public function destroy(subject $subject,$id)
     {
-        //
+        $subject = $this->subject->find($id);
+        $subject->delete();
     }
 }
