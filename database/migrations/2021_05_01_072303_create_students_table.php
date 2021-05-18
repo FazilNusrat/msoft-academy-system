@@ -24,6 +24,9 @@ class CreateStudentsTable extends Migration
             $table->integer('fees')->nullable();
             $table->string('address')->nullable();
             $table->string('regint')->nullable();
+            $table->integer('time_id');
+            $table->integer('subject_id');
+            $table->integer('class_id');
             $table->timestamps();
         });
     }
