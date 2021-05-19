@@ -96,6 +96,12 @@ export default {
           message: "You need to accept the license and terms first",
         });
       } else {
+
+        this.form.teacher_id =
+          this.selected_teacher && this.selected_teacher.id
+            ? this.selected_teacher.id
+            : null;
+
         this.submitting = true;
         this.$axios.post("subject/store", this.form).then((res) => {
           this.submitting = false;

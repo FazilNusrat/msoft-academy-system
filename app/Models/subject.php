@@ -14,7 +14,8 @@ class subject extends Model
     public $incrementing = false;
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'teacher_id'
     ];
 
     public function getSubject($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
