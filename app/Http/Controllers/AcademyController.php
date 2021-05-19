@@ -22,6 +22,7 @@ class AcademyController extends Controller
     ) {
         $this->classes     = $classes;
         $this->times     = $times;
+        
         $this->teachers     = $teachers;
 
     }
