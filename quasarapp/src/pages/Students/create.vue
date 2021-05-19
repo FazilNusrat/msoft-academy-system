@@ -9,7 +9,7 @@
           :name.sync="form.code"
           class="q-ma-sm"
           outlined
-          :label="$t('EmployeeCode')" />
+          :label="$t('StudentID')" />
         <n-name
           dense
           class="q-ma-sm"
@@ -41,8 +41,8 @@
             :label="$t('JoinDate')" />
           <date-picker
             class="q-ma-sm"
-            :value.sync="form.personal.end_date"
-            :label="$t('EndDate')" />
+            :value.sync="form.personal.FatherName"
+            :label="$t('FatherName')" />
 
 
       <n-select
@@ -53,11 +53,11 @@
       @filter="filterDepartment" />
 
         <n-select
-        :label="$t('Designation')"
-        :model.sync="selected_designation"
-        :options="designation_options"
+        :label="$t('Time')"
+        :model.sync="selected_time"
+        :options="time_options"
         class="q-ma-sm"
-        @filter="filterDesignation" />
+        @filter="filtertime" />
       </div>
       <div class="col-md-4 q-pa-md">
         <m-simple
@@ -75,11 +75,11 @@
           outlined
           :label="$t('Email')" />
         <m-simple
-          :name.sync="form.personal.salary"
+          :name.sync="form.personal.fee"
           dense
           class="q-ma-sm"
           outlined
-          :label="$t('GrossSalary')"
+          :label="$t('Fees')"
           icon="paid" />
         <m-simple
           :name.sync="form.personal.narration"
@@ -130,12 +130,16 @@
           name="education_background"
           icon="school" />
         <q-tab
+          :label="$t('TazkiraNo')"
+          name="tazkira_no"
+          icon="fingerprint" />
+        <q-tab
           :label="$t('PassportDetails')"
           name="passport_details"
           icon="fingerprint" />
         <q-tab
-          :label="$t('Allowance')"
-          name="allowance"
+          :label="$t('Fees')"
+          name="Fees"
           icon="price_change" />
       </q-tabs>
       </div>
@@ -163,8 +167,8 @@
           <div class="row">
             <div class="col-md-6">
               <m-simple
-                :label="$t('FatherName')"
-                :name.sync="form.father_name"
+                :label="$t('GrandFatherName')"
+                :name.sync="form.GrandFather_name"
                 dense
                 class="q-ma-sm"
                 outlined />
@@ -297,8 +301,8 @@
                 class="q-ma-sm"
                 outlined />
               <m-simple
-                :label="$t('Country')"
-                :name.sync="form.contact_details.country"
+                :label="$t('Religion')"
+                :name.sync="form.contact_details.Religion"
                 dense
                 class="q-ma-sm"
                 outlined />
@@ -485,8 +489,8 @@
                 :label="$t('StartDate')" />
               <date-picker
                 class="q-ma-sm"
-                :value.sync="form.education.end_date"
-                :label="$t('EndDate')" />
+                :value.sync="form.education.FatherName"
+                :label="$t('FatherName')" />
               <m-simple
                 :label="$t('InstituteAddress')"
                 :name.sync="form.education.address"
@@ -505,30 +509,30 @@
           <div class="row">
             <div class="col-md-6">
               <m-simple
-                :label="$t('PassportNumber')"
-                :name.sync="form.passport.passport_no"
+                :label="$t('TazkiraNo')"
+                :name.sync="form.passport.tazkira_no"
                 dense
                 class="q-ma-sm"
                 outlined />
               <m-simple
-                :label="$t('Country')"
-                :name.sync="form.passport.country"
+                :label="$t('Religion')"
+                :name.sync="form.passport.Religion"
                 dense
                 class="q-ma-sm"
                 outlined />
               <date-picker
                 class="q-ma-sm"
-                :value.sync="form.passport.passport_expiry_date"
+                :value.sync="form.passport.Placeofbirth"
                 :label="$t('PassportExpiryDate')" />
               <date-picker
                 class="q-ma-sm"
-                :value.sync="form.passport.visa_expiry_date"
+                :value.sync="form.passport.currentAddress"
                 :label="$t('VisaExpiryDate')" />
             </div>
             <div class="col-md-6">
 
               <m-simple
-                :label="$t('VisaType')"
+                :label="$t('permanentAddress')"
                 :name.sync="form.passport.visa_type"
                 dense
                 class="q-ma-sm"
@@ -549,9 +553,74 @@
             </div>
           </div>
         </q-tab-panel>
-        <q-tab-panel name="allowance">
+        <!-- ُTazkira No Added -->
+        <q-tab-panel name="tazkira_no">
           <div class="row">
-            <div class="text-h6">{{$t('Allowance')}}</div>
+            <div class="text-h6">{{$t('tazkiraNo')}}</div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <m-simple
+                :label="$t('TazkiraNo')"
+                :name.sync="form.passport.tazkira_no"
+                dense
+                class="q-ma-sm"
+                outlined />
+              <m-simple
+                :label="$t('Religion')"
+                :name.sync="form.passport.Religion"
+                dense
+                class="q-ma-sm"
+                outlined />
+              <date-picker
+                class="q-ma-sm"
+                :value.sync="form.passport.PlaceOfBirth"
+                :label="$t('PlaceOfBirth')" />
+              <date-picker
+                class="q-ma-sm"
+                :value.sync="form.passport.currentAddress"
+                :label="$t('currentAddress')" />
+            </div>
+            <div class="col-md-6">
+
+              <m-simple
+                :label="$t('permanentAddress')"
+                :name.sync="form.passport.permanentAddress"
+                dense
+                class="q-ma-sm"
+                outlined />
+              <m-simple
+                :label="$t('nation')"
+                :name.sync="form.passport.nation"
+                dense
+                class="q-ma-sm"
+                outlined />
+              <m-simple
+                :label="$t('nationality')"
+                :name.sync="form.passport.nationality"
+                dense
+                class="q-ma-sm"
+                outlined />
+              <div class="q-ma-sm">
+                <q-uploader
+                  class="full-width"
+                  :label="$t('ScanedCopy')"
+                  :factory="uploadScan"
+                  max-files="1"
+                  auto-upload
+                  accept=".jpg, image/*"
+                  @rejected="onRejectedScan"
+                  ref="file"
+                  />
+              </div>
+
+            </div>
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="Fees">
+          <div class="row">
+            <div class="text-h6">{{$t('Fees')}}</div>
 
           </div>
           <div class="row">
@@ -566,15 +635,15 @@
                 :options="currency_type_options"
                 @filter="filterCurrencyType" />
               <m-simple
-                :label="$t('Salary')"
-                :name.sync="form.allowance.admin_cost"
+                :label="$t('fee')"
+                :name.sync="form.Fees.admin_cost"
                 dense
                 class="q-ma-sm"
                 type="number"
                 outlined />
               <!-- <m-simple
                 :label="$t('GovernmentTax')"
-                :name.sync="form.allowance.government_tax"
+                :name.sync="form.Fees.government_tax"
                 dense
                 class="q-ma-sm"
                 type="number"
@@ -590,8 +659,8 @@
                   </q-chip>
               </div>
               <m-simple
-                :label="$t('Bonus')"
-                :name.sync="form.allowance.bonus"
+                :label="$t('AddmisstionFees')"
+                :name.sync="form.Fees.addmisstionFees"
                 dense
                 class="q-ma-sm"
                 type="number"
@@ -600,22 +669,22 @@
             </div>
             <div class="col-md-6">
              <m-simple
-                :label="$t('Incentive')"
-                :name.sync="form.allowance.incentive"
+                :label="$t('SecurityFees')"
+                :name.sync="form.Fees.securityFees"
                 dense
                 class="q-ma-sm"
                 type="number"
                 outlined />
               <m-simple
                 :label="$t('Transport')"
-                :name.sync="form.allowance.transport"
+                :name.sync="form.Fees.transport"
                 dense
                 class="q-ma-sm"
                 type="number"
                 outlined />
               <m-simple
-                :label="$t('TravelCost')"
-                :name.sync="form.allowance.travel_cost"
+                :label="$t('LibraryFees')"
+                :name.sync="form.Fees.libraryFees"
                 dense
                 class="q-ma-sm"
                 type="number"
@@ -635,7 +704,7 @@
           <div class="row q-ma-sm ">
             <m-simple
               :label="$t('Remark')"
-              :name.sync="form.allowance.remark"
+              :name.sync="form.Fees.remark"
               dense
               class="full-width"
               type="textarea"
@@ -687,9 +756,9 @@ import DatePicker from '../../components/fields/date-picker.vue'
         jobs:[],
         job_options:[],
         selected_job:null,
-        designations:[],
-        designation_options:[],
-        selected_designation:null,
+        times:[],
+        time_options:[],
+        selected_time:null,
         blood_groups:[],
         blood_group_options:[],
         selected_blood_group:null,
@@ -708,16 +777,16 @@ import DatePicker from '../../components/fields/date-picker.vue'
           name:null,
           last_name:null,
           phone_no:null,
-          father_name:null,
+          GrandFather_name:null,
           status:true,
-          designation_id:0,
+          time_id:0,
           department_id:0,
           personal: {
             join_date: null,
-            end_date: null,
+            FatherName: null,
             birth_date: null,
             narration: null,
-            salary: null,
+            fee: null,
             gender: 'male',
             blood_group_id: 0,
             nationality: null,
@@ -728,7 +797,7 @@ import DatePicker from '../../components/fields/date-picker.vue'
           },
           contact_details: {
             city:null,
-            country:null,
+            Religion:null,
             address:null,
             phone_no:null,
             passport_no:null
@@ -758,25 +827,25 @@ import DatePicker from '../../components/fields/date-picker.vue'
             specialization:null,
             awarded:null,
             start_date:null,
-            end_date:null,
+            FatherName:null,
             address:null
           },
           passport: {
             passport_no: 0,
-            country: null,
+            Religion: null,
             file: null,
             visa_type: null,
-            visa_expiry_date: null,
-            passport_expiry_date: null
+            currentAddress: null,
+            Placeofbirth: null
           },
-          allowance: {
+          Fees: {
             currency: null,
             admin_cost: 0,
             transport: 0,
             // government_tax: 0,
-            incentive: 0,
-            travel_cost: 0,
-            bonus: 0,
+            securityFees: 0,
+            libraryFees: 0,
+            addmisstionFees: 0,
             remark: null
           }
         }
@@ -790,19 +859,19 @@ import DatePicker from '../../components/fields/date-picker.vue'
             tax()
             {
               var tax =0;
-              if(this.form.personal.salary)
+              if(this.form.personal.fee)
               {
-                if(this.form.personal.salary>=5000 && this.form.personal.salary<=12500)
+                if(this.form.personal.fee>=5000 && this.form.personal.fee<=12500)
                 {
-                  tax = Number(this.form.personal.salary-5000)*2/100;
+                  tax = Number(this.form.personal.fee-5000)*2/100;
                 }
-                if(this.form.personal.salary>12500 && this.form.personal.salary<=100000)
+                if(this.form.personal.fee>12500 && this.form.personal.fee<=100000)
                 {
-                  tax = Number(this.form.personal.salary-12500)*10/100+150;
+                  tax = Number(this.form.personal.fee-12500)*10/100+150;
                 }
-                if(this.form.personal.salary>100000)
+                if(this.form.personal.fee>100000)
                 {
-                  tax = Number(this.form.personal.salary-100000)*20/100+8900;
+                  tax = Number(this.form.personal.fee-100000)*20/100+8900;
                 }
               }
               return tax;
@@ -810,9 +879,9 @@ import DatePicker from '../../components/fields/date-picker.vue'
             total()
             {
               var sum =0;
-              if(this.form.personal.salary)
+              if(this.form.personal.fee)
               {
-                sum = Number(this.form.allowance.incentive)+Number(this.form.personal.salary)+Number(this.form.allowance.transport)+Number(this.form.allowance.travel_cost)+Number(this.form.allowance.bonus)+Number(this.form.allowance.admin_cost);
+                sum = Number(this.form.Fees.securityFees)+Number(this.form.personal.fee)+Number(this.form.Fees.transport)+Number(this.form.Fees.libraryFees)+Number(this.form.Fees.addmisstionFees)+Number(this.form.Fees.admin_cost);
               }
               return sum;
             },
@@ -832,11 +901,11 @@ import DatePicker from '../../components/fields/date-picker.vue'
         // if(this.selected_department && this.selected_department.id)
           this.form.status = (this.selectedStatus && this.selectedStatus.value>0)?this.selectedStatus.value:1;
           this.form.department_id = (this.selected_department && this.selected_department.id>0)?this.selected_department.id:0;
-          this.form.designation_id = (this.selected_designation && this.selected_designation.id>0)?this.selected_designation.id:0;
+          this.form.time_id = (this.selected_time && this.selected_time.id>0)?this.selected_time.id:0;
           this.form.personal.blood_group_id = (this.selected_blood_group && this.selected_blood_group.id>0)?this.selected_blood_group.id:0;
           this.form.contact_person.job_id = (this.selected_job && this.selected_job.id>0)?this.selected_job.id:0;
           this.form.bank.currency = (this.selected_currency && this.selected_currency.code.length>0)?this.selected_currency.code:'AFN';
-          this.form.allowance.currency = (this.selected_type_currency && this.selected_type_currency.code.length>0)?this.selected_type_currency.code:'AFN';
+          this.form.Fees.currency = (this.selected_type_currency && this.selected_type_currency.code.length>0)?this.selected_type_currency.code:'AFN';
 
           const fileData = new FormData()
           fileData.append('photo', this.form.personal.photo);
@@ -901,15 +970,15 @@ import DatePicker from '../../components/fields/date-picker.vue'
           }
         )
       },
-      filterDesignation (val, update, abort) {
+      filtertime (val, update, abort) {
          update(
           () => {
             if (val === '') {
-              this.designation_options = this.designations
+              this.time_options = this.times
             }
             else {
               const needle = val.toLowerCase()
-              this.designation_options = this.designations.filter(v => v.name.toLowerCase().indexOf(needle) > -1)
+              this.time_options = this.times.filter(v => v.name.toLowerCase().indexOf(needle) > -1)
             }
           },
           ref => {
@@ -1003,24 +1072,24 @@ import DatePicker from '../../components/fields/date-picker.vue'
           this.form.code = data.code
           this.form.name = data.name
           this.form.last_name = data.last_name
-          this.form.father_name = data.father_name
+          this.form.GrandFather_name = data.GrandFather_name
           this.form.phone_no = data.phone_no
           this.selectedStatus = this.status.find(e=>e.value=== (data.status?1:0));
           this.selected_department = this.departments.find(e=>e.id===data.department_id)
-          this.selected_designation = this.designations.find(e=>e.id===data.designation_id);
+          this.selected_time = this.times.find(e=>e.id===data.time_id);
           // PERSONAL TAB---
          if (data.personal) {
             const personal = JSON.parse(data.personal);
             this.form.personal.birth_date = personal.birth_date;
             this.form.personal.birth_place = personal.birth_place;
             this.form.personal.email = personal.email;
-            this.form.personal.end_date = personal.end_date;
+            this.form.personal.FatherName = personal.FatherName;
             this.form.personal.gender = personal.gender;
             this.form.personal.join_date = personal.join_date;
             this.form.personal.marital_status = personal.marital_status;
             this.form.personal.narration = personal.narration;
             this.form.personal.nationality = personal.nationality;
-            this.form.personal.salary = personal.salary;
+            this.form.personal.fee = personal.fee;
             this.selected_blood_group = this.blood_groups.find(e=>e.id=== personal.blood_group_id);
          }
           // CONTACT DETAILS -----------
@@ -1028,7 +1097,7 @@ import DatePicker from '../../components/fields/date-picker.vue'
             const contact_details = JSON.parse(data.contact_details);
             this.form.contact_details.address = contact_details.address;
             this.form.contact_details.city = contact_details.city;
-            this.form.contact_details.country = contact_details.country;
+            this.form.contact_details.Religion = contact_details.Religion;
             this.form.contact_details.passport_no = contact_details.passport_no;
             this.form.contact_details.phone_no = contact_details.address;
           }
@@ -1064,31 +1133,31 @@ import DatePicker from '../../components/fields/date-picker.vue'
             this.form.education.education = education.education;
             this.form.education.address = education.address;
             this.form.education.awarded = education.awarded;
-            this.form.education.end_date = education.end_date;
+            this.form.education.FatherName = education.FatherName;
             this.form.education.specialization = education.specialization;
             this.form.education.start_date = education.start_date;
           }
           // PASSPORT ------------
           if (data.passport) {
             const passport = JSON.parse(data.passport);
-            this.form.passport.country = passport.country;
+            this.form.passport.Religion = passport.Religion;
             this.form.passport.passport_no = passport.number;
-            this.form.passport.passport_expiry_date = passport.passport_expiry_date;
-            this.form.passport.visa_expiry_date = passport.visa_expiry_date;
+            this.form.passport.Placeofbirth = passport.Placeofbirth;
+            this.form.passport.currentAddress = passport.currentAddress;
             this.form.passport.visa_type = passport.visa_type;
           }
-          // ALLOWANCE Tab----------
-            const allowance = JSON.parse(data.allowance);
-          console.log('JSON.parse(data.allowance)',allowance.currency)
-          if (allowance.currency!=undefined) {
-            this.form.allowance.admin_cost = allowance.admin_cost?allowance.admin_cost:0;
-            this.form.allowance.travel_cost = allowance.travel_cost;
-            // this.form.allowance.government_tax = allowance.government_tax;
-            this.form.allowance.bonus = allowance.bonus;
-            this.form.allowance.remark = allowance.remark;
-            this.form.allowance.incentive = allowance.incentive;
-            this.form.allowance.transport = allowance.transport;
-            this.selected_type_currency = this.currencies.find(e=>e.code === allowance.currency)
+          // Fees Tab----------
+            const Fees = JSON.parse(data.Fees);
+          console.log('JSON.parse(data.Fees)',Fees.currency)
+          if (Fees.currency!=undefined) {
+            this.form.Fees.admin_cost = Fees.admin_cost?Fees.admin_cost:0;
+            this.form.Fees.libraryFees = Fees.libraryFees;
+            // this.form.Fees.government_tax = Fees.government_tax;
+            this.form.Fees.addmisstionFees = Fees.addmisstionFees;
+            this.form.Fees.remark = Fees.remark;
+            this.form.Fees.securityFees = Fees.securityFees;
+            this.form.Fees.transport = Fees.transport;
+            this.selected_type_currency = this.currencies.find(e=>e.code === Fees.currency)
           }
 
           // console.log('data: ', data);
