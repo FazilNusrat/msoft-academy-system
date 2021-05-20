@@ -16,26 +16,16 @@
             class="q-ma-sm"
             outlined />
 
-            <n-select
-              icon="store"
-              dense
-              outlined
-              class="q-ma-sm"
-              :label="$t('Job')"
-              :model.sync="selected_job"
-              :options="job_options"
-              @filter="filterJob" />
+
+            <date-picker
+                :label="$t('IssueDate')"
+              />
+            
+            <date-picker :label="$t('IssueDate')" />
+
+            <n-select icon="store" dense outlined class="q-ma-sm" :label="$t('Job')" :model.sync="selected_job" :options="job_options" @filter="filterJob" />
               
-              <q-uploader
-                    class="full-width"
-                    :label="$t('Photo')"
-                    :factory="uploadFile"
-                    max-files="1"
-                    auto-upload
-                    accept=".jpg, image/*"
-                    @rejected="onRejected"
-                    ref="photo"
-                  />
+              <q-uploader class="full-width" :label="$t('Photo')" :factory="uploadFile" max-files="1" auto-upload accept=".jpg, image/*" @rejected="onRejected" ref="photo" />
 
                   <div class="q-ma-sm">
                     <div class="bg-cyan-7 text-white text-center" style="border-radius: 0.3rem 0.3rem 0 0;">
@@ -51,28 +41,40 @@
                   </div>
                -->
       <div class="col q-mx-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Job')" />
+        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Admission No')" />        
+        <input-required :label="$t('First Name')" dense class="q-my-sm" outlined />
+            <date-picker :label="$t('Date Of Birth')" />
+
+        <input-simple :label="$t('Caste')" dense class="q-my-sm" outlined />
+            <date-picker :label="$t('Admission Date')" />
+
+        <input-simple :label="$t('Height')" dense class="q-my-sm" outlined />
       </div>
       <div class="col q-mr-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Job')" />
+        <input-simple icon="apps" dense class="q-my-sm" outlined :label="$t('Roll Number')" />
+        <input-simple :label="$t('Last Name')" dense class="q-my-sm" outlined />
+        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Category')" />
+        <input-simple :label="$t('Mobile Number')" dense class="q-my-sm" outlined />
+        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Blood Group')" />
+        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Weight')" />
+        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Medical History')" />
+
+        
+
+
       </div>
       <div class="col q-mr-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-        <input-simple :label="$t('PlaceOfBirth')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Job')" />
+        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Class')" />
+        <input-required :label="$t('Gender')" dense class="q-my-sm" outlined />
+        <input-simple :label="$t('Religion')" dense class="q-my-sm" outlined />
+
+        <input-simple :label="$t('Email')" dense class="q-my-sm" outlined />
+        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Student House')" />
+            <date-picker :label="$t('As on Date')" />
+            
       </div>
       <div class="col q-mr-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
+        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Section')" />
         <div class="">
           <div class="bg-cyan-7 text-white text-center" style="border-radius: 0.3rem 0.3rem 0 0;">
             <div class="text-h7">{{$t('Gender')}}</div>
@@ -86,6 +88,7 @@
           </div>
         </div>
         <q-uploader class="full-width q-mt-sm" :label="$t('Photo')" :factory="uploadFile" color="cyan-7" max-files="1" auto-upload accept=".jpg, image/*" @rejected="onRejected" ref="photo" />
+      
       </div>
     </div>
     <q-card class="three_d  q-ma-sm">
@@ -146,7 +149,6 @@
             </div>
           </div>
         </q-tab-panel>
-
         <q-tab-panel name="transport_details">
           <div class="row">
             <div>

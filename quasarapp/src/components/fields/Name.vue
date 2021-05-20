@@ -5,6 +5,7 @@
       :ref="refname"
       :value="name"
       dense
+      :type="type?type:'text'"
       hide-bottom-space
       @input="$emit('update:name', $event)"
       :autofocus="autofocus?true:false"
@@ -18,7 +19,7 @@
 <script>
 
 export default {
-	props: ['name', 'label', 'refname', 'autofocus','icon'],
+	props: ['name', 'label', 'refname', 'autofocus','icon', 'type'],
   name: 'Name',
 
   data() {
