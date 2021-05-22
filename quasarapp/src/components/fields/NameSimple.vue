@@ -8,7 +8,6 @@
       :type="type?type:'text'"
       :value="name"
       maxlength='maxlength'
-      class="q-mt-sm"
       @input="inputs($event)"
     >
       <template v-slot:prepend>
