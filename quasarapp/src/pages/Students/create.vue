@@ -40,63 +40,65 @@
                     </div>
                   </div>
                -->
-      <div class="col q-mx-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Admission No')" />        
-        <input-required :label="$t('First Name')" dense class="q-my-sm" outlined />
-            <date-picker :label="$t('Date Of Birth')" />
+      
+       <div>
+            <div class="row q-mb-sm">
+              <input-required class="col q-mx-sm" icon="apps" dense outlined :label="$t('AdmissionNo')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('RollNumber')" />
+              <input-required class="col q-mr-sm" icon="apps" dense outlined :label="$t('Class')" />
+            </div>
 
-        <input-simple :label="$t('Caste')" dense class="q-my-sm" outlined />
-            <date-picker :label="$t('Admission Date')" />
+            <div class="row q-mb-sm">
+              <input-required class="col q-mx-sm" icon="apps" dense outlined :label="$t('Section')" />
+              <input-required class="col q-mr-sm" icon="apps" dense outlined :label="$t('FirstName')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('LastName')" />
+            </div>
 
-        <input-simple :label="$t('Height')" dense class="q-my-sm" outlined />
-      </div>
-      <div class="col q-mr-sm">
-        <input-simple icon="apps" dense class="q-my-sm" outlined :label="$t('Roll Number')" />
-        <input-simple :label="$t('Last Name')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Category')" />
-        <input-simple :label="$t('Mobile Number')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Blood Group')" />
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Weight')" />
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Medical History')" />
+            <div class="row q-mb-sm">
+              <input-required class="col q-mx-sm" icon="apps" dense outlined :label="$t('Gender')" />
+              <!-- <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('DateOfBirt')" /> -->
+            <date-picker :label="$t('DateOfBirt')" />
 
-        
-
-
-      </div>
-      <div class="col q-mr-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Class')" />
-        <input-required :label="$t('Gender')" dense class="q-my-sm" outlined />
-        <input-simple :label="$t('Religion')" dense class="q-my-sm" outlined />
-
-        <input-simple :label="$t('Email')" dense class="q-my-sm" outlined />
-        <n-select icon="store" dense outlined class="q-my-sm" :label="$t('Student House')" />
-            <date-picker :label="$t('As on Date')" />
-            
-      </div>
-      <div class="col q-mr-sm">
-        <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('Section')" />
-        <div class="">
-          <div class="bg-cyan-7 text-white text-center" style="border-radius: 0.3rem 0.3rem 0 0;">
-            <div class="text-h7">{{$t('Gender')}}</div>
-          </div>
-          <div style="border:1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem;" class="text-cyan-7 flex  flex-center">
-            <div class="row justify-center">
-              <q-radio color="cyan-7" :label="$t('Male')" class="col-md-4" val="male" v-model="form.personal.gender" />
-              <q-radio color="cyan-7" :label="$t('Female')" class="col-md-4" val="female" v-model="form.personal.gender" />
-              <q-radio color="cyan-7" :label="$t('Other')" class="col-md-4" val="other" v-model="form.personal.gender" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Category')" />
             </div>
           </div>
-        </div>
-        <q-uploader class="full-width q-mt-sm" :label="$t('Photo')" :factory="uploadFile" color="cyan-7" max-files="1" auto-upload accept=".jpg, image/*" @rejected="onRejected" ref="photo" />
-      
-      </div>
+           <div>
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Religion')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Caste')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('MobileNumber')" />
+            </div>
+
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Email')" />
+            <date-picker :label="$t('AdmissionDate')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('BloodGroup')" />
+            </div>
+
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('StudentHouse')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Height')" />
+              <input-required class="col q-mr-sm" icon="apps" dense outlined :label="$t('Weight')" />
+            </div>
+          </div>
+           <div>
+            <div class="row q-mb-sm">
+            <date-picker :label="$t('AsOnDate')" />
+              <input-required class="col q-mr-sm" icon="apps" dense outlined :label="$t('MedicalHistory')" />
+            </div>
+
+          </div>
+     
     </div>
     <q-card class="three_d  q-ma-sm">
       <div class="three_d">
         <q-tabs content-class ripple no-caps v-model="tab" inline-label dense class="text-white bg-cyan-7  three_d glossy" active-color="cyan-7" active-bg-color="grey-3" indicator-color="negative" align="justify" narrow-indicator>
           <q-tab :label="$t('Parent Details')" name="parent_details" icon="recent_actors" />
-          <q-tab :label="$t('StudentAddress')" name="student_address" icon="contact_phone" />
-          <q-tab :label="$t('TransportDetails')" name="transport_details" icon="payment" />
+          <q-tab :label="$t('Student Address')" name="student_address" icon="contact_phone" />
+          <q-tab :label="$t('Transport Details')" name="transport_details" icon="payment" />
+          <q-tab :label="$t('Hostel Details')" name="hostel_details" icon="payment" />
+          <q-tab :label="$t('Miscellaneous Details')" name="miscellaneous_details" icon="payment" />
+          <q-tab :label="$t('Upload Documents')" name="upload_details" icon="payment" />
         </q-tabs>
       </div>
       <q-tab-panels v-model="tab" animated>
@@ -108,25 +110,46 @@
           </div>
           <div>
             <div class="row q-mb-sm">
-              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Father Name')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Father Phone No')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Father Occupation')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Father Photo')" />
             </div>
 
             <div class="row q-mb-sm">
-              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Mother Name')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Mother phone No')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Mother Occupation ')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Mother Photo ')" />
             </div>
 
             <div class="row q-mb-sm">
-              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
-              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('StudentID')" />
+              <input-required class="col q-mx-sm" icon="apps" dense outlined :label="$t('Guardian Name ')" />
+              <input-required class="col q-mr-sm" icon="apps" dense outlined :label="$t('Guardian Relation')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Guardian Email')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Guardian Photo')" />
+            </div>
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Guardian Phone')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Guardian Occupation')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Guardian Address')" />
+            </div>
+            <div class="row q-mb-sm">
+              <div class="q-ma-sm">
+                    <div class="bg-cyan-7 text-white text-center" style="border-radius: 0.3rem 0.3rem 0 0;">
+                      <div class="text-h7">{{$t('Gender')}}</div>
+                    </div>
+                    <div style="border:1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem;" class="text-cyan-7 flex  flex-center">
+                      <div class="row justify-center">
+                        <q-radio color="cyan-7" :label="$t('Male')" class="col-md-4" val="male" v-model="form.personal.gender" />
+                        <q-radio color="cyan-7" :label="$t('Female')" class="col-md-4" val="female" v-model="form.personal.gender" />
+                        <q-radio color="cyan-7" :label="$t('Other')" class="col-md-4" val="other" v-model="form.personal.gender" />
+                      </div>
+                    </div>
+                  </div>
             </div>
           </div>
         </q-tab-panel>
-
         <q-tab-panel name="student_address">
           <div class="row">
             <div>
@@ -135,19 +158,10 @@
           </div>
           <div class="row">
             <div class="col q-mx-sm">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
+              <input-required style="height: 4px" icon="apps" type="textarea" dense class="q-my-sm" outlined :label="$t('Current Address')" />
             </div>
             <div class="col">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-            </div>
-            <div class="col q-mx-sm">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
+              <input-required style="height: 4px" icon="apps" type="textarea" dense class="q-my-sm" outlined :label="$t('Permanent Address')" />
             </div>
           </div>
         </q-tab-panel>
@@ -157,24 +171,88 @@
               <div class="text-h6">{{$t('TransportDetails')}}</div>
             </div>
           </div>
+           <div class="row">
+             <div class="col q-mx-sm">
+              <div class="q-gutter-md">
+                 <q-select filled v-model="model" :options="options" label="Route List" />
+              </div>
+             </div>
+           </div>
+        </q-tab-panel>
+
+          <q-tab-panel name="hostel_details">
           <div class="row">
-            <div class="col q-mx-sm">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-            </div>
-            <div class="col">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-            </div>
-            <div class="col q-mx-sm">
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
-              <input-required icon="apps" dense class="q-my-sm" outlined :label="$t('StudentID')" />
+            <div>
+              <div class="text-h6">{{$t('HostelDetails')}}</div>
             </div>
           </div>
+          <div>
+            <div class="row">
+             <div class="col q-mx-sm">
+              <div class="q-gutter-md">
+                 <q-select filled v-model="model" :options="options" label="Hostel" />
+              </div>
+             </div>
+             <div class="col q-mx-sm">
+              <div class="q-gutter-md">
+                 <q-select filled v-model="model" :options="options" label="Room Number" />
+              </div>
+             </div>
+           </div>
+          </div>
         </q-tab-panel>
+
+          <q-tab-panel name="miscellaneous_details">
+          <div class="row">
+            <div>
+              <div class="text-h6">{{$t('Miscellaneous Details')}}</div>
+            </div>
+          </div>
+          <div>
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Bank Account Number')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Bank Name')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('IFSC Code')" />
+            </div>
+
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('National Identification Number')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Local Identification Number')" />
+              <q-radio name="shape" v-model="shape" val="polygon" label="yes" />
+              <q-radio name="shape" v-model="shape" val="polygon" label="No" />
+            </div>
+
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" :type="textarea" icon="apps" dense outlined :label="$t('National Identification Number')" />
+              <input-simple class="col q-mr-sm" :type="textarea" icon="apps" dense outlined :label="$t('Local Identification Number')" />
+              
+            </div>
+
+          </div>
+        </q-tab-panel>
+
+          <q-tab-panel name="upload_details">
+          <div class="row">
+            <div>
+              <div class="text-h6">{{$t('Upload Details')}}</div>
+            </div>
+          </div>
+          <div>
+            <div class="row q-mb-sm">
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Title')" />
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Documents')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Title')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Documents')" />
+            </div>
+
+            <div class="row q-mb-sm">
+               <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Title')" />
+              <input-simple class="col q-mx-sm" icon="apps" dense outlined :label="$t('Documents')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Title')" />
+              <input-simple class="col q-mr-sm" icon="apps" dense outlined :label="$t('Documents')" />
+            </div>
+          </div>
+        </q-tab-panel> 
       </q-tab-panels>
 
 
@@ -197,6 +275,10 @@ export default {
 
   data() {
     return {
+      model: null,
+      options: [
+        'Imran', 'Khan', 'jan', 'Man', 'Qanad'
+      ],
       submitting: false,
       tab: 'parent_details',
       departments: [],
@@ -586,7 +668,7 @@ export default {
           }
           // Fees Tab----------
           const Fees = JSON.parse(data.Fees);
-          console.log('JSON.parse(data.Fees)', Fees.currency)
+          console.log('JSON.parses(data.Fees)', Fees.currency)
           if (Fees.currency != undefined) {
             this.form.Fees.admin_cost = Fees.admin_cost ? Fees.admin_cost : 0;
             this.form.Fees.libraryFees = Fees.libraryFees;

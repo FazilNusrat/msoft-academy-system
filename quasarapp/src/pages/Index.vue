@@ -10,6 +10,7 @@
       row-key="name"
     />
   </div>
+          <h1> Sofi Commando </h1>
 
     <q-dialog v-model="students" teachers transition-show="scale" transition-hide="scale">
       <q-card class="bg-primary text-white" style="width: 550px">
@@ -40,6 +41,7 @@
             <img src="">
           </q-avatar>
         </template>
+        
       </q-input>
 
       <q-input color="primary" class="q-mb-sm" type="number" dense outlined v-model="stdform.cnic" label="CNIC" style="width: 500px">
