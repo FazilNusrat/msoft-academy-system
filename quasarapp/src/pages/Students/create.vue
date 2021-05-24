@@ -16,14 +16,14 @@
             icon="apps"
             dense
             outlined
-            :label="$t('AdmissionNo')"
+            :label="$t('Admission No')"
           />
           <input-simple
             class="q-mx-sm col"
             icon="apps"
             dense
             outlined
-            :label="$t('RollNumber')"
+            :label="$t('Roll Number')"
           />
           <input-required
             class="col"
@@ -47,14 +47,14 @@
             icon="apps"
             dense
             outlined
-            :label="$t('FirstName')"
+            :label="$t('First Name')"
           />
           <input-simple
             class="col"
             icon="apps"
             dense
             outlined
-            :label="$t('LastName')"
+            :label="$t('Last Name')"
           />
         </div>
 
@@ -67,7 +67,7 @@
             :label="$t('Gender')"
           />
           <!-- <input-simple  icon="apps" dense outlined :label="$t('DateOfBirt')" /> -->
-          <date-picker class="q-mx-sm col" :label="$t('DateOfBirth')" />
+          <date-picker class="q-mx-sm col" :label="$t('Date Of Birth')" />
 
           <input-simple
             class="col"
@@ -98,7 +98,7 @@
             icon="apps"
             dense
             outlined
-            :label="$t('MobileNumber')"
+            :label="$t('Mobile Number')"
           />
         </div>
 
@@ -110,13 +110,13 @@
             outlined
             :label="$t('Email')"
           />
-          <date-picker class="q-mx-sm col" :label="$t('AdmissionDate')" />
+          <date-picker class="q-mx-sm col" :label="$t('Admission Date')" />
           <input-simple
             class="col"
             icon="apps"
             dense
             outlined
-            :label="$t('BloodGroup')"
+            :label="$t('Blood Group')"
           />
         </div>
 
@@ -126,7 +126,7 @@
             icon="apps"
             dense
             outlined
-            :label="$t('StudentHouse')"
+            :label="$t('Student House')"
           />
           <input-simple
             class="q-mx-sm col"
@@ -145,13 +145,13 @@
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <date-picker class="col" :label="$t('AsOnDate')" />
+          <date-picker class="col" :label="$t('As On Date')" />
           <input-required
             class="q-ml-sm col"
             icon="apps"
             dense
             outlined
-            :label="$t('MedicalHistory')"
+            :label="$t('Medical History')"
           />
         </div>
       </div>
@@ -258,11 +258,11 @@
         <q-tab-panel name="parent_details">
           <div class="row">
             <div>
-              <div class="text-h6">{{ $t("ParentDetails") }}</div>
+              <div class="text-h6">{{ $t("Parent Details") }}</div>
             </div>
           </div>
           <div>
-            <div class="row q-mb-sm">
+            <div class="row q-mb-lg">
               <input-simple
                 class="col q-ml-sm"
                 icon="apps"
@@ -284,16 +284,16 @@
                 outlined
                 :label="$t('Father Occupation')"
               />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :label="$t('Father Photo')"
-              />
+              <q-uploader
+                class="col q-mb-s"
+                  label="Upload"
+                  :factory="factoryFn"
+                  style="height:50px; q-ml-sm"
+                />
+              <!--  -->
             </div>
 
-            <div class="row q-mb-sm">
+            <div class="row q-mb-lg">
               <input-simple
                 class="col q-ml-sm"
                 icon="apps"
@@ -315,16 +315,15 @@
                 outlined
                 :label="$t('Mother Occupation ')"
               />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :label="$t('Mother Photo ')"
-              />
+              <q-uploader
+                class="col q-mb-s"
+                  label="Upload"
+                  :factory="factoryFn"
+                  style="height:50px; q-ml-sm"
+                />
             </div>
 
-            <div class="row q-mb-sm">
+            <div class="row q-mb-lg">
               <input-required
                 class="col q-ml-sm"
                 icon="apps"
@@ -346,13 +345,12 @@
                 outlined
                 :label="$t('Guardian Email')"
               />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :label="$t('Guardian Photo')"
-              />
+              <q-uploader
+                class="col q-mb-s"
+                  label="Upload"
+                  :factory="factoryFn"
+                  style="height:50px; q-ml-sm"
+                />
             </div>
             <div class="row q-mb-sm">
               <input-simple
@@ -420,13 +418,13 @@
         <q-tab-panel name="student_address">
           <div class="row">
             <div>
-              <div class="text-h6">{{ $t("StudentAddress") }}</div>
+              <div class="text-h6">{{ $t("Student Address") }}</div>
             </div>
           </div>
           <div class="row">
             <div class="col q-ml-sm">
               <input-required
-                style="height: 4px"
+                style="max-height: 4px"
                 icon="apps"
                 type="textarea"
                 dense
