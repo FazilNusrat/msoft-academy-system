@@ -211,7 +211,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/CollectFees"
+            to="/fees"
           >
             <q-item-section avatar>
               <q-btn
@@ -225,20 +225,7 @@
             </q-item-section>
             <q-item-section>Collect Fees</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/SearchFeesPayment">
-            <q-item-section avatar>
-              <q-btn
-                push
-                color="white"
-                size="sm"
-                text-color="cyan-7"
-                round
-                icon="apps"
-              />
-            </q-item-section>
-            <q-item-section>Search Fees payment</q-item-section>
-          </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/SearchDueFees">
+          <q-item clickable class="my_hover" dense v-ripple to="/searchduefees">
             <q-item-section avatar>
               <q-btn
                 push
@@ -251,8 +238,7 @@
             </q-item-section>
             <q-item-section>Search Due Fees</q-item-section>
           </q-item>
-
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesMaster">
+          <q-item clickable class="my_hover" dense v-ripple to="/feesmaster">
             <q-item-section avatar>
               <q-btn
                 push
@@ -266,7 +252,7 @@
             <q-item-section>Fees Master</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesGroup">
+          <q-item clickable class="my_hover" dense v-ripple to="/feesgroup">
             <q-item-section avatar>
               <q-btn
                 push
@@ -277,10 +263,10 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Fees Group</q-item-section>
+            <q-item-section>Fees Group </q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesType">
+          <q-item clickable class="my_hover" dense v-ripple to="/feestype">
             <q-item-section avatar>
               <q-btn
                 push
@@ -294,7 +280,7 @@
             <q-item-section>Fees Type</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesDiscount">
+          <q-item clickable class="my_hover" dense v-ripple to="/feesdiscount">
             <q-item-section avatar>
               <q-btn
                 push
@@ -308,7 +294,7 @@
             <q-item-section>Fees Discount</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesCarryForward">
+          <q-item clickable class="my_hover" dense v-ripple to="/feesforward">
             <q-item-section avatar>
               <q-btn
                 push
@@ -319,10 +305,10 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>FeesCarryForward</q-item-section>
+            <q-item-section>Fees Forward</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/FeesReminder">
+          <q-item clickable class="my_hover" dense v-ripple to="/feesreminder">
             <q-item-section avatar>
               <q-btn
                 push
@@ -351,7 +337,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/AddIncome"
+            to="/addincome"
           >
             <q-item-section avatar>
               <q-btn
@@ -365,7 +351,7 @@
             </q-item-section>
             <q-item-section>Add Income</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/SearchIncome">
+          <q-item clickable class="my_hover" dense v-ripple to="/incomesearch">
             <q-item-section avatar>
               <q-btn
                 push
@@ -376,9 +362,9 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Search Income</q-item-section>
+            <q-item-section>Income Search</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/IncomeHead">
+          <q-item clickable class="my_hover" dense v-ripple to="/incomehead">
             <q-item-section avatar>
               <q-btn
                 push
@@ -407,7 +393,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/AddExpense"
+            to="/expense"
           >
             <q-item-section avatar>
               <q-btn
@@ -421,7 +407,7 @@
             </q-item-section>
             <q-item-section>Add Expense</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/SearchExpense">
+          <q-item clickable class="my_hover" dense v-ripple to="/expensesearch">
             <q-item-section avatar>
               <q-btn
                 push
@@ -434,7 +420,7 @@
             </q-item-section>
             <q-item-section>Search Expense</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/ExpenseHead">
+          <q-item clickable class="my_hover" dense v-ripple to="/expensehead">
             <q-item-section avatar>
               <q-btn
                 push
@@ -521,7 +507,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/ExamGroup"
+            to="/examgroup"
           >
             <q-item-section avatar>
               <q-btn
@@ -535,7 +521,7 @@
             </q-item-section>
             <q-item-section>Exam Group</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/ExamSchedule">
+          <q-item clickable class="my_hover" dense v-ripple to="/examschedule">
             <q-item-section avatar>
               <q-btn
                 push
@@ -548,7 +534,7 @@
             </q-item-section>
             <q-item-section>Exam Schedule</q-item-section>
           </q-item>
-          <q-item clickable class="my_hover" dense v-ripple to="/ExamResult">
+          <q-item clickable class="my_hover" dense v-ripple to="/examresult">
             <q-item-section avatar>
               <q-btn
                 push
@@ -562,7 +548,7 @@
             <q-item-section>Exam Result</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/DesignAdminCard">
+          <q-item clickable class="my_hover" dense v-ripple to="/admitcard">
             <q-item-section avatar>
               <q-btn
                 push
@@ -576,7 +562,7 @@
             <q-item-section>Design Admit Card</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/PrintAdminCard">
+          <q-item clickable class="my_hover" dense v-ripple to="/printadmitcard">
             <q-item-section avatar>
               <q-btn
                 push
@@ -590,7 +576,7 @@
             <q-item-section>Print Admin Card</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/DesignMarkSheet">
+          <q-item clickable class="my_hover" dense v-ripple to="/marksheet">
             <q-item-section avatar>
               <q-btn
                 push
@@ -601,10 +587,10 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Design Marksheet</q-item-section>
+            <q-item-section>Mark Sheet</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/PrintMarksheet">
+          <q-item clickable class="my_hover" dense v-ripple to="/printmarksheet">
             <q-item-section avatar>
               <q-btn
                 push
@@ -615,10 +601,10 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Print MarkSheet</q-item-section>
+            <q-item-section>Print Mark Sheet</q-item-section>
           </q-item>
 
-          <q-item clickable class="my_hover" dense v-ripple to="/MarkGrade">
+          <q-item clickable class="my_hover" dense v-ripple to="/grade">
             <q-item-section avatar>
               <q-btn
                 push
@@ -701,7 +687,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/ManageLessonPlan"
+            to="/syllabus"
           >
             <q-item-section avatar>
               <q-btn
@@ -713,7 +699,7 @@
                 icon="card_giftcard"
               />
             </q-item-section>
-            <q-item-section>Manage Lesson Plan</q-item-section>
+            <q-item-section>Lesson Plan</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/ManageSyllabusStatus?id=7" round flat></q-btn>
               </q-item-section>
@@ -746,7 +732,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/ManageSyllabusStatus"
+            to="/lessonplan"
           >
             <q-item-section avatar>
               <q-btn
@@ -758,32 +744,9 @@
                 icon="apps"
               />
             </q-item-section>
-            <q-item-section>Manage Syllabus Status</q-item-section>
+            <q-item-section>Lesson </q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/teachers?id=7" round flat></q-btn>
-              </q-item-section>
-              
-          </q-item>
-             <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/Lesson"
-          >
-            <q-item-section avatar>
-              <q-btn
-                push
-                color="white"
-                size="sm"
-                text-color="cyan-7"
-                round
-                icon="apps"
-              />
-            </q-item-section>
-            <q-item-section>Lesson</q-item-section>
-            <q-item-section side>
-                <q-btn icon="mdi-plus" color="black" size="sm" to="/Lesson?id=7" round flat></q-btn>
               </q-item-section>
               
           </q-item>
@@ -792,7 +755,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/Topic"
+            to="/topic"
           >
             <q-item-section avatar>
               <q-btn
@@ -825,7 +788,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/ClassTImetable"
+            to="/classtimetable"
           >
             <q-item-section avatar>
               <q-btn
@@ -837,7 +800,7 @@
                 icon="card_giftcard"
               />
             </q-item-section>
-            <q-item-section>Class TImetable</q-item-section>
+            <q-item-section>Class Time Table</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/ClassTImetable?id=7" round flat></q-btn>
               </q-item-section>
@@ -847,7 +810,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/TeacherTimetable"
+            to="/mytimetable"
           >
             <q-item-section avatar>
               <q-btn
