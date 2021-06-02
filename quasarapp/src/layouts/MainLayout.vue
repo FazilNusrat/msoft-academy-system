@@ -53,7 +53,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/departments"
+            to="/humandepartment"
           >
             <q-item-section avatar>
               <q-btn
@@ -65,7 +65,7 @@
                 icon="manage_accounts"
               />
             </q-item-section>
-            <q-item-section>Add Department</q-item-section>
+            <q-item-section>Human Department</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/departments?id=7" round flat></q-btn>
               </q-item-section>
@@ -985,7 +985,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/StaffDirectory"
+            to="/staffdirectory"
           >
             <q-item-section avatar>
               <q-btn
@@ -1007,7 +1007,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/StaffAttendance"
+            to="/staffattendance"
           >
             <q-item-section avatar>
               <q-btn
@@ -1030,7 +1030,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/Payroll"
+            to="/payroll"
           >
             <q-item-section avatar>
               <q-btn
@@ -1099,7 +1099,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/LeaveType"
+            to="/leavetypes"
           >
             <q-item-section avatar>
               <q-btn
