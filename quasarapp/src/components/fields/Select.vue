@@ -1,5 +1,6 @@
 <template>
       <q-select
+        hide-bottom-space
         :value="model"
         use-input
         outlined

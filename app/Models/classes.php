@@ -15,15 +15,11 @@ class Classes extends Model
     protected $fillable=[
         'name',
         'description',
-        'time_id'
     ];
 
     public function getClass($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
-		$query = $this
-			->selectRaw('classes.*, times.name as time_name')
-	        ->leftjoin('times', 'classes.time_id', 'times.id')
-			->groupBy('classes.id')
-			->groupBy('times.name');
+		$query = $this->selectRaw('*')
+			->groupBy('id');
 		if ($descending === "true") {
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {

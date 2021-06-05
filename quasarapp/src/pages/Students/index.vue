@@ -11,7 +11,7 @@
           >Add New</l-button
         >
 
-        <l-button to="/students/create" icon="add" color="green"
+        <l-button to="/student/create" icon="add" color="green"
           >New Page</l-button
         >
 
@@ -81,15 +81,11 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.father_name, sortable: true },
+        { name: 'first_name', align: 'center', label: 'First_Name', field: row=>row.first_name, sortable: true },
+        { name: 'class_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Class', field: row=>row.class_id, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
-        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
-        { name: 'fees',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'fees', field: row=>row.fees, sortable: true },
-        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'regint',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'regint', field: row=>row.regint, sortable: true },
+        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.mobile_number, sortable: true },
+        { name: 'addmission_Date',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Addmission Date', field: row=>row.addmission_Date, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],

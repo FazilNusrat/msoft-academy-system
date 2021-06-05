@@ -1,13 +1,13 @@
 <template>
   <q-input
     outlined
-    dense
-    today-btn
-    square
+    :dense="dense"
+    hide-bottom-space
+    class="q-ma-sm"
     :label="label?label:$t('Date')"
-    :value.sync="value"
+    :value.sync="date"
     @focus.prevent="show()"
-    @input="$emit('update:value', $event)">
+    @input="input($event)">
     <template v-slot:append >
       <q-icon
         name="event"
@@ -17,7 +17,7 @@
           transition-show="scale"
           transition-hide="scale">
           <q-date
-            :value="value"
+            :value="date"
             today-btn
             :options="optionsFn2"
             :calendar="calendar?calender:'gregorian'"
@@ -39,10 +39,10 @@ let timeStamp = Date.now()
 // let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
 export default {
   name: 'Date',
-  props: ['value','calendar', 'min','max', 'label'],
+  props: ['date','calendar', 'min','max', 'label', 'dense'],
   data() {
     return {
-      dates:this.value
+      dates:this.date
     }
   },
   methods: {
@@ -57,8 +57,13 @@ export default {
 
     },
     close(e) {
-      this.$emit('update:value', e);
+      this.$emit('update:date', e);
+      this.input(e);
         if (e !=null) this.$refs.qDateProxy.hide()
+      },
+    input(e) {
+      this.$emit('update:date', e);
+      this.$emit('input')
       },
     show() {
       this.$refs.qDateProxy.show()

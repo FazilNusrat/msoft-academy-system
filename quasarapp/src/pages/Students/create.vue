@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div
@@ -15,67 +16,75 @@
             class="col"
             icon="apps"
             dense
+            :name.sync="form.addmission_number"
             outlined
-            :label="$t('Admission No')"
+            :label="$t('addmission No')"
           />
           <input-simple
             class="q-mx-sm col"
             icon="apps"
             dense
+            :name.sync="form.roll_number"
             outlined
             :label="$t('Roll Number')"
-          />
-          <input-required
-            class="col"
-            icon="apps"
-            dense
-            outlined
-            :label="$t('Class')"
-          />
+          /> 
+          <n-select
+          icon="mdi-clock"
+          :label="$t('Class')"
+          :model.sync="selected_class"
+          :options="classes"
+          @filter="filterClass"
+          :name.sync="selected_class"
+        />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <input-required
-            class="col"
-            icon="apps"
-            dense
-            outlined
-            :label="$t('Section')"
-          />
+          <n-select
+          icon="mdi-clock"
+          :label="$t('Section')"
+          :model.sync="selected_time"
+          :options="departments"
+          @filter="filterDepartment"
+          :name.sync="slected_department"
+        />
           <input-required
             class="q-mx-sm col"
             icon="apps"
             dense
             outlined
             :label="$t('First Name')"
+            :name.sync="form.first_name"  
           />
           <input-simple
             class="col"
             icon="apps"
             dense
+            :name.sync="form.last_name"
             outlined
             :label="$t('Last Name')"
           />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <input-required
-            class="col"
-            icon="apps"
-            dense
-            outlined
-            :label="$t('Gender')"
-          />
+          <n-select
+          icon="mdi-clock"
+          :label="$t('Gender')"
+          :model.sync="selected_time"
+          :options="times"
+          :name.sync="form.gender"
+          @filter="filterTimes"
+        />
           <!-- <input-simple  icon="apps" dense outlined :label="$t('DateOfBirt')" /> -->
-          <date-picker class="q-mx-sm col" :label="$t('Date Of Birth')" />
-
-          <input-simple
-            class="col"
-            icon="apps"
-            dense
-            outlined
-            :label="$t('Category')"
-          />
+          <!-- <date-picker class="q-mx-sm col" :name.sync="form.date_of_birth" :label="$t('Date Of Birth')" /> -->
+<date-picker class="q-mx-sm col" :date.sync="form.date_of_birth" :label="$t('Date Of Birth')"  />
+          <n-select
+          icon="mdi-clock"
+          :label="$t('Category')"
+          :model.sync="selected_time"
+          :options="times"
+          :name.sync="form.category"
+          @filter="filterTimes"
+        />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
@@ -84,6 +93,7 @@
             icon="apps"
             dense
             outlined
+            :name.sync="form.religion"
             :label="$t('Religion')"
           />
           <input-simple
@@ -91,6 +101,7 @@
             icon="apps"
             dense
             outlined
+            :name.sync="form.caste"
             :label="$t('Caste')"
           />
           <input-simple
@@ -98,6 +109,7 @@
             icon="apps"
             dense
             outlined
+            :name.sync="form.mobile_number"
             :label="$t('Mobile Number')"
           />
         </div>
@@ -108,14 +120,18 @@
             icon="apps"
             dense
             outlined
+            :name.sync="form.email"
             :label="$t('Email')"
           />
-          <date-picker class="q-mx-sm col" :label="$t('Admission Date')" />
+<date-picker class="q-mx-sm col" :date.sync="form.addmission_date" :label="$t('Addmission Date')"  />
+
+          
           <input-simple
             class="col"
             icon="apps"
             dense
             outlined
+            :name.sync="form.blood_group"
             :label="$t('Blood Group')"
           />
         </div>
@@ -125,6 +141,7 @@
             class="col"
             icon="apps"
             dense
+            :name.sync="form.student_house"
             outlined
             :label="$t('Student House')"
           />
@@ -132,6 +149,7 @@
             class="q-mx-sm col"
             icon="apps"
             dense
+            :name.sync="form.height"
             outlined
             :label="$t('Height')"
           />
@@ -139,17 +157,19 @@
             class="col"
             icon="apps"
             dense
+            :name.sync="form.weight"
             outlined
             :label="$t('Weight')"
           />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <date-picker class="col" :label="$t('As On Date')" />
+          <date-picker :name.sync="form.as_on_date" class="col" :label="$t('As On Date')" />
           <input-required
             class="q-ml-sm col"
             icon="apps"
             dense
+            :name.sync="form.medical_history"
             outlined
             :label="$t('Medical History')"
           />
@@ -173,21 +193,21 @@
                 :label="$t('Male')"
                 class="col-md-4"
                 val="male"
-                v-model="form.personal.gender"
+                v-model="form.gender"
               />
               <q-radio
                 color="cyan-7"
                 :label="$t('Female')"
                 class="col-md-4"
                 val="female"
-                v-model="form.personal.gender"
+                v-model="form.gender"
               />
               <q-radio
                 color="cyan-7"
                 :label="$t('Other')"
                 class="col-md-4"
                 val="other"
-                v-model="form.personal.gender"
+                v-model="form.gender"
               />
             </div>
           </div>
@@ -239,7 +259,8 @@
           />
           <q-tab
             :label="$t('Hostel Details')"
-            name="hostel_details"
+            name="hostel_details
+            "
             icon="payment"
           />
           <q-tab
@@ -268,6 +289,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.father_name"
                 :label="$t('Father Name')"
               />
               <input-simple
@@ -275,6 +297,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.father_phone_number"
                 :label="$t('Father Phone No')"
               />
               <input-simple
@@ -282,15 +305,9 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.father_occupation"
                 :label="$t('Father Occupation')"
               />
-              <q-uploader
-                class="col q-mb-s"
-                  label="Upload"
-                  :factory="factoryFn"
-                  style="height:50px; q-ml-sm"
-                />
-              <!--  -->
             </div>
 
             <div class="row q-mb-lg">
@@ -299,6 +316,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.mother_name"
                 :label="$t('Mother Name')"
               />
               <input-simple
@@ -306,6 +324,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.mother_phone_number"
                 :label="$t('Mother phone No')"
               />
               <input-simple
@@ -313,29 +332,26 @@
                 icon="apps"
                 dense
                 outlined
-                :label="$t('Mother Occupation ')"
+                :name.sync="form.parent_details.mother_occupation"
               />
-              <q-uploader
-                class="col q-mb-s"
-                  label="Upload"
-                  :factory="factoryFn"
-                  style="height:50px; q-ml-sm"
-                />
+            
             </div>
 
             <div class="row q-mb-lg">
-              <input-required
+                <input-required
                 class="col q-ml-sm"
                 icon="apps"
                 dense
                 outlined
-                :label="$t('Guardian Name ')"
+                :name.sync="form.parent_details.guardian_name"
+                :label="$t('Guardian name')"
               />
               <input-required
                 class="col q-ml-sm"
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.guardian_relation"
                 :label="$t('Guardian Relation')"
               />
               <input-simple
@@ -343,14 +359,10 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.guardian_email"
                 :label="$t('Guardian Email')"
               />
-              <q-uploader
-                class="col q-mb-s"
-                  label="Upload"
-                  :factory="factoryFn"
-                  style="height:50px; q-ml-sm"
-                />
+            
             </div>
             <div class="row q-mb-sm">
               <input-simple
@@ -358,6 +370,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.guardian_phone"
                 :label="$t('Guardian Phone')"
               />
               <input-simple
@@ -365,6 +378,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.guardian_occupation"
                 :label="$t('Guardian Occupation')"
               />
               <input-simple
@@ -372,6 +386,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.parent_details.guardian_address"
                 :label="$t('Guardian Address')"
               />
             </div>
@@ -393,21 +408,22 @@
                       :label="$t('Male')"
                       class="col-md-4"
                       val="male"
-                      v-model="form.personal.gender"
+
+                      v-model="form.parent_details.gender"
                     />
                     <q-radio
                       color="cyan-7"
                       :label="$t('Female')"
                       class="col-md-4"
                       val="female"
-                      v-model="form.personal.gender"
+                      v-model="form.parent_details.gender"
                     />
                     <q-radio
                       color="cyan-7"
                       :label="$t('Other')"
                       class="col-md-4"
                       val="other"
-                      v-model="form.personal.gender"
+                      v-model="form.parent_details.gender"
                     />
                   </div>
                 </div>
@@ -428,6 +444,7 @@
                 icon="apps"
                 type="textarea"
                 dense
+                :name.sync="form.student_address.current_address"
                 class="q-my-sm"
                 outlined
                 :label="$t('Current Address')"
@@ -439,6 +456,7 @@
                 icon="apps"
                 type="textarea"
                 dense
+                :name.sync="form.student_address.Permanent_address"
                 class="q-my-sm"
                 outlined
                 :label="$t('Permanent Address')"
@@ -459,6 +477,7 @@
                   filled
                   v-model="model"
                   :options="options"
+                  :name.sync="form.transport_details.route_list"
                   label="Route List"
                 />
               </div>
@@ -511,6 +530,7 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.miscellaneous_details.bank_account_number"
                 :label="$t('Bank Account Number')"
               />
               <input-simple
@@ -518,12 +538,14 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.miscellaneous_details.bank_name"
                 :label="$t('Bank Name')"
               />
               <input-simple
                 class="col q-ml-sm"
                 icon="apps"
                 dense
+                :name.sync="form.miscellaneous_details.ifsc_code"
                 outlined
                 :label="$t('IFSC Code')"
               />
@@ -534,6 +556,7 @@
                 class="col q-ml-sm"
                 icon="apps"
                 dense
+                :name.sync="form.miscellaneous_details.national_identification_number"
                 outlined
                 :label="$t('National Identification Number')"
               />
@@ -542,28 +565,29 @@
                 icon="apps"
                 dense
                 outlined
+                :name.sync="form.miscellaneous_details.local_identifiction_number"
                 :label="$t('Local Identification Number')"
               />
-              <q-radio name="shape" v-model="shape" val="polygon" label="yes" />
-              <q-radio name="shape" v-model="shape" val="polygon" label="No" />
             </div>
 
             <div class="row q-mb-sm">
               <input-simple
                 class="col q-ml-sm"
-                :type="textarea"
+                 type="textarea"
                 icon="apps"
                 dense
+                :name.sync="form.miscellaneous_details.previou_school_details"
                 outlined
-                :label="$t('National Identification Number')"
+                :label="$t('previous School Details')"
               />
               <input-simple
                 class="col q-ml-sm"
-                :type="textarea"
+                type="textarea"
                 icon="apps"
                 dense
+                :name.sync="form.miscellaneous_details.note"
                 outlined
-                :label="$t('Local Identification Number')"
+                :label="$t('Note')"
               />
             </div>
           </div>
@@ -640,15 +664,18 @@
           </div>
         </q-tab-panel>
       </q-tab-panels>
-
       <q-card-actions class="col-5 flex flex-center">
         <q-btn
-          color="primary"
-          outline
-          :label="$t('Update')"
-          @click="handleUpdate($event)"
+          push
+          color="light-blue"
+          class="q-ma-sm"
+          @click="handleSubmit($event)"
+          text-color="white"
+          icon="save"
+          :label="$t('Save')"
+          v-close-popup
         />
-        <q-btn color="red" outline :label="$t('Cancel')" to="/employee" />
+        <q-btn color="red" outline :label="$t('Cancel')" to="/student"/>
       </q-card-actions>
     </q-card>
   </div>
@@ -660,7 +687,7 @@ import NSelect from "../../components/fields/Select.vue";
 import DatePicker from "../../components/fields/date-picker.vue";
 
 export default {
-  data() {
+    data() {
     return {
       model: null,
       options: ["Imran", "Khan", "jan", "Man", "Qanad"],
@@ -669,6 +696,9 @@ export default {
       departments: [],
       department_options: [],
       selected_department: null,
+      classes: [],
+      class_options: [],
+      selected_class: null,
       jobs: [],
       job_options: [],
       selected_job: null,
@@ -678,6 +708,9 @@ export default {
       blood_groups: [],
       blood_group_options: [],
       selected_blood_group: null,
+      departments: [],
+      slected_department:null,
+      department_options:[],
       currencies: [],
       currency_options: [],
       selected_currency: null,
@@ -689,81 +722,68 @@ export default {
       ],
       selectedStatus: { name: this.$t("Active"), value: 1 },
       form: {
-        code: null,
-        name: null,
+        addmission_number: null,
+        roll_number: null,
+        class_id: null,
+        section_id: null,
+        first_name: null,
         last_name: null,
-        phone_no: null,
-        GrandFather_name: null,
-        status: true,
-        time_id: 0,
-        department_id: 0,
-        personal: {
-          join_date: null,
-          FatherName: null,
-          birth_date: null,
-          narration: null,
-          fee: null,
-          gender: "male",
-          blood_group_id: 0,
-          nationality: null,
-          photo: null,
-          email: null,
-          marital_status: "married",
-          birth_place: null
+        gender: null,
+        date_of_birth: null,
+        category: null,
+        religion: null,
+        caste: null,
+        mobile_number: null,
+        email: null,
+        addmission_date: null,
+        blood_group: null,
+        student_house: null,
+        height: null,
+        weight: null,
+        as_on_date: null,
+        medical_history: null,
+        medical_history: null,
+
+        parent_details: {
+          father_name:null,
+          father_phone_number:null,
+          father_occupation:null,
+          mother_name:null,
+          mother_phone_number:null,
+          mother_occupation:null,
+          guardian_name:null,
+          guardian_occupation:null,
+          guardian_email:null,
+          guardian_address:null,
+          guardian_phone:null,
+          guardian_relation:null,
         },
-        contact_details: {
-          city: null,
-          Religion: null,
-          address: null,
-          phone_no: null,
-          passport_no: null
+        student_address:
+        {
+          current_address:null,
+          Permanent_address:null,
         },
-        bank: {
-          name: null,
-          account_no: null,
-          currency: null,
-          branch: null,
-          city: null,
-          holder_name: null
+        transport_details:
+        {
+          route_list:null,
         },
-        contact_person: {
-          name: null,
-          relation: null,
-          phone: null,
-          email: null,
-          job_id: 0,
-          address: null
+      // hostel_details
+        //{
+
+        //}, 
+        miscellaneous_details:
+        {
+          bank_account_number:null,
+          bank_name:null,
+          ifsc_code:null,
+          national_identification_number:null,
+          local_identification_number:null,
+          yes:null,
+          no:null,
+          previou_school_details:null,
+          note:null,
         },
-        company: {
-          phone: null,
-          email: null
-        },
-        education: {
-          education: null,
-          specialization: null,
-          awarded: null,
-          start_date: null,
-          FatherName: null,
-          address: null
-        },
-        passport: {
-          passport_no: 0,
-          Religion: null,
-          file: null,
-          visa_type: null,
-          currentAddress: null,
-          Placeofbirth: null
-        },
-        Fees: {
-          currency: null,
-          admin_cost: 0,
-          transport: 0,
-          // government_tax: 0,
-          securityFees: 0,
-          libraryFees: 0,
-          addmisstionFees: 0,
-          remark: null
-        }
+        
       }
     };
   },
@@ -774,94 +794,29 @@ export default {
     DatePicker
   },
   computed: {
-    tax() {
-      var tax = 0;
-      if (this.form.personal.fee) {
-        if (this.form.personal.fee >= 5000 && this.form.personal.fee <= 12500) {
-          tax = (Number(this.form.personal.fee - 5000) * 2) / 100;
-        }
-        if (
-          this.form.personal.fee > 12500 &&
-          this.form.personal.fee <= 100000
-        ) {
-          tax = (Number(this.form.personal.fee - 12500) * 10) / 100 + 150;
-        }
-        if (this.form.personal.fee > 100000) {
-          tax = (Number(this.form.personal.fee - 100000) * 20) / 100 + 8900;
-        }
-      }
-      return tax;
-    },
-    total() {
-      var sum = 0;
-      if (this.form.personal.fee) {
-        sum =
-          Number(this.form.Fees.securityFees) +
-          Number(this.form.personal.fee) +
-          Number(this.form.Fees.transport) +
-          Number(this.form.Fees.libraryFees) +
-          Number(this.form.Fees.addmisstionFees) +
-          Number(this.form.Fees.admin_cost);
-      }
-      return sum;
-    }
+    
   },
   methods: {
-    handleUpdate() {
-      if (this.$refs.name.$refs.name.hasError) {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-          message: "You need to accept the license and terms first"
-        });
-      } else {
-        this.submitting = true;
-        // console.log('this.selected_athlete: ', this.selected_athlete);
-        // if(this.selected_department && this.selected_department.id)
-        this.form.status =
-          this.selectedStatus && this.selectedStatus.value > 0
-            ? this.selectedStatus.value
-            : 1;
-        this.form.department_id =
-          this.selected_department && this.selected_department.id > 0
-            ? this.selected_department.id
+    handleSubmit() { 
+      console.log('come on aostaz');
+        this.submitting = true; 
+        this.form.class_id =
+          this.selected_class && this.selected_class.id > 0
+            ? this.selected_class.id
             : 0;
-        this.form.time_id =
-          this.selected_time && this.selected_time.id > 0
-            ? this.selected_time.id
+        this.form.section_id =
+          this.selected_section && this.selected_section.id > 0
+            ? this.selected_section.id
             : 0;
-        this.form.personal.blood_group_id =
-          this.selected_blood_group && this.selected_blood_group.id > 0
-            ? this.selected_blood_group.id
-            : 0;
-        this.form.contact_person.job_id =
-          this.selected_job && this.selected_job.id > 0
-            ? this.selected_job.id
-            : 0;
-        this.form.bank.currency =
-          this.selected_currency && this.selected_currency.code.length > 0
-            ? this.selected_currency.code
-            : "AFN";
-        this.form.Fees.currency =
-          this.selected_type_currency &&
-          this.selected_type_currency.code.length > 0
-            ? this.selected_type_currency.code
-            : "AFN";
-
-        const fileData = new FormData();
-        fileData.append("photo", this.form.personal.photo);
-        fileData.append("file", this.form.passport.file);
-        fileData.append("_method", "PATCH");
-        fileData.append("form", JSON.stringify(this.form));
-
-        this.$axios
-          .post(`employee/${this.$route.params.id}`, fileData, {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
+            const fileData = new FormData();
+            fileData.append('form',JSON.stringify(this.form))
+        this.$axios.post('student/store', fileData, {
+            // headers: {
+            //   "Content-Type": "multipart/form-data"
+            // }
           })
           .then(res => {
+            this.$router.push("/student") 
             this.submitting = false;
             this.$q.notify({
               color: "green-4",
@@ -869,22 +824,17 @@ export default {
               icon: "cloud_done",
               message: "Successfull"
             });
-            this.$router.push("/employee");
           });
-      }
-    },
+      },
     uploadFile(files) {
-      this.form.personal.photo = files[0];
-      console.log("this.form.personal.photo: ", this.form.personal.photo);
+   //   this.form.personal.photo = files[0];
+     // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     onRejected(rejectedEntries) {
       this.$q.notify({
         type: "negative",
         message: `${rejectedEntries.length} file(s) did not pass validation constraints`
       });
-    },
-    uploadScan(files) {
-      this.form.passport.file = files[0];
     },
     onRejectedScan(rejectedEntries) {
       this.$q.notify({
@@ -912,7 +862,27 @@ export default {
         }
       );
     },
-    filtertime(val, update, abort) {
+    filterClass(val, update, abort) {
+      update(
+        () => {
+          if (val === "") {
+            this.class_options = this.classes;
+          } else {
+            const needle = val.toLowerCase();
+            this.class_options = this.classes.filter(
+              v => v.name.toLowerCase().indexOf(needle) > -1
+            );
+          }
+        },
+        ref => {
+          if (val !== "" && ref.options.length > 0) {
+            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
+            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
+          }
+        }
+      );
+    },
+    filterTimes(val, update, abort) {
       update(
         () => {
           if (val === "") {
@@ -920,6 +890,26 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.time_options = this.times.filter(
+              v => v.name.toLowerCase().indexOf(needle) > -1
+            );
+          }
+        },
+        ref => {
+          if (val !== "" && ref.options.length > 0) {
+            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
+            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
+          }
+        }
+      );
+    },
+    filterDepartment(val, update, abort) {
+      update(
+        () => {
+          if (val === "") {
+            this.department_options = this.departments;
+          } else {
+            const needle = val.toLowerCase();
+            this.department_options = this.departments.filter(
               v => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
@@ -1013,7 +1003,7 @@ export default {
       );
     },
     editData() {
-      this.$axios.get(`employee/edit/${this.$route.params.id}`).then(data => {
+      this.$axios.get(`student/edit/${this.$route.params.id}`).then(data => {
         data = data.data;
         this.form.code = data.code;
         this.form.name = data.name;
@@ -1028,101 +1018,27 @@ export default {
         );
         this.selected_time = this.times.find(e => e.id === data.time_id);
         // PERSONAL TAB---
-        if (data.personal) {
-          const personal = JSON.parse(data.personal);
-          this.form.personal.birth_date = personal.birth_date;
-          this.form.personal.birth_place = personal.birth_place;
-          this.form.personal.email = personal.email;
-          this.form.personal.FatherName = personal.FatherName;
-          this.form.personal.gender = personal.gender;
-          this.form.personal.join_date = personal.join_date;
-          this.form.personal.marital_status = personal.marital_status;
-          this.form.personal.narration = personal.narration;
-          this.form.personal.nationality = personal.nationality;
-          this.form.personal.fee = personal.fee;
-          this.selected_blood_group = this.blood_groups.find(
-            e => e.id === personal.blood_group_id
-          );
-        }
+       
         // CONTACT DETAILS -----------
-        if (data.contact_details) {
-          const contact_details = JSON.parse(data.contact_details);
-          this.form.contact_details.address = contact_details.address;
-          this.form.contact_details.city = contact_details.city;
-          this.form.contact_details.Religion = contact_details.Religion;
-          this.form.contact_details.passport_no = contact_details.passport_no;
-          this.form.contact_details.phone_no = contact_details.address;
-        }
+      
         //  BANK DETIALS ------------
-        if (data.bank_name) {
-          console.log("data.bank_name", data.bank_name);
-          this.form.bank.name = data.bank_name;
-          this.form.bank.branch = data.branch;
-          this.form.bank.city = data.city;
-          this.form.bank.account_no = data.account_no;
-          this.form.bank.holder_name = data.holder_name;
-          this.selected_currency = this.currencies.find(
-            e => e.code === data.currency
-          );
-        }
+       
         // CONTACT PERSON
-        if (data.contact_person) {
-          const contact_person = JSON.parse(data.contact_person);
-          this.form.contact_person.name = contact_person.name;
-          this.form.contact_person.relation = contact_person.relation;
-          this.form.contact_person.address = contact_person.address;
-          this.form.contact_person.phone = contact_person.phone;
-          this.form.contact_person.email = contact_person.email;
-          this.selected_job = this.jobs.find(
-            e => e.id === contact_person.job_id
-          );
-        }
+        
         // COMPANY ------
-        if (data.company) {
-          const company = JSON.parse(data.company);
-          this.form.company.email = company.email;
-          this.form.company.phone = company.phone;
-        }
-        // EDUCATION ---------
-        if (data.education) {
-          const education = JSON.parse(data.education);
-          this.form.education.education = education.education;
-          this.form.education.address = education.address;
-          this.form.education.awarded = education.awarded;
-          this.form.education.FatherName = education.FatherName;
-          this.form.education.specialization = education.specialization;
-          this.form.education.start_date = education.start_date;
-        }
-        // PASSPORT ------------
-        if (data.passport) {
-          const passport = JSON.parse(data.passport);
-          this.form.passport.Religion = passport.Religion;
-          this.form.passport.passport_no = passport.number;
-          this.form.passport.Placeofbirth = passport.Placeofbirth;
-          this.form.passport.currentAddress = passport.currentAddress;
-          this.form.passport.visa_type = passport.visa_type;
-        }
-        // Fees Tab----------
-        const Fees = JSON.parse(data.Fees);
-        console.log("JSON.parses(data.Fees)", Fees.currency);
-        if (Fees.currency != undefined) {
-          this.form.Fees.admin_cost = Fees.admin_cost ? Fees.admin_cost : 0;
-          this.form.Fees.libraryFees = Fees.libraryFees;
-          // this.form.Fees.government_tax = Fees.government_tax;
-          this.form.Fees.addmisstionFees = Fees.addmisstionFees;
-          this.form.Fees.remark = Fees.remark;
-          this.form.Fees.securityFees = Fees.securityFees;
-          this.form.Fees.transport = Fees.transport;
-          this.selected_type_currency = this.currencies.find(
-            e => e.code === Fees.currency
-          );
-        }
-
+        
         // console.log('data: ', data);
       });
     }
   },
-  mounted() {}
+  mounted() {
+    this.$getAcademy('department').then(()=>{
+      console.log('aaaaa', this.departments)
+    })
+    this.$getAcademy('class').then(()=>{
+      console.log('aaaaa', this.classes)
+    })
+  }
 };
 </script>
 <style lang="css" scoped></style>

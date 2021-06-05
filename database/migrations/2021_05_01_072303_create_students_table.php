@@ -15,18 +15,33 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('addmission_number')->nullable();
+            $table->integer('roll_number')->nullable();
+            $table->string('first_name');
             $table->string('last_name')->nullable();
-            $table->string('father_name')->nullable();
+            $table->string('class_id')->nullable();
+            $table->string('section_id')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('category')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('caste')->nullable();
+            $table->integer('mobile_number')->nullable();
             $table->string('email')->nullable();
-            $table->string('cnic')->nullable();
-            $table->string('phone')->nullable();
-            $table->integer('fees')->nullable();
-            $table->string('address')->nullable();
-            $table->string('regint')->nullable();
-            $table->integer('time_id');
-            $table->integer('subject_id');
-            $table->integer('class_id');
+            $table->date('addmission_Date')->nullable();
+            $table->integer('blood_group_id')->nullable();
+            $table->string('student_house')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->date('as_on_date')->nullable();
+            $table->string('medical_history')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('image')->nullable();
+            $table->json('parent_details')->nullable();
+            $table->json('student_address')->nullable();
+            $table->json('transport_details')->nullable();
+            $table->json('hostel_details')->nullable();
+            $table->json('miscellaneous_details')->nullable();
+            $table->json('upload_documents')->nullable();
             $table->timestamps();
         });
     }

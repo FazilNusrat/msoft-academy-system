@@ -75,11 +75,20 @@ Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffController@
 Route::get('staff/{id}','StaffController@destroy')->name('staff');
 
 
-Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);
-Route::post('student/store', ['as' => 'student.store', 'uses' => 'StudentsController@store']);
-Route::patch('student/{id}', ['as' => 'student.update', 'uses' => 'StudentsController@update']);
-Route::get('student/edit/{id}', ['as' => 'student.edit', 'uses' => 'StudentsController@edit']);
-Route::get('student/{id}','StudentsController@destroy')->name('student');
+// Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);
+// Route::post('student/store', ['as' => 'student.store', 'uses' => 'StudentsController@store']);
+// Route::patch('student/{id}', ['as' => 'student.update', 'uses' => 'StudentsController@update']);
+// Route::get('student/edit/{id}', ['as' => 'student.edit', 'uses' => 'StudentsController@edit']);
+// Route::get('student/{id}','StudentsController@destroy')->name('student');
+//Employee Routes
+Route::get('student',          'StudentsController@index')->name('student.index');
+Route::post('student/store',   'StudentsController@store')->name('student.store');
+Route::get('student/edit/{id}', 'StudentsController@edit')->name('student.edit');
+Route::patch('student/{id}',   'StudentsController@update')->name('student.update');
+Route::get('student/{id}',     'StudentsController@show')->name('student.show');
+Route::get('student/{id}',  'StudentsController@destroy')->name('student');
+
+// Route::post('std/store',   'StudentsController@store')->name('std.store');
 
 
 Route::get('teacher',['as'=>'teacher.index','uses'=>'TeachersController@index']);

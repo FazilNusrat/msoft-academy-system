@@ -7,10 +7,10 @@ const routes = [
       { path: '',
        component: () => import('pages/Index.vue') 
       },
-      { path: '/Students',
+      { path: '/Student',
        component: () => import('pages/students/index.vue') 
       },
-      { path: '/students/create',
+      { path: '/student/create',
        component: () => import('pages/students/create.vue') 
       },
       { path: '/teachers', 
