@@ -178,6 +178,28 @@
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/teachers?id=7" round flat></q-btn>
               </q-item-section>
           </q-item>
+          <q-item
+            clickable
+            class="my_hover"
+            dense
+            v-ripple
+            to="/imran"
+          >
+            <q-item-section avatar>
+              <q-btn
+                push
+                color="white"
+                size="sm"
+                text-color="cyan-7"
+                round
+                icon="apps"
+              />
+            </q-item-section>
+            <q-item-section>Imran Teacher</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/imran?id=7" round flat></q-btn>
+              </q-item-section>
+          </q-item>
           <q-item clickable class="my_hover" dense v-ripple to="/staffs">
             <q-item-section avatar>
               <q-btn
@@ -192,6 +214,22 @@
             <q-item-section>Staff</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/staffs?id=7" round flat></q-btn>
+              </q-item-section>
+          </q-item>
+          <q-item clickable class="my_hover" dense v-ripple to="/staff_imran">
+            <q-item-section avatar>
+              <q-btn
+                push
+                color="white"
+                size="sm"
+                text-color="cyan-7"
+                round
+                icon="apps"
+              />
+            </q-item-section>
+            <q-item-section>Staff Test</q-item-section>
+            <q-item-section side>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/staff_imran?id=7" round flat></q-btn>
               </q-item-section>
           </q-item>
         </q-list>
