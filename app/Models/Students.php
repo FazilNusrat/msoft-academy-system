@@ -13,15 +13,34 @@ class Students extends Model
     protected $primaryKey ='id';
     public $incrementing = false;
     protected $fillable=[
-        'name',
+        'admission_no',
+        'roll_number',
+        'class',
+        'section',
+        'first_name',
         'last_name',
-        'father_name',
+        'gender',
+        'date_of_birth',
+        'category',
+        'religion',
+        'caste',
+        'mobile_number',
         'email',
-        'cnic',
-        'phone',
-        'fees',
-        'address',
-        'regint'
+        'addmission_Date',
+        'blood_group',
+        'student_house',
+        'height',
+        'weigth',
+        'as_on_date',
+        'medical_history',
+        'image',
+        'parent_details',
+        'student_address',
+        'student_address',
+        'transport_details',
+        'host_details',
+        'miscellaneous_details',
+       
     ];
 
     public function getStudent($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {

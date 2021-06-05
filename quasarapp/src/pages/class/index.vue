@@ -86,6 +86,7 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.getAcademy('classes'))
     this.getLayoutButtonId();
      this.onRequest({
       pagination: this.pagination,
@@ -128,7 +129,7 @@ export default {
     })
     },
     clear() {
-      (this.form.name = ""), (this.form.description = "");
+      (this.form.name = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -169,9 +170,10 @@ export default {
     },
   },
 
-  // created() {
-  //   this.getdata();
-  // },
+  created() {
+    // this.getdata();
+    this.$getAcademy("classes");
+  },
 };
 </script>
 

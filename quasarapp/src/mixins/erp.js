@@ -14,6 +14,10 @@ export default function getErp(url, id=0) {
 
             if (url === 'teachers')
                 this.teachers = res.data;
+            if (url === 'department')
+                this.departments = res.data;
+            if (url === 'class')
+                this.classes = res.data;
             // if (url === 'contra_banks')
             //     if(res.data)
             //     {

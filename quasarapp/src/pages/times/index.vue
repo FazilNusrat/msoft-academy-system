@@ -4,7 +4,7 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>time Entry</h-title>
+    <h-title>Time Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
@@ -76,7 +76,6 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -86,6 +85,7 @@ export default {
     }
   },
   mounted () {
+    // console.log(this.getAcademy('classes'))
     this.getLayoutButtonId();
      this.onRequest({
       pagination: this.pagination,
@@ -137,8 +137,8 @@ export default {
     },
 
     del(id = 0) {
-     this.$delete(`time/${id}`);
-
+      console.log('id is ',id);
+      this.$delete(`time/${id}`);
     },
     
 
@@ -169,9 +169,10 @@ export default {
     },
   },
 
-  // created() {
-  //   this.getdata();
-  // },
+  created() {
+    // this.getdata();
+    this.$getAcademy("classes");
+  },
 };
 </script>
 

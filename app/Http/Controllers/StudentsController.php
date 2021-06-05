@@ -46,24 +46,94 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
+        // $f = json_decode($request->form);
+        // $data = [
+        //     'name' => $form->name
+        // ]
+        // $s = $this->student->create($data);
+        // if($s) {
+        //     $this->info->create([
+                
+        //         'student_id'=>$s->id,
+        //         'salary' =>$form->inof->salary
+        //     ])
+        // }
+
+        $form = json_decode($request->form);
+        $parent_details = [
+            'father_name'               => $form->parent_details->father_name,
+            'father_phone_number'       => $form->parent_details->father_phone_number,
+            'father_occupation'         => $form->parent_details->father_occupation,
+            'mother_name'               => $form->parent_details->mother_name,
+            'mother_phone_number'       => $form->parent_details->mother_phone_number,
+            'mother_occupation'         => $form->parent_details->mother_occupation,
+            'guardian_name'             => $form->parent_details->guardian_name,
+            'guardian_occupation'       => $form->parent_details->guardian_occupation,
+            'guardian_email'            => $form->parent_details->guardian_email,
+            'guardian_address'          => $form->parent_details->guardian_address,
+            'guardian_phone'            => $form->parent_details->guardian_phone,
+            'guardian_relation'         => $form->parent_details->guardian_relation
+        ];
+        $student_address = [
+            'current_address'           => $form->student_address->current_address,
+            'Permanent_address'         => $form->student_address->Permanent_address,
+        ];
+        $transport_details = [
+            'route_list'                => $form->transport_details->route_list,
+        ];
+        // $hostel_details = [
+
+        // ];
         
-        $student   = $this->student->create([
-            'name'  =>$request->name,
-            'last_name'  =>$request->last_name,
-            'father_name'  =>$request->father_name,
-            'email'  =>$request->email,
-            'cnic'  =>$request->cnic,
-            'phone'  =>$request->phone,
-            'fees'  =>$request->fees,
-            'address'  =>$request->address,
-            'regint'  =>$request->regint,
-        ]);
+         $miscellaneous_details = [
+            'bank_account_number'               => $form->miscellaneous_details->bank_account_number,
+            'bank_name'                         => $form->miscellaneous_details->bank_name,
+            'ifsc_code'                         => $form->miscellaneous_details->ifsc_code,
+            'national_identification_number'    => $form->miscellaneous_details->national_identification_number,
+            'yes'                               => $form->miscellaneous_details->yes,
+            'no'                                => $form->miscellaneous_details->no,
+            'previou_school_details'            => $form->miscellaneous_details->previou_school_details,
+            'note'                              => $form->miscellaneous_details->note,
+         ];
+ 
+        $studentData = [
+            'class_id'                  => intval($form->class_id),
+            'addmission_number'          =>$form->addmission_number,
+            'roll_number'               =>$form->roll_number,
+            'class_id'                  =>$form->class_id,
+            'section_id'                =>$form->section_id,
+            'first_name'                =>$form->first_name,
+            'last_name'                 =>$form->last_name,
+            'gender'                    =>$form->gender,
+            'date_of_birth'             =>$form->date_of_birth,
+            'category'                  =>$form->category?$form->category:1,
+            'religion'                  =>$form->religion?$form->religion:1,
+            'caste'                     =>$form->caste?$form->caste:1,
+            'mobile_number'             =>$form->mobile_number?$form->mobile_number:0,
+            'email'                     =>$form->email?$form->email:0,
+            'addmission_Date'           =>$form->addmission_date,
+            'blood_group_id'            =>$form->blood_group?$form->blood_group:1,
+            'student_house'             =>$form->student_house,
+            'height'                    =>$form->height,
+            'weight'                    =>$form->weight,
+            'as_on_date'                =>$form->as_on_date,
+            'medical_history'           =>$form->medical_history,
+            // 'image'                     =>$form->image,
+            'student_address'           => json_encode($student_address),
+            'parent_details'            => json_encode($parent_details),
+            'transport_details'         => json_encode($transport_details),
+            'miscellaneous_details'     => json_encode($miscellaneous_details),
+        ];
 
-       if ($student) {
-           return ['student Message'];
-       }
-    }
-
+        $student   = $this->student->create($studentData);
+        if($student)
+        {
+            return ['Class Message'];
+        }
+        return json_encode($this->student->find($id));
+        // return ['ttt'=>json_decode($request->form)];
+          
+    }    
     /**
      * Display the specified resource.
      *

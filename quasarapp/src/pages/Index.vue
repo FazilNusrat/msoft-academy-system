@@ -10,7 +10,7 @@
       row-key="name"
     />
   </div>
-          <h1> Sofi Commando </h1>
+          <h1>  </h1>
 
     <q-dialog v-model="students" teachers transition-show="scale" transition-hide="scale">
       <q-card class="bg-primary text-white" style="width: 550px">

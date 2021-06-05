@@ -139,7 +139,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/students"
+            to="/student"
           >
             <q-item-section avatar>
               <q-btn
@@ -153,7 +153,7 @@
             </q-item-section>
             <q-item-section>Students</q-item-section>
             <q-item-section side>
-                <q-btn icon="mdi-plus" color="black" size="sm" to="/students?id=7" round flat></q-btn>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/student?id=7" round flat></q-btn>
               </q-item-section>
           </q-item>
           <q-item

@@ -47,9 +47,8 @@ class ClassesController extends Controller
     public function store(Request $request)
     {
         $createClass   = $this->class->create([
-            'name'  =>$request->name,
+            'name'         =>$request->name,
             'description'  =>$request->description,
-            'time_id'  =>$request->time_id,
         ]);
 
        if ($createClass) {
