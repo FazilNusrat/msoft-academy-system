@@ -121,7 +121,21 @@ const routes = [
       { path: '/mytimetable', 
       component: () => import('pages/mytimetable/index.vue') 
       },
-     
+      { path: '/staffdirectory', 
+      component: () => import('pages/staffdirectory/index.vue') 
+      },
+      { path: '/staffattendance', 
+      component: () => import('pages/staffattendance/index.vue') 
+      },
+      { path: '/payroll', 
+      component: () => import('pages/payroll/index.vue') 
+      },
+      { path: '/leavetypes', 
+      component: () => import('pages/leavetypes/index.vue') 
+      },
+      { path: '/humandepartment', 
+      component: () => import('pages/humandepartment/index.vue') 
+      },
     ]
   },
 
