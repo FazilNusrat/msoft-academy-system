@@ -136,6 +136,12 @@ const routes = [
       { path: '/humandepartment', 
       component: () => import('pages/humandepartment/index.vue') 
       },
+      { path: '/imran', 
+      component: () => import('pages/imran/index.vue') 
+      },
+      { path: '/staff_imran', 
+      component: () => import('pages/staff_imran/index.vue') 
+      },
     ]
   },
 
