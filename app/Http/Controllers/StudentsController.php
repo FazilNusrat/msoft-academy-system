@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Image;
+
 
 class StudentsController extends Controller
 {
@@ -60,6 +62,23 @@ class StudentsController extends Controller
         // }
 
         $form = json_decode($request->form);
+        
+        //image
+        $name = '';
+        if ($request->hasFile('photo')) {
+            $original_filename = $request->file('photo')->getClientOriginalName();
+            $original_filename_arr = explode('.', $original_filename);
+            $file_ext = end($original_filename_arr);
+            $name = 'EMP-' . time() . '.' . $file_ext;
+            $img = Image::make($request->file('photo'));
+            $img->save(public_path('uploads/student/' . $name));
+            $img->resize(100,100, function($constraint)
+            {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/student/small/' . $name));
+            // $request->merge(['photo' => $name]);
+        }
+
         $parent_details = [
             'father_name'               => $form->parent_details->father_name,
             'father_phone_number'       => $form->parent_details->father_phone_number,

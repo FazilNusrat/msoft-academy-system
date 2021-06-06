@@ -27,33 +27,33 @@
             :name.sync="form.roll_number"
             outlined
             :label="$t('Roll Number')"
-          /> 
+          />
           <n-select
-          icon="mdi-clock"
-          :label="$t('Class')"
-          :model.sync="selected_class"
-          :options="classes"
-          @filter="filterClass"
-          :name.sync="selected_class"
-        />
+            icon="mdi-clock"
+            :label="$t('Class')"
+            :model.sync="selected_class"
+            :options="classes"
+            @filter="filterClass"
+            :name.sync="selected_class"
+          />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
           <n-select
-          icon="mdi-clock"
-          :label="$t('Section')"
-          :model.sync="selected_time"
-          :options="departments"
-          @filter="filterDepartment"
-          :name.sync="slected_department"
-        />
+            icon="mdi-clock"
+            :label="$t('Section')"
+            :model.sync="selected_time"
+            :options="departments"
+            @filter="filterDepartment"
+            :name.sync="slected_department"
+          />
           <input-required
             class="q-mx-sm col"
             icon="apps"
             dense
             outlined
             :label="$t('First Name')"
-            :name.sync="form.first_name"  
+            :name.sync="form.first_name"
           />
           <input-simple
             class="col"
@@ -67,24 +67,28 @@
 
         <div class="row q-mb-sm q-px-sm">
           <n-select
-          icon="mdi-clock"
-          :label="$t('Gender')"
-          :model.sync="selected_time"
-          :options="times"
-          :name.sync="form.gender"
-          @filter="filterTimes"
-        />
+            icon="mdi-clock"
+            :label="$t('Gender')"
+            :model.sync="selected_time"
+            :options="times"
+            :name.sync="form.gender"
+            @filter="filterTimes"
+          />
           <!-- <input-simple  icon="apps" dense outlined :label="$t('DateOfBirt')" /> -->
           <!-- <date-picker class="q-mx-sm col" :name.sync="form.date_of_birth" :label="$t('Date Of Birth')" /> -->
-<date-picker class="q-mx-sm col" :date.sync="form.date_of_birth" :label="$t('Date Of Birth')"  />
+          <date-picker
+            class="q-mx-sm col"
+            :date.sync="form.date_of_birth"
+            :label="$t('Date Of Birth')"
+          />
           <n-select
-          icon="mdi-clock"
-          :label="$t('Category')"
-          :model.sync="selected_time"
-          :options="times"
-          :name.sync="form.category"
-          @filter="filterTimes"
-        />
+            icon="mdi-clock"
+            :label="$t('Category')"
+            :model.sync="selected_time"
+            :options="times"
+            :name.sync="form.category"
+            @filter="filterTimes"
+          />
         </div>
 
         <div class="row q-mb-sm q-px-sm">
@@ -123,9 +127,12 @@
             :name.sync="form.email"
             :label="$t('Email')"
           />
-<date-picker class="q-mx-sm col" :date.sync="form.addmission_date" :label="$t('Addmission Date')"  />
+          <date-picker
+            class="q-mx-sm col"
+            :date.sync="form.addmission_date"
+            :label="$t('Addmission Date')"
+          />
 
-          
           <input-simple
             class="col"
             icon="apps"
@@ -164,7 +171,11 @@
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <date-picker :name.sync="form.as_on_date" class="col" :label="$t('As On Date')" />
+          <date-picker
+            :name.sync="form.as_on_date"
+            class="col"
+            :label="$t('As On Date')"
+          />
           <input-required
             class="q-ml-sm col"
             icon="apps"
@@ -179,31 +190,28 @@
         <div class="q-mx-sm q-mb-sm">
           <div
             class="bg-cyan-7 text-white text-center"
-            style="border-radius: 0.3rem 0.3rem 0 0;"
+            style="border-radius: 0.3rem 0.3rem 0 0"
           >
             <div class="text-h7">{{ $t("Gender") }}</div>
           </div>
           <div
-            style="border:1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem;"
-            class="text-cyan-7 flex  flex-center"
+            style="border: 1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem"
+            class="text-cyan-7 flex flex-center"
           >
             <div class="row justify-center">
               <q-radio
-                color="cyan-7"
                 :label="$t('Male')"
                 class="col-md-4"
                 val="male"
                 v-model="form.gender"
               />
               <q-radio
-                color="cyan-7"
                 :label="$t('Female')"
                 class="col-md-4"
                 val="female"
                 v-model="form.gender"
               />
               <q-radio
-                color="cyan-7"
                 :label="$t('Other')"
                 class="col-md-4"
                 val="other"
@@ -213,20 +221,22 @@
           </div>
         </div>
 
-        <div class="q-mx-sm">
-          <q-uploader
-            url="http://localhost:4444/upload"
-            color="cyan-7"
-            flat
-            class="full-width"
-            label="Image"
-            bordered
-          />
-        </div>
+        <div class="q-ma-sm">
+                <q-uploader
+                  class="full-width"
+                  :label="$t('Photo')"
+                  :factory="uploadFile"
+                  max-files="1"
+                  auto-upload
+                  accept=".jpg, image/*"
+                  @rejected="onRejected"
+                  ref="photo"
+                />
+              </div>
       </div>
     </div>
 
-    <q-card class="three_d  q-ma-sm">
+    <q-card class="three_d q-ma-sm">
       <div class="three_d">
         <q-tabs
           content-class
@@ -235,7 +245,7 @@
           v-model="tab"
           inline-label
           dense
-          class="text-white bg-cyan-7  three_d glossy"
+          class="text-white bg-cyan-7 three_d glossy"
           active-color="cyan-7"
           active-bg-color="grey-3"
           indicator-color="negative"
@@ -334,11 +344,10 @@
                 outlined
                 :name.sync="form.parent_details.mother_occupation"
               />
-            
             </div>
 
             <div class="row q-mb-lg">
-                <input-required
+              <input-required
                 class="col q-ml-sm"
                 icon="apps"
                 dense
@@ -362,7 +371,6 @@
                 :name.sync="form.parent_details.guardian_email"
                 :label="$t('Guardian Email')"
               />
-            
             </div>
             <div class="row q-mb-sm">
               <input-simple
@@ -394,13 +402,16 @@
               <div class="q-ma-sm">
                 <div
                   class="bg-cyan-7 text-white text-center"
-                  style="border-radius: 0.3rem 0.3rem 0 0;"
+                  style="border-radius: 0.3rem 0.3rem 0 0"
                 >
                   <div class="text-h7">{{ $t("Gender") }}</div>
                 </div>
                 <div
-                  style="border:1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem;"
-                  class="text-cyan-7 flex  flex-center"
+                  style="
+                    border: 1px solid #0288d1;
+                    border-radius: 0 0 0.3rem 0.3rem;
+                  "
+                  class="text-cyan-7 flex flex-center"
                 >
                   <div class="row justify-center">
                     <q-radio
@@ -408,7 +419,6 @@
                       :label="$t('Male')"
                       class="col-md-4"
                       val="male"
-
                       v-model="form.parent_details.gender"
                     />
                     <q-radio
@@ -556,7 +566,9 @@
                 class="col q-ml-sm"
                 icon="apps"
                 dense
-                :name.sync="form.miscellaneous_details.national_identification_number"
+                :name.sync="
+                  form.miscellaneous_details.national_identification_number
+                "
                 outlined
                 :label="$t('National Identification Number')"
               />
@@ -565,7 +577,9 @@
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.miscellaneous_details.local_identifiction_number"
+                :name.sync="
+                  form.miscellaneous_details.local_identifiction_number
+                "
                 :label="$t('Local Identification Number')"
               />
             </div>
@@ -573,7 +587,7 @@
             <div class="row q-mb-sm">
               <input-simple
                 class="col q-ml-sm"
-                 type="textarea"
+                type="textarea"
                 icon="apps"
                 dense
                 :name.sync="form.miscellaneous_details.previou_school_details"
@@ -675,7 +689,7 @@
           :label="$t('Save')"
           v-close-popup
         />
-        <q-btn color="red" outline :label="$t('Cancel')" to="/student"/>
+        <q-btn color="red" outline :label="$t('Cancel')" to="/student" />
       </q-card-actions>
     </q-card>
   </div>
@@ -687,7 +701,7 @@ import NSelect from "../../components/fields/Select.vue";
 import DatePicker from "../../components/fields/date-picker.vue";
 
 export default {
-    data() {
+  data() {
     return {
       model: null,
       options: ["Imran", "Khan", "jan", "Man", "Qanad"],
@@ -709,8 +723,8 @@ export default {
       blood_group_options: [],
       selected_blood_group: null,
       departments: [],
-      slected_department:null,
-      department_options:[],
+      slected_department: null,
+      department_options: [],
       currencies: [],
       currency_options: [],
       selected_currency: null,
@@ -718,7 +732,7 @@ export default {
       selected_type_currency: null,
       status: [
         { name: this.$t("Active"), value: 1 },
-        { name: this.$t("DeActive"), value: 0 }
+        { name: this.$t("DeActive"), value: 0 },
       ],
       selectedStatus: { name: this.$t("Active"), value: 1 },
       form: {
@@ -728,7 +742,7 @@ export default {
         section_id: null,
         first_name: null,
         last_name: null,
-        gender: null,
+        gender: "male",
         date_of_birth: null,
         category: null,
         religion: null,
@@ -745,101 +759,96 @@ export default {
         medical_history: null,
 
         parent_details: {
-          father_name:null,
-          father_phone_number:null,
-          father_occupation:null,
-          mother_name:null,
-          mother_phone_number:null,
-          mother_occupation:null,
-          guardian_name:null,
-          guardian_occupation:null,
-          guardian_email:null,
-          guardian_address:null,
-          guardian_phone:null,
-          guardian_relation:null,
+          father_name: null,
+          father_phone_number: null,
+          father_occupation: null,
+          mother_name: null,
+          mother_phone_number: null,
+          mother_occupation: null,
+          guardian_name: null,
+          guardian_occupation: null,
+          guardian_email: null,
+          guardian_address: null,
+          guardian_phone: null,
+          guardian_relation: null,
         },
-        student_address:
-        {
-          current_address:null,
-          Permanent_address:null,
+        student_address: {
+          current_address: null,
+          Permanent_address: null,
         },
-        transport_details:
-        {
-          route_list:null,
+        transport_details: {
+          route_list: null,
         },
-      // hostel_details
+        // hostel_details
         //{
 
-        //}, 
-        miscellaneous_details:
-        {
-          bank_account_number:null,
-          bank_name:null,
-          ifsc_code:null,
-          national_identification_number:null,
-          local_identification_number:null,
-          yes:null,
-          no:null,
-          previou_school_details:null,
-          note:null,
+        //},
+        miscellaneous_details: {
+          bank_account_number: null,
+          bank_name: null,
+          ifsc_code: null,
+          national_identification_number: null,
+          local_identification_number: null,
+          yes: null,
+          no: null,
+          previou_school_details: null,
+          note: null,
         },
-        
-      }
+      },
     };
   },
   components: {
     InputRequired,
     InputSimple,
     NSelect,
-    DatePicker
+    DatePicker,
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
-    handleSubmit() { 
-      console.log('come on aostaz');
-        this.submitting = true; 
-        this.form.class_id =
-          this.selected_class && this.selected_class.id > 0
-            ? this.selected_class.id
-            : 0;
-        this.form.section_id =
-          this.selected_section && this.selected_section.id > 0
-            ? this.selected_section.id
-            : 0;
-            const fileData = new FormData();
-            fileData.append('form',JSON.stringify(this.form))
-        this.$axios.post('student/store', fileData, {
-            // headers: {
-            //   "Content-Type": "multipart/form-data"
-            // }
-          })
-          .then(res => {
-            this.$router.push("/student") 
-            this.submitting = false;
-            this.$q.notify({
-              color: "green-4",
-              textColor: "white",
-              icon: "cloud_done",
-              message: "Successfull"
-            });
+    handleSubmit() {
+      console.log("come on aostaz");
+      this.submitting = true;
+      this.form.class_id =
+        this.selected_class && this.selected_class.id > 0
+          ? this.selected_class.id
+          : 0;
+      this.form.section_id =
+        this.selected_section && this.selected_section.id > 0
+          ? this.selected_section.id
+          : 0;
+      const fileData = new FormData();
+      fileData.append("form", JSON.stringify(this.form));
+      this.$axios
+        .post("student/store", fileData, {
+          // headers: {
+          //   "Content-Type": "multipart/form-data"
+          // }
+        })
+        .then((res) => {
+          this.$router.push("/student");
+          this.submitting = false;
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Successfull",
           });
-      },
+        });
+    },
     uploadFile(files) {
-   //   this.form.personal.photo = files[0];
-     // console.log("this.form.personal.photo: ", this.form.personal.photo);
+      //   this.form.personal.photo = files[0];
+      // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     onRejected(rejectedEntries) {
       this.$q.notify({
         type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
+        message: `${rejectedEntries.length} file(s) did not pass validation constraints`,
       });
     },
     onRejectedScan(rejectedEntries) {
       this.$q.notify({
         type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
+        message: `${rejectedEntries.length} file(s) did not pass validation constraints`,
       });
     },
     filterDepartment(val, update, abort) {
@@ -850,11 +859,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -870,11 +879,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.class_options = this.classes.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -890,11 +899,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.time_options = this.times.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -910,11 +919,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -930,11 +939,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.job_options = this.jobs.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -950,11 +959,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.currency_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -970,11 +979,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.currency_type_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -990,11 +999,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.blood_group_options = this.blood_groups.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -1003,7 +1012,7 @@ export default {
       );
     },
     editData() {
-      this.$axios.get(`student/edit/${this.$route.params.id}`).then(data => {
+      this.$axios.get(`student/edit/${this.$route.params.id}`).then((data) => {
         data = data.data;
         this.form.code = data.code;
         this.form.name = data.name;
@@ -1011,34 +1020,34 @@ export default {
         this.form.GrandFather_name = data.GrandFather_name;
         this.form.phone_no = data.phone_no;
         this.selectedStatus = this.status.find(
-          e => e.value === (data.status ? 1 : 0)
+          (e) => e.value === (data.status ? 1 : 0)
         );
         this.selected_department = this.departments.find(
-          e => e.id === data.department_id
+          (e) => e.id === data.department_id
         );
-        this.selected_time = this.times.find(e => e.id === data.time_id);
+        this.selected_time = this.times.find((e) => e.id === data.time_id);
         // PERSONAL TAB---
-       
+
         // CONTACT DETAILS -----------
-      
+
         //  BANK DETIALS ------------
-       
+
         // CONTACT PERSON
-        
+
         // COMPANY ------
-        
+
         // console.log('data: ', data);
       });
-    }
+    },
   },
   mounted() {
-    this.$getAcademy('department').then(()=>{
-      console.log('aaaaa', this.departments)
-    })
-    this.$getAcademy('class').then(()=>{
-      console.log('aaaaa', this.classes)
-    })
-  }
+    this.$getAcademy("department").then(() => {
+      console.log("aaaaa", this.departments);
+    });
+    this.$getAcademy("class").then(() => {
+      console.log("aaaaa", this.classes);
+    });
+  },
 };
 </script>
 <style lang="css" scoped></style>
