@@ -53,7 +53,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/humandepartment"
+            to="/departments"
           >
             <q-item-section avatar>
               <q-btn
@@ -65,7 +65,7 @@
                 icon="manage_accounts"
               />
             </q-item-section>
-            <q-item-section>Human Department</q-item-section>
+            <q-item-section>Department</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/departments?id=7" round flat></q-btn>
               </q-item-section>
@@ -1167,7 +1167,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/Department"
+            to="/departments"
           >
             <q-item-section avatar>
               <q-btn
