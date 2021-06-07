@@ -13,15 +13,15 @@
       <div class="col-9">
         <div class="row q-mb-sm q-px-sm">
           <input-required
-            class="col"
+            class="col q-ma-sm"
             icon="apps"
             dense
             :name.sync="form.addmission_number"
             outlined
-            :label="$t('addmission No')"
+            :label="$t('Addmission No')"
           />
           <input-simple
-            class="q-mx-sm col"
+            class="col q-ma-sm"
             icon="apps"
             dense
             :name.sync="form.roll_number"
@@ -30,6 +30,7 @@
           />
           <n-select
             icon="mdi-clock"
+            class="col q-ma-sm"
             :label="$t('Class')"
             :model.sync="selected_class"
             :options="classes"
@@ -41,6 +42,7 @@
         <div class="row q-mb-sm q-px-sm">
           <n-select
             icon="mdi-clock"
+            class="col q-ma-sm"
             :label="$t('Section')"
             :model.sync="selected_time"
             :options="departments"
@@ -49,7 +51,7 @@
           />
           
           <input-required
-            class="q-mx-sm col"
+            class="col q-ma-sm"
             icon="apps"
             dense
             outlined
@@ -57,7 +59,7 @@
             :name.sync="form.first_name"
           />
           <input-simple
-            class="col"
+            class="col q-ma-sm"
             icon="apps"
             dense
             :name.sync="form.last_name"
@@ -67,126 +69,43 @@
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-          <n-select
-            icon="mdi-clock"
-            :label="$t('Gender')"
-            :model.sync="selected_time"
-            :options="times"
-            :name.sync="form.gender"
-            @filter="filterTimes"
-          />
-          <!-- <input-simple  icon="apps" dense outlined :label="$t('DateOfBirt')" /> -->
-          <!-- <date-picker class="q-mx-sm col" :name.sync="form.date_of_birth" :label="$t('Date Of Birth')" /> -->
           <date-picker
-            class="q-mx-sm col"
+            class="col q-ma-sm"
             dense
             :date.sync="form.date_of_birth"
             :label="$t('Date Of Birth')"
           />
-          <n-select
-            icon="mdi-clock"
-            :label="$t('Category')"
-            :options="times"
-            @filter=""
-          />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
-          <input-simple
-            class="col"
+           <input-simple
+            class="col q-ma-sm"
             icon="apps"
             dense
-            outlined
-            :name.sync="form.religion"
-            :label="$t('Religion')"
-          />
-          <input-simple
-            class="q-mx-sm col"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.caste"
-            :label="$t('Caste')"
-          />
-          <input-simple
-            class="col"
-            icon="apps"
-            dense
+            type="number"
             outlined
             :name.sync="form.mobile_number"
-            :label="$t('Mobile Number')"
+            :label="$t('Phone Number')"
           />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
           <input-simple
-            class="col"
+            class="col q-ma-sm"
             icon="apps"
             dense
             outlined
             :name.sync="form.email"
             :label="$t('Email')"
           />
+        </div>
+
+        <div class="row q-mb-sm q-px-sm">
           <date-picker
-          dense=""
-            class="q-mx-sm col"
+            class="col q-ma-sm"
+            dense
+            :name.sync="form.addmission_date"
             :date.sync="form.addmission_date"
-            :label="$t('Addmission Date')"
-          />
-
-          <input-simple
-            class="col"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.blood_group"
-            :label="$t('Blood Group')"
+            :label="$t('Addmisstion Date')"
           />
         </div>
 
-        <div class="row q-mb-sm q-px-sm">
-          <input-simple
-            class="col"
-            icon="apps"
-            dense
-            :name.sync="form.student_house"
-            outlined
-            :label="$t('Student House')"
-          />
-          <input-simple
-            class="q-mx-sm col"
-            icon="apps"
-            dense
-            :name.sync="form.height"
-            outlined
-            :label="$t('Height')"
-          />
-          <input-required
-            class="col"
-            icon="apps"
-            dense
-            :name.sync="form.weight"
-            outlined
-            :label="$t('Weight')"
-          />
-        </div>
 
-        <div class="row q-mb-sm q-px-sm">
-          <date-picker
-            :name.sync="form.as_on_date"
-            class="col"
-            dense
-            :label="$t('As On Date')"
-          />
-          <input-required
-            class="q-ml-sm col"
-            icon="apps"
-            dense
-            :name.sync="form.medical_history"
-            outlined
-            :label="$t('Medical History')"
-          />
-        </div>
+        
       </div>
       <div class="col-3">
         <div class="q-mx-sm q-mb-sm">
