@@ -56,7 +56,7 @@ class TeachersController extends Controller
             $file_ext = end($original_filename_arr);
             $name = 'EMP-' . time() . '.' . $file_ext;
             $img = Image::make($form->file('photo'));
-            $img->save(public_path('uploads/staff/' . $name));
+            $img->save(public_path('uploads/teacher/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
@@ -64,24 +64,24 @@ class TeachersController extends Controller
             // $form->merge(['photo' => $name]);
         }
         $TeacherData = [
-            'addmission_number'         =>$form->addmission_number,
             'first_name'                =>$form->first_name,
             'last_name'                 =>$form->last_name,
             'father_name'               =>$form->father_name,
-            'phone'                     =>$form->phone,
             'email'                     =>$form->email,
-            'salary'                    =>$form->salary,
-            'address'                   =>$form->address,
-            'city'                      =>$form->city,
-            'job_name'                  =>$form->job_name,
+            'phone'                     =>$form->phone,
+            'current_address'                    =>$form->current_address,
+            'permenent_address'                   =>$form->permenent_address,
+            'education_level'                      =>$form->education_level,
+            'experience'                  =>$form->experience,
+            'tazkera_number'                  =>$form->experience,
         ];
 
-        $Teacher   = $this->Teacher->create($TeacherData);
-        if($staff)
+        $Teacher   = $this->Teachers->create($TeacherData);
+        if($Teacher)
         {
             return ['Class Message'];
         }
-        return json_encode($this->staff->find($id));
+        return json_encode($this->Teachers->find($id));
         // return ['ttt'=>json_decode($request->form)];
           
     } 

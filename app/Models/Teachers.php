@@ -12,18 +12,18 @@ class Teachers extends Model
   use HasFactory;
   protected $primaryKey ='id';
   public $incrementing = false;
-  protected $table="staffs";
+  protected $table="teachers";
   protected $fillable=[
-    'addmission_number',
     'first_name',
     'last_name',
     'father_name',
-    'phone',
     'email',
-    'salary',
-    'address',
-    'city',
-    'job_name',
+    'phone',
+    'current_address',
+    'permenent_address',
+    'education_level',
+    'experience',
+    'tazkera_number',
 ];
 
   public function getTeacher($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
