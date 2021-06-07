@@ -4,15 +4,21 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>Staff Entry</h-title>
+    <h-title>Staffs Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
-        <l-button icon="mdi-file-pdf" color="deeep-orange">PDF</l-button>
+
+        <l-button to="/staffs/create" icon="add" color="green"
+          >New Page</l-button
+        >
+
+
+        <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
-        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-father_name-send" color="red-6">father_name</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
@@ -23,7 +29,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('staffList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('staffsList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -75,15 +81,18 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.father_name, sortable: true },
-        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
-        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
-        { name: 'salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'salary', field: row=>row.salary, sortable: true },
-        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'start_date',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'start_date', field: row=>row.start_date, sortable: true },
+        { name: 'First_Name', align: 'center', label: 'First Name', field: row=>row.First_Name, sortable: true },
+        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Class', field: row=>row.last_name, sortable: true },
+        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father Name', field: row=>row.father_name, sortable: true },
+        { name: 'Photo',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.Photo, sortable: true },
+        { name: 'Salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Salary', field: row=>row.Salary, sortable: true },
+        { name: 'Address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Address', field: row=>row.Address, sortable: true },
+        { name: 'City',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'City', field: row=>row.City, sortable: true },
+        { name: 'job_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Job Name', field: row=>row.job_name, sortable: true },
+        { name: 'commission',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Commission', field: row=>row.commission, sortable: true },
+        { name: 'department_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Department ID', field: row=>row.department_id, sortable: true },
+        { name: 'manager_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Manager ID', field: row=>row.manager_id, sortable: true },
+        { name: 'hire_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Hire Date', field: row=>row.hire_id, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -109,7 +118,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('staff'+
+      this.$axios.get('staffs'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -137,12 +146,12 @@ export default {
     clear() {
       (this.form.name = ""),
       (this.form.last_name = "");
-      (this.form.email = "");
+      (this.form.father_name = "");
       (this.form.cnic = "");
       (this.form.phone = "");
-      (this.form.salary = "");
+      (this.form.fees = "");
       (this.form.address = "");
-      (this.form.start_date = "");
+      (this.form.regint = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -151,8 +160,9 @@ export default {
     },
 
     del(id = 0) {
-      this.$delete(`staff/${id}`);
-    },    
+      this.$delete(`staffs/${id}`);
+    },
+    
 
     edit(id = 0) {
       this.id = id;

@@ -34,6 +34,9 @@ const routes = [
       { path: '/staffs', 
       component: () => import('pages/staffs/index.vue') 
       },
+      { path: '/staffs/create',
+       component: () => import('pages/Staffs/create.vue')
+      },
       { path: '/exam', 
       component: () => import('pages/exams/index.vue') 
       },
@@ -138,9 +141,6 @@ const routes = [
       },
       { path: '/imran', 
       component: () => import('pages/imran/index.vue') 
-      },
-      { path: '/staff_imran', 
-      component: () => import('pages/staff_imran/index.vue') 
       },
     ]
   },

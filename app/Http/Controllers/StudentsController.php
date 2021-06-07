@@ -117,7 +117,7 @@ class StudentsController extends Controller
  
         $studentData = [
             'class_id'                  => intval($form->class_id),
-            'addmission_number'          =>$form->addmission_number,
+            'addmission_number'         =>$form->addmission_number,
             'roll_number'               =>$form->roll_number,
             'class_id'                  =>$form->class_id,
             'section_id'                =>$form->section_id,

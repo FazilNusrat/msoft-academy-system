@@ -1,12 +1,21 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-
+    <!-- <q-card class="bg-teal text-white" style="width: 300px">
+        <q-card-section>
+          <div class="text-h6">Add Class</div>
+        </q-card-section> -->
     <h-title>Teacher Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
           >Add New</l-button
         >
+
+        <l-button to="/Teacher/create" icon="add" color="green"
+          >New Page</l-button
+        >
+
+
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
@@ -20,7 +29,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('teacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('TeacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -36,8 +45,8 @@
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import NAddModal from 'src/components/modals/teacher/Add.vue'
-import NEditModal from 'src/components/modals/teacher/Edit.vue'
+import NAddModal from 'src/components/modals/Teacher/Add.vue'
+import NEditModal from 'src/components/modals/Teacher/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -72,17 +81,16 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'last_name', field: row=>row.last_name, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father_name', field: row=>row.father_name, sortable: true },
-        { name: 'eduaction',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'eduaction', field: row=>row.eduaction, sortable: true },
+        { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
+        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Last Name', field: row=>row.last_name, sortable: true },
+        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'cnic',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'cnic', field: row=>row.cnic, sortable: true },
-        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'phone', field: row=>row.phone, sortable: true },
-        { name: 'gender_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'gender_id', field: row=>row.gender_id, sortable: true },
-        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'address', field: row=>row.address, sortable: true },
-        { name: 'birth_day',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'birth_day', field: row=>row.birth_day, sortable: true },
-        { name: 'age',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'age', field: row=>row.age, sortable: true },
+        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.mobile_number, sortable: true },
+        { name: 'current_address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Current Address', field: row=>row.current_address, sortable: true },
+        { name: 'permenent_address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Permenent Address', field: row=>row.permenent_address, sortable: true },
+        { name: 'education_level',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Education Level', field: row=>row.education_level, sortable: true },
+        { name: 'experience',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Experience', field: row=>row.experience, sortable: true },
+        { name: 'tazkera_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Tazkera Number', field: row=>row.tazkera_number, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -108,7 +116,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('teacher'+
+      this.$axios.get('Teacher'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -136,15 +144,12 @@ export default {
     clear() {
       (this.form.name = ""),
       (this.form.last_name = "");
-      (this.form.father_name = "");
-      (this.form.eduaction = "");
       (this.form.email = "");
       (this.form.cnic = "");
       (this.form.phone = "");
-      (this.form.gender_id = "");
+      (this.form.fees = "");
       (this.form.address = "");
-      (this.form.birth_day = "");
-      (this.form.age = "");
+      (this.form.regint = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
@@ -153,8 +158,7 @@ export default {
     },
 
     del(id = 0) {
-            this.$delete(`teacher/${id}`);
-
+      this.$delete(`Teacher/${id}`);
     },
     
 

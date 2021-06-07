@@ -725,15 +725,6 @@ export default {
       departments: [],
       slected_department: null,
       department_options: [],
-      currencies: [],
-      currency_options: [],
-      selected_currency: null,
-      currency_type_options: [],
-      selected_type_currency: null,
-      status: [
-        { name: this.$t("Active"), value: 1 },
-        { name: this.$t("DeActive"), value: 0 },
-      ],
       selectedStatus: { name: this.$t("Active"), value: 1 },
       form: {
         addmission_number: null,

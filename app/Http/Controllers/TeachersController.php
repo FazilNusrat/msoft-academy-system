@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class TeachersController extends Controller
 {
-    protected $teacher;
-    public function __construct(Teachers $teacher)
+    protected $Teachers;
+    public function __construct(Teachers $Teachers)
     {
-        $this->teacher = $teacher;
+        $this->Teachers = $Teachers;
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class TeachersController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->teacher->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->Teachers->getTeachers($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -46,26 +46,45 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
+        $form = json_decode($request->form);
         
-        $teacher   = $this->teacher->create([
-            'name'  =>$request->name,
-            'last_name'  =>$request->last_name,
-            'father_name'  =>$request->father_name,
-            'education'  =>$request->education,
-            'email'  =>$request->email,
-            'cnic'  =>$request->cnic,
-            'phone'  =>$request->phone,
-            'gender_id'  =>$request->gender_id,
-            'address'  =>$request->address,
-            'birth_day'  =>$request->birth_day,
-            'age'  =>$request->age,
-            ]);
-            return 1;
+        //image
+        $name = '';
+        if ($request->hasFile('photo')) {
+            $original_filename = $form->file('photo')->getClientOriginalName();
+            $original_filename_arr = explode('.', $original_filename);
+            $file_ext = end($original_filename_arr);
+            $name = 'EMP-' . time() . '.' . $file_ext;
+            $img = Image::make($form->file('photo'));
+            $img->save(public_path('uploads/staff/' . $name));
+            $img->resize(100,100, function($constraint)
+            {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/Teacher/small/' . $name));
+            // $form->merge(['photo' => $name]);
+        }
+        $TeacherData = [
+            'addmission_number'         =>$form->addmission_number,
+            'first_name'                =>$form->first_name,
+            'last_name'                 =>$form->last_name,
+            'father_name'               =>$form->father_name,
+            'phone'                     =>$form->phone,
+            'email'                     =>$form->email,
+            'salary'                    =>$form->salary,
+            'address'                   =>$form->address,
+            'city'                      =>$form->city,
+            'job_name'                  =>$form->job_name,
+        ];
 
-            if ($teacher) {
-           return ['teacher Message'];
-       }
-    }
+        $Teacher   = $this->Teacher->create($TeacherData);
+        if($staff)
+        {
+            return ['Class Message'];
+        }
+        return json_encode($this->staff->find($id));
+        // return ['ttt'=>json_decode($request->form)];
+          
+    } 
 
     /**
      * Display the specified resource.
@@ -73,7 +92,7 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */
-    public function show(Teachers $teacher)
+    public function show(Teachers $Teacher)
     {
         //
     }
@@ -84,9 +103,9 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teachers $teacher,$id)
+    public function edit(Teachers $Teacher,$id)
     {
-        return $this->teacher->findOrFail($id);
+        return $this->Teacher->findOrFail($id);
     }
 
     /**
@@ -96,26 +115,26 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */ 
-    public function update(Request $request, Teachers $teacher)
+    public function update(Request $request, Teachers $Teacher)
     {
         $id = $request->id;
-        $teacher = $this->teacher->findOrFail($id);
+        $Teacher = $this->Teacher->findOrFail($id);
         $this->validate($request, [
             'name' => 'required|string|max:191',
         ]);
-        $teacher->update($request->all());
+        $Teacher->update($request->all());
         return ['message' => 'Update Successfully'];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teachers  $teacher
+     * @param  \App\Models\Teachers  $Teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teachers $teacher,$id)
+    public function destroy(Teachers $Teacher,$id)
     {
-        $teacher = $this->teacher->find($id);
-        $teacher->delete();
+        $Teacher = $this->Teacher->find($id);
+        $Teacher->delete();
     }
 }
