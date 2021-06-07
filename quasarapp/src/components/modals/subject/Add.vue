@@ -4,7 +4,7 @@
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         <!-- <q-card-section> -->
         <div class="three_d q-pa-sm bg-cyan-7 text-white">
-          {{ $t("AddSubject") }}
+          {{ $t("Add Subject") }}
         </div>
         <!-- </q-card-section> -->
         <q-separator />
