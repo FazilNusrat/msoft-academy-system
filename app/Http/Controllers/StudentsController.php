@@ -98,7 +98,12 @@ class StudentsController extends Controller
             'Permanent_address'         => $form->student_address->Permanent_address,
         ];
         $transport_details = [
-            'route_list'                => $form->transport_details->route_list,
+            'name'                     => $form->transport_details->name,
+            'last_name'                => $form->transport_details->last_name,
+            'phone'                    => $form->transport_details->phone,
+            'car_model'                => $form->transport_details->car_model,
+            'palet_number'             => $form->transport_details->palet_number,
+            'distrct'                  => $form->transport_details->distrct,
         ];
         // $hostel_details = [
 
@@ -117,7 +122,7 @@ class StudentsController extends Controller
  
         $studentData = [
             'class_id'                  => intval($form->class_id),
-            'addmission_number'          =>$form->addmission_number,
+            'addmission_number'         =>$form->addmission_number,
             'roll_number'               =>$form->roll_number,
             'class_id'                  =>$form->class_id,
             'section_id'                =>$form->section_id,

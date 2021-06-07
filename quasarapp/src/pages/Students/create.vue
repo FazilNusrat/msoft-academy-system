@@ -47,6 +47,7 @@
             @filter="filterDepartment"
             :name.sync="slected_department"
           />
+          
           <input-required
             class="q-mx-sm col"
             icon="apps"
@@ -78,16 +79,15 @@
           <!-- <date-picker class="q-mx-sm col" :name.sync="form.date_of_birth" :label="$t('Date Of Birth')" /> -->
           <date-picker
             class="q-mx-sm col"
+            dense
             :date.sync="form.date_of_birth"
             :label="$t('Date Of Birth')"
           />
           <n-select
             icon="mdi-clock"
             :label="$t('Category')"
-            :model.sync="selected_time"
             :options="times"
-            :name.sync="form.category"
-            @filter="filterTimes"
+            @filter=""
           />
         </div>
 
@@ -128,6 +128,7 @@
             :label="$t('Email')"
           />
           <date-picker
+          dense=""
             class="q-mx-sm col"
             :date.sync="form.addmission_date"
             :label="$t('Addmission Date')"
@@ -174,6 +175,7 @@
           <date-picker
             :name.sync="form.as_on_date"
             class="col"
+            dense
             :label="$t('As On Date')"
           />
           <input-required
@@ -263,7 +265,7 @@
             icon="contact_phone"
           />
           <q-tab
-            :label="$t('Transport Details')"
+            :label="$t('Transport Detddails')"
             name="transport_details"
             icon="payment"
           />
@@ -413,29 +415,26 @@
                   "
                   class="text-cyan-7 flex flex-center"
                 >
-                  <div class="row justify-center">
-                    <q-radio
-                      color="cyan-7"
-                      :label="$t('Male')"
-                      class="col-md-4"
-                      val="male"
-                      v-model="form.parent_details.gender"
-                    />
-                    <q-radio
-                      color="cyan-7"
-                      :label="$t('Female')"
-                      class="col-md-4"
-                      val="female"
-                      v-model="form.parent_details.gender"
-                    />
-                    <q-radio
-                      color="cyan-7"
-                      :label="$t('Other')"
-                      class="col-md-4"
-                      val="other"
-                      v-model="form.parent_details.gender"
-                    />
-                  </div>
+                <div class="row justify-center">
+                  <q-radio
+                  :label="$t('Male')"
+                  class="col-md-4"
+                  val="male"
+                  v-model="form.parent_details.gender"
+                  />
+                  <q-radio
+                  :label="$t('Female')"
+                  class="col-md-4"
+                  val="female"
+                  v-model="form.parent_details.gender"
+                  />
+                  <q-radio
+                  :label="$t('Other')"
+                  class="col-md-4"
+                  val="other"
+                  v-model="form.parent_details.gender"
+                  />
+                </div>
                 </div>
               </div>
             </div>
@@ -481,16 +480,57 @@
             </div>
           </div>
           <div class="row">
-            <div class="col q-ml-sm">
-              <div class="q-gutter-md">
-                <q-select
-                  filled
-                  v-model="model"
-                  :options="options"
-                  :name.sync="form.transport_details.route_list"
-                  label="Route List"
-                />
-              </div>
+              <div class="col">
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.name"
+                :label="$t(' Name')"
+              />
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.last_name"
+                :label="$t('last_name')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.distrct"
+                :label="$t('Distrct')"
+              />
+            </div>
+              <div class="col">
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.phone"
+                :label="$t('Phone Number')"
+              />
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.palet_number"
+                :label="$t('Number Palet')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.car_model"
+                :label="$t('Car')"
+              />
             </div>
           </div>
         </q-tab-panel>
@@ -777,7 +817,12 @@ export default {
           Permanent_address: null,
         },
         transport_details: {
-          route_list: null,
+          name: null,
+          last_name: null,
+          phone: null,
+          palet_number: null,
+          car_model: null,
+          distrct: null,
         },
         // hostel_details
         //{
