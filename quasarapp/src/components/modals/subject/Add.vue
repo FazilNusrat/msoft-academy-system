@@ -23,13 +23,6 @@
             :label="$t('Description')"
             :name.sync="form.description"
           />
-          <a-select
-            icon="mdi-clock"
-            :label="$t('Teachers List')"
-            :model.sync="selected_teacher"
-            :options="teachers"
-            @filter="filterTeachers"
-          />
         </q-card-section>
 
         <q-separator />
@@ -55,13 +48,10 @@ export default {
   },
   data() {
     return {
-      teachers: [],
-      selected_teacher: null,
       submitting: false,
       form: {
         name: "",
         description: "",
-        teacher_id: "",
       },
     };
   },
