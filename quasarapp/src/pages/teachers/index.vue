@@ -82,15 +82,10 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
-        { name: 'last_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Last Name', field: row=>row.last_name, sortable: true },
         { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
         { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.mobile_number, sortable: true },
-        { name: 'current_address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Current Address', field: row=>row.current_address, sortable: true },
-        { name: 'permenent_address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Permenent Address', field: row=>row.permenent_address, sortable: true },
         { name: 'education_level',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Education Level', field: row=>row.education_level, sortable: true },
-        { name: 'experience',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Experience', field: row=>row.experience, sortable: true },
-        { name: 'tazkera_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Tazkera Number', field: row=>row.tazkera_number, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -116,7 +111,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('Teacher'+
+      this.$axios.get('teacher'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -158,7 +153,7 @@ export default {
     },
 
     del(id = 0) {
-      this.$delete(`Teacher/${id}`);
+      this.$delete(`teacher/${id}`);
     },
     
 

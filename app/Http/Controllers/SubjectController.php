@@ -55,7 +55,6 @@ class SubjectController extends Controller
         $subject   = $this->subject->create([
              'name'  =>$request->name,
              'description'  =>$request->description,
-             'teacher_id'  =>$request->teacher_id,
          ]);
 
         if ($subject) {
