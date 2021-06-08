@@ -116,7 +116,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('Teacher'+
+      this.$axios.get('teacher'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -158,7 +158,7 @@ export default {
     },
 
     del(id = 0) {
-      this.$delete(`Teacher/${id}`);
+      this.$delete(`teacher/${id}`);
     },
     
 
