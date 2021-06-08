@@ -82,7 +82,7 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'first_name', align: 'center', label: 'First_Name', field: row=>row.first_name, sortable: true },
-        { name: 'class_id',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Class', field: row=>row.class_id, sortable: true },
+        { name: 'class',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Class', field: row=>row.class_id, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
         { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.mobile_number, sortable: true },
         { name: 'addmission_Date',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Addmission Date', field: row=>row.addmission_Date, sortable: true },

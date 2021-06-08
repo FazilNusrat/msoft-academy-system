@@ -65,7 +65,7 @@
                 icon="manage_accounts"
               />
             </q-item-section>
-            <q-item-section>Department</q-item-section>
+            <q-item-section>Section</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/departments?id=7" round flat></q-btn>
               </q-item-section>

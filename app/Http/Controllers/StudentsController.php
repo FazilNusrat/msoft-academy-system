@@ -125,7 +125,7 @@ class StudentsController extends Controller
             'addmission_number'         =>$form->addmission_number,
             'roll_number'               =>$form->roll_number,
             'class_id'                  =>$form->class_id,
-            'section_id'                =>$form->section_id,
+            // 'section_id'                =>$form->section_id,
             'first_name'                =>$form->first_name,
             'last_name'                 =>$form->last_name,
             'gender'                    =>$form->gender,

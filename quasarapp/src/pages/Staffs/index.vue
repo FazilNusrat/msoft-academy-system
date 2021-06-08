@@ -81,10 +81,10 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'First_Name', align: 'center', label: 'First Name', field: row=>row.First_Name, sortable: true },
+        { name: 'First_Name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
         { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father Name', field: row=>row.father_name, sortable: true },
-        { name: 'Salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Salary', field: row=>row.Salary, sortable: true },
-        { name: 'City',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'City', field: row=>row.City, sortable: true },
+        { name: 'Salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Salary', field: row=>row.salary, sortable: true },
+        { name: 'City',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'City', field: row=>row.city, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -110,7 +110,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('staffs'+
+      this.$axios.get('staff'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
