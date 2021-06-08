@@ -15,7 +15,7 @@ class Students extends Model
     protected $fillable=[
         'admission_no',
         'roll_number',
-        'class',
+        'class_id',
         'section',
         'first_name',
         'last_name',
@@ -34,9 +34,12 @@ class Students extends Model
        
     ];
 
-    public function getStudent($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
-		$query = $this->selectRaw('*')
+    public function getStudent($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") 
+    {
+        $query = $this->selectRaw('*')
 			->groupBy('id');
+		// $query = $this->leftjoin('classes','students.class_id' ,'classes.id')
+        // ->selectRaw('students.id, students.first_name, students.mobile_number,students.email, students.addmission_Date, classes.name as class_name, classes.id as class_id');
 		if ($descending === "true") {
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {

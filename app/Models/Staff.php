@@ -24,7 +24,7 @@ class Staff extends Model
         'job_name',
     ];
 
-    public function getStaff($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
+    public function getstaff($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {
 		$query = $this->selectRaw('*')
 			->groupBy('id');
 		if ($descending === "true") {

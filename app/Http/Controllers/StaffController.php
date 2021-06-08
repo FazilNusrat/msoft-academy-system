@@ -26,7 +26,7 @@ class StaffController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->staff->getStaff($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->staff->getstaff($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
    

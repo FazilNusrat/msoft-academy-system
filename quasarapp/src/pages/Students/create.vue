@@ -688,8 +688,8 @@ export default {
       form: {
         addmission_number: null,
         roll_number: null,
-        class_id: null,
-        section_id: null,
+        class_id: 0,
+        section_id: 0,
         first_name: null,
         last_name: null,
         gender: "male",
@@ -763,14 +763,16 @@ export default {
     handleSubmit() {
       console.log("come on aostaz");
       this.submitting = true;
-      this.form.class_id =
-        this.selected_class && this.selected_class.id > 0
-          ? this.selected_class.id
-          : 0;
-      this.form.section_id =
-        this.selected_section && this.selected_section.id > 0
-          ? this.selected_section.id
-          : 0;
+      // this.form.class_id =
+      //   this.selected_class && this.selected_class.id > 0
+      //     ? this.selected_class.id
+      //     : 0;
+      this.form.class_id = this?.selected_class?.id;
+      this.form.section_id = this?.selected_section?.id;
+      // this.form.section_id =
+      //   this.selected_section && this.selected_section.id > 0
+      //     ? this.selected_section.id
+      //     : 0;
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
       this.$axios
