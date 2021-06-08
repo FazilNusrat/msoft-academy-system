@@ -11,7 +11,7 @@
           >Add New</l-button
         >
 
-        <l-button to="/Teacher/create" icon="add" color="green"
+        <l-button to="/teachers/create" icon="add" color="green"
           >New Page</l-button
         >
 

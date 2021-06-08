@@ -175,7 +175,7 @@
             </q-item-section>
             <q-item-section>Teacher</q-item-section>
             <q-item-section side>
-                <q-btn icon="mdi-plus" color="black" size="sm" to="/teachers?id=7" round flat></q-btn>
+                <q-btn icon="mdi-plus" color="black" size="sm" to="/teacher?id=7" round flat></q-btn>
               </q-item-section>
           </q-item>
           <q-item
