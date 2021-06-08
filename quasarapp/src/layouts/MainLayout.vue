@@ -161,7 +161,7 @@
             class="my_hover"
             dense
             v-ripple
-            to="/teachers"
+            to="/teacher"
           >
             <q-item-section avatar>
               <q-btn
@@ -176,28 +176,6 @@
             <q-item-section>Teacher</q-item-section>
             <q-item-section side>
                 <q-btn icon="mdi-plus" color="black" size="sm" to="/teacher?id=7" round flat></q-btn>
-              </q-item-section>
-          </q-item>
-          <q-item
-            clickable
-            class="my_hover"
-            dense
-            v-ripple
-            to="/imran"
-          >
-            <q-item-section avatar>
-              <q-btn
-                push
-                color="white"
-                size="sm"
-                text-color="cyan-7"
-                round
-                icon="apps"
-              />
-            </q-item-section>
-            <q-item-section>Imran Teacher</q-item-section>
-            <q-item-section side>
-                <q-btn icon="mdi-plus" color="black" size="sm" to="/imran?id=7" round flat></q-btn>
               </q-item-section>
           </q-item>
           <q-item clickable class="my_hover" dense v-ripple to="/staffs">
