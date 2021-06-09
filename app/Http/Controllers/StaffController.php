@@ -58,15 +58,19 @@ class StaffController extends Controller
         }
         $staffData = [
             'addmission_number'         =>$form->addmission_number,
+            'roll_number'               =>$form->roll_number,
             'first_name'                =>$form->first_name,
             'last_name'                 =>$form->last_name,
             'father_name'               =>$form->father_name,
             'phone'                     =>$form->phone,
+            'date_of_birth'             =>$form->date_of_birth,
             'email'                     =>$form->email,
             'salary'                    =>$form->salary,
             'address'                   =>$form->address,
             'city'                      =>$form->city,
             'job_name'                  =>$form->job_name,
+            'photo'                     =>$form->photo,
+            'gender'                    =>$form->gender,
         ];
 
         $staff   = $this->staff->create($staffData);

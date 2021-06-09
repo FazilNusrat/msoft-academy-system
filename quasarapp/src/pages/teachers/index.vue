@@ -83,7 +83,7 @@ export default {
         { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
         { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.mobile_number, sortable: true },
+        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
         { name: 'education_level',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Education Level', field: row=>row.education_level, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 

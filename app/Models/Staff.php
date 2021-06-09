@@ -13,15 +13,19 @@ class Staff extends Model
     protected $table="staffs";
     protected $fillable=[
         'addmission_number',
+        'roll_number',
         'first_name',
         'last_name',
         'father_name',
         'phone',
+        'date_of_birth',
         'email',
         'salary',
         'address',
         'city',
         'job_name',
+        'gender',
+        'photo',
     ];
 
     public function getstaff($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {

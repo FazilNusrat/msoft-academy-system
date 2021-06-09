@@ -3,120 +3,177 @@
     <div
       icon="person_add"
       bg="bg-cyan-7"
-      class="q-ma-smbg my_radio_less bg-cyan-7 my_border_white text-white three_d glossy text-h6 q-pl-sm"
+      class="q-ma-xs bg my_radio_less bg-cyan-7 my_border_white text-white three_d glossy text-h6 q-pl-sm"
     >
       {{ $t("Add Staffs") }}
     </div>
-    <q-card>
-      <div class="q-pa-lg">
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
-            <input-required
-              icon="explore"
-              :label="$t('addmission No')"
-              ref="modalName"
-              autofocus="autofocus"
-              refname="name"
-              :name.sync="form.addmission_number"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('First Name')"
-              ref="modalName"
-              autofocus="autofocus"
-              refname="name"
-              :name.sync="form.first_name"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Last Name')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.last_name"
-            />
-          </div>
+
+
+    <!--  -->
+        <div class="row q-mt-sm">
+      <div class="col-9">
+        <div class="row q-mb-sm q-px-sm">
+          <input-required
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.addmission_number"
+            outlined
+            :label="$t('Addmission No')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.roll_number"
+            outlined
+            :label="$t('Roll Number')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.first_name"
+            outlined
+            :label="$t('First Name')"
+          />
         </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Father Name')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.father_name"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Phone')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.phone"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Email')"
-              type="email"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.email"
-            />
-          </div>
+
+        <div class="row q-mb-sm q-px-sm">
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.last_name"
+            outlined
+            :label="$t('Last Name')"
+          />
+          
+          <input-required
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :label="$t('Father Name')"
+            :name.sync="form.father_name"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.phone"
+            outlined
+            :label="$t('Mobile Number')"
+          />
         </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Salary')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.salary"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Address')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.address"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('City')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.city"
-            />
-          </div>
+
+        <div class="row q-mb-sm q-px-sm">
+          <date-picker
+            class="col q-ma-xs"
+            dense
+            :date.sync="form.date_of_birth"
+            :label="$t('Date Of Birth')"
+          />
+           <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.email"
+            :label="$t('Email')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.salary"
+            :label="$t('Salary')"
+          />
         </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Job Name')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.job_name"
-            />
-          </div>
-        </div>
+
+        <div class="row q-mb-sm q-px-sm">
+         <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.address"
+            :label="$t('Address')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.city"
+            :label="$t('City')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.job_name"
+            :label="$t('Job Name')"
+          />
+        </div>  
       </div>
-    </q-card>
+      <div class="col-3">
+        <div class="q-mx-sm q-mb-sm">
+          <div
+            class="bg-cyan-7 text-white text-center"
+            style="border-radius: 0.3rem 0.3rem 0 0"
+          >
+            <div class="text-h7">{{ $t("Gender") }}</div>
+          </div>
+          <div
+            style="border: 1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem"
+            class="text-cyan-7 flex flex-center"
+          >
+            <div class="row justify-center">
+              <q-radio
+                :label="$t('Male')"
+                class="col-md-4"
+                val="male"
+                v-model="form.gender"
+              />
+              <q-radio
+                :label="$t('Female')"
+                class="col-md-4"
+                val="female"
+                v-model="form.gender"
+              />
+              <q-radio
+                :label="$t('Other')"
+                class="col-md-4"
+                val="other"
+                v-model="form.gender"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="q-ma-xs">
+                <q-uploader
+                  class="full-width"
+                  :label="$t('Photo')"
+                  :factory="uploadFile"
+                  max-files="1"
+                  auto-upload
+                  accept=".jpg, image/*"
+                  @rejected="onRejected"
+                  ref="photo"
+                />
+              </div>
+      </div>
+    </div>
+    <!--  -->
     <q-card-actions class="col-5 flex flex-center">
       <q-btn
         push
         color="light-blue"
-        class="q-ma-sm"
+        class="q-ma-xs"
         @click="handleSubmit($event)"
         text-color="white"
         icon="save"
@@ -138,16 +195,19 @@ export default {
     return {
       form: {
         addmission_number: null,
+        roll_number: null,
         first_name: null,
         last_name: null,
         father_name: null,
         phone: null,
-        email: null,
+        date_of_birth: null,
         photo: null,
         salary: null,
         address: null,
         city: null,
         job_name: null,
+        gender: "male",
+        
       }
     };
   },

@@ -18,7 +18,7 @@
 
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
-        <l-button icon="mdi-father_name-send" color="red-6">father_name</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
@@ -83,8 +83,9 @@ export default {
         },
         { name: 'First_Name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
         { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'father Name', field: row=>row.father_name, sortable: true },
-        { name: 'Salary',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Salary', field: row=>row.salary, sortable: true },
-        { name: 'City',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'City', field: row=>row.city, sortable: true },
+        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
+        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Email', field: row=>row.email, sortable: true },
+        { name: 'address',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Address', field: row=>row.address, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],

@@ -15,16 +15,20 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->id();
-            $table->string('addmission_number');
+            $table->integer('addmission_number');
+            $table->integer('roll_number');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('father_name');
             $table->integer('phone');
+            $table->date('date_of_birth');
             $table->string('email');
-            $table->string('salary');
+            $table->integer('salary');
             $table->string('address');
             $table->string('city');
             $table->string('job_name');
+            $table->string('gender');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

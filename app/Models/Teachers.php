@@ -14,11 +14,16 @@ class Teachers extends Model
   public $incrementing = false;
   protected $table="teachers";
   protected $fillable=[
+    'addmission_number',
+    'roll_number',
     'first_name',
     'last_name',
     'father_name',
-    'email',
     'phone',
+    'date_of_birth',
+    'email',
+    'photo',
+    'salary',
     'current_address',
     'permenent_address',
     'education_level',

@@ -25,7 +25,7 @@ class TeachersController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->Teachers->getTeachers($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->Teachers->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -64,16 +64,21 @@ class TeachersController extends Controller
             // $form->merge(['photo' => $name]);
         }
         $TeacherData = [
-            'first_name'                =>$form->first_name,
-            'last_name'                 =>$form->last_name,
-            'father_name'               =>$form->father_name,
-            'email'                     =>$form->email,
-            'phone'                     =>$form->phone,
-            'current_address'                    =>$form->current_address,
-            'permenent_address'                   =>$form->permenent_address,
-            'education_level'                      =>$form->education_level,
-            'experience'                  =>$form->experience,
-            'tazkera_number'                  =>$form->experience,
+            'addmission_number'                =>$form->addmission_number,
+            'roll_number'                      =>$form->roll_number,
+            'first_name'                       =>$form->first_name,
+            'last_name'                        =>$form->last_name,
+            'father_name'                      =>$form->father_name,
+            'email'                            =>$form->email,
+            'phone'                            =>$form->phone,
+            'date_of_birth'                    =>$form->date_of_birth,
+            'email'                            =>$form->email,
+            'salary'                           =>$form->salary,
+            'current_address'                  =>$form->current_address,
+            'permenent_address'                =>$form->permenent_address,
+            'education_level'                  =>$form->education_level,
+            'experience'                       =>$form->experience,
+            'tazkera_number'                   =>$form->experience,
         ];
 
         $Teacher   = $this->Teachers->create($TeacherData);

@@ -3,7 +3,7 @@
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
         
-        <q-card-section class="row items-center q-pb-none three_d q-pa-sm bg-cyan-7 text-white">{{$t('Add Department')}}
+        <q-card-section class="row items-center q-pb-none three_d q-pa-sm bg-cyan-7 text-white">{{$t('Add Section')}}
                <q-space />
                <q-btn icon="close" flat round dense v-close-popup />
                </q-card-section> 
