@@ -2,13 +2,12 @@
   <div>
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
-        <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('Add Class')}}
-          </div>
-         
-        <!-- </q-card-section> -->
 
-        <q-separator />
+              <q-card-section class="row items-center q-pb-none three_d q-pa-sm bg-cyan-7 text-white">{{$t('Add Class')}}
+               <q-space />
+               <q-btn icon="close" flat round dense v-close-popup />
+               </q-card-section> 
+
           
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>

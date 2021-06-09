@@ -2,11 +2,11 @@
   <div>
     <q-card >
       <q-form @submit.prevent="onSubmit" @reset="onReset">
-        <!-- <q-card-section> -->
-          <div class="three_d q-pa-sm bg-cyan-7 text-white">{{$t('expense')}}</div>
-        <!-- </q-card-section> -->
-
-        <q-separator />
+        
+        <q-card-section class="row items-center q-pb-none three_d q-pa-sm bg-cyan-7 text-white">{{$t('Add Expense')}}
+               <q-space />
+               <q-btn icon="close" flat round dense v-close-popup />
+               </q-card-section>
 
         <q-card-section style="max-height: 50vh" class="scroll">
           <a-select
