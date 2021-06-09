@@ -74,6 +74,7 @@ class TeachersController extends Controller
             'date_of_birth'                    =>$form->date_of_birth,
             'email'                            =>$form->email,
             'salary'                           =>$form->salary,
+            'gender'                           =>$form->gender,
             'current_address'                  =>$form->current_address,
             'permenent_address'                =>$form->permenent_address,
             'education_level'                  =>$form->education_level,

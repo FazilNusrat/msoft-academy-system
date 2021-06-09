@@ -24,6 +24,7 @@ class Teachers extends Model
     'email',
     'photo',
     'salary',
+    'gender',
     'current_address',
     'permenent_address',
     'education_level',
