@@ -29,8 +29,6 @@
               :name.sync="form.last_name"
             />
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
@@ -40,6 +38,8 @@
               :name.sync="form.father_name"
             />
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
@@ -59,9 +59,7 @@
               :name.sync="form.email"
             />
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
+         <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Current Address')"
@@ -70,6 +68,8 @@
               :name.sync="form.current_address"
             />
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
@@ -88,9 +88,7 @@
               :name.sync="form.education_level"
             />
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
+         <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Experience')"
@@ -99,6 +97,8 @@
               :name.sync="form.experience"
             />
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"

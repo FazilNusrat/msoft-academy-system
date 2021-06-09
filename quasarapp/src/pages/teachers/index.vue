@@ -8,8 +8,7 @@
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
-          >Add New</l-button
-        >
+          >Add New</l-button>
 
         <l-button to="/teachers/create" icon="add" color="green"
           >New Page</l-button

@@ -1,3 +1,4 @@
+
 <template>
   <div class="">
     <q-card >
@@ -12,7 +13,6 @@
           <n-name ref="modalName" class="q-mb-sm" autofocus="autofocus" icon="explore" :label="$t('Name')" refname="name" :name.sync="form.name"/>
           <n-simple icon="description" :label="$t('Description')" :name.sync="form.description"/>
         </q-card-section>
-
         <q-separator /> 
 
         <q-card-actions align="right">
