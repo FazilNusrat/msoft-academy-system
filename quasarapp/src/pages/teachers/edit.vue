@@ -7,195 +7,119 @@
     >
       {{ $t("Add Teachers") }}
     </div>
-    
-       <div class="row q-mt-sm">
-      <div class="col-9">
-        <div class="row q-mb-sm q-px-sm">
-          <input-required
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.addmission_number"
-            outlined
-            :label="$t('Addmission No')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.roll_number"
-            outlined
-            :label="$t('Roll Number')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.first_name"
-            outlined
-            :label="$t('First Name')"
-          />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.last_name"
-            outlined
-            :label="$t('Last Name')"
-          />
-          
-          <input-required
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :label="$t('Father Name')"
-            :name.sync="form.father_name"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.phone"
-            outlined
-            :label="$t('Mobile Number')"
-          />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
-          <date-picker
-            class="col q-ma-xs"
-            dense
-            :date.sync="form.date_of_birth"
-            :label="$t('Date Of Birth')"
-          />
-           <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.email"
-            :label="$t('Email')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.salary"
-            :label="$t('Salary')"
-          />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
-         <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.current_address"
-            :label="$t('Current Address')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.permenet_address"
-            :label="$t('permenet_address')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.education_level"
-            :label="$t('education Level')"
-          />
-        </div> 
-
-
-        <div class="row q-mb-sm q-px-sm">
-         <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.experience"
-            :label="$t('Experience')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.tazkera_number"
-            :label="$t('Tazkera Number')"
-          />
-        </div>  
-      </div>
-      <div class="col-3">
-        <div class="q-mx-sm q-mb-sm">
-          <div
-            class="bg-cyan-7 text-white text-center"
-            style="border-radius: 0.3rem 0.3rem 0 0"
-          >
-            <div class="text-h7">{{ $t("Gender") }}</div>
+    <q-card>
+      <div class="q-pa-lg">
+        <div class="row">
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('First Name')"
+              ref="modalName"
+              autofocus="autofocus"
+              refname="name"
+              :name.sync="form.first_name"
+            />
           </div>
-          <div
-            style="border: 1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem"
-            class="text-cyan-7 flex flex-center"
-          >
-            <div class="row justify-center">
-              <q-radio
-                :label="$t('Male')"
-                class="col-md-4"
-                val="male"
-                v-model="form.gender"
-              />
-              <q-radio
-                :label="$t('Female')"
-                class="col-md-4"
-                val="female"
-                v-model="form.gender"
-              />
-              <q-radio
-                :label="$t('Other')"
-                class="col-md-4"
-                val="other"
-                v-model="form.gender"
-              />
-            </div>
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Last Name')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.last_name"
+            />
+          </div>
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Father Name')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.father_name"
+            />
           </div>
         </div>
-
-        <div class="q-ma-xs">
-                <q-uploader
-                  class="full-width"
-                  :label="$t('Photo')"
-                  :factory="uploadFile"
-                  max-files="1"
-                  auto-upload
-                  accept=".jpg, image/*"
-                  @rejected="onRejected"
-                  ref="photo"
-                />
-              </div>
+        <div class="row">
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Phone')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.phone"
+            />
+          </div>
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Email')"
+              type="email"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.email"
+            />
+          </div>
+         <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Current Address')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.current_address"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Permenent Address')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.permenent_address"
+            />
+          </div>
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Education Level')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.education_level"
+            />
+          </div>
+         <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Experience')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.experience"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 q-pa-sm">
+            <input-simple
+              icon="explore"
+              :label="$t('Tazkera Number')"
+              ref="modalName"
+              refname="name"
+              :name.sync="form.tazkera_number"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-
+    </q-card>
     <q-card-actions class="col-5 flex flex-center">
       <q-btn
         push
         color="light-blue"
         class="q-ma-sm"
-        @click="handleSubmit($event)"
+        @click="handleUpdate()"
         text-color="white"
         icon="save"
-        :label="$t('Save')"
+        :label="$t('update')"
         v-close-popup
       />
       <q-btn color="red" outline :label="$t('Cancel')" to="/teacher" />
@@ -212,21 +136,15 @@ export default {
   data() {
     return {
       form: {
-        addmission_number: null,
-        roll_number: null,
         first_name: null,
         last_name: null,
         father_name: null,
-        phone: null,
-        date_of_birth: null,
         email: null,
-        photo: null,
-        salary: null,
-        current_address: null,
-        permenet_address: null,
+        phone: null,
+        current_permenent_address: null,
+        permenent_permenent_address: null,
         education_level: null,
         experience: null,
-        gender: 'male',
         tazkera_number: null,
       }
     };
@@ -239,7 +157,7 @@ export default {
   },
   computed: {},
   methods: {
-    handleSubmit() {
+    handleUpdate() {
       console.log("Thanks For Data Insert");
       this.submitting = true;
       this.form.class_id =
@@ -253,21 +171,22 @@ export default {
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
       this.$axios
-        .post("teacher/store", fileData, {
+        .post(`teacher'/${this.$route.params.id}`, fileData, {
           // headers: {
           //   "Content-Type": "multipart/form-data"
           // }
         })
         .then(res => {
-          this.$router.push("/teacher");
-          this.submitting = false;
-          this.$q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Successfull"
-          });
+          // this.$router.push("/teacher");
+          // this.submitting = false;
+          // this.$q.notify({
+          //   color: "green-4",
+          //   textColor: "white",
+          //   icon: "cloud_done",
+          //   message: "Successfull"
+          // });
         });
+
     },
     uploadFile(files) {
       //   this.form.personal.photo = files[0];
@@ -445,8 +364,33 @@ export default {
         }
       );
     },
+    editData() {
+      this.$axios.get(`teacher/edit/${this.$route.params.id}`).then(data => {
+        data = data.data;
+        this.form.first_name = data.first_name;
+        this.form.last_name = data.last_name;
+        this.form.father_name = data.father_name;
+        this.form.phone = data.phone;
+        this.form.email = data.email;
+        this.form.current_address = data.current_address;
+        this.form.permenent_address = data.permenent_address;
+        this.form.education_level = data.education_level;
+        this.form.experience = data.experience;
+        this.form.tazkera_number = data.tazkera_number;
+        // this.selectedStatus = this.status.find(
+        //   e => e.value === (data.status ? 1 : 0)
+        // );
+        // this.selected_department = this.departments.find(
+        //   e => e.id === data.department_id
+        // );
+        // this.selected_time = this.times.find(e => e.id === data.time_id);
+        
+      });
+    }
   },
+  
   mounted() {
+    this.editData();
     // this.$getAcademy("department").then(() => {
     //   console.log("aaaaa", this.departments);
     // });

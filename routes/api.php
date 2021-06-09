@@ -93,7 +93,7 @@ Route::get('student/{id}',  'StudentsController@destroy')->name('student');
 
 Route::get('teacher',['as'=>'teacher.index','uses'=>'TeachersController@index']);
 Route::post('teacher/store', ['as' => 'teacher.store', 'uses' => 'TeachersController@store']);
-Route::patch('teacher/{id}', ['as' => 'teacher.update', 'uses' => 'TeachersController@update']);
+Route::post('teacher/{id}', ['as' => 'teacher.update', 'uses' => 'TeachersController@update']);
 Route::get('teacher/edit/{id}', ['as' => 'teacher.edit', 'uses' => 'TeachersController@edit']);
 Route::get('teacher/{id}','TeachersController@destroy')->name('teacher');
 

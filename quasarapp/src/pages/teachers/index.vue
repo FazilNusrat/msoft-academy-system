@@ -39,7 +39,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
@@ -157,9 +156,11 @@ export default {
     
 
     edit(id = 0) {
-      this.id = id;
-      this.showEditModal = true;
+      // this.id = id;
+      // this.showEditModal = true;
+      this.$router.push('/teacher/edit/'+id)
     },
+
     addModal () {
       // alert("Clicked")
       // this.form.name = null;

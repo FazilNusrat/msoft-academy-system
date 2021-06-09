@@ -16,6 +16,9 @@ const routes = [
       { path: '/teacher', 
       component: () => import('pages/teachers/index.vue') 
       },
+       { path: '/teacher/edit/:id', 
+      component: () => import('pages/teachers/edit.vue') 
+      },
       { path: '/teachers/create',
        component: () => import('pages/teachers/create.vue')
       },

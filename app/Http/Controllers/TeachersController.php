@@ -78,7 +78,8 @@ class TeachersController extends Controller
             'permenent_address'                =>$form->permenent_address,
             'education_level'                  =>$form->education_level,
             'experience'                       =>$form->experience,
-            'tazkera_number'                   =>$form->experience,
+            'tazkera_number'                   =>$form->tazkera_number,
+
         ];
 
         $Teacher   = $this->Teachers->create($TeacherData);
@@ -108,9 +109,9 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teachers $Teacher,$id)
+    public function edit($id)
     {
-        return $this->Teacher->findOrFail($id);
+        return $this->Teachers->findOrFail($id);
     }
 
     /**
@@ -120,17 +121,19 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */ 
-    public function update(Request $request, Teachers $Teacher)
+    public function update(Request $request)
     {
+        return 22;
         $id = $request->id;
+        return $id;
         $Teacher = $this->Teacher->findOrFail($id);
         $this->validate($request, [
             'name' => 'required|string|max:191',
         ]);
         $Teacher->update($request->all());
         return ['message' => 'Update Successfully'];
-    }
 
+    }
     /**
      * Remove the specified resource from storage.
      *
