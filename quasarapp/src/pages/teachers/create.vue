@@ -223,7 +223,7 @@ export default {
         photo: null,
         salary: null,
         current_address: null,
-        permenet_address: null,
+        permenent_address: null,
         education_level: null,
         experience: null,
         gender: null,
