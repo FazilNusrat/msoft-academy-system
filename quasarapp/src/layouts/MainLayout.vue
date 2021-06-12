@@ -1577,7 +1577,7 @@
         group="somegroup"
         expand-separator
         icon="list"
-        label="Library"
+        label="library"
       >
 
         <q-list class="q-ml-md">
@@ -1677,7 +1677,6 @@
           </q-item>
         </q-list>
       </q-expansion-item>   
-
         <q-expansion-item
         color="white"
         group="somegroup"

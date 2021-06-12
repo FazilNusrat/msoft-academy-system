@@ -4,17 +4,21 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>Subjects Entry</h-title>
+    <h-title>Book Entry</h-title>
     <div class="row justify-between">
-
-      <div class="row">
+      <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
-          >Add New</l-button
+          >Add New</l-button>
+
+        <l-button to="/library/create" icon="add" color="green"
+          >New Page</l-button
         >
+
+
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
         <l-button icon="mdi-email-send" color="red-6">Email</l-button>
-        <l-button icon="mdi-whatsapp" color="orange-6">Whatsapp</l-button>
+        <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
         <l-button icon="mdi-database-search" color="blue-grey-9"
@@ -24,7 +28,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('SubjectList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('TeacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -33,19 +37,19 @@
     <n-edit-modal :id="id" @close="hideEditModal()" />
   </m-modal>
     </div>
-   
   </div>
 </template>
-
 <script>
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import NAddModal from 'src/components/modals/subject/Add.vue'
-import NEditModal from 'src/components/modals/subject/Edit.vue'
+import NAddModal from 'src/components/modals/Teacher/Add.vue'
+import NEditModal from 'src/components/modals/Teacher/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
+
 export default {
   components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
+
   data() {
     return {
       id:0,
@@ -62,9 +66,10 @@ export default {
         descending: true,
         page: 1,
         rowsPerPage: 12,
+        rowsNumber: 12 
       },
       columns: [
-         {
+        {
           name: "id",
           required: true,
           label: this.$t("Number"),
@@ -74,9 +79,13 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'name', align: 'center', label: 'Name', field: row=>row.name, sortable: true },
-        { name: 'description',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Description', field: row=>row.description, sortable: true },
+        { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
+        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
+        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
+        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
+        { name: 'education_level',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Education Level', field: row=>row.education_level, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
+
       ],
       data: [],
       original: [],
@@ -100,7 +109,7 @@ export default {
       let p = this.getProp;
       this.visible = true;
       this.loading = true;
-      this.$axios.get('subject'+
+      this.$axios.get('teacher'+
       '?current_page='+
       p.pagination.page+'&per_page='+p.pagination.rowsPerPage+'&filter='+this.filter+'&sort_by='+p.pagination.sortBy+'&descending='+p.pagination.descending).then(res=>{
       this.pagination.sortBy = p.pagination.sortBy
@@ -110,8 +119,8 @@ export default {
         this.data = res.data.data;
       this.data = res.data.data;
       this.pagination.page = res.data.current_page;
-      console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
-      console.log('p.pagination.descending===: ', p.pagination.descending);
+      // console.log('p.pagination.sortBy===: ', this.pagination.sortBy==='name');
+      // console.log('p.pagination.descending===: ', p.pagination.descending);
       if (this.pagination.sortBy==='name' || this.pagination.sortBy==='id')
          {
           if (this.pagination.descending)
@@ -122,20 +131,36 @@ export default {
       this.pagination.rowsPerPage = res.data.per_page;
       this.pagination.rowsNumber = res.data.total;
       }).catch(error=>{
+
     })
     },
     clear() {
-      (this.form.name = ""), (this.form.description = "");
+      (this.form.name = ""),
+      (this.form.last_name = "");
+      (this.form.email = "");
+      (this.form.cnic = "");
+      (this.form.phone = "");
+      (this.form.fees = "");
+      (this.form.address = "");
+      (this.form.regint = "");
     },
     head(name) {
       if (this.pagination.descending) this.pagination.descending = true;
       else this.pagination.descending = true;
       this.pagination.sortBy = name;
     },
-    edit (id=0) {
-        this.id = id;
-        this.showEditModal = true;
+
+    del(id = 0) {
+      this.$delete(`teacher/${id}`);
     },
+    
+
+    edit(id = 0) {
+      // this.id = id;
+      // this.showEditModal = true;
+      this.$router.push('/teacher/edit/'+id)
+    },
+
     addModal () {
       // alert("Clicked")
       // this.form.name = null;
@@ -149,10 +174,6 @@ export default {
       this.showEditModal = false;
       this.getRecord()
     },
-    del (id=0) {
-      //  console.log('id is ',id);
-      this.$delete(`subject/${id}`);
-    },
     info (id=0) {
       console.log('info: ', id);
     },
@@ -162,6 +183,7 @@ export default {
       this.getRecord();
     },
   },
+
   // created() {
   //   this.getdata();
   // },

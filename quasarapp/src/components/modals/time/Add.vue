@@ -11,14 +11,14 @@
         <q-card-section style="max-height: 50vh" class="scroll">
           <n-name icon="explore" :label="$t('Name')" class="q-mb-sm" ref="modalName" autofocus="autofocus" refname="name" :name.sync="form.name"/>
 
-          <a-select
+          <!-- <a-select
           icon="groups"
           :label="$t('Test')"
           :model.sync="selected_test"
           :options="classes"
           class="q-ma-sm"
           @filter="filterAccountTest"
-        />
+        /> -->
         </q-card-section>
 
         <q-separator />

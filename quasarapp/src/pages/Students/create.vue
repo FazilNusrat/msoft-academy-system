@@ -183,7 +183,7 @@
             icon="contact_phone"
           />
           <q-tab
-            :label="$t('Transport Detddails')"
+            :label="$t('Transport Details')"
             name="transport_details"
             icon="payment"
           />
@@ -404,24 +404,32 @@
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.name"
-                :label="$t(' Name')"
-              />
-              <input-simple
-                class="col q-ml-sm q-mb-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.transport_details.last_name"
-                :label="$t('last_name')"
+                :name.sync="form.transport_details.Driver_name"
+                :label="$t('Driver Name')"
               />
                <input-simple
                 class="col q-ml-sm q-mb-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.distrct"
-                :label="$t('Distrct')"
+                :name.sync="form.transport_details.route"
+                :label="$t('Route')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.price"
+                :label="$t('Price')"
+              />
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.km"
+                :label="$t('KM')"
               />
             </div>
               <div class="col">
@@ -430,16 +438,16 @@
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.phone"
-                :label="$t('Phone Number')"
+                :name.sync="form.transport_details.Area"
+                :label="$t('Area')"
               />
               <input-simple
                 class="col q-ml-sm q-mb-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.palet_number"
-                :label="$t('Number Palet')"
+                :name.sync="form.transport_details.plate_number"
+                :label="$t(' Plate #')"
               />
                <input-simple
                 class="col q-ml-sm q-mb-sm"
@@ -447,8 +455,10 @@
                 dense
                 outlined
                 :name.sync="form.transport_details.car_model"
-                :label="$t('Car')"
+                :label="$t('Car Type')"
               />
+               
+              
             </div>
           </div>
         </q-tab-panel>
@@ -726,12 +736,13 @@ export default {
           Permanent_address: null,
         },
         transport_details: {
-          name: null,
-          last_name: null,
-          phone: null,
-          palet_number: null,
+          driver_name: null,
+          price: null,
+          plate_number: null,
           car_model: null,
-          distrct: null,
+          area: null,
+          route: null,
+          km: null,
         },
         // hostel_details
         //{

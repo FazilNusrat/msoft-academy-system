@@ -50,18 +50,19 @@ class StudentsController extends Controller
     {
         // $f = json_decode($request->form);
         // $data = [
-        //     'name' => $form->name
-        // ]
-        // $s = $this->student->create($data);
-        // if($s) {
-        //     $this->info->create([
-                
-        //         'student_id'=>$s->id,
-        //         'salary' =>$form->inof->salary
-        //     ])
-        // }
-
-        $form = json_decode($request->form);
+            //     'name' => $form->name
+            // ]
+            // $s = $this->student->create($data);
+            // if($s) {
+                //     $this->info->create([
+                    
+                    //         'student_id'=>$s->id,
+                    //         'salary' =>$form->inof->salary
+                    //     ])
+                    // }
+                    
+                    $form = json_decode($request->form);
+                    return $form->class_id;
         
         //image
         $name = '';
@@ -98,12 +99,14 @@ class StudentsController extends Controller
             'Permanent_address'         => $form->student_address->Permanent_address,
         ];
         $transport_details = [
-            'name'                     => $form->transport_details->name,
-            'last_name'                => $form->transport_details->last_name,
-            'phone'                    => $form->transport_details->phone,
+            'driver_name'                     => $form->transport_details->driver_name,
+            'area'                    => $form->transport_details->area,
             'car_model'                => $form->transport_details->car_model,
-            'palet_number'             => $form->transport_details->palet_number,
-            'distrct'                  => $form->transport_details->distrct,
+            'plate_number'             => $form->transport_details->plate_number,
+            'area'                  => $form->transport_details->area,
+            'route'                  => $form->transport_details->route,
+            'km'                  => $form->transport_details->km,
+            'price'                  => $form->transport_details->price,
         ];
         // $hostel_details = [
 

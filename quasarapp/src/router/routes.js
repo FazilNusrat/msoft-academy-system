@@ -145,6 +145,12 @@ const routes = [
       { path: '/humandepartment', 
       component: () => import('pages/humandepartment/index.vue') 
       },
+      { path: '/booklist', 
+      component: () => import('pages/library/index.vue') 
+      },
+      { path: '/library/create',
+       component: () => import('pages/library/create.vue') 
+      },
     ]
   },
 
