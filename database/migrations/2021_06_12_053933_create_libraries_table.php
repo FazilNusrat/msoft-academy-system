@@ -15,7 +15,16 @@ class CreateLibrariesTable extends Migration
     {
         Schema::create('libraries', function (Blueprint $table) {
             $table->id();
-            $table->string                 ('addmission_number')       ->nullable();
+            $table->string('book_title');
+            $table->integer('book_number');
+            $table->string('rack_number');
+            $table->string('publicher');
+            $table->string('author');
+            $table->string('subject');
+            $table->integer('qty');
+            $table->string('book_price');
+            $table->string('post_date');
+            $table->string('description');
             $table->timestamps();
         });
     }

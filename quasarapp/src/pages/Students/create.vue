@@ -188,10 +188,9 @@
             icon="payment"
           />
           <q-tab
-            :label="$t('Hostel Details')"
-            name="hostel_details
-            "
-            icon="payment"
+            :label="$t('HostelDetails')"
+            name="hostel_details"
+            icon="business"
           />
           <q-tab
             :label="$t('Miscellaneous Details')"
@@ -462,38 +461,80 @@
             </div>
           </div>
         </q-tab-panel>
-
+        </q-tab-panel>
         <q-tab-panel name="hostel_details">
           <div class="row">
             <div>
               <div class="text-h6">{{ $t("HostelDetails") }}</div>
             </div>
           </div>
-          <div>
-            <div class="row">
-              <div class="col q-ml-sm">
-                <div class="q-gutter-md">
-                  <q-select
-                    filled
-                    v-model="model"
-                    :options="options"
-                    label="Hostel"
-                  />
-                </div>
-              </div>
-              <div class="col q-ml-sm">
-                <div class="q-gutter-md">
-                  <q-select
-                    filled
-                    v-model="model"
-                    :options="options"
-                    label="Room Number"
-                  />
-                </div>
-              </div>
+          <div class="row">
+              <div class="col">
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.Driver_name"
+                :label="$t('Driver Name')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.route"
+                :label="$t('Route')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.price"
+                :label="$t('Price')"
+              />
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.km"
+                :label="$t('KM')"
+              />
+            </div>
+              <div class="col">
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.Area"
+                :label="$t('Area')"
+              />
+              <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.plate_number"
+                :label="$t(' Plate #')"
+              />
+               <input-simple
+                class="col q-ml-sm q-mb-sm"
+                icon="apps"
+                dense
+                outlined
+                :name.sync="form.transport_details.car_model"
+                :label="$t('Car Type')"
+              />
+               
+              
             </div>
           </div>
         </q-tab-panel>
+
+        
 
         <q-tab-panel name="miscellaneous_details">
           <div class="row">

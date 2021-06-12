@@ -5,185 +5,114 @@
       bg="bg-cyan-7"
       class="q-ma-smbg my_radio_less bg-cyan-7 my_border_white text-white three_d glossy text-h6 q-pl-sm"
     >
-      {{ $t("Add Teachers") }}
+      {{ $t("Add Book") }}
     </div>
     
        <div class="row q-mt-sm">
-      <div class="col-9">
+      <div class="col-12">
         <div class="row q-mb-sm q-px-sm">
           <input-required
             class="col q-ma-xs"
             icon="apps"
             dense
-            :name.sync="form.addmission_number"
+            :name.sync="form.book_title"
             outlined
-            :label="$t('Addmission No')"
+            :label="$t('Book Title')"
           />
           <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
-            :name.sync="form.roll_number"
+            :name.sync="form.book_number"
             outlined
-            :label="$t('Roll Number')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.first_name"
-            outlined
-            :label="$t('First Name')"
+            :label="$t('Book Number')"
           />
         </div>
+        
 
         <div class="row q-mb-sm q-px-sm">
           <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
-            :name.sync="form.last_name"
+            :name.sync="form.rack_number"
             outlined
-            :label="$t('Last Name')"
+            :label="$t('Rack Number')"
           />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.publicher"
+            outlined
+            :label="$t('Publicher')"
+          />
+        </div>
+
+
+        <div class="row q-mb-sm q-px-sm">
+          <input-required
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.author"
+            outlined
+            :label="$t('Author')"
+          />
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.subject"
+            outlined
+            :label="$t('Subject')"
+          />
+        </div>
+
+        
+        <div class="row q-mb-sm q-px-sm">
+          <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.qty"
+            outlined
+            :label="$t('Qty')"
+          />
+          <input-required
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.book_price"
+            outlined
+            :label="$t('Book Price')"
+          />
+        </div>
+
+
+        <div class="row q-mb-sm q-px-sm">
           
-          <input-required
+          <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
+            :name.sync="form.post_date"
             outlined
-            :label="$t('Father Name')"
-            :name.sync="form.father_name"
+            :label="$t('Post Date')"
           />
           <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
-            :name.sync="form.phone"
+            :name.sync="form.description"
             outlined
-            :label="$t('Mobile Number')"
+            :label="$t('Description')"
           />
         </div>
 
-        <div class="row q-mb-sm q-px-sm">
-          <date-picker
-            class="col q-ma-xs"
-            dense
-            :date.sync="form.date_of_birth"
-            :label="$t('Date Of Birth')"
-          />
-           <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.email"
-            :label="$t('Email')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.salary"
-            :label="$t('Salary')"
-          />
-        </div>
-
-        <div class="row q-mb-sm q-px-sm">
-         <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.current_address"
-            :label="$t('Current Address')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.permenet_address"
-            :label="$t('permenet_address')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.education_level"
-            :label="$t('education Level')"
-          />
-        </div> 
 
 
-        <div class="row q-mb-sm q-px-sm">
-         <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.experience"
-            :label="$t('Experience')"
-          />
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.tazkera_number"
-            :label="$t('Tazkera Number')"
-          />
-        </div>  
-      </div>
-      <div class="col-3">
-        <div class="q-mx-sm q-mb-sm">
-          <div
-            class="bg-cyan-7 text-white text-center"
-            style="border-radius: 0.3rem 0.3rem 0 0"
-          >
-            <div class="text-h7">{{ $t("Gender") }}</div>
-          </div>
-          <div
-            style="border: 1px solid #0288d1; border-radius: 0 0 0.3rem 0.3rem"
-            class="text-cyan-7 flex flex-center"
-          >
-            <div class="row justify-center">
-              <q-radio
-                :label="$t('Male')"
-                class="col-md-4"
-                val="male"
-                v-model="form.gender"
-              />
-              <q-radio
-                :label="$t('Female')"
-                class="col-md-4"
-                val="female"
-                v-model="form.gender"
-              />
-              <q-radio
-                :label="$t('Other')"
-                class="col-md-4"
-                val="other"
-                v-model="form.gender"
-              />
-            </div>
-          </div>
-        </div>
 
-        <div class="q-ma-xs">
-                <q-uploader
-                  class="full-width"
-                  :label="$t('Photo')"
-                  :factory="uploadFile"
-                  max-files="1"
-                  auto-upload
-                  accept=".jpg, image/*"
-                  @rejected="onRejected"
-                  ref="photo"
-                />
-              </div>
       </div>
     </div>
 
@@ -212,22 +141,16 @@ export default {
   data() {
     return {
       form: {
-        addmission_number: null,
-        roll_number: null,
-        first_name: null,
-        last_name: null,
-        father_name: null,
-        phone: null,
-        date_of_birth: null,
-        email: null,
-        photo: null,
-        salary: null,
-        current_address: null,
-        permenet_address: null,
-        education_level: null,
-        experience: null,
-        gender: 'male',
-        tazkera_number: null,
+        book_title: null,
+        book_number: null,
+        publicher: null,
+        author: null,
+        subject: null,
+        rack_number: null,
+        qty: null,
+        book_price: null,
+        post_date: null,
+        book_price: null,
       }
     };
   },
@@ -253,13 +176,13 @@ export default {
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
       this.$axios
-        .post("teacher/store", fileData, {
+        .post("library/store", fileData, {
           // headers: {
           //   "Content-Type": "multipart/form-data"
           // }
         })
         .then(res => {
-          this.$router.push("/teacher");
+          this.$router.push("/library");
           this.submitting = false;
           this.$q.notify({
             color: "green-4",
