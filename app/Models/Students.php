@@ -16,7 +16,7 @@ class Students extends Model
         'admission_no',
         'roll_number',
         'class_id',
-        'section',
+        'department_id',
         'first_name',
         'last_name',
         'gender',
@@ -29,7 +29,7 @@ class Students extends Model
         'student_address',
         'student_address',
         'transport_details',
-        'host_details',
+        'hostel_details',
         'miscellaneous_details',
        
     ];
