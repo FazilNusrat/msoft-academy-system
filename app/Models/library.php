@@ -18,10 +18,10 @@ class library extends Model
         'publicher',
         'author',
         'subject',
-        'qty',
-        'book_price',
+        'get_book',
+        'return_book',
         'post_date',
-        'description',
+        'phone',
     ];
 
     public function getlibrary($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") {

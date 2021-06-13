@@ -71,14 +71,6 @@
 
         
         <div class="row q-mb-sm q-px-sm">
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.qty"
-            outlined
-            :label="$t('Qty')"
-          />
           <input-required
             class="col q-ma-xs"
             icon="apps"
@@ -87,20 +79,8 @@
             outlined
             :label="$t('Book Price')"
           />
-        </div>
 
-
-        <div class="row q-mb-sm q-px-sm">
-          
-          <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            :name.sync="form.post_date"
-            outlined
-            :label="$t('Post Date')"
-          />
-          <input-simple
+           <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
@@ -108,6 +88,31 @@
             outlined
             :label="$t('Description')"
           />
+        </div>
+        <div class="row q-mb-sm q-px-sm">
+             
+           <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            :name.sync="form.phone"
+            outlined
+            :label="$t('phone')"
+          />  
+          <date-picker
+            class="col q-ma-sm"
+            dense
+            :date.sync="form.get_book"
+            :label="$t('Get Book')"
+          />    
+        </div>
+        <div class="row q-mb-sm q-px-sm">
+          <date-picker
+            class="col q-ma-sm"
+            dense
+            :date.sync="form.return_book"
+            :label="$t('Return Book')"
+          />  
         </div>
 
 
@@ -127,7 +132,7 @@
         :label="$t('Save')"
         v-close-popup
       />
-      <q-btn color="red" outline :label="$t('Cancel')" to="/teacher" />
+      <q-btn color="red" outline :label="$t('Cancel')" to="/library" />
     </q-card-actions>
   </div>
 </template>
@@ -146,11 +151,12 @@ export default {
         publicher: null,
         author: null,
         subject: null,
-        rack_number: null,
-        qty: null,
+        get_book: null,
+        return_book: null,
         book_price: null,
         post_date: null,
         book_price: null,
+        phone: null,
       }
     };
   },
@@ -182,7 +188,7 @@ export default {
           // }
         })
         .then(res => {
-          this.$router.push("/library");
+          this.$router.push("/booklist");
           this.submitting = false;
           this.$q.notify({
             color: "green-4",

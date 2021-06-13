@@ -17,14 +17,14 @@ class CreateLibrariesTable extends Migration
             $table->id();
             $table->string('book_title');
             $table->integer('book_number');
-            $table->string('rack_number');
+            $table->integer('rack_number');
             $table->string('publicher');
             $table->string('author');
             $table->string('subject');
-            $table->integer('qty');
-            $table->string('book_price');
-            $table->string('post_date');
-            $table->string('description');
+            $table->date('get_book');
+            $table->integer('book_price');
+            $table->date('return_book');
+            $table->integer('phone');
             $table->timestamps();
         });
     }

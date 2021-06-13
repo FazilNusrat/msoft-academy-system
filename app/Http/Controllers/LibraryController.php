@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\library;
 use Illuminate\Http\Request;
+use Image;
 
-class LibraryController extends Controller
+
+class libraryController extends Controller
 {
+    protected $library;
+    public function __construct(library $library)
+    {
+        $this->library = $library;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $filter = $request->input('filter');
         $per_page = $request->input('per_page');
@@ -41,46 +48,30 @@ class LibraryController extends Controller
      */
     public function store(Request $request)
     {
-        $form = json_decode($request->form);
-        
-        //image
-        $name = '';
-        if ($request->hasFile('photo')) {
-            $original_filename = $form->file('photo')->getClientOriginalName();
-            $original_filename_arr = explode('.', $original_filename);
-            $file_ext = end($original_filename_arr);
-            $name = 'EMP-' . time() . '.' . $file_ext;
-            $img = Image::make($form->file('photo'));
-            $img->save(public_path('uploads/staff/' . $name));
-            $img->resize(100,100, function($constraint)
-            {
-                $constraint->aspectRatio();
-            })->save(public_path('uploads/library/small/' . $name));
-            // $form->merge(['photo' => $name]);
-        }
+         $form = json_decode($request->form);
+
         $libraryData = [
-            'book_title'         =>$form->book_title,
-            'book_number'        =>$form->book_number,
-            'publicher'          =>$form->publicher,
-            'auther'             =>$form->auther,
-            'subject'            =>$form->subject,
-            'rack_number'        =>$form->rack_number,
-            'qty'                =>$form->qty,
-            'book_price'         =>$form->book_price,
-            'post_date'          =>$form->post_date,
-            'description'        =>$form->description,
+            'book_title'                =>$form->book_title,
+            'book_number'               =>$form->book_number,
+            'rack_number'               =>$form->rack_number,
+            'publicher'                 =>$form->publicher,
+            'author'                    =>$form->author,
+            'subject'                   =>$form->subject,
+            'get_book'                  =>$form->get_book,
+            'book_price'                =>$form->book_price,
+            'return_book'               =>$form->return_book,
+            'phone'                     =>$form->phone,
         ];
 
-        $staff   = $this->staff->create($staffData);
-        if($staff)
+        $library = $this->library->create($libraryData);
+        if($library)
         {
-            return ['Class Message'];
+            return ['library Message'];
         }
-        return json_encode($this->staff->find($id));
+        return json_encode($this->library->find($id));
         // return ['ttt'=>json_decode($request->form)];
           
-    } 
-
+    }    
     /**
      * Display the specified resource.
      *
@@ -98,9 +89,9 @@ class LibraryController extends Controller
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
      */
-    public function edit(library $library)
+    public function edit(library $library,$id)
     {
-        //
+        return $this->library->findOrFail($id);
     }
 
     /**
@@ -109,10 +100,16 @@ class LibraryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function update(Request $request, library $library)
     {
-        //
+        $id = $request->id;
+        $library = $this->library->findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:191',
+        ]);
+        $library->update($request->all());
+        return ['message' => 'Update Successfully'];
     }
 
     /**
@@ -121,8 +118,9 @@ class LibraryController extends Controller
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
      */
-    public function destroy(library $library)
+    public function destroy(library $library,$id)
     {
-        //
+        $library = $this->library->find($id);
+        $library->delete();
     }
 }
