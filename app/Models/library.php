@@ -17,7 +17,7 @@ class library extends Model
         'book_title',
         'book_number',
         'rack_number',
-        'publicher',
+        'publisher',
         'author',
         'subject',
         'get_book',

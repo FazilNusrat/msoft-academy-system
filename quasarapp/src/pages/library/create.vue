@@ -43,9 +43,9 @@
             class="col q-ma-xs"
             icon="apps"
             dense
-            :name.sync="form.publicher"
+            :name.sync="form.publisher"
             outlined
-            :label="$t('Publicher')"
+            :label="$t('Publisher')"
           />
         </div>
 
@@ -148,7 +148,7 @@ export default {
       form: {
         book_title: null,
         book_number: null,
-        publicher: null,
+        publisher: null,
         author: null,
         subject: null,
         get_book: null,

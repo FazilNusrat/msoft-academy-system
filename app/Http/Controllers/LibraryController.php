@@ -68,7 +68,7 @@ class LibraryController extends Controller
             'book_title'                =>$form->book_title,
             'book_number'               =>$form->book_number,
             'rack_number'               =>$form->rack_number,
-            'publicher'                 =>$form->publicher,
+            'publisher'                 =>$form->publisher,
             'author'                    =>$form->author,
             'subject'                   =>$form->subject,
             'get_book'                  =>$form->get_book,
