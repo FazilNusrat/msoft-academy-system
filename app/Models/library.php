@@ -11,9 +11,15 @@ class library extends Model
 {
     use HasFactory;
     protected $primaryKey ='id';
+<<<<<<< Updated upstream
     public $incrementing=false;
     protected $table="libraries";
     protected $fillable = [
+=======
+    public $incrementing = false;
+    protected $table="libraries";
+    protected $fillable=[
+>>>>>>> Stashed changes
         'book_title',
         'book_number',
         'rack_number',
