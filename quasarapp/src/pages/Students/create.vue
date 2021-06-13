@@ -287,7 +287,7 @@
                 :label="$t('Current Address')"
               />
             </div>
-            <div class="col">
+            <div class="col q-ml-sm">
               <input-required
                 icon="apps"
                 type="textarea"
@@ -368,7 +368,6 @@
               />
             </div>
           </div>
-        </q-tab-panel>
         </q-tab-panel>
         <q-tab-panel name="hostel_details">
           <div class="row">
