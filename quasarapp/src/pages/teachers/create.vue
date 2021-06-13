@@ -104,8 +104,8 @@
             icon="apps"
             dense
             outlined
-            :name.sync="form.permenet_address"
-            :label="$t('permenet_address')"
+            :name.sync="form.permenent_address"
+            :label="$t('permenent_address')"
           />
           <input-simple
             class="col q-ma-xs"

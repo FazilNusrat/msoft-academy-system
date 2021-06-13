@@ -14,7 +14,7 @@ export default function deleteData(url) {
       },
       persistent: true
     }).onOk(() => {
-      this.$axios.get(deleteUrl).then(res => {
+      this.$axios.delete(deleteUrl).then(res => {
         this.$q.notify({
           color: "green-4",
           textColor: "white",

@@ -122,16 +122,36 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  
      * @return \Illuminate\Http\Response
      */ 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        return 22;
-        $id = $request->id;
-        return $id;
-        $Teacher = $this->Teacher->findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|string|max:191',
-        ]);
-        $Teacher->update($request->all());
+        // return 22;
+        // $id = $request->id;
+        // return $id;
+        $Teacher = $this->Teachers->findOrFail($id);
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:191',
+        // ]);
+        $form = json_decode($request->form);
+        $TeacherData = [
+            // 'addmission_number'                =>$form->addmission_number,
+            // 'roll_number'                      =>$form->roll_number,
+            'first_name'                       =>$form->first_name,
+            'last_name'                        =>$form->last_name,
+            'father_name'                      =>$form->father_name,
+            'email'                            =>$form->email,
+            'phone'                            =>$form->phone,
+            // 'date_of_birth'                    =>$form->date_of_birth,
+            'email'                            =>$form->email,
+            // 'salary'                           =>$form->salary,
+            // 'gender'                           =>$form->gender,
+            'current_address'                  =>$form->current_address,
+            'permenent_address'                =>$form->permenent_address,
+            'education_level'                  =>$form->education_level,
+            'experience'                       =>$form->experience,
+            'tazkera_number'                   =>$form->tazkera_number,
+
+        ];
+        $Teacher->update($TeacherData);
         return ['message' => 'Update Successfully'];
 
     }
@@ -141,9 +161,9 @@ class TeachersController extends Controller
      * @param  \App\Models\Teachers  $Teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teachers $Teacher,$id)
+    public function destroy($id)
     {
-        $Teacher = $this->Teacher->find($id);
+        $Teacher = $this->Teachers->find($id);
         $Teacher->delete();
     }
 }

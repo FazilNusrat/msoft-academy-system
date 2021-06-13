@@ -141,8 +141,8 @@ export default {
         father_name: null,
         email: null,
         phone: null,
-        current_permenent_address: null,
-        permenent_permenent_address: null,
+        current_address: null,
+        permenent_address: null,
         education_level: null,
         experience: null,
         tazkera_number: null,
@@ -160,22 +160,11 @@ export default {
     handleUpdate() {
       console.log("Thanks For Data Insert");
       this.submitting = true;
-      this.form.class_id =
-        this.selected_class && this.selected_class.id > 0
-          ? this.selected_class.id
-          : 0;
-      this.form.section_id =
-        this.selected_section && this.selected_section.id > 0
-          ? this.selected_section.id
-          : 0;
       const fileData = new FormData();
+
+      fileData.append("_method", 'patch');
       fileData.append("form", JSON.stringify(this.form));
-      this.$axios
-        .post(`teacher'/${this.$route.params.id}`, fileData, {
-          // headers: {
-          //   "Content-Type": "multipart/form-data"
-          // }
-        })
+      this.$axios.post(`teacher/${this.$route.params.id}`, fileData)
         .then(res => {
           // this.$router.push("/teacher");
           // this.submitting = false;
@@ -187,182 +176,6 @@ export default {
           // });
         });
 
-    },
-    uploadFile(files) {
-      //   this.form.personal.photo = files[0];
-      // console.log("this.form.personal.photo: ", this.form.personal.photo);
-    },
-    onRejected(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
-      });
-    },
-    onRejectedScan(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
-      });
-    },
-    filterDepartment(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.department_options = this.departments;
-          } else {
-            const needle = val.toLowerCase();
-            this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterClass(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.class_options = this.classes;
-          } else {
-            const needle = val.toLowerCase();
-            this.class_options = this.classes.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterTimes(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.time_options = this.times;
-          } else {
-            const needle = val.toLowerCase();
-            this.time_options = this.times.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterDepartment(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.department_options = this.departments;
-          } else {
-            const needle = val.toLowerCase();
-            this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterJob(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.job_options = this.jobs;
-          } else {
-            const needle = val.toLowerCase();
-            this.job_options = this.jobs.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrency(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrencyType(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_type_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_type_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterBloodGroup(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.blood_group_options = this.blood_groups;
-          } else {
-            const needle = val.toLowerCase();
-            this.blood_group_options = this.blood_groups.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
     },
     editData() {
       this.$axios.get(`teacher/edit/${this.$route.params.id}`).then(data => {
