@@ -28,7 +28,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('TeacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('libraryList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -79,11 +79,11 @@ export default {
           align: "center",
           headerClasses: "bg-light-blue-6 text-white ",
         },
-        { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
-        { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
-        { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'email', field: row=>row.email, sortable: true },
-        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
-        { name: 'education_level',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Education Level', field: row=>row.education_level, sortable: true },
+        { name: 'book_title', align: 'center', label: 'Book Title', field: row=>row.book_title, sortable: true },
+        { name: 'author',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Author', field: row=>row.author, sortable: true },
+        { name: 'get_book',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Get Book', field: row=>row.get_book, sortable: true },
+        { name: 'return_book',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Return Book', field: row=>row.return_book, sortable: true },
+        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
         { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -151,14 +151,14 @@ export default {
     },
 
     del(id = 0) {
-      this.$delete(`teacher/${id}`);
+      this.$delete(`libarry/${id}`);
     },
     
 
     edit(id = 0) {
       // this.id = id;
       // this.showEditModal = true;
-      this.$router.push('/teacher/edit/'+id)
+      this.$router.push('/library/edit/'+id)
     },
 
     addModal () {
