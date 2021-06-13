@@ -76,11 +76,11 @@ Route::get('staff/{id}','StaffController@destroy')->name('staff');
 
 
 
-Route::get('library',['as'=>'library.index','uses'=>'libraryController@index']);
-Route::post('library/store', ['as' => 'library.store', 'uses' => 'libraryController@store']);
-Route::patch('library/{id}', ['as' => 'library.update', 'uses' => 'libraryController@update']);
-Route::get('library/edit/{id}', ['as' => 'library.edit', 'uses' => 'libraryController@edit']);
-Route::get('library/{id}','libraryController@destroy')->name('library');
+Route::get('library',['as'=>'library.index','uses'=>'LibraryController@index']);
+Route::post('library/store', ['as' => 'library.store', 'uses' => 'LibraryController@store']);
+Route::patch('library/{id}', ['as' => 'library.update', 'uses' => 'LibraryController@update']);
+Route::get('library/edit/{id}', ['as' => 'library.edit', 'uses' => 'LibraryController@edit']);
+Route::get('library/{id}','LibraryController@destroy')->name('library');
 
 
 // Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);

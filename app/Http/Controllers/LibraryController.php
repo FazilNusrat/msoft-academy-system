@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\library;
 use Illuminate\Http\Request;
-use Image;
 
-
-class libraryController extends Controller
+class LibraryController extends Controller
 {
     protected $library;
     public function __construct(library $library)
@@ -48,8 +46,24 @@ class libraryController extends Controller
      */
     public function store(Request $request)
     {
-         $form = json_decode($request->form);
-
+        $form = json_decode($request->form);
+        // return $form->book_title;
+        
+        // //image
+        // $name = '';
+        // if ($request->hasFile('photo')) {
+        //     $original_filename = $form->file('photo')->getClientOriginalName();
+        //     $original_filename_arr = explode('.', $original_filename);
+        //     $file_ext = end($original_filename_arr);
+        //     $name = 'EMP-' . time() . '.' . $file_ext;
+        //     $img = Image::make($form->file('photo'));
+        //     $img->save(public_path('uploads/library/' . $name));
+        //     $img->resize(100,100, function($constraint)
+        //     {
+        //         $constraint->aspectRatio();
+        //     })->save(public_path('uploads/library/small/' . $name));
+        //     // $form->merge(['photo' => $name]);
+        // }
         $libraryData = [
             'book_title'                =>$form->book_title,
             'book_number'               =>$form->book_number,
@@ -61,17 +75,17 @@ class libraryController extends Controller
             'book_price'                =>$form->book_price,
             'return_book'               =>$form->return_book,
             'phone'                     =>$form->phone,
+
         ];
 
-        $library = $this->library->create($libraryData);
+        $library   = $this->library->create($libraryData);
         if($library)
         {
             return ['library Message'];
         }
         return json_encode($this->library->find($id));
-        // return ['ttt'=>json_decode($request->form)];
-          
-    }    
+    }
+
     /**
      * Display the specified resource.
      *
@@ -89,9 +103,9 @@ class libraryController extends Controller
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
      */
-    public function edit(library $library,$id)
+    public function edit(library $library)
     {
-        return $this->library->findOrFail($id);
+        //
     }
 
     /**
@@ -100,16 +114,10 @@ class libraryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function update(Request $request, library $library)
     {
-        $id = $request->id;
-        $library = $this->library->findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|string|max:191',
-        ]);
-        $library->update($request->all());
-        return ['message' => 'Update Successfully'];
+        //
     }
 
     /**
@@ -118,9 +126,8 @@ class libraryController extends Controller
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
      */
-    public function destroy(library $library,$id)
+    public function destroy(library $library)
     {
-        $library = $this->library->find($id);
-        $library->delete();
+        //
     }
 }
