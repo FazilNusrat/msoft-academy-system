@@ -43,7 +43,7 @@
             icon="mdi-clock"
             class="col q-ma-sm"
             :label="$t('Section')"
-            :model.sync="selected_time"
+            :model.sync="selected_department"
             :options="departments"
             @filter="filterDepartment"
             :name.sync="slected_department"
@@ -183,7 +183,7 @@
             icon="contact_phone"
           />
           <q-tab
-            :label="$t('Transport Details')"
+            :label="$t('Transport Detddails')"
             name="transport_details"
             icon="payment"
           />
@@ -245,115 +245,26 @@
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.parent_details.mother_name"
-                :label="$t('Mother Name')"
+                :name.sync="form.parent_details.brother_name"
+                :label="$t('Brother Name')"
               />
               <input-simple
                 class="col q-ml-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.parent_details.mother_phone_number"
-                :label="$t('Mother phone No')"
+                :name.sync="form.parent_details.brother_phone_number"
+                :label="$t('Brother phone No')"
               />
               <input-simple
                 class="col q-ml-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.parent_details.mother_occupation"
-              />
-            </div>
+                :name.sync="form.parent_details.brother_occupation"
+                :label="$t('Brother Occuption')"
 
-            <div class="row q-mb-lg">
-              <input-required
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_name"
-                :label="$t('Guardian name')"
               />
-              <input-required
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_relation"
-                :label="$t('Guardian Relation')"
-              />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_email"
-                :label="$t('Guardian Email')"
-              />
-            </div>
-            <div class="row q-mb-sm">
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_phone"
-                :label="$t('Guardian Phone')"
-              />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_occupation"
-                :label="$t('Guardian Occupation')"
-              />
-              <input-simple
-                class="col q-ml-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.parent_details.guardian_address"
-                :label="$t('Guardian Address')"
-              />
-            </div>
-            <div class="row q-mb-sm">
-              <div class="q-ma-sm">
-                <div
-                  class="bg-cyan-7 text-white text-center"
-                  style="border-radius: 0.3rem 0.3rem 0 0"
-                >
-                  <div class="text-h7">{{ $t("Gender") }}</div>
-                </div>
-                <div
-                  style="
-                    border: 1px solid #0288d1;
-                    border-radius: 0 0 0.3rem 0.3rem;
-                  "
-                  class="text-cyan-7 flex flex-center"
-                >
-                <div class="row justify-center">
-                  <q-radio
-                  :label="$t('Male')"
-                  class="col-md-4"
-                  val="male"
-                  v-model="form.parent_details.gender"
-                  />
-                  <q-radio
-                  :label="$t('Female')"
-                  class="col-md-4"
-                  val="female"
-                  v-model="form.parent_details.gender"
-                  />
-                  <q-radio
-                  :label="$t('Other')"
-                  class="col-md-4"
-                  val="other"
-                  v-model="form.parent_details.gender"
-                  />
-                </div>
-                </div>
-              </div>
             </div>
           </div>
         </q-tab-panel>
@@ -366,7 +277,7 @@
           <div class="row">
             <div class="col q-ml-sm">
               <input-required
-                style="max-height: 4px"
+                
                 icon="apps"
                 type="textarea"
                 dense
@@ -378,7 +289,6 @@
             </div>
             <div class="col">
               <input-required
-                style="height: 4px"
                 icon="apps"
                 type="textarea"
                 dense
@@ -396,14 +306,14 @@
               <div class="text-h6">{{ $t("TransportDetails") }}</div>
             </div>
           </div>
-          <div class="row">
+           <div class="row">
               <div class="col">
               <input-simple
                 class="col q-ml-sm q-mb-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.Driver_name"
+                :name.sync="form.transport_details.driver_name"
                 :label="$t('Driver Name')"
               />
                <input-simple
@@ -456,8 +366,6 @@
                 :name.sync="form.transport_details.car_model"
                 :label="$t('Car Type')"
               />
-               
-              
             </div>
           </div>
         </q-tab-panel>
@@ -475,62 +383,50 @@
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.Driver_name"
-                :label="$t('Driver Name')"
+                :name.sync="form.hostel_details.room_number"
+                :label="$t('Room Number')"
               />
                <input-simple
                 class="col q-ml-sm q-mb-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.route"
-                :label="$t('Route')"
+                :name.sync="form.hostel_details.floor_number"
+                :label="$t('Floor Number')"
               />
-               <input-simple
+             <input-simple
                 class="col q-ml-sm q-mb-sm"
                 icon="apps"
                 dense
                 outlined
-                :name.sync="form.transport_details.price"
-                :label="$t('Price')"
-              />
-              <input-simple
-                class="col q-ml-sm q-mb-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.transport_details.km"
-                :label="$t('KM')"
+                :name.sync="form.hostel_details.bet_number"
+                :label="$t(' Bet #')"
               />
             </div>
               <div class="col">
-              <input-simple
-                class="col q-ml-sm q-mb-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.transport_details.Area"
-                :label="$t('Area')"
-              />
-              <input-simple
-                class="col q-ml-sm q-mb-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.transport_details.plate_number"
-                :label="$t(' Plate #')"
-              />
-               <input-simple
-                class="col q-ml-sm q-mb-sm"
-                icon="apps"
-                dense
-                outlined
-                :name.sync="form.transport_details.car_model"
-                :label="$t('Car Type')"
-              />
-               
+           
               
+          <div class="col">
+             <n-select
+            icon="mdi-clock"
+            class="col q-ma-sm"
+            :label="$t('Room Type')"
+            :model.sync="selected_department"
+            :options="departments"
+            @filter="filterDepartment"
+            :name.sync="slected_department"
+          /> 
+           <n-select
+            icon="mdi-clock"
+            class="col q-ma-sm"
+            :label="$t('Setter')"
+            :model.sync="selected_department"
+            :options="departments"
+            @filter="filterDepartment"
+            :name.sync="slected_department"
+          /> 
             </div>
+          </div>
           </div>
         </q-tab-panel>
 
@@ -739,7 +635,7 @@ export default {
         addmission_number: null,
         roll_number: null,
         class_id: 0,
-        section_id: 0,
+        department_id: 0,
         first_name: null,
         last_name: null,
         gender: "male",
@@ -762,27 +658,27 @@ export default {
           father_name: null,
           father_phone_number: null,
           father_occupation: null,
-          mother_name: null,
-          mother_phone_number: null,
-          mother_occupation: null,
-          guardian_name: null,
-          guardian_occupation: null,
-          guardian_email: null,
-          guardian_address: null,
-          guardian_phone: null,
-          guardian_relation: null,
+          brother_name: null,
+          brother_phone_number: null,
+          brother_occupation: null,
+          
         },
         student_address: {
           current_address: null,
           Permanent_address: null,
         },
+        hostel_details:{
+          room_number:null,
+          floor_number:null,
+          bet_number:null
+        },
         transport_details: {
           driver_name: null,
-          price: null,
-          plate_number: null,
-          car_model: null,
           area: null,
           route: null,
+          palet_number: null,
+          car_model: null,
+          price: null,
           km: null,
         },
         // hostel_details

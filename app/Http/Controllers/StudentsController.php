@@ -62,7 +62,6 @@ class StudentsController extends Controller
                     // }
                     
                     $form = json_decode($request->form);
-                    return $form->class_id;
         
         //image
         $name = '';
@@ -84,33 +83,30 @@ class StudentsController extends Controller
             'father_name'               => $form->parent_details->father_name,
             'father_phone_number'       => $form->parent_details->father_phone_number,
             'father_occupation'         => $form->parent_details->father_occupation,
-            'mother_name'               => $form->parent_details->mother_name,
-            'mother_phone_number'       => $form->parent_details->mother_phone_number,
-            'mother_occupation'         => $form->parent_details->mother_occupation,
-            'guardian_name'             => $form->parent_details->guardian_name,
-            'guardian_occupation'       => $form->parent_details->guardian_occupation,
-            'guardian_email'            => $form->parent_details->guardian_email,
-            'guardian_address'          => $form->parent_details->guardian_address,
-            'guardian_phone'            => $form->parent_details->guardian_phone,
-            'guardian_relation'         => $form->parent_details->guardian_relation
+            'brother_name'               => $form->parent_details->brother_name,
+            'brother_phone_number'       => $form->parent_details->brother_phone_number,
+            'brother_occupation'         => $form->parent_details->brother_occupation,
         ];
         $student_address = [
             'current_address'           => $form->student_address->current_address,
             'Permanent_address'         => $form->student_address->Permanent_address,
         ];
         $transport_details = [
-            'driver_name'                     => $form->transport_details->driver_name,
-            'area'                    => $form->transport_details->area,
-            'car_model'                => $form->transport_details->car_model,
-            'plate_number'             => $form->transport_details->plate_number,
-            'area'                  => $form->transport_details->area,
-            'route'                  => $form->transport_details->route,
-            'km'                  => $form->transport_details->km,
-            'price'                  => $form->transport_details->price,
+            'driver_name'                => $form->transport_details->driver_name,
+            'area'                       => $form->transport_details->area,
+            'car_model'                  => $form->transport_details->car_model,
+            'plate_number'               => $form->transport_details->plate_number,
+            'area'                       => $form->transport_details->area,
+            'route'                      => $form->transport_details->route,
+            'km'                         => $form->transport_details->km,
+            'price'                      => $form->transport_details->price,
         ];
-        // $hostel_details = [
+        $hostel_details = [
+            'room_number'                => $form->hostel_details->room_number,
+            'floor_number'               => $form->hostel_details->floor_number,
+            'bet_number'                 => $form->hostel_details->bet_number,
 
-        // ];
+       ];
         
          $miscellaneous_details = [
             'bank_account_number'               => $form->miscellaneous_details->bank_account_number,
@@ -141,6 +137,7 @@ class StudentsController extends Controller
             'parent_details'            => json_encode($parent_details),
             'transport_details'         => json_encode($transport_details),
             'miscellaneous_details'     => json_encode($miscellaneous_details),
+            'hostel_details'            => json_encode($hostel_details),
         ];
 
         $student   = $this->student->create($studentData);
