@@ -11,15 +11,12 @@ class library extends Model
 {
     use HasFactory;
     protected $primaryKey ='id';
-<<<<<<< Updated upstream
     public $incrementing=false;
     protected $table="libraries";
     protected $fillable = [
-=======
     public $incrementing = false;
     protected $table="libraries";
     protected $fillable=[
->>>>>>> Stashed changes
         'book_title',
         'book_number',
         'rack_number',
@@ -39,6 +36,10 @@ class library extends Model
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
+		}
+        if ($filter != "") {
+			$query = $query->where('book_title','ILIKE','%'.$filter.'%')
+                            ->orWhere('subject','ILIKE','%'.$filter.'%');
 		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;

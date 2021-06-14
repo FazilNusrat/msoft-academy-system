@@ -24,6 +24,9 @@ class department extends Model
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
 		}
+		if ($filter != "") {
+			$query = $query->where('name','ILIKE','%'.$filter.'%');
+		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;
 		});
