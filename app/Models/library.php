@@ -34,6 +34,10 @@ class library extends Model
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
 		}
+        if ($filter != "") {
+			$query = $query->where('book_title','ILIKE','%'.$filter.'%')
+                            ->orWhere('subject','ILIKE','%'.$filter.'%');
+		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;
 		});

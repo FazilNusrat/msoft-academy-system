@@ -36,6 +36,10 @@ class Staff extends Model
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
 		}
+        if ($filter != "") {
+			$query = $query->where('first_name','ILIKE','%'.$filter.'%')
+                            ->orWhere('addmission_number','ILIKE','%'.$filter.'%');
+		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;
 		});
