@@ -124,7 +124,7 @@ class TeachersController extends Controller
      */ 
     public function update(Request $request, $id)
     {
-        // return 22;
+        // return 22;   
         // $id = $request->id;
         // return $id;
         $Teacher = $this->Teachers->findOrFail($id);
@@ -133,17 +133,13 @@ class TeachersController extends Controller
         // ]);
         $form = json_decode($request->form);
         $TeacherData = [
-            // 'addmission_number'                =>$form->addmission_number,
-            // 'roll_number'                      =>$form->roll_number,
             'first_name'                       =>$form->first_name,
             'last_name'                        =>$form->last_name,
             'father_name'                      =>$form->father_name,
             'email'                            =>$form->email,
             'phone'                            =>$form->phone,
-            // 'date_of_birth'                    =>$form->date_of_birth,
             'email'                            =>$form->email,
-            // 'salary'                           =>$form->salary,
-            // 'gender'                           =>$form->gender,
+            'salary'                           =>$form->salary,
             'current_address'                  =>$form->current_address,
             'permenent_address'                =>$form->permenent_address,
             'education_level'                  =>$form->education_level,
@@ -151,6 +147,7 @@ class TeachersController extends Controller
             'tazkera_number'                   =>$form->tazkera_number,
 
         ];
+        
         $Teacher->update($TeacherData);
         return ['message' => 'Update Successfully'];
 

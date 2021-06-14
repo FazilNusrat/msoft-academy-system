@@ -153,13 +153,12 @@ export default {
     },
 
     del(id = 0) {
-      this.$delete(`staffs/${id}`);
+      this.$delete(`staff/${id}`);
     },
     
 
     edit(id = 0) {
-      this.id = id;
-      this.showEditModal = true;
+      this.$router.push('/staffs/edit/'+id)
     },
     addModal () {
       // alert("Clicked")

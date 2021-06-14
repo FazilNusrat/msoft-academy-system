@@ -82,24 +82,6 @@ class StaffController extends Controller
         // return ['ttt'=>json_decode($request->form)];
           
     } 
-    
-    // {
-        
-    //     $staff   = $this->staff->create([
-    //         'addmission_number'         =>$request->addmission_number,
-    //         'First_Name'                =>$request->First_Name,
-    //         'last_name'                 =>$request->last_name,
-    //         'father_name'               =>$request->father_name,
-    //         'phone'                     =>$request->phone,
-    //         'email'                     =>$request->email,
-    //         'Photo'                     =>$request->Photo,
-    //         'salary'                    =>$request->salary,
-    //         'address'                   =>$request->address,
-    //         'city'                      =>$request->city,
-    //         'job_name'                  =>$request->job_name,
-    //         'start_date'                =>$request->start_date,
-    //     ]);
-
 
      /**
      * Show the form for creating a new resource.
@@ -129,25 +111,39 @@ class StaffController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(staff $staff,$id)
+
     {
         return $this->staff->findOrFail($id);
     }
-
-    /**
+/**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\staff  $staff
+     * @param  \App\Models\staff  
      * @return \Illuminate\Http\Response
      */ 
-    public function update(Request $request, staff $staff)
+    public function update(Request $request, $id)
+
     {
-        $id = $request->id;
+
         $staff = $this->staff->findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|string|max:191',
-        ]);
-        $staff->update($request->all());
+        $form = json_decode($request->form);
+        $staffData = [
+
+            'first_name'                       =>$form->first_name,
+            'last_name'                        =>$form->last_name,
+            'father_name'                      =>$form->father_name,
+            'email'                            =>$form->email,
+            'phone'                            =>$form->phone,
+            'email'                            =>$form->email,
+            'salary'                           =>$form->salary,
+            'address'                          =>$form->address,
+            'city'                             =>$form->city,
+            'job_name'                         =>$form->job_name,
+
+        ];
+
+        $staff->update($staffData);
         return ['message' => 'Update Successfully'];
     }
 
@@ -157,7 +153,7 @@ class StaffController extends Controller
      * @param  \App\Models\staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(staff $staff,$id)
+    public function destroy($id)
     {
         $staff = $this->staff->find($id);
         $staff->delete();
