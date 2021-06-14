@@ -67,14 +67,11 @@ Route::patch('batch/{id}', ['as' => 'batch.update', 'uses' => 'BatchController@u
 Route::get('batch/edit/{id}', ['as' => 'batch.edit', 'uses' => 'BatchController@edit']);
 Route::get('batch/{id}','BatchController@destroy')->name('batch');
 
-
 Route::get('staff',['as'=>'staff.index','uses'=>'StaffController@index']);
 Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffController@store']);
 Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffController@update']);
 Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffController@edit']);
 Route::get('staff/{id}','StaffController@destroy')->name('staff');
-
-
 
 Route::get('library',['as'=>'library.index','uses'=>'LibraryController@index']);
 Route::post('library/store', ['as' => 'library.store', 'uses' => 'LibraryController@store']);
@@ -82,22 +79,13 @@ Route::patch('library/{id}', ['as' => 'library.update', 'uses' => 'LibraryContro
 Route::get('library/edit/{id}', ['as' => 'library.edit', 'uses' => 'LibraryController@edit']);
 Route::get('library/{id}','LibraryController@destroy')->name('library');
 
-
-// Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);
-// Route::post('student/store', ['as' => 'student.store', 'uses' => 'StudentsController@store']);
-// Route::patch('student/{id}', ['as' => 'student.update', 'uses' => 'StudentsController@update']);
-// Route::get('student/edit/{id}', ['as' => 'student.edit', 'uses' => 'StudentsController@edit']);
-// Route::get('student/{id}','StudentsController@destroy')->name('student');
-//Employee Routes
 Route::get('student',          'StudentsController@index')->name('student.index');
 Route::post('student/store',   'StudentsController@store')->name('student.store');
 Route::get('student/edit/{id}', 'StudentsController@edit')->name('student.edit');
 Route::patch('student/{id}',   'StudentsController@update')->name('student.update');
 Route::get('student/{id}',     'StudentsController@show')->name('student.show');
-Route::delete('student/{id}',  'StudentsController@destroy')->name('student');
-
+Route::get('student/{id}',  'StudentsController@destroy')->name('student');
 // Route::post('std/store',   'StudentsController@store')->name('std.store');
-
 
 Route::get('teacher',['as'=>'teacher.index','uses'=>'TeachersController@index']);
 Route::post('teacher/store', ['as' => 'teacher.store', 'uses' => 'TeachersController@store']);

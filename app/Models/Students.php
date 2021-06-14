@@ -15,8 +15,8 @@ class Students extends Model
     protected $fillable=[
         'admission_no',
         'roll_number',
-        'class_id',
-        'department_id',
+        // 'class_id',
+        // 'department_id',
         'first_name',
         'last_name',
         'gender',
