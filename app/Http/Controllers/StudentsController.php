@@ -120,10 +120,10 @@ class StudentsController extends Controller
          ];
  
         $studentData = [
-            'class_id'                  => intval($form->class_id),
+            // 'class_id'                  => intval($form->class_id),
             'addmission_number'         =>$form->addmission_number,
             'roll_number'               =>$form->roll_number,
-            'class_id'                  =>$form->class_id,
+            // 'class_id'                  =>$form->class_id,
             // 'section_id'                =>$form->section_id,
             'first_name'                =>$form->first_name,
             'last_name'                 =>$form->last_name,
@@ -178,15 +178,72 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */ 
-    public function update(Request $request, Students $student)
+    public function update(Request $request, $id)
     {
-        $id = $request->id;
-        $student = $this->student->findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|string|max:191',
-        ]);
-        $student->update($request->all());
-        return ['message' => 'Update Successfully'];
+        $student = $this->student->findorFail($id);
+
+        $form = json_decode($request->form);
+
+          $parent_details = [
+              'father_name'               => $form->parent_details->father_name,
+              'father_phone_number'       => $form->parent_details->father_phone_number,
+              'father_occupation'         => $form->parent_details->father_occupation,
+              'brother_name'               => $form->parent_details->brother_name,
+              'brother_phone_number'       => $form->parent_details->brother_phone_number,
+              'brother_occupation'         => $form->parent_details->brother_occupation,
+          ];
+          $student_address = [
+              'current_address'           => $form->student_address->current_address,
+              'Permanent_address'         => $form->student_address->Permanent_address,
+          ];
+          $transport_details = [
+              'driver_name'                => $form->transport_details->driver_name,
+              'area'                       => $form->transport_details->area,
+              'car_model'                  => $form->transport_details->car_model,
+              'plate_number'               => $form->transport_details->plate_number,
+              'area'                       => $form->transport_details->area,
+              'route'                      => $form->transport_details->route,
+              'km'                         => $form->transport_details->km,
+              'price'                      => $form->transport_details->price,
+          ];
+          $hostel_details = [
+              'room_number'                => $form->hostel_details->room_number,
+              'floor_number'               => $form->hostel_details->floor_number,
+              'bet_number'                 => $form->hostel_details->bet_number,
+  
+         ];
+          
+           $miscellaneous_details = [
+              'bank_account_number'               => $form->miscellaneous_details->bank_account_number,
+              'bank_name'                         => $form->miscellaneous_details->bank_name,
+              'ifsc_code'                         => $form->miscellaneous_details->ifsc_code,
+              'national_identification_number'    => $form->miscellaneous_details->national_identification_number,
+              'previou_school_details'            => $form->miscellaneous_details->previou_school_details,
+              'note'                              => $form->miscellaneous_details->note,
+           ];
+   
+          $studentData = [
+              'class_id'                  => intval($form->class_id),
+              'addmission_number'         =>$form->addmission_number,
+              'roll_number'               =>$form->roll_number,
+            //   'class_id'                  =>$form->class_id,
+            //   'section_id'                =>$form->section_id,
+              'first_name'                =>$form->first_name,
+              'last_name'                 =>$form->last_name,
+              'gender'                    =>$form->gender,
+              'date_of_birth'             =>$form->date_of_birth,
+              'mobile_number'             =>$form->mobile_number?$form->mobile_number:0,
+              'email'                     =>$form->email?$form->email:0,
+              'addmission_Date'           =>$form->addmission_date,
+              // 'image'                     =>$form->image,
+              'student_address'           => json_encode($student_address),
+              'parent_details'            => json_encode($parent_details),
+              'transport_details'         => json_encode($transport_details),
+              'miscellaneous_details'     => json_encode($miscellaneous_details),
+              'hostel_details'            => json_encode($hostel_details),
+          ];
+          $student->update($studentData);
+     return ['message' => 'update Successfully'];
     }
 
     /**

@@ -158,8 +158,7 @@ export default {
     
 
     edit(id = 0) {
-      this.id = id;
-      this.showEditModal = true;
+      this.$router.push('/student/edit/'+id);
     },
     addModal () {
       // alert("Clicked")

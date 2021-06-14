@@ -62,24 +62,14 @@
          <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
-              :label="$t('Salary')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.salary"
-            />
-          </div>
-        </div>
-        <div class="row">
-          
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
               :label="$t('Current Address')"
               ref="modalName"
               refname="name"
               :name.sync="form.current_address"
             />
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
@@ -89,7 +79,7 @@
               :name.sync="form.permenent_address"
             />
           </div>
-         <div class="col-md-4 q-pa-sm">
+          <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Education Level')"
@@ -98,9 +88,7 @@
               :name.sync="form.education_level"
             />
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
+         <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Experience')"
@@ -109,6 +97,8 @@
               :name.sync="form.experience"
             />
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
@@ -150,7 +140,6 @@ export default {
         last_name: null,
         father_name: null,
         email: null,
-        salary: null,
         phone: null,
         current_address: null,
         permenent_address: null,
@@ -169,11 +158,10 @@ export default {
   computed: {},
   methods: {
     handleUpdate() {
-      // console.log("Thanks For Data Insert");
+      console.log("Thanks For Data Insert");
       this.submitting = true;
       const fileData = new FormData();
-
-      fileData.append("_method", 'patch');
+      fileData.append("_method", 'PATCH');
       fileData.append("form", JSON.stringify(this.form));
       this.$axios.post(`teacher/${this.$route.params.id}`, fileData)
         .then(res => {
@@ -191,16 +179,23 @@ export default {
     editData() {
       this.$axios.get(`teacher/edit/${this.$route.params.id}`).then(data => {
         data = data.data;
-        this.form.first_name          = data.first_name;
-        this.form.last_name           = data.last_name;
-        this.form.father_name         = data.father_name;
-        this.form.phone               = data.phone;
-        this.form.email               = data.email;
-        this.form.current_address     = data.current_address;
-        this.form.permenent_address   = data.permenent_address;
-        this.form.education_level     = data.education_level;
-        this.form.experience          = data.experience;
-        this.form.tazkera_number      = data.tazkera_number;
+        this.form.first_name = data.first_name;
+        this.form.last_name = data.last_name;
+        this.form.father_name = data.father_name;
+        this.form.phone = data.phone;
+        this.form.email = data.email;
+        this.form.current_address = data.current_address;
+        this.form.permenent_address = data.permenent_address;
+        this.form.education_level = data.education_level;
+        this.form.experience = data.experience;
+        this.form.tazkera_number = data.tazkera_number;
+        // this.selectedStatus = this.status.find(
+        //   e => e.value === (data.status ? 1 : 0)
+        // );
+        // this.selected_department = this.departments.find(
+        //   e => e.id === data.department_id
+        // );
+        // this.selected_time = this.times.find(e => e.id === data.time_id);
         
       });
     }
