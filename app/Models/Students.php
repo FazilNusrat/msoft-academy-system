@@ -45,11 +45,6 @@ class Students extends Model
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
 		}
-        
-        if ($filter != "") {
-			$query = $query->where('admission_no','ILIKE','%'.$filter.'%')
-                            ->orWhere('first_name','ILIKE','%'.$filter.'%');
-		}
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;
 		});
