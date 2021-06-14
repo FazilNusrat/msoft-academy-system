@@ -157,6 +157,9 @@ const routes = [
       { path: '/library/create',
        component: () => import('pages/library/create.vue') 
       },
+      { path: '/library/edit/:id', 
+      component: () => import('pages/library/edit.vue') 
+      },
     ]
   },
 

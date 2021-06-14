@@ -131,7 +131,7 @@ class TeachersController extends Controller
         // $this->validate($request, [
         //     'name' => 'required|string|max:191',
         // ]);
-        $form = json_decode($request->form);
+        $form = json_decode($request->form); 
         $TeacherData = [
             'first_name'                       =>$form->first_name,
             'last_name'                        =>$form->last_name,

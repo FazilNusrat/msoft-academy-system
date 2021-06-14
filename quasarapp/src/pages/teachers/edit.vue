@@ -170,7 +170,6 @@ export default {
   methods: {
     handleUpdate() {
       // console.log("Thanks For Data Insert");
-      this.submitting = true;
       const fileData = new FormData();
 
       fileData.append("_method", 'patch');
@@ -178,7 +177,6 @@ export default {
       this.$axios.post(`teacher/${this.$route.params.id}`, fileData)
         .then(res => {
           this.$router.push("/teacher");
-          this.submitting = false;
           this.$q.notify({
             color: "green-4",
             textColor: "white",

@@ -34,7 +34,6 @@
             :model.sync="selected_class"
             :options="classes"
             @filter="filterClass"
-            :name.sync="selected_class"
           />
         </div>
 
@@ -46,7 +45,6 @@
             :model.sync="selected_department"
             :options="departments"
             @filter="filterDepartment"
-            :name.sync="slected_department"
           />
           
           <input-required
@@ -634,6 +632,7 @@ export default {
         addmission_number: null,
         roll_number: null,
         class_id: 0,
+        section_id: 0,
         department_id: 0,
         first_name: null,
         last_name: null,
@@ -714,11 +713,13 @@ export default {
       //     ? this.selected_class.id
       //     : 0;
       this.form.class_id = this?.selected_class?.id;
-      this.form.section_id = this?.selected_section?.id;
+      this.form.section_id = this?.selected_department?.id;
       // this.form.section_id =
       //   this.selected_section && this.selected_section.id > 0
       //     ? this.selected_section.id
       //     : 0;
+      // console.log(this.form.class_id);
+      
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
       this.$axios

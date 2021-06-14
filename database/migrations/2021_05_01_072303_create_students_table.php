@@ -15,25 +15,25 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer                 ('addmission_number')       ->nullable();
-            $table->integer                 ('roll_number')             ->nullable();
-            $table->string                  ('first_name');
-            $table->string                  ('last_name')               ->nullable();
-            $table->string                  ('class_id')                ->nullable();
-            $table->string                  ('section_id')              ->nullable();
-            $table->date                    ('date_of_birth')           ->nullable();
-            $table->integer                 ('mobile_number')           ->nullable();
-            $table->string                  ('email')                   ->nullable();
-            $table->date                    ('addmission_Date')         ->nullable();
-            $table->string                  ('gender')                  ->nullable();
-            $table->string                  ('image')                   ->nullable();
-            $table->json                    ('parent_details')          ->nullable();
-            $table->json                    ('student_address')         ->nullable();
-            $table->json                    ('transport_details')       ->nullable();
-            $table->json                    ('hostel_details')          ->nullable();
-            $table->json                    ('miscellaneous_details')   ->nullable();
-            $table->json                    ('upload_documents')        ->nullable();
-            $table->timestamps              ();
+            $table->integer('addmission_number')->nullable();
+            $table->integer('roll_number')->nullable();
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->integer('class_id')->nullable();
+            $table->integer('section_id')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->integer('mobile_number')->nullable();
+            $table->string('email')->nullable();
+            $table->date('addmission_Date')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('image')->nullable();
+            $table->json('parent_details')->nullable();
+            $table->json('student_address')->nullable();
+            $table->json('transport_details')->nullable();
+            $table->json('hostel_details')->nullable();
+            $table->json('miscellaneous_details')->nullable();
+            $table->json('upload_documents')->nullable();
+            $table->timestamps();
         });
     }
 

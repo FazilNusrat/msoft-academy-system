@@ -10,13 +10,14 @@ use Illuminate\Pagination\Paginator;
 class Students extends Model
 {
     use HasFactory;
-    protected $primaryKey ='id';
-    public $incrementing = false;
+    // protected $primaryKey ='id';
+    // protected $table = 'students';
+    // public $incrementing = false;
     protected $fillable=[
         'admission_no',
         'roll_number',
-        // 'class_id',
-        // 'department_id',
+        'class_id',
+        'section_id',
         'first_name',
         'last_name',
         'gender',
@@ -36,15 +37,18 @@ class Students extends Model
 
     public function getStudent($per_page = 5, $current_page = 1, $filter = "", $sort_by = "created_at", $descending = "true") 
     {
-        $query = $this->selectRaw('*')
-			->groupBy('id');
-		// $query = $this->leftjoin('classes','students.class_id' ,'classes.id')
-        // ->selectRaw('students.id, students.first_name, students.mobile_number,students.email, students.addmission_Date, classes.name as class_name, classes.id as class_id');
+        // $query = $this->selectRaw('*');
+		$query = $this->leftjoin('classes','classes.id','=','students.class_id' )
+        ->leftjoin('departments','departments.id','students.section_id')
+        ->selectRaw('students.id, students.first_name, students.mobile_number,students.email, classes.name as class_name, classes.id as class_id, departments.name as section_name');
 		if ($descending === "true") {
 			$query = $query->orderBy($sort_by, 'desc');
 		} else {
 			$query = $query->orderBy($sort_by, 'asc');
 		}
+        if($filter!=''){
+            $query = $query->where('students.first_name', 'ILIKE', '%' .$filter. '%');
+        }
 		Paginator::currentPageResolver(function () use ($current_page) {
 			return $current_page;
 		});
