@@ -72,7 +72,7 @@ Route::get('staff',['as'=>'staff.index','uses'=>'StaffController@index']);
 Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffController@store']);
 Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffController@update']);
 Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffController@edit']);
-Route::get('staff/{id}','StaffController@destroy')->name('staff');
+Route::delete('staff/{id}','StaffController@destroy')->name('staff');
 
 
 

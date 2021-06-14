@@ -5,7 +5,7 @@
       bg="bg-cyan-7"
       class="q-ma-smbg my_radio_less bg-cyan-7 my_border_white text-white three_d glossy text-h6 q-pl-sm"
     >
-      {{ $t("Add Teachers") }}
+      {{ $t("Update Staffs") }}
     </div>
     <q-card>
       <div class="q-pa-lg">
@@ -62,7 +62,7 @@
          <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
-              :label="$t('Salary')"
+              :label="$t('Current Address')"
               ref="modalName"
               refname="name"
               :name.sync="form.salary"
@@ -70,52 +70,31 @@
           </div>
         </div>
         <div class="row">
-          
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Current Address')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.current_address"
-            />
-          </div>
           <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Permenent Address')"
               ref="modalName"
               refname="name"
-              :name.sync="form.permenent_address"
+              :name.sync="form.address"
             />
           </div>
-         <div class="col-md-4 q-pa-sm">
+          <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
               :label="$t('Education Level')"
               ref="modalName"
               refname="name"
-              :name.sync="form.education_level"
+              :name.sync="form.city"
             />
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 q-pa-sm">
+         <div class="col-md-4 q-pa-sm">
             <input-simple
               icon="explore"
-              :label="$t('Experience')"
+              :label="$t('job_name')"
               ref="modalName"
               refname="name"
-              :name.sync="form.experience"
-            />
-          </div>
-          <div class="col-md-4 q-pa-sm">
-            <input-simple
-              icon="explore"
-              :label="$t('Tazkera Number')"
-              ref="modalName"
-              refname="name"
-              :name.sync="form.tazkera_number"
+              :name.sync="form.job_name"
             />
           </div>
         </div>
@@ -132,7 +111,7 @@
         :label="$t('update')"
         v-close-popup
       />
-      <q-btn color="red" outline :label="$t('Cancel')" to="/teacher" />
+      <q-btn color="red" outline :label="$t('Cancel')" to="/staffs" />
     </q-card-actions>
   </div>
 </template>
@@ -150,13 +129,11 @@ export default {
         last_name: null,
         father_name: null,
         email: null,
-        salary: null,
         phone: null,
-        current_address: null,
-        permenent_address: null,
-        education_level: null,
-        experience: null,
-        tazkera_number: null,
+        salary: null,
+        address: null,
+        city: null,
+        job_name: null,
       }
     };
   },
@@ -175,21 +152,21 @@ export default {
 
       fileData.append("_method", 'patch');
       fileData.append("form", JSON.stringify(this.form));
-      this.$axios.post(`teacher/${this.$route.params.id}`, fileData)
+      this.$axios.post(`staff/${this.$route.params.id}`, fileData)
         .then(res => {
-          // this.$router.push("/teacher");
-          // this.submitting = false;
-          // this.$q.notify({
-          //   color: "green-4",
-          //   textColor: "white",
-          //   icon: "cloud_done",
-          //   message: "Successfull"
-          // });
+          this.$router.push("/staffs");
+          this.submitting = false;
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Successfull Updated"
+          });
         });
 
     },
     editData() {
-      this.$axios.get(`teacher/edit/${this.$route.params.id}`).then(data => {
+      this.$axios.get(`staff/edit/${this.$route.params.id}`).then(data => {
         data = data.data;
         this.form.first_name = data.first_name;
         this.form.last_name = data.last_name;
@@ -197,31 +174,15 @@ export default {
         this.form.phone = data.phone;
         this.form.email = data.email;
         this.form.salary = data.salary;
-        this.form.current_address = data.current_address;
-        this.form.permenent_address = data.permenent_address;
-        this.form.education_level = data.education_level;
-        this.form.experience = data.experience;
-        this.form.tazkera_number = data.tazkera_number;
-        // this.selectedStatus = this.status.find(
-        //   e => e.value === (data.status ? 1 : 0)
-        // );
-        // this.selected_department = this.departments.find(
-        //   e => e.id === data.department_id
-        // );
-        // this.selected_time = this.times.find(e => e.id === data.time_id);
-        
+        this.form.address = data.address;
+        this.form.city = data.city;
+        this.form.job_name = data.job_name;
       });
     }
   },
   
   mounted() {
     this.editData();
-    // this.$getAcademy("department").then(() => {
-    //   console.log("aaaaa", this.departments);
-    // });
-    // this.$getAcademy("class").then(() => {
-    //   console.log("aaaaa", this.classes);
-    // });
   }
 };
 </script>

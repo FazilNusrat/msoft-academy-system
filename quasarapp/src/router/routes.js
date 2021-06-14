@@ -43,6 +43,9 @@ const routes = [
       { path: '/staffs/create',
        component: () => import('pages/Staffs/create.vue')
       },
+      { path: '/staffs/edit/:id', 
+      component: () => import('pages/staffs/edit.vue') 
+      },
       { path: '/exam', 
       component: () => import('pages/exams/index.vue') 
       },

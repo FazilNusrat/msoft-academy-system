@@ -180,7 +180,7 @@
         :label="$t('Save')"
         v-close-popup
       />
-      <q-btn color="red" outline :label="$t('Cancel')" to="/staff" />
+      <q-btn color="red" outline :label="$t('Cancel')" to="/staffs" />
     </q-card-actions>
   </div>
 </template>
@@ -245,7 +245,7 @@ export default {
             color: "green-4",
             textColor: "white",
             icon: "cloud_done",
-            message: "Successfull"
+            message: "Successfull Inserted"
           });
         });
     },
