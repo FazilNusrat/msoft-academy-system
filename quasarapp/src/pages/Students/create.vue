@@ -76,7 +76,6 @@
             class="col q-ma-sm"
             icon="apps"
             dense
-            type="number"
             outlined
             :name.sync="form.mobile_number"
             :label="$t('Phone Number')"
@@ -95,7 +94,6 @@
           <date-picker
             class="col q-ma-sm"
             dense
-            :name.sync="form.addmission_date"
             :date.sync="form.addmission_date"
             :label="$t('Addmisstion Date')"
           />
@@ -148,7 +146,6 @@
                   auto-upload
                   accept=".jpg, image/*"
                   @rejected="onRejected"
-                  ref="photo"
                 />
               </div>
       </div>
@@ -640,6 +637,7 @@ export default {
         date_of_birth: null,
         category: null,
         religion: null,
+        photo: null,
         caste: null,
         mobile_number: null,
         email: null,
@@ -722,6 +720,7 @@ export default {
       
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
+      fileData.append("photo", this.form.photo);
       this.$axios
         .post("student/store", fileData, {
           // headers: {
@@ -740,7 +739,7 @@ export default {
         });
     },
     uploadFile(files) {
-      //   this.form.personal.photo = files[0];
+        this.form.photo = files[0];
       // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     onRejected(rejectedEntries) {

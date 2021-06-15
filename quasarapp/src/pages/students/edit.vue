@@ -45,7 +45,6 @@
             :model.sync="selected_department"
             :options="departments"
             
-            :name.sync="slected_department"
           />
           
           <input-required
@@ -96,7 +95,7 @@
           <date-picker
             class="col q-ma-sm"
             dense
-            :date.sync="form.addmission_date"
+            :date.sync="form.addmission_Date"
             :label="$t('Addmisstion Date')"
           />
         </div>
@@ -628,7 +627,7 @@ export default {
         date_of_birth: null,
         mobile_number: null,
         email: null,
-        addmission_date: null,
+        addmission_Date: null,
 
         parent_details: {
           father_name: null,
@@ -708,7 +707,7 @@ export default {
       this.form.department_id     = data.department_id;
       this.form.first_name        = data.first_name;
       this.form.last_name         = data.last_name;
-      this.form.addmission_date   = data.addmission_date;
+      this.form.addmission_Date   = data.addmission_Date;
       this.form.mobile_number     = data.mobile_number;
       this.form.email             = data.email;
       //json parse konim ka data ba json save shoda

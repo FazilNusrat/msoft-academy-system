@@ -44,18 +44,21 @@ class StaffController extends Controller
         //image
         $name = '';
         if ($request->hasFile('photo')) {
-            $original_filename = $form->file('photo')->getClientOriginalName();
+            $original_filename = $request->file('photo')->getClientOriginalName();
             $original_filename_arr = explode('.', $original_filename);
             $file_ext = end($original_filename_arr);
-            $name = 'EMP-' . time() . '.' . $file_ext;
-            $img = Image::make($form->file('photo'));
+            $name = 'STU-' . time() . '.' . $file_ext;
+            $img = Image::make($request->file('photo'));
             $img->save(public_path('uploads/staff/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
             })->save(public_path('uploads/staff/small/' . $name));
-            // $form->merge(['photo' => $name]);
+            // $request->merge(['photo' => $name]);
         }
+
+
+
         $staffData = [
             'addmission_number'         =>$form->addmission_number,
             'roll_number'               =>$form->roll_number,

@@ -69,7 +69,7 @@ class StudentsController extends Controller
             $original_filename = $request->file('photo')->getClientOriginalName();
             $original_filename_arr = explode('.', $original_filename);
             $file_ext = end($original_filename_arr);
-            $name = 'EMP-' . time() . '.' . $file_ext;
+            $name = 'STU-' . time() . '.' . $file_ext;
             $img = Image::make($request->file('photo'));
             $img->save(public_path('uploads/student/' . $name));
             $img->resize(100,100, function($constraint)
@@ -132,7 +132,7 @@ class StudentsController extends Controller
             'mobile_number'             =>$form->mobile_number?$form->mobile_number:0,
             'email'                     =>$form->email?$form->email:0,
             'addmission_Date'           =>$form->addmission_date,
-            // 'image'                     =>$form->image,
+            'image'                     =>$name,
             'student_address'           => json_encode($student_address),
             'parent_details'            => json_encode($parent_details),
             'transport_details'         => json_encode($transport_details),
@@ -232,7 +232,7 @@ class StudentsController extends Controller
               'last_name'                 =>$form->last_name,
               'gender'                    =>$form->gender,
               'date_of_birth'             =>$form->date_of_birth,
-              'mobile_number'             =>$form->mobile_number?$form->mobile_number:0,
+              'mobile_number'             =>$form->mobile_number,
               'email'                     =>$form->email?$form->email:0,
               'addmission_Date'           =>$form->addmission_date,
               // 'image'                     =>$form->image,

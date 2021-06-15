@@ -129,6 +129,7 @@ class LibraryController extends Controller
      */
     public function destroy(library $library)
     {
-        //
+        $library = $this->libr$librarys->find($id);
+        $library->delete();
     }
 }
