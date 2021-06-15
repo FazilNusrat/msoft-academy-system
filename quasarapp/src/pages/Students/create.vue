@@ -76,7 +76,6 @@
             class="col q-ma-sm"
             icon="apps"
             dense
-            type="number"
             outlined
             :name.sync="form.mobile_number"
             :label="$t('Phone Number')"
@@ -95,7 +94,6 @@
           <date-picker
             class="col q-ma-sm"
             dense
-            :name.sync="form.addmission_date"
             :date.sync="form.addmission_date"
             :label="$t('Addmisstion Date')"
           />
