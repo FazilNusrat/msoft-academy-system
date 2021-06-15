@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->date('date_of_birth')->nullable();
             $table->integer('mobile_number')->nullable();
             $table->string('email')->nullable();
-            $table->date('addmission_Date')->nullable();
+            $table->date('addmission_date')->nullable();
             $table->string('gender')->nullable();
             $table->string('image')->nullable();
             $table->json('parent_details')->nullable();
