@@ -96,7 +96,6 @@
           <date-picker
             class="col q-ma-sm"
             dense
-            :name.sync="form.addmission_date"
             :date.sync="form.addmission_date"
             :label="$t('Addmisstion Date')"
           />
@@ -688,7 +687,7 @@ export default {
         fileData.append("form", JSON.stringify(this.form));
         this.$axios.post(`student/${this.$route.params.id}`,fileData)
         .then(res =>{
-            this.$router.push("/teacher");
+            this.$router.push("/student");
             this.submitting = false;
             this.$q.notify({
                 color: "green-4",

@@ -102,7 +102,6 @@ export default {
     },
     onReset() {
       this.form.name = null;
-      this.form.description = null;
 
     },
 

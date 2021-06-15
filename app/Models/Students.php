@@ -14,7 +14,7 @@ class Students extends Model
     // protected $table = 'students';
     // public $incrementing = false;
     protected $fillable=[
-        'admission_no',
+        'admission_number',
         'roll_number',
         'class_id',
         'section_id',

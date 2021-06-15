@@ -226,7 +226,7 @@ export default {
         permenent_address: null,
         education_level: null,
         experience: null,
-        gender: null,
+        gender: 'male',
         tazkera_number: null,
       }
     };

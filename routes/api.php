@@ -33,7 +33,7 @@ Route::get('class/', ['as' => 'class.index', 'uses' => 'ClassesController@index'
 Route::post('class/store', ['as' => 'class.store', 'uses' => 'ClassesController@store']);
 Route::patch('class/{id}', ['as' => 'class.update', 'uses' => 'ClassesController@update']);
 Route::get('class/edit/{id}', ['as' => 'class.edit', 'uses' => 'ClassesController@edit']);
-Route::get('class/{id}','ClassesController@destroy')->name('class');
+Route::delete('class/{id}','ClassesController@destroy')->name('class');
 
 
 
@@ -42,7 +42,7 @@ Route::get('subject/', ['as' => 'subject.index', 'uses' => 'SubjectController@in
 Route::post('subject/store', ['as' => 'subject.store', 'uses' => 'SubjectController@store']);
 Route::patch('subject/{id}', ['as' => 'subject.update', 'uses' => 'SubjectController@update']);
 Route::get('subject/edit/{id}', ['as' => 'subject.edit', 'uses' => 'SubjectController@edit']);
-Route::get('subject/{id}','SubjectController@destroy')->name('subject');
+Route::delete('subject/{id}','SubjectController@destroy')->name('subject');
 
 
 //time
@@ -50,7 +50,7 @@ Route::get('time/', ['as' => 'time.index', 'uses' => 'TimeController@index']);
 Route::post('time/store', ['as' => 'time.store', 'uses' => 'TimeController@store']);
 Route::patch('time/{id}', ['as' => 'time.update', 'uses' => 'TimeController@update']);
 Route::get('time/edit/{id}', ['as' => 'time.edit', 'uses' => 'TimeController@edit']);
-Route::get('time/{id}','TimeController@destroy')->name('time');
+Route::delete('time/{id}','TimeController@destroy')->name('time');
 
 // department
 
@@ -59,13 +59,13 @@ Route::post('department/store', ['as' => 'department.store', 'uses' => 'Departme
 Route::patch('department/{id}', ['as' => 'department.update', 'uses' => 'DepartmentController@update']);
 Route::get('department/edit/{id}', ['as' => 'department.edit', 'uses' => 'DepartmentController@edit']);
 // Route::get('department/{id}', ['as' => 'department.delete', 'uses' => 'DepartmentController@destroy']);
-Route::get('department/{id}','DepartmentController@destroy')->name('department');
+Route::delete('department/{id}','DepartmentController@destroy')->name('department');
 
 Route::get('batch/', ['as' => 'batch.index', 'uses' => 'BatchController@index']);
 Route::post('batch/store', ['as' => 'batch.store', 'uses' => 'BatchController@store']);
 Route::patch('batch/{id}', ['as' => 'batch.update', 'uses' => 'BatchController@update']);
 Route::get('batch/edit/{id}', ['as' => 'batch.edit', 'uses' => 'BatchController@edit']);
-Route::get('batch/{id}','BatchController@destroy')->name('batch');
+Route::delete('batch/{id}','BatchController@destroy')->name('batch');
 
 
 Route::get('staff',['as'=>'staff.index','uses'=>'StaffController@index']);
@@ -80,7 +80,7 @@ Route::get('library',['as'=>'library.index','uses'=>'LibraryController@index']);
 Route::post('library/store', ['as' => 'library.store', 'uses' => 'LibraryController@store']);
 Route::patch('library/{id}', ['as' => 'library.update', 'uses' => 'LibraryController@update']);
 Route::get('library/edit/{id}', ['as' => 'library.edit', 'uses' => 'LibraryController@edit']);
-Route::get('library/{id}','LibraryController@destroy')->name('library');
+Route::delete('library/{id}','LibraryController@destroy')->name('library');
 
 
 // Route::get('student',['as'=>'student.index','uses'=>'StudentsController@index']);

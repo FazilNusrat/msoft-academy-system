@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->integer('addmission_number')->nullable();
             $table->integer('roll_number')->nullable();
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->integer('class_id')->nullable();
             $table->integer('section_id')->nullable();
