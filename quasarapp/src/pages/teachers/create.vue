@@ -181,7 +181,6 @@
                   auto-upload
                   accept=".jpg, image/*"
                   @rejected="onRejected"
-                  ref="photo"
                 />
               </div>
       </div>
