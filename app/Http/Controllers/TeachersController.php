@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Teachers;
 use Illuminate\Http\Request;
+use Image;
+
 
 class TeachersController extends Controller
 {
@@ -51,18 +53,20 @@ class TeachersController extends Controller
         //image
         $name = '';
         if ($request->hasFile('photo')) {
-            $original_filename = $form->file('photo')->getClientOriginalName();
+            $original_filename = $request->file('photo')->getClientOriginalName();
             $original_filename_arr = explode('.', $original_filename);
             $file_ext = end($original_filename_arr);
-            $name = 'EMP-' . time() . '.' . $file_ext;
-            $img = Image::make($form->file('photo'));
-            $img->save(public_path('uploads/teacher/' . $name));
+            $name = 'STU-' . time() . '.' . $file_ext;
+            $img = Image::make($request->file('photo'));
+            $img->save(public_path('uploads/teachers/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/Teacher/small/' . $name));
-            // $form->merge(['photo' => $name]);
+            })->save(public_path('uploads/teachers/small/' . $name));
+            // $request->merge(['photo' => $name]);
         }
+
+
         $TeacherData = [
             'addmission_number'                =>$form->addmission_number,
             'roll_number'                      =>$form->roll_number,
@@ -71,6 +75,7 @@ class TeachersController extends Controller
             'father_name'                      =>$form->father_name,
             'email'                            =>$form->email,
             'phone'                            =>$form->phone,
+            'photo'                            =>$name,
             'date_of_birth'                    =>$form->date_of_birth,
             'email'                            =>$form->email,
             'salary'                           =>$form->salary,
