@@ -25,6 +25,8 @@ class CreateTeachersTable extends Migration
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
             $table->integer('salary')->nullable();
+            $table->integer('class_id')->nullable();
+            $table->integer('section_id')->nullable();
             $table->string('gender')->nullable();
             $table->string('current_address')->nullable();
             $table->string('permenent_address')->nullable();

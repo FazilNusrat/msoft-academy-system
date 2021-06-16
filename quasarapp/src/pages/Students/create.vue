@@ -623,7 +623,6 @@ export default {
       selected_blood_group: null,
       departments: [],
       slected_department: null,
-      department_options: [],
       selectedStatus: { name: this.$t("Active"), value: 1 },
       form: {
         addmission_number: null,

@@ -22,7 +22,10 @@ const routes = [
        { path: '/teacher/edit/:id', 
       component: () => import('pages/teachers/edit.vue') 
       },
-      { path: '/teachers/create',
+      { path: '/teacher/info/:id', 
+      component: () => import('pages/teachers/info.vue') 
+      },
+      { path: '/teacher/create',
        component: () => import('pages/teachers/create.vue')
       },
       { path: '/class', 
