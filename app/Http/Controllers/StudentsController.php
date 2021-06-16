@@ -132,7 +132,7 @@ class StudentsController extends Controller
             'mobile_number'             =>$form->mobile_number?$form->mobile_number:0,
             'email'                     =>$form->email?$form->email:0,
             'addmission_date'           =>$form->addmission_date,
-            'image'                     =>$form->image,
+            'image'                     =>$name,
             'student_address'           => json_encode($student_address),
             'parent_details'            => json_encode($parent_details),
             'transport_details'         => json_encode($transport_details),
