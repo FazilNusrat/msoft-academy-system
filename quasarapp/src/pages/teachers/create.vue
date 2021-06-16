@@ -241,6 +241,7 @@ export default {
     handleSubmit() {
       console.log("Thanks For Data Insert");
       this.submitting = true;
+
       this.form.class_id =
         this.selected_class && this.selected_class.id > 0
           ? this.selected_class.id
@@ -249,8 +250,11 @@ export default {
         this.selected_section && this.selected_section.id > 0
           ? this.selected_section.id
           : 0;
+
+
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
+      fileData.append("photo", this.form.photo);
       this.$axios
         .post("teacher/store", fileData, {
           // headers: {
@@ -269,7 +273,7 @@ export default {
         });
     },
     uploadFile(files) {
-      //   this.form.personal.photo = files[0];
+        this.form.photo = files[0];
       // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     onRejected(rejectedEntries) {
