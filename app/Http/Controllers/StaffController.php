@@ -47,13 +47,13 @@ class StaffController extends Controller
             $original_filename = $request->file('photo')->getClientOriginalName();
             $original_filename_arr = explode('.', $original_filename);
             $file_ext = end($original_filename_arr);
-            $name = 'STU-' . time() . '.' . $file_ext;
+            $name = 'STF-' . time() . '.' . $file_ext;
             $img = Image::make($request->file('photo'));
-            $img->save(public_path('uploads/staff/' . $name));
+            $img->save(public_path('uploads/staffs/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/staff/small/' . $name));
+            })->save(public_path('uploads/staffs/small/' . $name));
             // $request->merge(['photo' => $name]);
         }
 
@@ -72,7 +72,7 @@ class StaffController extends Controller
             'address'                   =>$form->address,
             'city'                      =>$form->city,
             'job_name'                  =>$form->job_name,
-            'photo'                     =>$form->photo,
+            'photo'                     =>$name,
             'gender'                    =>$form->gender,
         ];
 

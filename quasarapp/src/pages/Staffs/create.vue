@@ -163,7 +163,6 @@
                   auto-upload
                   accept=".jpg, image/*"
                   @rejected="onRejected"
-                  ref="photo"
                 />
               </div>
       </div>
@@ -230,14 +229,17 @@ export default {
         this.selected_section && this.selected_section.id > 0
           ? this.selected_section.id
           : 0;
+
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
+      fileData.append("photo", this.form.photo);
       this.$axios
         .post("staff/store", fileData, {
           // headers: {
           //   "Content-Type": "multipart/form-data"
           // }
         })
+
         .then(res => {
           this.$router.push("/staffs");
           this.submitting = false;
@@ -250,7 +252,7 @@ export default {
         });
     },
     uploadFile(files) {
-      //   this.form.personal.photo = files[0];
+        this.form.photo = files[0];
       // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     onRejected(rejectedEntries) {
