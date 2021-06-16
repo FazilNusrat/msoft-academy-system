@@ -4,13 +4,14 @@
         <q-card-section>
           <div class="text-h6">Add Class</div>
         </q-card-section> -->
-    <h-title>Teacher Entry</h-title>
+    <h-title>teachers Entry</h-title>
     <div class="row justify-between">
       <div class="row"> 
         <l-button icon="add" color="red" @click="addModal"
-          >Add New</l-button>
+          >Add New</l-button
+        >
 
-        <l-button to="/teachers/create" icon="add" color="green"
+        <l-button to="/teacher/create" icon="add" color="green"
           >New Page</l-button
         >
 
@@ -28,7 +29,7 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('TeacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('teacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
       <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
@@ -39,12 +40,13 @@
     </div>
   </div>
 </template>
+
 <script>
 import NTable from "../../components/tables/DataTable.vue";
 import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
-import NAddModal from 'src/components/modals/Teacher/Add.vue'
-import NEditModal from 'src/components/modals/Teacher/Edit.vue'
+import NAddModal from 'src/components/modals/teacher/Add.vue'
+import NEditModal from 'src/components/modals/teacher/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -77,7 +79,7 @@ export default {
           sortable: true,
           classes: "bg-grey-2 ellipsis my_width10",
           align: "center",
-          headerClasses: "bg-light-blue-6 text-white ",s
+          headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
         { name: 'father_name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Father Name', field: row=>row.father_name, sortable: true },
@@ -138,7 +140,7 @@ export default {
     clear() {
       (this.form.name = ""),
       (this.form.last_name = "");
-      (this.form.email = "");
+      (this.form.father_name = "");
       (this.form.cnic = "");
       (this.form.phone = "");
       (this.form.fees = "");
@@ -157,11 +159,8 @@ export default {
     
 
     edit(id = 0) {
-      // this.id = id;
-      // this.showEditModal = true;
       this.$router.push('/teacher/edit/'+id)
     },
-
     addModal () {
       // alert("Clicked")
       // this.form.name = null;
