@@ -59,6 +59,10 @@ const routes = [
       { path: '/staffs/info/:id', 
       component: () => import('pages/staffs/info.vue') 
       },
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
       { path: '/exam', 
       component: () => import('pages/exams/index.vue') 
       },
