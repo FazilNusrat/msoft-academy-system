@@ -191,9 +191,6 @@ export default {
     },
   },
 
-  // created() {
-  //   this.getdata();
-  // },
 };
 </script>
 

@@ -29,13 +29,18 @@
       </div>
     </div>
     <div>
-      <n-table :title="$t('staffsList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+      <n-table :title="$t('staffList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
 
-      <m-modal :showCM.sync="showAddModal">
+    <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
+    <n-info-modal @close="showInfoModal()" />
   </m-modal>
   <m-modal :showCM.sync="showEditModal">
     <n-edit-modal :id="id" @close="hideEditModal()" />
+  </m-modal>
+
+  <m-modal :showCM.sync="showInfoModal">
+    <n-info-modal :id="id" @close="hideInfoModal()" />
   </m-modal>
     </div>
   </div>
@@ -47,6 +52,7 @@ import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
 import NAddModal from 'src/components/modals/staff/Add.vue'
 import NEditModal from 'src/components/modals/staff/Edit.vue'
+import NInfoModal from 'src/components/modals/teacher/info.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -58,6 +64,7 @@ export default {
       showModal: false,
       showAddModal:false,
       showEditModal:false,
+      showInfoModal:false,
       form: {name:null},
       show:true,
       visible:true,
@@ -169,6 +176,9 @@ export default {
       this.showAddModal = false;
       this.getRecord()
     },
+    hideInfoModal () {
+      this.showInfoModal = false;
+    },
     hideEditModal () {
       this.showEditModal = false;
       this.getRecord()
@@ -176,7 +186,6 @@ export default {
     info (id=0) {
       this.$router.push('/staffs/info/'+id)
       // console.log('info: ', id);
-    },
     onRequest (props) {
       console.log('propss: ', props);
       this.getProp = props
