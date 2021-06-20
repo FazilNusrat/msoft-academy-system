@@ -28,6 +28,10 @@ const routes = [
       { path: '/teacher/create',
        component: () => import('pages/teachers/create.vue')
       },
+      
+      { path: '/teacher/info',
+       component: () => import('pages/teachers/info.vue')
+      },
       { path: '/class', 
       component: () => import('pages/class/index.vue') 
       },
@@ -51,6 +55,9 @@ const routes = [
       },
       { path: '/staffs/edit/:id', 
       component: () => import('pages/staffs/edit.vue') 
+      },
+      { path: '/staffs/info/:id', 
+      component: () => import('pages/staffs/info.vue') 
       },
       { path: '/exam', 
       component: () => import('pages/exams/index.vue') 

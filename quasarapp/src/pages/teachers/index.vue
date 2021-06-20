@@ -18,7 +18,7 @@
 
         <l-button icon="mdi-file-pdf" color="orange">PDF</l-button>
         <l-button icon="mdi-microsoft-excel" color="green-10">Excel</l-button>
-        <l-button icon="mdi-email-send" color="red-6">Email</l-button>
+        <l-button icon="mdi-email-send" color="red-6">Email</l-button> 
         <l-button icon="mdi-whatsapp" color="green-6">Whatsapp</l-button>
       </div>
       <div class="row">
@@ -52,7 +52,6 @@ import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
 import NAddModal from 'src/components/modals/teacher/Add.vue'
 import NEditModal from 'src/components/modals/teacher/Edit.vue'
-import NInfoModal from 'src/components/modals/teacher/info.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -71,7 +70,7 @@ export default {
       filter: '',
       loading: false,
       pagination: {
-        sortBy: 'created_at',
+        sortBy: 'teachers.created_at',
         descending: true,
         page: 1,
         rowsPerPage: 12,
@@ -89,8 +88,11 @@ export default {
           headerClasses: "bg-light-blue-6 text-white ",
         },
         { name: 'first_name', align: 'center', label: 'First Name', field: row=>row.first_name, sortable: true },
+        
+        { name: 'class name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Class', field: row=>row.class_name, sortable: true },
+        { name: 'section name',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Section', field: row=>row.section_name, sortable: true },
         { name: 'email',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Email', field: row=>row.email, sortable: true },
-        { name: 'mobile_number',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
+        { name: 'phone',classes: 'bg-grey-2 ellipsis', align: 'center', label: 'Phone', field: row=>row.phone, sortable: true },
           { name: 'actions', label: 'Actions', classes: 'my_width10', sortable: false, align: 'center my_width20'},
 
       ],
@@ -166,8 +168,6 @@ export default {
       this.$router.push('/teacher/edit/'+id)
     },
     addModal () {
-      // alert("Clicked")
-      // this.form.name = null;
       this.showAddModal = true;
     },
     hideAddModal () {
@@ -182,9 +182,7 @@ export default {
       this.getRecord()
     },
     info (id=0) {
-      console.log('info: ', id);
-      this.id = id;
-      this.showInfoModal = true;
+      this.$router.push('/teacher/info/'+id)
     },
     onRequest (props) {
       console.log('propss: ', props);

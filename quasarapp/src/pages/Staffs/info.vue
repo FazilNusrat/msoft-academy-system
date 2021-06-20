@@ -38,7 +38,7 @@
 
           <q-item-section>
             <q-item-label
-              >Name : {{ info.first_name }}</q-item-label
+              >Name : {{ info.addmission_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -46,6 +46,52 @@
           </q-item-section>
         </q-item>
          <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >Last Name  : {{ info.roll_number }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >Last Name  : {{ info.first_name }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
               round
@@ -67,50 +113,7 @@
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
 
-          <q-item-section>
-            <q-item-label
-              >Email : {{ info.email }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Phone :{{ info.phone }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
         <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
@@ -126,13 +129,14 @@
 
           <q-item-section>
             <q-item-label
-              >Class :{{ info.class_name }}</q-item-label
+              >Father Name  : {{ info.father_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
+
       </q-list>
         </div>
 
@@ -153,7 +157,7 @@
 
           <q-item-section>
             <q-item-label
-              >DOB :{{ info.date_of_birth }}</q-item-label
+              >Name : {{ info.addmission_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -175,51 +179,7 @@
 
           <q-item-section>
             <q-item-label
-              >Salary:{{ info.salary }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Current Address : {{ info.current_address }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Permenent Address :{{ info.permenent_address }}</q-item-label
+              >Last Name  : {{ info.roll_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -242,17 +202,64 @@
 
           <q-item-section>
             <q-item-label
-              >Section :{{ info.section_name }}</q-item-label
+              >Last Name  : {{ info.first_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >Last Name  : {{ info.last_name }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >Father Name  : {{ info.father_name }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
       </q-list>
         </div>
 
-        <div class="col">
+        <div class="col q-mr-sm">
           <q-list bordered>
         <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
@@ -269,7 +276,7 @@
 
           <q-item-section>
             <q-item-label
-              >Tazkera Number :{{ info.tazkera_number }}</q-item-label
+              >Name : {{ info.addmission_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -291,14 +298,15 @@
 
           <q-item-section>
             <q-item-label
-              >Education Level : {{ info.education_level }}</q-item-label
+              >Last Name  : {{ info.roll_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
               round
@@ -313,14 +321,15 @@
 
           <q-item-section>
             <q-item-label
-              >Email : {{ info.email }}</q-item-label
+              >Last Name  : {{ info.first_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
-         <q-item class="shadow-7 my_radio " clickable v-ripple>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
               round
@@ -335,7 +344,7 @@
 
           <q-item-section>
             <q-item-label
-              >Experience :{{ info.experience }}</q-item-label
+              >Last Name  : {{ info.last_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -343,7 +352,7 @@
           </q-item-section>
         </q-item>
 
-           <q-item class="shadow-7 my_radio " clickable v-ripple>
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
               round
@@ -358,14 +367,14 @@
 
           <q-item-section>
             <q-item-label
-              >Gender :{{ info.gender }}</q-item-label
+              >Father Name  : {{ info.father_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
-        
+
       </q-list>
         </div>
         </div>
@@ -379,18 +388,19 @@ export default {
   name: "profile",
   data() {
     return {
-      info: [],
+        info:[],
     };
   },
   methods: {
     showData() {
-      this.$axios.get(`teacher/show/${this.$route.params.id}`).then((data) => {
-        this.info = data.data;
-      // console.log('asas',data)
-
+        this.$axios.get(`staff/show/${this.$route.params.id}`).then(data => {
+        this.info= data.data;
+    //    console.log('asas',data)
+        
+        
         //we can not make like edit becuase just we want to display
-        //if we write this.info,last_name= data.last_name it store
-        //but we have data on database
+        //if we write this.info.last_name= data.last_name it store
+        //but we wont to display data on database
       });
     },
   },

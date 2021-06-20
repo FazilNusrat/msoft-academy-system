@@ -102,9 +102,9 @@ class StaffController extends Controller
      * @param  \App\Models\staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function show(staff $staff)
+    public function show($id)
     {
-        //
+        return $this->staff->findOrFail($id);
     }
 
     /**

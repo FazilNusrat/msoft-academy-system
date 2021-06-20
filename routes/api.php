@@ -72,6 +72,7 @@ Route::get('staff',['as'=>'staff.index','uses'=>'StaffController@index']);
 Route::post('staff/store', ['as' => 'staff.store', 'uses' => 'StaffController@store']);
 Route::patch('staff/{id}', ['as' => 'staff.update', 'uses' => 'StaffController@update']);
 Route::get('staff/edit/{id}', ['as' => 'staff.edit', 'uses' => 'StaffController@edit']);
+Route::get('staff/show/{id}', ['as' => 'staff.show', 'uses' => 'StaffController@show']);
 Route::delete('staff/{id}','StaffController@destroy')->name('staff');
 
 
@@ -103,6 +104,7 @@ Route::get('teacher',['as'=>'teacher.index','uses'=>'TeachersController@index'])
 Route::post('teacher/store', ['as' => 'teacher.store', 'uses' => 'TeachersController@store']);
 Route::patch('teacher/{id}', ['as' => 'teacher.update', 'uses' => 'TeachersController@update']);
 Route::get('teacher/edit/{id}', ['as' => 'teacher.edit', 'uses' => 'TeachersController@edit']);
+Route::get('teacher/show/{id}', ['as' => 'teacher.show', 'uses' => 'TeachersController@show']);
 Route::delete('teacher/{id}','TeachersController@destroy')->name('teacher');
 // Route::patch('teacher/{id}', 'TeachersController@update')->name('teacher.update');
 

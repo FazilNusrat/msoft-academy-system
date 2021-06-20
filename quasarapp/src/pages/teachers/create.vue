@@ -115,11 +115,11 @@
             :name.sync="form.education_level"
             :label="$t('education Level')"
           />
+          
         </div> 
-
-
         <div class="row q-mb-sm q-px-sm">
-         <input-simple
+            <div class="col">
+              <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
@@ -127,13 +127,53 @@
             :name.sync="form.experience"
             :label="$t('Experience')"
           />
-          <input-simple
+            </div>
+            <div class="col">
+              <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
             outlined
             :name.sync="form.tazkera_number"
             :label="$t('Tazkera Number')"
+          />
+            </div>
+        </div>
+
+
+        <div class="row q-mb-sm q-px-sm">
+          
+          <n-select
+            icon="mdi-clock"
+            class="col q-ma-sm"
+            :label="$t('Section')"
+            :model.sync="selected_department"
+            :options="departments"
+            @filter="filterDepartment"
+          />
+         <!-- <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.experience"
+            :label="$t('Experience')"
+          /> -->
+          <!-- <input-simple
+            class="col q-ma-xs"
+            icon="apps"
+            dense
+            outlined
+            :name.sync="form.tazkera_number"
+            :label="$t('Tazkera Number')"
+          /> -->
+          <n-select
+            icon="mdi-clock"
+            class="col q-ma-sm"
+            :label="$t('Class')"
+            :model.sync="selected_class"
+            :options="classes"
+            @filter="filterClass"
           />
         </div>  
       </div>
@@ -180,7 +220,6 @@
                   max-files="1"
                   auto-upload
                   accept=".jpg, image/*"
-                  @rejected="onRejected"
                 />
               </div>
       </div>
@@ -210,6 +249,13 @@ import DatePicker from "../../components/fields/date-picker.vue";
 export default {
   data() {
     return {
+      departments: [],
+      department_options: [],
+      selected_department: null,
+      classes: [],
+      class_options: [],
+      selected_class: null,
+      slected_department: null,
       form: {
         addmission_number: null,
         roll_number: null,
@@ -239,17 +285,21 @@ export default {
   computed: {},
   methods: {
     handleSubmit() {
-      console.log("Thanks For Data Insert");
+      // console.log("Thanks For Data Insert");
       this.submitting = true;
 
-      this.form.class_id =
-        this.selected_class && this.selected_class.id > 0
-          ? this.selected_class.id
-          : 0;
-      this.form.section_id =
-        this.selected_section && this.selected_section.id > 0
-          ? this.selected_section.id
-          : 0;
+      // this.form.class_id =
+      //   this.selected_class && this.selected_class.id > 0
+      //     ? this.selected_class.id
+      //     : 0;
+      // this.form.section_id =
+      //   this.selected_section && this.selected_section.id > 0
+      //     ? this.selected_section.id
+      //     : 0;
+
+          this.form.class_id = this?.selected_class?.id;
+          this.form.section_id = this?.selected_department?.id;
+          
 
 
       const fileData = new FormData();
@@ -276,39 +326,7 @@ export default {
         this.form.photo = files[0];
       // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
-    onRejected(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
-      });
-    },
-    onRejectedScan(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`
-      });
-    },
-    filterDepartment(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.department_options = this.departments;
-          } else {
-            const needle = val.toLowerCase();
-            this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterClass(val, update, abort) {
+   filterClass(val, update, abort) {
       update(
         () => {
           if (val === "") {
@@ -316,31 +334,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.class_options = this.classes.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterTimes(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.time_options = this.times;
-          } else {
-            const needle = val.toLowerCase();
-            this.time_options = this.times.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -356,11 +354,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.department_options = this.departments.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
+              (v) => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        ref => {
+        (ref) => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -368,95 +366,32 @@ export default {
         }
       );
     },
-    filterJob(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.job_options = this.jobs;
-          } else {
-            const needle = val.toLowerCase();
-            this.job_options = this.jobs.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrency(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrencyType(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_type_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_type_options = this.currencies.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterBloodGroup(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.blood_group_options = this.blood_groups;
-          } else {
-            const needle = val.toLowerCase();
-            this.blood_group_options = this.blood_groups.filter(
-              v => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        ref => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
+    editData() {
+      this.$axios.get(`teacher/edit/${this.$route.params.id}`).then((data) => {
+        data = data.data;
+        this.form.code = data.code;
+        this.form.name = data.name;
+        this.form.last_name = data.last_name;
+        this.form.phone_no = data.phone_no;
+        this.selectedStatus = this.status.find(
+          (e) => e.value === (data.status ? 1 : 0)
+        );
+        this.selected_department = this.departments.find(
+          (e) => e.id === data.department_id
+        );
+        this.selected_time = this.times.find((e) => e.id === data.time_id);
+        // console.log('data: ', data);
+      });
     },
   },
-  mounted() {
-    // this.$getAcademy("department").then(() => {
-    //   console.log("aaaaa", this.departments);
-    // });
-    // this.$getAcademy("class").then(() => {
-    //   console.log("aaaaa", this.classes);
-    // });
-  }
+   mounted() {
+    this.$getAcademy("department").then(() => {
+      console.log("aaaaa", this.departments);
+    });
+    this.$getAcademy("class").then(() => {
+      console.log("aaaaa", this.classes);
+    });
+  },
 };
 </script>
 <style lang="css" scoped></style>

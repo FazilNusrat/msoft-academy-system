@@ -37,7 +37,7 @@
           />
         </div>
 
-        <div class="row q-mb-sm q-px-sm">
+        <div class="row q-mb-sm q-px-sm"> 
           <n-select
             icon="mdi-clock"
             class="col q-ma-sm"
@@ -145,7 +145,6 @@
                   max-files="1"
                   auto-upload
                   accept=".jpg, image/*"
-                  @rejected="onRejected"
                 />
               </div>
       </div>
@@ -612,16 +611,6 @@ export default {
       classes: [],
       class_options: [],
       selected_class: null,
-      jobs: [],
-      job_options: [],
-      selected_job: null,
-      times: [],
-      time_options: [],
-      selected_time: null,
-      blood_groups: [],
-      blood_group_options: [],
-      selected_blood_group: null,
-      departments: [],
       slected_department: null,
       selectedStatus: { name: this.$t("Active"), value: 1 },
       form: {
@@ -739,39 +728,7 @@ export default {
     },
     uploadFile(files) {
         this.form.photo = files[0];
-      // console.log("this.form.personal.photo: ", this.form.personal.photo);
-    },
-    onRejected(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`,
-      });
-    },
-    onRejectedScan(rejectedEntries) {
-      this.$q.notify({
-        type: "negative",
-        message: `${rejectedEntries.length} file(s) did not pass validation constraints`,
-      });
-    },
-    filterDepartment(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.department_options = this.departments;
-          } else {
-            const needle = val.toLowerCase();
-            this.department_options = this.departments.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
+      console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
     filterClass(val, update, abort) {
       update(
@@ -793,26 +750,6 @@ export default {
         }
       );
     },
-    filterTimes(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.time_options = this.times;
-          } else {
-            const needle = val.toLowerCase();
-            this.time_options = this.times.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
     filterDepartment(val, update, abort) {
       update(
         () => {
@@ -833,93 +770,13 @@ export default {
         }
       );
     },
-    filterJob(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.job_options = this.jobs;
-          } else {
-            const needle = val.toLowerCase();
-            this.job_options = this.jobs.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrency(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_options = this.currencies.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterCurrencyType(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.currency_type_options = this.currencies;
-          } else {
-            const needle = val.toLowerCase();
-            this.currency_type_options = this.currencies.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
-    filterBloodGroup(val, update, abort) {
-      update(
-        () => {
-          if (val === "") {
-            this.blood_group_options = this.blood_groups;
-          } else {
-            const needle = val.toLowerCase();
-            this.blood_group_options = this.blood_groups.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
-            );
-          }
-        },
-        (ref) => {
-          if (val !== "" && ref.options.length > 0) {
-            ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
-            ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
-          }
-        }
-      );
-    },
+    
     editData() {
       this.$axios.get(`student/edit/${this.$route.params.id}`).then((data) => {
         data = data.data;
         this.form.code = data.code;
         this.form.name = data.name;
         this.form.last_name = data.last_name;
-        this.form.GrandFather_name = data.GrandFather_name;
         this.form.phone_no = data.phone_no;
         this.selectedStatus = this.status.find(
           (e) => e.value === (data.status ? 1 : 0)
@@ -928,16 +785,6 @@ export default {
           (e) => e.id === data.department_id
         );
         this.selected_time = this.times.find((e) => e.id === data.time_id);
-        // PERSONAL TAB---
-
-        // CONTACT DETAILS -----------
-
-        //  BANK DETIALS ------------
-
-        // CONTACT PERSON
-
-        // COMPANY ------
-
         // console.log('data: ', data);
       });
     },

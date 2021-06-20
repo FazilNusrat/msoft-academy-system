@@ -9,10 +9,10 @@ use Image;
 
 class TeachersController extends Controller
 {
-    protected $Teachers;
-    public function __construct(Teachers $Teachers)
+    protected $teachers;
+    public function __construct(Teachers $teachers)
     {
-        $this->Teachers = $Teachers;
+        $this->teachers = $teachers;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class TeachersController extends Controller
         $sort_by = $request->input('sort_by');
         $descending = $request->input('descending');
 
-        return $this->Teachers->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
+        return $this->teachers->getTeacher($per_page, $current_page, $filter, $sort_by, $descending);
     }
 
     /**
@@ -65,8 +65,6 @@ class TeachersController extends Controller
             })->save(public_path('uploads/teachers/small/' . $name));
             // $request->merge(['photo' => $name]);
         }
-
-
         $TeacherData = [
             'addmission_number'                =>$form->addmission_number,
             'roll_number'                      =>$form->roll_number,
@@ -76,6 +74,8 @@ class TeachersController extends Controller
             'email'                            =>$form->email,
             'phone'                            =>$form->phone,
             'photo'                            =>$name,
+            'section_id'                       =>$form->section_id,
+            'class_id'                         =>$form->class_id,
             'date_of_birth'                    =>$form->date_of_birth,
             'email'                            =>$form->email,
             'salary'                           =>$form->salary,
@@ -88,12 +88,12 @@ class TeachersController extends Controller
 
         ];
 
-        $Teacher   = $this->Teachers->create($TeacherData);
+        $Teacher   = $this->teachers->create($TeacherData);
         if($Teacher)
         {
             return ['Class Message'];
         }
-        return json_encode($this->Teachers->find($id));
+        return json_encode($this->teachers->find($id));
         // return ['ttt'=>json_decode($request->form)];
           
     } 
@@ -101,30 +101,30 @@ class TeachersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Teachers  
+     * @param  \App\Models\teachers  
      * @return \Illuminate\Http\Response
      */
-    public function show(Teachers $Teacher)
+    public function show($id)
     {
-        //
+        return $this->teachers->show($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Teachers  
+     * @param  \App\Models\teachers  
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        return $this->Teachers->findOrFail($id);
+        return $this->teachers->findOrFail($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teachers  
+     * @param  \App\Models\teachers  
      * @return \Illuminate\Http\Response
      */ 
     public function update(Request $request, $id)
@@ -132,7 +132,7 @@ class TeachersController extends Controller
         // return 22;   
         // $id = $request->id;
         // return $id;
-        $Teacher = $this->Teachers->findOrFail($id);
+        $Teacher = $this->teachers->findOrFail($id);
         // $this->validate($request, [
         //     'name' => 'required|string|max:191',
         // ]);
@@ -160,12 +160,12 @@ class TeachersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Teachers  $Teacher
+     * @param  \App\Models\teachers  $Teacher
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $Teacher = $this->Teachers->find($id);
+        $Teacher = $this->teachers->find($id);
         $Teacher->delete();
     }
 }
