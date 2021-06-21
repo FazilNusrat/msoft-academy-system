@@ -660,23 +660,17 @@ export default {
           driver_name: null,
           area: null,
           route: null,
-          palet_number: null,
+          plate_number: null,
           car_model: null,
           price: null,
           km: null,
         },
-        // hostel_details
-        //{
-
-        //},
         miscellaneous_details: {
           bank_account_number: null,
           bank_name: null,
           ifsc_code: null,
           national_identification_number: null,
           local_identification_number: null,
-          yes: null,
-          no: null,
           previou_school_details: null,
           note: null,
         },

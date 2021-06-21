@@ -16,6 +16,9 @@ const routes = [
       { path: '/student/edit/:id', 
       component: () => import('pages/students/edit.vue') 
       },
+      { path: '/student/info/:id', 
+      component: () => import('pages/students/info.vue') 
+      },
       { path: '/teacher', 
       component: () => import('pages/teachers/index.vue') 
       },

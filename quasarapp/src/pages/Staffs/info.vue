@@ -306,28 +306,6 @@
           </q-item-section>
         </q-item>
 
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Last Name  : {{ info.first_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
 
         <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
@@ -345,29 +323,6 @@
           <q-item-section>
             <q-item-label
               >Last Name  : {{ info.last_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Father Name  : {{ info.father_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>

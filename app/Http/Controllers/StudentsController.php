@@ -93,7 +93,6 @@ class StudentsController extends Controller
         ];
         $transport_details = [
             'driver_name'                => $form->transport_details->driver_name,
-            'area'                       => $form->transport_details->area,
             'car_model'                  => $form->transport_details->car_model,
             'plate_number'               => $form->transport_details->plate_number,
             'area'                       => $form->transport_details->area,
@@ -155,9 +154,9 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Students $student)
+    public function show($id)
     {
-        //
+        return $this->student->show($id);
     }
 
     /**

@@ -175,7 +175,8 @@ export default {
       this.getRecord()
     },
     info (id=0) {
-      console.log('info: ', id);
+      this.$router.push('/student/info/'+id);
+      
     },
     onRequest (props) {
       console.log('propss: ', props);
