@@ -14,6 +14,7 @@
           <n-simple icon="father_name" class="q-mb-sm" :label="$t('father_name')" :name.sync="form.father_name"/>
           <n-simple icon="education" class="q-mb-sm" :label="$t('education')" :name.sync="form.education"/>
           <n-simple icon="email" class="q-mb-sm" :label="$t('email')" :name.sync="form.email"/>
+          <n-simple icon="roll_number" class="q-mb-sm" :label="$t('Roll Number')" :name.sync="form.roll_number"/>
           <n-simple icon="birth_day" class="q-mb-sm" :label="$t('birth_day')" :name.sync="form.birth_day"/>
         </q-card-section>
 

@@ -38,13 +38,14 @@
 
           <q-item-section>
             <q-item-label
-              >Name : {{ info.addmission_number }}</q-item-label
+              >Addmission No : {{ info.addmission_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
+        
          <q-item class="shadow-7 my_radio " clickable v-ripple>
           <q-item-section avatar>
             <q-btn
@@ -60,7 +61,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.roll_number }}</q-item-label
+              >last Name  : {{ info.last_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -83,7 +84,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.first_name }}</q-item-label
+              >Date Of Birth  : {{ info.date_of_birth }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -106,30 +107,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.last_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Father Name  : {{ info.father_name }}</q-item-label
+              >Address  : {{ info.address }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -157,7 +135,7 @@
 
           <q-item-section>
             <q-item-label
-              >Name : {{ info.addmission_number }}</q-item-label
+              >Roll Number : {{ info.roll_number }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -179,75 +157,6 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.roll_number }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Last Name  : {{ info.first_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Last Name  : {{ info.last_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
-
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
               >Father Name  : {{ info.father_name }}</q-item-label
             >
           </q-item-section>
@@ -255,6 +164,53 @@
             <q-icon name="chat_bubble" color="cyan-7" />
           </q-item-section>
         </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >Email  : {{ info.email }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
+        <q-item class="shadow-7 my_radio " clickable v-ripple>
+          <q-item-section avatar>
+            <q-btn
+              round
+              icon="account_circle"
+              size="sm"
+              push
+              color="white"
+              text-color="cyan-7"
+            >
+            </q-btn>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label
+              >City  : {{ info.city }}</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side>
+            <q-icon name="chat_bubble" color="cyan-7" />
+          </q-item-section>
+        </q-item>
+
 
       </q-list>
         </div>
@@ -276,7 +232,7 @@
 
           <q-item-section>
             <q-item-label
-              >Name : {{ info.addmission_number }}</q-item-label
+              >First Name : {{ info.first_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -298,7 +254,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.roll_number }}</q-item-label
+              >phone  : {{ info.phone }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -321,7 +277,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.first_name }}</q-item-label
+              >Salary  : {{ info.salary }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -344,7 +300,7 @@
 
           <q-item-section>
             <q-item-label
-              >Last Name  : {{ info.last_name }}</q-item-label
+              >Job Name  : {{ info.job_name }}</q-item-label
             >
           </q-item-section>
           <q-item-section side>
@@ -352,28 +308,6 @@
           </q-item-section>
         </q-item>
 
-        <q-item class="shadow-7 my_radio " clickable v-ripple>
-          <q-item-section avatar>
-            <q-btn
-              round
-              icon="account_circle"
-              size="sm"
-              push
-              color="white"
-              text-color="cyan-7"
-            >
-            </q-btn>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label
-              >Father Name  : {{ info.father_name }}</q-item-label
-            >
-          </q-item-section>
-          <q-item-section side>
-            <q-icon name="chat_bubble" color="cyan-7" />
-          </q-item-section>
-        </q-item>
 
       </q-list>
         </div>
@@ -395,12 +329,6 @@ export default {
     showData() {
         this.$axios.get(`staff/show/${this.$route.params.id}`).then(data => {
         this.info= data.data;
-    //    console.log('asas',data)
-        
-        
-        //we can not make like edit becuase just we want to display
-        //if we write this.info.last_name= data.last_name it store
-        //but we wont to display data on database
       });
     },
   },
