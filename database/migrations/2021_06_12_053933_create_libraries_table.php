@@ -21,6 +21,7 @@ class CreateLibrariesTable extends Migration
             $table->string('publisher')->nullable();
             $table->string('author')->nullable();
             $table->string('subject')->nullable();
+            $table->string('description')->nullable();
             $table->date('get_book')->nullable();
             $table->integer('book_price')->nullable();
             $table->date('return_book')->nullable();

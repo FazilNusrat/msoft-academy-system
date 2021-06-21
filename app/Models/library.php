@@ -22,6 +22,7 @@ class library extends Model
         'subject',
         'get_book',
         'book_price',
+        'description',
         'return_book',
         'phone',
     ];
