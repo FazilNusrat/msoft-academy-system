@@ -45,6 +45,7 @@ import LButton from "../../components/Buttons/LinearButton.vue";
 import HTitle from "../../components/Headers/HeaderTitle.vue";
 import NAddModal from 'src/components/modals/Teacher/Add.vue'
 import NEditModal from 'src/components/modals/Teacher/Edit.vue'
+import NInfoModal from 'src/components/modals/teacher/info.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
@@ -173,7 +174,8 @@ export default {
       this.getRecord()
     },
     info (id=0) {
-      console.log('info: ', id);
+      this.$router.push('/library/info/'+id)
+      // console.log('info: ', id);
     },
     onRequest (props) {
       console.log('propss: ', props);

@@ -81,6 +81,7 @@ Route::get('library',['as'=>'library.index','uses'=>'LibraryController@index']);
 Route::post('library/store', ['as' => 'library.store', 'uses' => 'LibraryController@store']);
 Route::patch('library/{id}', ['as' => 'library.update', 'uses' => 'LibraryController@update']);
 Route::get('library/edit/{id}', ['as' => 'library.edit', 'uses' => 'LibraryController@edit']);
+Route::get('library/show/{id}', ['as' => 'library.show', 'uses' => 'libraryController@show']);
 Route::delete('library/{id}','LibraryController@destroy')->name('library');
 
 

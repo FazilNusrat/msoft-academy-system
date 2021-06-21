@@ -59,10 +59,6 @@ const routes = [
       { path: '/staffs/info/:id', 
       component: () => import('pages/staffs/info.vue') 
       },
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
       { path: '/exam', 
       component: () => import('pages/exams/index.vue') 
       },
@@ -173,6 +169,9 @@ const routes = [
       },
       { path: '/library/edit/:id', 
       component: () => import('pages/library/edit.vue') 
+      },
+      { path: '/library/info/:id', 
+      component: () => import('pages/library/info.vue') 
       },
     ]
   },

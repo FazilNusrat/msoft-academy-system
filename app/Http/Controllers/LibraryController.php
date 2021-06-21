@@ -53,6 +53,7 @@ class LibraryController extends Controller
             'book_number'               =>$form->book_number,
             'rack_number'               =>$form->rack_number,
             'publisher'                 =>$form->publisher,
+            'description'                 =>$form->description,
             'author'                    =>$form->author,
             'subject'                   =>$form->subject,
             'get_book'                  =>$form->get_book,
@@ -76,9 +77,10 @@ class LibraryController extends Controller
      * @param  \App\Models\library  $library
      * @return \Illuminate\Http\Response
      */
-    public function show(library $library)
+    public function show($id)
     {
-        //
+        return $this->library->findOrFail($id);
+        
     }
 
     /**
@@ -109,6 +111,7 @@ class LibraryController extends Controller
             'book_number'            =>$form->book_number,
             'rack_number'            =>$form->rack_number,
             'publisher'              =>$form->publisher,
+            'description'            =>$form->description,
             'author'                 =>$form->author,
             'subject'                =>$form->subject,
             'get_book'               =>$form->get_book,
@@ -129,7 +132,7 @@ class LibraryController extends Controller
      */
     public function destroy(library $library)
     {
-        $library = $this->libr$librarys->find($id);
-        $library->delete();
+        $library = $this->library->find($id);
+        $staff->delete();
     }
 }

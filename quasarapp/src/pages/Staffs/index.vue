@@ -186,6 +186,7 @@ export default {
     info (id=0) {
       this.$router.push('/staffs/info/'+id)
       // console.log('info: ', id);
+    },
     onRequest (props) {
       console.log('propss: ', props);
       this.getProp = props
