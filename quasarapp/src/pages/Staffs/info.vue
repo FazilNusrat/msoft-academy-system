@@ -1,22 +1,33 @@
 <template>
   <div>
+     <q-card class="my-card">
+      <q-img
+        :src="'http://localhost:8000/uploads/staff/' + info.photo"
+        style="height: 300px"
+      />
+    </q-card>
     <q-card class="my-card">
-      <q-card-section
-        class="text-center bg-grey-4 q-pa-xl"
-        style="height: 30vh"
-      >
-        <q-avatar
-          size="150px"
-          class="avatar1 shadow-5 fixed"
-          clickable
-          v-ripple
-        >
-          <img src="" />
-        </q-avatar>
-      </q-card-section>
     </q-card>
     <div class="q-pa-md" >
-      <q-toolbar class="bg-cyan-7 q-mb-xs text-white shadow-2 text-center ">
+       <q-toolbar class="bg-cyan-7 q-mb-xs text-white shadow-2">
+        <div class="col text-center">
+          <q-btn
+            push
+            size="xl"
+            round
+            style="margin-top: -17%"
+            class="my_border_white three_d"
+          >
+            <q-avatar size="170px" class="my_border_white">
+              <q-img
+                :src="
+                  'http://localhost:8000/uploads/sttaf/small/' + info.photo
+                "
+                style="height: 200px"
+              />
+            </q-avatar>
+          </q-btn>
+        </div>
         <q-toolbar-title>Informations</q-toolbar-title>
       </q-toolbar>
 

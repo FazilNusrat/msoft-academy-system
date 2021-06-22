@@ -112,8 +112,6 @@ class StudentsController extends Controller
             'bank_name'                         => $form->miscellaneous_details->bank_name,
             'ifsc_code'                         => $form->miscellaneous_details->ifsc_code,
             'national_identification_number'    => $form->miscellaneous_details->national_identification_number,
-            'yes'                               => $form->miscellaneous_details->yes,
-            'no'                                => $form->miscellaneous_details->no,
             'previou_school_details'            => $form->miscellaneous_details->previou_school_details,
             'note'                              => $form->miscellaneous_details->note,
          ];

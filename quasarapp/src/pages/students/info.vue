@@ -1,27 +1,53 @@
 <template>
   <div>
     <q-card class="my-card">
-      <q-card-section
-        class="text-center bg-grey-4 q-pa-xl"
-        style="height: 30vh"
-      >
-        <q-avatar
-          size="150px"
-          class="avatar1 shadow-5 fixed"
-          clickable
-          v-ripple
-        >
-          <img src="" />
-        </q-avatar>
-      </q-card-section>
+      <q-img
+        :src="'http://localhost:8000/uploads/student/small/' + info.image"
+        style="height: 300px"
+      />
     </q-card>
     <div class="q-pa-md">
-      <q-toolbar class="bg-cyan-7 q-mb-xs text-white shadow-2 text-center">
+      <!-- <q-avatar
+          size="180px"
+          class="avatar1  shadow-5 rounded"
+          clickable
+          v-ripple
+          style="margin-top:-100px;"
+        >
+          <img :src="'http://localhost:8000/uploads/student/small/'+info.image" />
+        </q-avatar> -->
+      <q-toolbar class="bg-cyan-7 q-mb-xs text-white shadow-2">
+        <div class="col text-center">
+          <q-btn
+            push
+            size="xl"
+            round
+            style="margin-top: -17%"
+            class="my_border_white three_d"
+          >
+            <q-avatar size="170px" class="my_border_white">
+              <q-img
+                :src="
+                  'http://localhost:8000/uploads/student/small/' + info.image
+                "
+                style="height: 200px"
+              />
+            </q-avatar>
+          </q-btn>
+        </div>
         <q-toolbar-title>Informations</q-toolbar-title>
       </q-toolbar>
       <div class="row">
         <div class="q-pa-md col-4" style="max-width: 350px">
-          <q-toolbar class="bg-cyan-7 text-white text-center shadow-7 my_border_white my_radio_less shadow-2">
+          <q-toolbar
+            class="
+              bg-cyan-7
+              text-white text-center
+              shadow-7
+              my_border_white my_radio_less
+              shadow-2
+            "
+          >
             <q-toolbar-title>Student Information</q-toolbar-title>
           </q-toolbar>
           <q-list bordered>
@@ -221,129 +247,147 @@
             </q-item>
           </q-list>
           <div class="q-mt-md">
-            <q-toolbar class="bg-cyan-7 text-white text-center shadow-7 my_border_white my_radio_less shadow-7 my_border_white my_radio_less">
-            <q-toolbar-title>Hostal Information</q-toolbar-title>
-          </q-toolbar>
+            <q-toolbar
+              class="
+                bg-cyan-7
+                text-white text-center
+                shadow-7
+                my_border_white my_radio_less
+                shadow-7
+                my_border_white my_radio_less
+              "
+            >
+              <q-toolbar-title>Hostal Information</q-toolbar-title>
+            </q-toolbar>
 
-          <q-list bordered>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+            <q-list bordered>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Room Number : {{ hostel_details.room_number }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
+                <q-item-section>
+                  <q-item-label>
+                    Room Number : {{ hostel_details.room_number }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
 
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Room Type : {{ hostel_details.room_type }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
+                <q-item-section>
+                  <q-item-label>
+                    Room Type : {{ hostel_details.room_type }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
 
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Floor Number : {{ hostel_details.floor_number }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
+                <q-item-section>
+                  <q-item-label>
+                    Floor Number :
+                    {{ hostel_details.floor_number }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
 
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Setter : {{ hostel_details.setter }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
+                <q-item-section>
+                  <q-item-label>
+                    Setter : {{ hostel_details.setter }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
 
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label> Bet# : {{ hostel_details.bet }}</q-item-label>
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-          </q-list>
+                <q-item-section>
+                  <q-item-label> Bet# : {{ hostel_details.bet }}</q-item-label>
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+            </q-list>
           </div>
         </div>
         <!-- Parent details   -->
         <div class="q-pa-md col-4" style="max-width: 350px">
-          <q-toolbar class="bg-cyan-7 text-white text-center shadow-7 my_border_white my_radio_less shadow-2">
+          <q-toolbar
+            class="
+              bg-cyan-7
+              text-white text-center
+              shadow-7
+              my_border_white my_radio_less
+              shadow-2
+            "
+          >
             <q-toolbar-title>Parent Information</q-toolbar-title>
           </q-toolbar>
 
@@ -490,172 +534,202 @@
             </q-item>
           </q-list>
           <div class="q-mt-md">
-            <q-toolbar class="bg-cyan-7 text-white text-center shadow-7 my_border_white my_radio_less shadow-2">
-            <q-toolbar-title>Miscellaneous Information</q-toolbar-title>
-          </q-toolbar>
+            <q-toolbar
+              class="
+                bg-cyan-7
+                text-white text-center
+                shadow-7
+                my_border_white my_radio_less
+                shadow-2
+              "
+            >
+              <q-toolbar-title>Miscellaneous Information</q-toolbar-title>
+            </q-toolbar>
 
-          <q-list bordered>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+            <q-list bordered>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Account Number : {{ miscellaneous_details.bank_account_number }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    Account Number :
+                    {{
+                      miscellaneous_details.bank_account_number
+                    }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Bank Name {{ miscellaneous_details.bank_name }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    Bank Name
+                    {{ miscellaneous_details.bank_name }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  IFSC Code: {{ miscellaneous_details.ifsc_code }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    IFSC Code:
+                    {{ miscellaneous_details.ifsc_code }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  National Number: {{ miscellaneous_details.national_identification_number }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    National Number:
+                    {{
+                      miscellaneous_details.national_identification_number
+                    }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Local Number : {{ miscellaneous_details.local_identification_number }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+                <q-item-section>
+                  <q-item-label>
+                    Local Number :
+                    {{
+                      miscellaneous_details.local_identification_number
+                    }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Pervious School : {{ miscellaneous_details.previou_school_details }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
+                <q-item-section>
+                  <q-item-label>
+                    Pervious School :
+                    {{
+                      miscellaneous_details.previou_school_details
+                    }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
 
-            <q-item class="shadow-7 my_radio" clickable v-ripple>
-              <q-item-section avatar>
-                <q-btn
-                  round
-                  icon="account_circle"
-                  size="sm"
-                  push
-                  color="white"
-                  text-color="cyan-7"
-                >
-                </q-btn>
-              </q-item-section>
+              <q-item class="shadow-7 my_radio" clickable v-ripple>
+                <q-item-section avatar>
+                  <q-btn
+                    round
+                    icon="account_circle"
+                    size="sm"
+                    push
+                    color="white"
+                    text-color="cyan-7"
+                  >
+                  </q-btn>
+                </q-item-section>
 
-              <q-item-section>
-                <q-item-label>
-                  Note: {{ miscellaneous_details.note }}</q-item-label
-                >
-              </q-item-section>
-              <q-item-section side>
-                <q-icon name="chat_bubble" color="cyan-7" />
-              </q-item-section>
-            </q-item>
-          </q-list>
+                <q-item-section>
+                  <q-item-label>
+                    Note: {{ miscellaneous_details.note }}</q-item-label
+                  >
+                </q-item-section>
+                <q-item-section side>
+                  <q-icon name="chat_bubble" color="cyan-7" />
+                </q-item-section>
+              </q-item>
+            </q-list>
           </div>
         </div>
 
         <div class="q-pa-md col-4" style="max-width: 350px">
-          <q-toolbar class="bg-cyan-7 text-white text-center shadow-7 my_border_white my_radio_less shadow-2">
+          <q-toolbar
+            class="
+              bg-cyan-7
+              text-white text-center
+              shadow-7
+              my_border_white my_radio_less
+              shadow-2
+            "
+          >
             <q-toolbar-title>Transport Information</q-toolbar-title>
           </q-toolbar>
 
@@ -818,7 +892,6 @@
             </q-item>
           </q-list>
         </div>
-
       </div>
     </div>
   </div>

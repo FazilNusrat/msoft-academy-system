@@ -28,6 +28,7 @@
           </q-th>
         </q-tr>
       </template>
+      
         <template v-slot:body-cell-actions="props" :dense="dense">
           <q-td key="actions" :props="props">
             <q-btn  size="sm" color="primary" class="glossy  my_border_white_less q-ml-xs" v-show="noEdit?false:true" icon="edit" @click="edit(props.row.id)" />

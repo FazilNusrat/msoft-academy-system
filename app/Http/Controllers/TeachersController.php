@@ -72,7 +72,6 @@ class TeachersController extends Controller
             'last_name'                        =>$form->last_name,
             'father_name'                      =>$form->father_name,
             'email'                            =>$form->email,
-            'phone'                            =>$form->phone,
             'photo'                            =>$name,
             'section_id'                       =>$form->section_id,
             'class_id'                         =>$form->class_id,

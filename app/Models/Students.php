@@ -62,7 +62,7 @@ class Students extends Model
                     ->where('students.id',$id)
                     ->selectRaw('students.id , students.addmission_number, students.roll_number, students.first_name,   
                     students.last_name, students.date_of_birth , students.mobile_number, students.email, students.addmission_date,
-                    students.gender,
+                    students.gender, students.image,
                     students.parent_details,students.student_address, students.hostel_details,students.transport_details,
                     students.miscellaneous_details, classes.name as class_name ,classes.id as class_id,departments.name as section_name ')->first();
     }

@@ -55,7 +55,7 @@ import NEditModal from 'src/components/modals/teacher/Edit.vue'
 import MModal from 'src/components/general-components/MainModal.vue'
 
 export default {
-  components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal, NInfoModal},
+  components: { NTable, LButton, HTitle, MModal,NAddModal, NEditModal},
 
   data() {
     return {

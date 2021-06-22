@@ -49,11 +49,11 @@ class StaffController extends Controller
             $file_ext = end($original_filename_arr);
             $name = 'STF-' . time() . '.' . $file_ext;
             $img = Image::make($request->file('photo'));
-            $img->save(public_path('uploads/staffs/' . $name));
+            $img->save(public_path('uploads/staff/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/staffs/small/' . $name));
+            })->save(public_path('uploads/staff/small/' . $name));
             // $request->merge(['photo' => $name]);
         }
 

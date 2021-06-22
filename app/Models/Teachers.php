@@ -61,6 +61,7 @@ public function show($id)
         ->selectRaw('teachers.id , teachers.addmission_number , teachers.roll_number ,  teachers.first_name , teachers.last_name,
       teachers.father_name,teachers.phone, teachers.date_of_birth, teachers.email, teachers.salary, 
       teachers.current_address, teachers.permenent_address, teachers.education_level , teachers.experience, 
-      teachers.tazkera_number,teachers.gender ,classes.name as class_name ,classes.id as class_id,departments.name as section_name ')->first();
+      teachers.tazkera_number,teachers.gender ,teachers.photo,
+      classes.name as class_name ,classes.id as class_id,departments.name as section_name ')->first();
 }
 }
