@@ -94,7 +94,7 @@ Route::delete('library/{id}','LibraryController@destroy')->name('library');
 Route::get('student',          'StudentsController@index')->name('student.index');
 Route::post('student/store',   'StudentsController@store')->name('student.store');
 Route::get('student/edit/{id}', 'StudentsController@edit')->name('student.edit');
-Route::get('student/show/{id}', 'StudentsController@show')->name('student.show');
+Route::get('student/show/{id}', 'StudentsController@show')->name('student.showid');
 Route::patch('student/{id}',   'StudentsController@update')->name('student.update');
 Route::get('student/{id}',     'StudentsController@show')->name('student.show');
 Route::delete('student/{id}',  'StudentsController@destroy')->name('student');

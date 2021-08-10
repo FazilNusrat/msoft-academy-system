@@ -30,6 +30,7 @@ class CreateTeachersTable extends Migration
             $table->string('gender')->nullable();
             $table->string('current_address')->nullable();
             $table->string('permenent_address')->nullable();
+            $table->string('header_photo')->nullable();
             $table->string('education_level')->nullable();
             $table->string('experience')->nullable();
             $table->integer('tazkera_number')->nullable();

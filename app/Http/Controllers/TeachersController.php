@@ -58,11 +58,11 @@ class TeachersController extends Controller
             $file_ext = end($original_filename_arr);
             $name = 'STU-' . time() . '.' . $file_ext;
             $img = Image::make($request->file('photo'));
-            $img->save(public_path('uploads/teachers/' . $name));
+            $img->save(public_path('uploads/teacher/' . $name));
             $img->resize(100,100, function($constraint)
             {
                 $constraint->aspectRatio();
-            })->save(public_path('uploads/teachers/small/' . $name));
+            })->save(public_path('uploads/teacher/small/' . $name));
             // $request->merge(['photo' => $name]);
         }
         $TeacherData = [
@@ -78,6 +78,7 @@ class TeachersController extends Controller
             'date_of_birth'                    =>$form->date_of_birth,
             'email'                            =>$form->email,
             'salary'                           =>$form->salary,
+            'header_photo'                           =>$form->header,
             'gender'                           =>$form->gender,
             'current_address'                  =>$form->current_address,
             'permenent_address'                =>$form->permenent_address,

@@ -26,6 +26,7 @@ class Teachers extends Model
     'salary',
     'section_id',
     'class_id',
+    'header_photo',
     'gender',
     'current_address',
     'permenent_address',

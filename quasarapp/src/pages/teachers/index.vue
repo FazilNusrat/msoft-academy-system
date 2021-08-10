@@ -30,7 +30,26 @@
     </div>
     <div>
       <n-table :title="$t('teacherList')" :loading="loading" :data="data" :pagination.sync="pagination" @del="del" @info="info" @edit="edit" :filter.sync="filter" :columns="columns" @request="onRequest" />
+       <q-separator dark inset />
+<q-card>
+      <q-card-section>
+        {{ form.header }}
+      </q-card-section>
+    </q-card>
 
+    <q-card flat bordered class="my-card">
+      <q-card-section>
+        <div class="text-h6">Our Changing Planet</div>
+      </q-card-section>
+
+      <q-card-section class="q-pt-none">
+        <q-img
+        :src="'http://localhost:8000/uploads/teacher/' + infoheader.photo"
+        style="height: 200px"
+      />
+      </q-card-section>
+      </q-card>
+      <q-separator inset />
     <m-modal :showCM.sync="showAddModal">
     <n-add-modal @close="hideAddModal()" />
     <n-info-modal @close="showInfoModal()" />
@@ -59,6 +78,7 @@ export default {
 
   data() {
     return {
+      infoheader: [],
       id:0,
       showModal: false,
       showAddModal:false,
@@ -109,6 +129,16 @@ export default {
     });
   },
   methods: {
+    showData() {
+      this.$axios.get(`teacher/show/${this.$route.params.id}`).then((data) => {
+        this.info = data.data;
+      // console.log('asas',data)
+
+        //we can not make like edit becuase just we want to display
+        //if we write this.info,last_name= data.last_name it store
+        //but we have data on database
+      });
+    },
        getLayoutButtonId() {
       if (this.$route.query.id==7) {
         this.showAddModal = true;
@@ -190,6 +220,10 @@ export default {
       this.getRecord();
     },
   },
+  creaeted()
+  {
+    this.showData();
+  }
 
 };
 </script>

@@ -7,8 +7,8 @@
     >
       {{ $t("Add Teachers") }}
     </div>
-    
-       <div class="row q-mt-sm">
+
+    <div class="row q-mt-sm">
       <div class="col-9">
         <div class="row q-mb-sm q-px-sm">
           <input-required
@@ -46,7 +46,7 @@
             outlined
             :label="$t('Last Name')"
           />
-          
+
           <input-required
             class="col q-ma-xs"
             icon="apps"
@@ -72,7 +72,7 @@
             :date.sync="form.date_of_birth"
             :label="$t('Date Of Birth')"
           />
-           <input-simple
+          <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
@@ -91,7 +91,7 @@
         </div>
 
         <div class="row q-mb-sm q-px-sm">
-         <input-simple
+          <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
@@ -115,34 +115,31 @@
             :name.sync="form.education_level"
             :label="$t('education Level')"
           />
-          
-        </div> 
+        </div>
         <div class="row q-mb-sm q-px-sm">
-            <div class="col">
-              <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.experience"
-            :label="$t('Experience')"
-          />
-            </div>
-            <div class="col">
-              <input-simple
-            class="col q-ma-xs"
-            icon="apps"
-            dense
-            outlined
-            :name.sync="form.tazkera_number"
-            :label="$t('Tazkera Number')"
-          />
-            </div>
+          <div class="col">
+            <input-simple
+              class="col q-ma-xs"
+              icon="apps"
+              dense
+              outlined
+              :name.sync="form.experience"
+              :label="$t('Experience')"
+            />
+          </div>
+          <div class="col">
+            <input-simple
+              class="col q-ma-xs"
+              icon="apps"
+              dense
+              outlined
+              :name.sync="form.tazkera_number"
+              :label="$t('Tazkera Number')"
+            />
+          </div>
         </div>
 
-
         <div class="row q-mb-sm q-px-sm">
-          
           <n-select
             icon="mdi-clock"
             class="col q-ma-sm"
@@ -151,7 +148,7 @@
             :options="departments"
             @filter="filterDepartment"
           />
-         <!-- <input-simple
+          <!-- <input-simple
             class="col q-ma-xs"
             icon="apps"
             dense
@@ -175,7 +172,10 @@
             :options="classes"
             @filter="filterClass"
           />
-        </div>  
+        </div>
+        <div class="q-pa-md" style="max-width: 500px">
+          <q-input v-model="form.header" filled type="textarea" label = "Header photo" />
+        </div>
       </div>
       <div class="col-3">
         <div class="q-mx-sm q-mb-sm">
@@ -213,15 +213,15 @@
         </div>
 
         <div class="q-ma-xs">
-                <q-uploader
-                  class="full-width"
-                  :label="$t('Photo')"
-                  :factory="uploadFile"
-                  max-files="1"
-                  auto-upload
-                  accept=".jpg, image/*"
-                />
-              </div>
+          <q-uploader
+            class="full-width"
+            :label="$t('Photo')"
+            :factory="uploadFile"
+            max-files="1"
+            auto-upload
+            accept=".jpg, image/*"
+          />
+        </div>
       </div>
     </div>
 
@@ -267,12 +267,13 @@ export default {
         email: null,
         photo: null,
         salary: null,
+        header: null,
         current_address: null,
         permenent_address: null,
         education_level: null,
         experience: null,
-        gender: 'male',
-        tazkera_number: null,
+        gender: "male",
+        tazkera_number: null
       }
     };
   },
@@ -297,10 +298,8 @@ export default {
       //     ? this.selected_section.id
       //     : 0;
 
-          this.form.class_id = this?.selected_class?.id;
-          this.form.section_id = this?.selected_department?.id;
-          
-
+      this.form.class_id = (this.selected_class && this.selected_class.id)?this.selected_class.id:0;
+      this.form.section_id = (this.selected_department && this.selected_department.id)?this.selected_department.id:0;
 
       const fileData = new FormData();
       fileData.append("form", JSON.stringify(this.form));
@@ -323,10 +322,10 @@ export default {
         });
     },
     uploadFile(files) {
-        this.form.photo = files[0];
+      this.form.photo = files[0];
       // console.log("this.form.personal.photo: ", this.form.personal.photo);
     },
-   filterClass(val, update, abort) {
+    filterClass(val, update, abort) {
       update(
         () => {
           if (val === "") {
@@ -334,11 +333,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.class_options = this.classes.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
+              v => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        (ref) => {
+        ref => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -354,11 +353,11 @@ export default {
           } else {
             const needle = val.toLowerCase();
             this.department_options = this.departments.filter(
-              (v) => v.name.toLowerCase().indexOf(needle) > -1
+              v => v.name.toLowerCase().indexOf(needle) > -1
             );
           }
         },
-        (ref) => {
+        ref => {
           if (val !== "" && ref.options.length > 0) {
             ref.setOptionIndex(-1); // reset optionIndex in case there is something selected
             ref.moveOptionSelection(1, true); // focus the first selectable option and do not update the input-value
@@ -367,31 +366,31 @@ export default {
       );
     },
     editData() {
-      this.$axios.get(`teacher/edit/${this.$route.params.id}`).then((data) => {
+      this.$axios.get(`teacher/edit/${this.$route.params.id}`).then(data => {
         data = data.data;
         this.form.code = data.code;
         this.form.name = data.name;
         this.form.last_name = data.last_name;
         this.form.phone_no = data.phone_no;
         this.selectedStatus = this.status.find(
-          (e) => e.value === (data.status ? 1 : 0)
+          e => e.value === (data.status ? 1 : 0)
         );
         this.selected_department = this.departments.find(
-          (e) => e.id === data.department_id
+          e => e.id === data.department_id
         );
-        this.selected_time = this.times.find((e) => e.id === data.time_id);
+        this.selected_time = this.times.find(e => e.id === data.time_id);
         // console.log('data: ', data);
       });
-    },
+    }
   },
-   mounted() {
+  mounted() {
     this.$getAcademy("department").then(() => {
       console.log("aaaaa", this.departments);
     });
     this.$getAcademy("class").then(() => {
       console.log("aaaaa", this.classes);
     });
-  },
+  }
 };
 </script>
 <style lang="css" scoped></style>
